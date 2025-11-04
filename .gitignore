@@ -216,3 +216,6 @@ coverage/
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+
+backend/backend/static/img/
+static/img/
