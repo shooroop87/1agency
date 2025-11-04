@@ -18,7 +18,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-abroadtours_user} -d ${POSTGRES_DB:-abroadtours}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-oneagency_user} -d ${POSTGRES_DB:-oneagency}"]
       interval: 10s
       timeout: 5s
       retries: 5
