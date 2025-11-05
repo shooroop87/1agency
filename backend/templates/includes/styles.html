@@ -4,18 +4,27 @@
 
 <!-- Core CSS -->
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
-<link rel="stylesheet" href="{% static 'css/layout.css' %}">
 <link rel="stylesheet" href="{% static 'css/grid.css' %}">
-<link rel="stylesheet" href="{% static 'css/header.css' %}">
-<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/layout.css' %}">
+<link rel="stylesheet" href="{% static 'css/icons.css' %}">
 <link rel="stylesheet" href="{% static 'css/theme.css' %}">
 
-<!-- Custom styles -->
-<style>
-:root {
-    --wdtPrimaryColor: #ffffff;
-    --wdtSecondaryColor: #a0a0a0;
-    --wdtBodyBGColor: #272727;
-    --wdtBodyTxtColor: #ffffff;
-}
-</style>
+<!-- Components CSS -->
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/hero.css' %}">
+<link rel="stylesheet" href="{% static 'css/projects.css' %}">
+<link rel="stylesheet" href="{% static 'css/listings.css' %}">
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+<link rel="stylesheet" href="{% static 'css/areas.css' %}">
+<link rel="stylesheet" href="{% static 'css/accordion.css' %}">
+<link rel="stylesheet" href="{% static 'css/widget.css' %}">
+<link rel="stylesheet" href="{% static 'css/whatsappbutton.css' %}">
+
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="{% static 'lib/select2/select2.css' %}">
+
+<!-- RTL Support (if needed) -->
+{% if LANGUAGE_CODE == 'ar' or LANGUAGE_CODE == 'he' %}
+<link rel="stylesheet" href="{% static 'css/rtl.css' %}">
+{% endif %}

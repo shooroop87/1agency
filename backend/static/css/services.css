@@ -1,0 +1,125 @@
+/* ==================== SERVICES SECTION ==================== */
+.services-section,
+.strategies-section {
+    padding: 80px 0;
+    background: var(--wdtBodyBGColor);
+}
+
+.services-grid,
+.strategies-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.service-item,
+.strategy-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.4s ease;
+}
+
+.service-item:hover,
+.strategy-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(234, 146, 120, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.service-image {
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.service-item:hover .service-image img {
+    transform: scale(1.1);
+}
+
+.service-title,
+.strategy-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.service-title a {
+    color: var(--wdtPrimaryColor);
+}
+
+.service-description,
+.strategy-description {
+    font-size: 14px;
+    color: var(--wdtSecondaryColor);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--wdtAccentColor);
+    font-weight: 500;
+    font-size: 14px;
+    transition: gap 0.3s ease;
+}
+
+.service-link:hover {
+    gap: 12px;
+}
+
+/* Strategy Icons */
+.strategy-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.strategy-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Active state */
+.service-item.active {
+    background: rgba(234, 146, 120, 0.1);
+    border-color: rgba(234, 146, 120, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+    .services-grid,
+    .strategies-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .services-grid,
+    .strategies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .services-grid,
+    .strategies-grid {
+        grid-template-columns: 1fr;
+    }
+}

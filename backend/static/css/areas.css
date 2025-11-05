@@ -1,0 +1,116 @@
+/* ==================== AREAS OF BALI SECTION ==================== */
+.areas-section {
+    padding: 80px 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tabs-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0;
+    list-style: none;
+}
+
+.tabs-nav li {
+    position: relative;
+}
+
+.tabs-nav li a {
+    display: block;
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--wdtSecondaryColor);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tabs-nav li:hover a,
+.tabs-nav li.active a {
+    color: var(--wdtPrimaryColor);
+    border-bottom-color: var(--wdtAccentColor);
+}
+
+.tabs-content {
+    position: relative;
+}
+
+.tab-pane {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-pane p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--wdtSecondaryColor);
+    margin-bottom: 20px;
+}
+
+.btn-view-property {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #F0987D 0%, #EA9278 100%);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-view-property:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(234, 146, 120, 0.4);
+}
+
+.btn-view-property .btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-view-property:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .tabs-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .tabs-nav li a {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tabs-nav {
+        flex-direction: column;
+        border-bottom: none;
+    }
+    
+    .tabs-nav li a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 2px solid transparent;
+    }
+    
+    .tabs-nav li.active a {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+        border-left-color: var(--wdtAccentColor);
+    }
+}
