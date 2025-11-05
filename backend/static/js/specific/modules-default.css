@@ -1,0 +1,32 @@
+
+/** 
+    Media - Image List Style
+*/
+
+.with-space .wdt-listings-image-gallery-list { width: auto !important; margin: calc(-1 * clamp(0.3125rem, 0.1683rem + 0.641vw, 0.9375rem)); /* 5px - 15px */ }
+.with-space .wdt-listings-image-gallery-list .wdt-listings-image-gallery-item { padding: clamp(0.3125rem, 0.1683rem + 0.641vw, 0.9375rem); /* 5px - 15px */ }
+
+.wdt-listings-image-gallery-list { display: flex; flex-wrap: wrap; }
+.wdt-listings-image-gallery-list .wdt-listings-image-gallery-item { box-sizing: border-box; position: relative; }
+
+.wdt-listings-image-gallery-list .wdt-listings-image-gallery-item img { height: 100%; object-fit: cover; object-position: center center; }
+
+.wdt-listings-image-gallery-list.wdt-column-1 .wdt-listings-image-gallery-item { flex: 1 1 100%; }
+.wdt-listings-image-gallery-list.wdt-column-2 .wdt-listings-image-gallery-item { flex: 1 1 50%; }
+.wdt-listings-image-gallery-list.wdt-column-3 .wdt-listings-image-gallery-item { flex: 1 1 33.333%; }
+.wdt-listings-image-gallery-list.wdt-column-4 .wdt-listings-image-gallery-item { flex: 1 1 25%; }
+.wdt-listings-image-gallery-list.wdt-column-5 .wdt-listings-image-gallery-item { flex: 1 1 20%; }
+
+
+
+/** 
+    @Media Query - Responsive 
+*/
+
+@media only screen and (max-width: 767px) { 
+
+    .wdt-listings-image-gallery-list.wdt-column-3 .wdt-listings-image-gallery-item,
+    .wdt-listings-image-gallery-list.wdt-column-4 .wdt-listings-image-gallery-item,
+    .wdt-listings-image-gallery-list.wdt-column-5 .wdt-listings-image-gallery-item { flex: 1 1 50%; }
+
+}

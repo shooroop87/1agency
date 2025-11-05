@@ -1,0 +1,145 @@
+/*--------------------------------------------------------------
+    Loader
+--------------------------------------------------------------*/
+
+.pre-loader {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999991;
+    background-color: #fff;
+}
+
+.loader-inner {
+    padding: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: clamp(6.25rem, 5.2112rem + 3.4698vw, 9.375rem);/* 150-100 */
+}
+
+.wdt-logo-main-path {
+    animation: wdt-home-path 0.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Animated small red boxes */
+.wdt-fav-color-2 {
+    transform-origin: 30% 65%;
+    animation: pulse 0.8s infinite ease-in-out;
+    color: var(--wdtPrimaryColor);
+    fill:var(--wdtPrimaryColor);
+}
+
+/* Box animation delays */
+.wdt-box-1 {
+    animation-delay: 0s;
+}
+
+.wdt-box-2 {
+    animation-delay: 0.2s;
+}
+
+.wdt-box-3 {
+    animation-delay: 0.4s;
+}
+
+.wdt-box-4 {
+    animation-delay: 0.6s;
+}
+
+.wdt-box-5 {
+    animation-delay: 0.8s;
+}
+
+/* Class for additional transforms if needed */
+.wdt-class-box {
+    position: relative;
+    transform-origin: center;
+}
+
+/* Pulse animation for boxes */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* Zoom pulse for main logo path */
+@keyframes wdt-home-path {
+
+    0%,
+    100% {
+        transform: translateX(0px);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateX(1px);
+        opacity: 1;
+    }
+}
+
+/* ------Style-2---- */
+.house-Top {
+  fill: transparent;
+  stroke: var(--wdtPrimaryColor);
+  stroke-width: 1;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: roofAnim 3s linear infinite;
+}
+
+/* Walls */
+.house-line {
+  fill: transparent;
+  stroke: var(--wdtPrimaryColor);
+  stroke-width: 1;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: wallAnim 3s linear infinite;
+}
+
+/* Roof sequence */
+@keyframes roofAnim {
+  0%   { stroke-dashoffset: 500; transform: translateY(0);}
+  50%  { transform: translateY(-4px);stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 500; transform: translateY(0); }
+}
+
+/* Walls sequence */
+@keyframes wallAnim {
+  0%, 20% { stroke-dashoffset: 500;  transform: translateY(0);}
+  50%     { transform: translateY(-4px);  stroke-dashoffset: 0; }
+  100%    { stroke-dashoffset: 500; transform: translateY(0); }
+}
+
+
+/*--------------------------------------------------------------
+    Responsive
+--------------------------------------------------------------*/
+
+/*----*****---- << Mobile (Landscape) >> ----*****----*/
+
+/* Note: Design for a width of 480px */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+
+/* Common Styles for the devices below 479px width */
+
+@media only screen and (max-width: 479px) {}

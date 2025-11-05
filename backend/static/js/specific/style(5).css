@@ -1,0 +1,410 @@
+/* Добавим CSS переменные для стрелок */
+:root {
+  --arrow-default: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_default.svg");
+  --arrow-hover: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_hover.svg");
+}
+
+.wdt-button-holder {
+    display: inline-flex;
+    position: relative;
+    -webkit-transition: var(--wdt-Ad-Transition);
+    transition: var(--wdt-Ad-Transition);
+}
+
+.wdt-button {
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1em;
+    letter-spacing: 0;
+    line-height: normal;
+    margin: 0;
+    overflow: visible;
+    position: relative;
+    z-index: 0;
+    text-decoration: none;
+    text-transform: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.wdt-button,
+.wdt-button-holder .wdt-button {
+    padding: 7px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    line-height: var(--wdtLineHeight_Base);
+    font-weight: var(--wdtFontWeight_Ext);
+    font-family: var(--wdtFontTypo_Base);
+    text-transform: capitalize;
+    gap: 2px;
+    box-shadow: 2.01471px 1.00735px 7.55515px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.25919px);
+    -webkit-backdrop-filter: blur(1.25919px);
+}
+
+.wdt-button:focus,
+.wdt-button-holder .wdt-button:focus,
+.wdt-button:hover,
+.wdt-button-holder .wdt-button:hover {
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 20px rgba(207, 121, 95, 0.4);
+    -webkit-box-shadow: 0px 4px 20px rgba(207, 121, 95, 0.4);
+}
+
+.wdt-dark-bg .wdt-button,
+.wdt-dark-bg .wdt-button-holder .wdt-button {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+}
+
+.wdt-dark-bg .wdt-button:focus,
+.wdt-dark-bg .wdt-button-holder .wdt-button:focus,
+.wdt-dark-bg .wdt-button:hover,
+.wdt-dark-bg .wdt-button-holder .wdt-button:hover {
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wdt-button .wdt-button-text,
+.wdt-button .wdt-button-icon {
+    vertical-align: middle;
+}
+
+.wdt-button .wdt-button-text:not(.wdt-template-textual) {
+    padding-top: 0;
+}
+
+.wdt-button .wdt-button-text {
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    gap: 2px;
+    height: 100%;
+}
+
+.wdt-button .wdt-button-icon {
+    display: inline-flex;
+    align-items: center;
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* Стили для иконки стрелки */
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button .wdt-button-icon span {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    font-size: 1em;
+}
+
+/* Default стрелка */
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button .wdt-button-icon span:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-image: var(--arrow-default);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
+}
+
+/* Hover стрелка с вращением */
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button:hover .wdt-button-icon span:before,
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button:focus .wdt-button-icon span:before {
+    background-image: var(--arrow-hover);
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+/* Убираем стили иконки, которые конфликтуют */
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button:hover .wdt-button-icon span,
+.wdt-button-holder:not(.wdt-template-textual) .wdt-button:focus .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-dark-bg .wdt-button-holder:not(.wdt-template-textual) .wdt-button .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-dark-bg .wdt-button-holder:not(.wdt-template-textual) .wdt-button:hover .wdt-button-icon span,
+.wdt-dark-bg .wdt-button-holder:not(.wdt-template-textual) .wdt-button:focus .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-button .wdt-button-text .wdt-button-subtext {
+    display: block;
+    font-size: 0.75em;
+    margin-top: -2px;
+}
+
+.wdt-button-holder.wdt-button-size-sm .wdt-button {
+    font-size: calc(var(--wdtFontSize_Base) - 2px);
+    padding: 5px 12px;
+}
+
+.wdt-button-holder.wdt-button-size-nm .wdt-button {
+    font-size: var(--wdtFontSize_Base);
+    padding: 7px 15px;
+}
+
+.wdt-button-holder.wdt-button-size-lg .wdt-button {
+    font-size: calc(var(--wdtFontSize_Base) + 2px);
+    padding: 10px 20px;
+}
+
+.wdt-button-holder.wdt-button-size-sm.icon-highlighted .wdt-button {
+    padding: 5px 12px;
+}
+
+.wdt-button-holder.wdt-button-size-nm.icon-highlighted .wdt-button {
+    padding: 7px 15px;
+}
+
+.wdt-button-holder.wdt-button-size-lg.icon-highlighted .wdt-button {
+    padding: 10px 20px;
+}
+
+.wdt-button-holder.wdt-button-size-sm.wdt-button-icon-before.icon-highlighted .wdt-button {
+    padding: 5px 12px;
+}
+
+.wdt-button-holder.wdt-button-size-nm.wdt-button-icon-before.icon-highlighted .wdt-button {
+    padding: 7px 15px;
+}
+
+.wdt-button-holder.wdt-button-size-lg.wdt-button-icon-before.icon-highlighted .wdt-button {
+    padding: 10px 20px;
+}
+
+.elementor-align-justify .wdt-button-holder,
+.elementor-align-justify .wdt-button-holder .wdt-button {
+    width: 100%;
+}
+
+/* Изменяем порядок: иконка после текста */
+.wdt-button-holder.wdt-button-icon-before .wdt-button {
+    flex-direction: row-reverse;
+}
+
+.wdt-button-holder.wdt-button-icon-before .wdt-button .wdt-button-icon {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.wdt-button-holder.wdt-button-icon-after .wdt-button .wdt-button-icon {
+    margin-left: 8px;
+}
+
+/* Styles */
+.wdt-button-holder.wdt-button-style-underline:before,
+.wdt-button-holder.wdt-button-style-overline:before,
+.wdt-button-holder.wdt-button-style-line-through .wdt-button .wdt-button-text > span:before {
+    content: "";
+    display: inline !important;
+    height: 1px;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: auto;
+    -webkit-transition: var(--wdt-Ad-Transition);
+    transition: var(--wdt-Ad-Transition);
+}
+
+.wdt-button-holder.wdt-button-style-underline .wdt-button {
+    margin-bottom: 3px;
+}
+
+.wdt-button-holder.wdt-button-style-underline:before {
+    bottom: 2px;
+    top: auto;
+}
+
+.wdt-button-holder.wdt-button-style-overline .wdt-button {
+    margin-top: 3px;
+}
+
+.wdt-button-holder.wdt-button-style-overline:before {
+    bottom: auto;
+    top: 0px;
+}
+
+.wdt-button-holder.wdt-button-style-underline:before,
+.wdt-button-holder.wdt-button-style-overline:before {
+    color: var(--wdtLinkColor);
+    background-color: currentColor;
+    background-image: inherit;
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+}
+
+.wdt-button-holder.wdt-button-style-underline:focus:before,
+.wdt-button-holder.wdt-button-style-underline:hover:before,
+.wdt-button-holder.wdt-button-style-overline:focus:before,
+.wdt-button-holder.wdt-button-style-overline:hover:before {
+    transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+}
+
+.wdt-button-holder.wdt-button-style-line-through .wdt-button .wdt-button-text > span {
+    position: relative;
+}
+
+.wdt-button-holder.wdt-button-style-line-through .wdt-button .wdt-button-text > span:before {
+    background-color: currentColor;
+    margin: auto;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-button-style-underline:before,
+.wdt-dark-bg .wdt-button-holder.wdt-button-style-overline:before {
+    color: var(--wdtAccentTxtColor);
+}
+
+/* Template - Bordered */
+.wdt-button-holder.wdt-template-bordered .wdt-button {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-width: 1px;
+}
+
+.wdt-button-holder.wdt-template-bordered .wdt-button:not(:focus),
+.wdt-button-holder.wdt-template-bordered .wdt-button:not(:hover) {
+    color: #FFFFFF;
+}
+
+.wdt-button-holder.wdt-template-bordered .wdt-button:focus,
+.wdt-button-holder.wdt-template-bordered .wdt-button:hover {
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button:hover,
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button:focus {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    color: #FFFFFF;
+}
+
+.wdt-button-holder.wdt-template-bordered .wdt-button .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-button-holder.wdt-template-bordered .wdt-button:hover .wdt-button-icon span,
+.wdt-button-holder.wdt-template-bordered .wdt-button:focus .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button:hover .wdt-button-icon span,
+.wdt-dark-bg .wdt-button-holder.wdt-template-bordered .wdt-button:focus .wdt-button-icon span {
+    background: transparent;
+    color: transparent;
+}
+
+/* Template - Textual */
+.wdt-button-holder.wdt-template-textual .wdt-button,
+.wdt-button-holder.wdt-template-textual.icon-highlighted .wdt-button {
+    border-width: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+.wdt-button-holder.wdt-template-textual .wdt-button:not(:focus),
+.wdt-button-holder.wdt-template-textual .wdt-button:not(:hover) {
+    background: none !important;
+    border-width: 0;
+    color: var(--wdtSecondaryColor);
+}
+
+.wdt-button-holder.wdt-template-textual .wdt-button:focus,
+.wdt-button-holder.wdt-template-textual .wdt-button:hover {
+    background: none;
+    border-width: 0;
+    color: var(--wdtLinkHoverColor);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-before .wdt-button .wdt-button-icon {
+    margin-right: 10px;
+}
+
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-after .wdt-button .wdt-button-icon {
+    margin-left: 10px;
+}
+
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-after .wdt-button .wdt-button-icon,
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-before .wdt-button .wdt-button-icon {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transition: inherit;
+    -webkit-transition: inherit;
+}
+
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-after .wdt-button:hover .wdt-button-icon,
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-after .wdt-button:focus .wdt-button-icon {
+    transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+}
+
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-before .wdt-button:hover .wdt-button-icon,
+.wdt-button-holder.wdt-template-textual.wdt-button-icon-before .wdt-button:focus .wdt-button-icon {
+    transform: translateX(-5px);
+    -webkit-transform: translateX(-5px);
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-textual .wdt-button:not(:focus),
+.wdt-dark-bg .wdt-button-holder.wdt-template-textual .wdt-button:not(:hover) {
+    color: var(--wdtAccentTxtColor);
+}
+
+.wdt-dark-bg .wdt-button-holder.wdt-template-textual .wdt-button:focus,
+.wdt-dark-bg .wdt-button-holder.wdt-template-textual .wdt-button:hover {
+    color: var(--wdtTertiaryColor);
+}
