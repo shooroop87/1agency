@@ -51,8 +51,6 @@ INSTALLED_APPS = [
     "meta",
     "tinymce",
     "core",
-    "blog",
-    "portfolio",
 ]
 # Работает в связке с django.contrib.sites
 # SITE_ID = 1
@@ -96,8 +94,6 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / "core" / "templates",  # Основные шаблоны
-            BASE_DIR / "blog" / "templates",  # Шаблоны блога
-            BASE_DIR / "tours" / "templates",  # Шаблоны туров
             BASE_DIR / "templates",  # Общие шаблоны
         ],
         "APP_DIRS": True,

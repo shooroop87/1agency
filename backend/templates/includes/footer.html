@@ -1,84 +1,231 @@
-{% load static %}
-<footer id="footer">
-    <div class="footer-wrapper">
-        <!-- Contact Form Section -->
-        <div class="footer-contact-section">
-            <div class="footer-container">
-                <h6>Tell us what you're looking for — we'll take care of the rest</h6>
-                <form class="contact-form" method="post" action="{% url 'core:contacts' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Your name" required>
-                    <input type="email" name="email" placeholder="Your E-mail" required>
-                    <input type="text" name="whatsapp" placeholder="Your WhatsApp number">
-                    <select name="property_type">
-                        <option value="">Property type</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Villa">Villa</option>
-                        <option value="Land">Land</option>
-                    </select>
-                    <textarea name="message" placeholder="Your message" required></textarea>
-                    <button type="submit">Submit query</button>
-                    <label>
-                        <input type="checkbox" required> I agree to the terms of the Privacy Policy
-                    </label>
-                </form>
-            </div>
-        </div>
-        <!-- Footer Links Section -->
-        <div class="footer-links-section">
-            <div class="footer-container">
-                <div class="footer-logo">
-                    <img src="{% static 'images/One_Agency.svg' %}" alt="One Agency">
-                </div>
-                
-                <div class="footer-columns">
-                    <div class="footer-column">
-                        <h6>Our projects</h6>
-                        <ul>
-                            <li><a href="#">Apartments</a></li>
-                            <li><a href="#">Villas</a></li>
-                            <li><a href="#">Townhouses</a></li>
-                            <li><a href="#">Land plots</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h6>Concierge service</h6>
-                        <ul>
-                            <li><a href="#">Accommodation</a></li>
-                            <li><a href="#">Transportation</a></li>
-                            <li><a href="#">Legal support</a></li>
-                            <li><a href="#">Travel</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h6>Navigation</h6>
-                        <ul>
-                            <li><a href="{% url 'core:about' %}">About us</a></li>
-                            <li><a href="#">About Bali</a></li>
-                            <li><a href="#">Map</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Reviews</a></li>
-                            <li><a href="{% url 'core:contacts' %}">Contacts</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h6>Contacts</h6>
-                        <ul>
-                            <li><a href="#">Instagram RU</a></li>
-                            <li><a href="#">Instagram ENG</a></li>
-                            <li><a href="tel:+6281339488437">Tel.: +62 813 39 48 8437</a></li>
-                            <li><a href="mailto:info@oneagency.group">E-mail: info@oneagency.group</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>©<a href="{% url 'core:home' %}">2025 One Agency</a>. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+<div class="wdt-elementor-container-fluid"><div class="wdt-footer-tpl footer-53" id="footer-53"> <div class="elementor elementor-53" data-elementor-id="53" data-elementor-type="wp-post">
+<div class="elementor-element elementor-element-76fac2e e-flex e-con-boxed e-con e-parent e-lazyloaded" data-element_type="container" data-id="76fac2e" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-d9c235e e-con-full e-flex e-con e-child" data-element_type="container" data-id="d9c235e" data-settings='{"background_background":"classic"}'>
+<div class="elementor-element elementor-element-ed0c905 e-con-full e-flex e-con e-child" data-element_type="container" data-id="ed0c905">
+</div>
+<div class="elementor-element elementor-element-bef3329 e-con-full e-flex e-con e-child" data-element_type="container" data-id="bef3329" data-settings='{"background_background":"classic"}'>
+<div class="elementor-element elementor-element-586d87f elementor-widget elementor-widget-wdt-heading" data-element_type="widget" data-id="586d87f" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="wdt-heading.default">
+<div class="elementor-widget-container">
+<div class="wdt-heading-holder" id="wdt-heading-586d87f"><h6 class="wdt-heading-title-wrapper wdt-heading-title">Tell us what you’re looking for — we’ll take care of the rest</h6></div> </div>
+</div>
+<div class="elementor-element elementor-element-b382552 elementor-widget elementor-widget-shortcode" data-element_type="widget" data-id="b382552" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="shortcode.default">
+<div class="elementor-shortcode">
+<div class="wpcf7 js" data-wpcf7-id="1805" dir="ltr" id="wpcf7-f1805-o1" lang="en-US">
+<div class="screen-reader-response"><p aria-atomic="true" aria-live="polite" role="status"></p> <ul></ul></div>
+<form action="https://andreyegorov.com/luxreal/#wpcf7-f1805-o1" aria-label="Contact form" class="wpcf7-form init" data-status="init" method="post" novalidate="novalidate">
+<fieldset class="hidden-fields-container"><input name="_wpcf7" type="hidden" value="1805"/><input name="_wpcf7_version" type="hidden" value="6.1.3"/><input name="_wpcf7_locale" type="hidden" value="en_US"/><input name="_wpcf7_unit_tag" type="hidden" value="wpcf7-f1805-o1"/><input name="_wpcf7_container_post" type="hidden" value="0"/><input name="_wpcf7_posted_data_hash" type="hidden" value=""/>
+</fieldset>
+<div class="wdt-service-form-group new">
+<p><span class="wpcf7-form-control-wrap" data-name="text"><input aria-invalid="false" aria-required="true" autocomplete="name" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" maxlength="400" name="text" placeholder="Your name" size="40" type="text" value=""/></span><span class="wpcf7-form-control-wrap" data-name="h-3-email"><input aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email wdt-cus-h3-email" maxlength="400" name="h-3-email" placeholder="Your E-mail" size="40" type="email" value=""/></span><span class="wpcf7-form-control-wrap" data-name="whatsapp-number"><input aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" maxlength="400" name="whatsapp-number" placeholder="Your WhatsApp number" size="40" type="text" value=""/></span><span class="wpcf7-form-control-wrap" data-name="property-type"><select aria-hidden="true" aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required select2-hidden-accessible" data-select2-id="select2-data-1-60d4" name="property-type" tabindex="-1"><option data-select2-id="select2-data-3-dgn4" value="">Property type</option><option value="Apartment">Apartment</option><option value="House">House</option><option value="Office">Office</option></select><span class="select2 select2-container select2-container--default" data-select2-id="select2-data-2-mzbn" dir="ltr" style="width: 295.195px;"><span class="selection"><span aria-controls="select2-property-type-c1-container" aria-disabled="false" aria-expanded="false" aria-haspopup="true" aria-labelledby="select2-property-type-c1-container" class="select2-selection select2-selection--single" role="combobox" tabindex="0"><span aria-readonly="true" class="select2-selection__rendered" id="select2-property-type-c1-container" role="textbox" title="Property type">Property type</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span aria-hidden="true" class="dropdown-wrapper"></span></span></span><span class="wpcf7-form-control-wrap" data-name="textarea"><textarea aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" cols="40" maxlength="2000" name="textarea" placeholder="Your message" rows="10"></textarea></span>
+</p>
+</div>
+<div class="wdt-service-btn-group">
+<p class="with-spinner"><i class="icon-right-arrow"></i><input class="wpcf7-form-control wpcf7-submit has-spinner wdt-career-btn" type="submit" value="Submit query"/><span class="wpcf7-spinner"></span>
+</p>
+</div>
+<p><label><input required="" type="checkbox"/> I agree to the terms of the Privacy Policy</label>
+</p><div aria-hidden="true" class="wpcf7-response-output"></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-1484cb2 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-element_type="container" data-id="1484cb2" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+</div>
+</div>
+<div class="elementor-element elementor-element-d2e29e7 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-element_type="container" data-id="d2e29e7" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-60479d2 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="60479d2" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-de33d8d elementor-tablet_extra-align-center elementor-widget elementor-widget-wdt-logo" data-element_type="widget" data-id="de33d8d" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="wdt-logo.default">
+<div class="elementor-widget-container">
+<div class="wdt-logo-container" id="lumoria-de33d8d"> <a href="https://andreyegorov.com/luxreal/" rel="home"><img alt="My Blog" fetchpriority="high" height="50" src="./My Blog – My WordPress Blog_files/One_Agency.svg" title="My Blog" width="266"/></a></div> </div>
+</div>
+<div class="elementor-element elementor-element-a2c24a3 e-con-full e-flex e-con e-child" data-element_type="container" data-id="a2c24a3">
+<div class="elementor-element elementor-element-84071bf e-con-full e-flex e-con e-child" data-element_type="container" data-id="84071bf">
+<div class="elementor-element elementor-element-7923a4b elementor-widget elementor-widget-heading" data-element_type="widget" data-id="7923a4b" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="heading.default">
+<p class="elementor-heading-title elementor-size-default">Our projects</p> </div>
+<div class="elementor-element elementor-element-ac5a54a elementor-widget elementor-widget-tp-navigation-menu-lite" data-element_type="widget" data-id="ac5a54a" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="tp-navigation-menu-lite.default">
+<div class="plus-navigation-wrap text-left nav-menu690a506a4a4f9">
+<div class="plus-navigation-inner menu-hover main-menu-indicator-none sub-menu-indicator-none" data-menu_transition="style-1">
+<div class="collapse navbar-collapse navbar-ex1-collapse" id="theplus-navigation-normal-menu">
+<div class="plus-navigation-menu menu-vertical">
+<div class="plus-navigation-menu menu-vertical"><ul class="nav navbar-nav yamm menu-hover-none" id="menu-our-projects"><li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2856 menu-item-depth-0" id="menu-item-2856"><a data-text="Apartements" href="https://andreyegorov.com/luxreal/#" title="Apartements">Apartements</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2857 menu-item-depth-0" id="menu-item-2857"><a data-text="Villas" href="https://andreyegorov.com/luxreal/#" title="Villas">Villas</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2858 menu-item-depth-0" id="menu-item-2858"><a data-text="Townhouses" href="https://andreyegorov.com/luxreal/#" title="Townhouses">Townhouses</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2859 menu-item-depth-0" id="menu-item-2859"><a data-text="Land plots" href="https://andreyegorov.com/luxreal/#" title="Land plots">Land plots</a></li>
+</ul></div> </div>
+</div>
+<div class="plus-mobile-nav-toggle navbar-header mobile-toggle">
+<div class="mobile-plus-toggle-menu plus-collapsed toggle-style-1" data-target="#plus-mobile-nav-toggle-nav-menu690a506a4a4f9">
+<ul class="toggle-lines">
+<li class="toggle-line"></li>
+<li class="toggle-line"></li>
+</ul>
+</div>
+</div>
+<div class="plus-mobile-menu collapse navbar-collapse navbar-ex1-collapse plus-mobile-menu-content" id="plus-mobile-nav-toggle-nav-menu690a506a4a4f9" style="left: -80px; box-sizing: border-box; width: 1800px;">
+</div>
+</div>
+</div>
+<style>@media (min-width:992px){.plus-navigation-wrap.nav-menu690a506a4a4f9 #theplus-navigation-normal-menu{display: block!important;}.plus-navigation-wrap.nav-menu690a506a4a4f9 #plus-mobile-nav-toggle-nav-menu690a506a4a4f9.collapse.in{display:none;}}@media (max-width:991px){.plus-navigation-wrap.nav-menu690a506a4a4f9 #theplus-navigation-normal-menu{display:none !important;}.plus-navigation-wrap.nav-menu690a506a4a4f9 .plus-mobile-nav-toggle.mobile-toggle{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: flex;-webkit-align-items: center;-moz-align-items: center;-ms-align-items: center;align-items: center;-webkit-justify-content: flex-end;-moz-justify-content: flex-end;-ms-justify-content: flex-end;justify-content: flex-end;}}</style> </div>
+</div>
+<div class="elementor-element elementor-element-2d4981f e-con-full e-flex e-con e-child" data-element_type="container" data-id="2d4981f">
+<div class="elementor-element elementor-element-7b9a9ff elementor-widget elementor-widget-heading" data-element_type="widget" data-id="7b9a9ff" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="heading.default">
+<p class="elementor-heading-title elementor-size-default">Concierge service</p> </div>
+<div class="elementor-element elementor-element-fe8ceb5 elementor-widget elementor-widget-tp-navigation-menu-lite" data-element_type="widget" data-id="fe8ceb5" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="tp-navigation-menu-lite.default">
+<div class="plus-navigation-wrap text-left nav-menu690a506a4c448">
+<div class="plus-navigation-inner menu-hover main-menu-indicator-none sub-menu-indicator-none" data-menu_transition="style-1">
+<div class="collapse navbar-collapse navbar-ex1-collapse" id="theplus-navigation-normal-menu">
+<div class="plus-navigation-menu menu-vertical">
+<div class="plus-navigation-menu menu-vertical"><ul class="nav navbar-nav yamm menu-hover-none" id="menu-concierge-service-2"><li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2860 menu-item-depth-0"><a data-text="Accommodation" href="https://andreyegorov.com/luxreal/#" title="Accommodation">Accommodation</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2861 menu-item-depth-0"><a data-text="Transportation" href="https://andreyegorov.com/luxreal/#" title="Transportation">Transportation</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2862 menu-item-depth-0"><a data-text="Legal support" href="https://andreyegorov.com/luxreal/#" title="Legal support">Legal support</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2863 menu-item-depth-0"><a data-text="Travel" href="https://andreyegorov.com/luxreal/#" title="Travel">Travel</a></li>
+</ul></div> </div>
+</div>
+<div class="plus-mobile-nav-toggle navbar-header mobile-toggle">
+<div class="mobile-plus-toggle-menu plus-collapsed toggle-style-1" data-target="#plus-mobile-nav-toggle-nav-menu690a506a4c448">
+<ul class="toggle-lines">
+<li class="toggle-line"></li>
+<li class="toggle-line"></li>
+</ul>
+</div>
+</div>
+<div class="plus-mobile-menu collapse navbar-collapse navbar-ex1-collapse plus-mobile-menu-content" id="plus-mobile-nav-toggle-nav-menu690a506a4c448" style="left: -80px; box-sizing: border-box; width: 1800px;">
+</div>
+</div>
+</div>
+<style>@media (min-width:992px){.plus-navigation-wrap.nav-menu690a506a4c448 #theplus-navigation-normal-menu{display: block!important;}.plus-navigation-wrap.nav-menu690a506a4c448 #plus-mobile-nav-toggle-nav-menu690a506a4c448.collapse.in{display:none;}}@media (max-width:991px){.plus-navigation-wrap.nav-menu690a506a4c448 #theplus-navigation-normal-menu{display:none !important;}.plus-navigation-wrap.nav-menu690a506a4c448 .plus-mobile-nav-toggle.mobile-toggle{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: flex;-webkit-align-items: center;-moz-align-items: center;-ms-align-items: center;align-items: center;-webkit-justify-content: flex-end;-moz-justify-content: flex-end;-ms-justify-content: flex-end;justify-content: flex-end;}}</style> </div>
+</div>
+<div class="elementor-element elementor-element-19f77b3 e-con-full e-flex e-con e-child" data-element_type="container" data-id="19f77b3">
+<div class="elementor-element elementor-element-8f7ddb1 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="8f7ddb1" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="heading.default">
+<p class="elementor-heading-title elementor-size-default">Navigation</p> </div>
+<div class="elementor-element elementor-element-a699f25 elementor-widget elementor-widget-tp-navigation-menu-lite" data-element_type="widget" data-id="a699f25" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="tp-navigation-menu-lite.default">
+<div class="plus-navigation-wrap text-left nav-menu690a506a4dc9d">
+<div class="plus-navigation-inner menu-hover main-menu-indicator-none sub-menu-indicator-none" data-menu_transition="style-1">
+<div class="collapse navbar-collapse navbar-ex1-collapse" id="theplus-navigation-normal-menu">
+<div class="plus-navigation-menu menu-vertical">
+<div class="plus-navigation-menu menu-vertical"><ul class="nav navbar-nav yamm menu-hover-none" id="menu-navigation"><li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2864 menu-item-depth-0" id="menu-item-2864"><a data-text="About us" href="https://andreyegorov.com/luxreal/#" title="About us">About us</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2865 menu-item-depth-0" id="menu-item-2865"><a data-text="About Bali" href="https://andreyegorov.com/luxreal/#" title="About Bali">About Bali</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2866 menu-item-depth-0" id="menu-item-2866"><a data-text="Map" href="https://andreyegorov.com/luxreal/#" title="Map">Map</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2868 menu-item-depth-0" id="menu-item-2868"><a data-text="FAQ" href="https://andreyegorov.com/luxreal/#" title="FAQ">FAQ</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2869 menu-item-depth-0" id="menu-item-2869"><a data-text="Reviews" href="https://andreyegorov.com/luxreal/#" title="Reviews">Reviews</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2870 menu-item-depth-0" id="menu-item-2870"><a data-text="Partners" href="https://andreyegorov.com/luxreal/#" title="Partners">Partners</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2871 menu-item-depth-0" id="menu-item-2871"><a data-text="Contacts" href="https://andreyegorov.com/luxreal/#" title="Contacts">Contacts</a></li>
+</ul></div> </div>
+</div>
+<div class="plus-mobile-nav-toggle navbar-header mobile-toggle">
+<div class="mobile-plus-toggle-menu plus-collapsed toggle-style-1" data-target="#plus-mobile-nav-toggle-nav-menu690a506a4dc9d">
+<ul class="toggle-lines">
+<li class="toggle-line"></li>
+<li class="toggle-line"></li>
+</ul>
+</div>
+</div>
+<div class="plus-mobile-menu collapse navbar-collapse navbar-ex1-collapse plus-mobile-menu-content" id="plus-mobile-nav-toggle-nav-menu690a506a4dc9d" style="left: -80px; box-sizing: border-box; width: 1800px;">
+</div>
+</div>
+</div>
+<style>@media (min-width:992px){.plus-navigation-wrap.nav-menu690a506a4dc9d #theplus-navigation-normal-menu{display: block!important;}.plus-navigation-wrap.nav-menu690a506a4dc9d #plus-mobile-nav-toggle-nav-menu690a506a4dc9d.collapse.in{display:none;}}@media (max-width:991px){.plus-navigation-wrap.nav-menu690a506a4dc9d #theplus-navigation-normal-menu{display:none !important;}.plus-navigation-wrap.nav-menu690a506a4dc9d .plus-mobile-nav-toggle.mobile-toggle{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: flex;-webkit-align-items: center;-moz-align-items: center;-ms-align-items: center;align-items: center;-webkit-justify-content: flex-end;-moz-justify-content: flex-end;-ms-justify-content: flex-end;justify-content: flex-end;}}</style> </div>
+</div>
+<div class="elementor-element elementor-element-377e323 e-con-full e-flex e-con e-child" data-element_type="container" data-id="377e323">
+<div class="elementor-element elementor-element-81ae282 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="81ae282" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="heading.default">
+<p class="elementor-heading-title elementor-size-default">Contacts</p> </div>
+<div class="elementor-element elementor-element-aab2be3 elementor-widget elementor-widget-tp-navigation-menu-lite" data-element_type="widget" data-id="aab2be3" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="tp-navigation-menu-lite.default">
+<div class="plus-navigation-wrap text-left nav-menu690a506a4ffe5">
+<div class="plus-navigation-inner menu-hover main-menu-indicator-none sub-menu-indicator-none" data-menu_transition="style-1">
+<div class="collapse navbar-collapse navbar-ex1-collapse" id="theplus-navigation-normal-menu">
+<div class="plus-navigation-menu menu-vertical">
+<div class="plus-navigation-menu menu-vertical"><ul class="nav navbar-nav yamm menu-hover-none" id="menu-contacts"><li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2872 menu-item-depth-0" id="menu-item-2872"><a data-text="Instagram RU" href="https://andreyegorov.com/luxreal/#" title="Instagram RU">Instagram RU</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2873 menu-item-depth-0" id="menu-item-2873"><a data-text="Instagram ENG" href="https://andreyegorov.com/luxreal/#" title="Instagram ENG">Instagram ENG</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2874 menu-item-depth-0" id="menu-item-2874"><a data-text="Tel.: +62 813 39 48 8437" href="https://andreyegorov.com/luxreal/#" title="Tel.: +62 813 39 48 8437">Tel.: +62 813 39 48 8437</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom animate-dropdown menu-item-2875 menu-item-depth-0" id="menu-item-2875"><a data-text="E-mail: info@oneagency.group" href="https://andreyegorov.com/luxreal/#" title="E-mail: info@oneagency.group">E-mail: info@oneagency.group</a></li>
+</ul></div> </div>
+</div>
+<div class="plus-mobile-nav-toggle navbar-header mobile-toggle">
+<div class="mobile-plus-toggle-menu plus-collapsed toggle-style-1" data-target="#plus-mobile-nav-toggle-nav-menu690a506a4ffe5">
+<ul class="toggle-lines">
+<li class="toggle-line"></li>
+<li class="toggle-line"></li>
+</ul>
+</div>
+</div>
+<div class="plus-mobile-menu collapse navbar-collapse navbar-ex1-collapse plus-mobile-menu-content" id="plus-mobile-nav-toggle-nav-menu690a506a4ffe5" style="left: -80px; box-sizing: border-box; width: 1800px;">
+</div>
+</div>
+</div>
+<style>@media (min-width:992px){.plus-navigation-wrap.nav-menu690a506a4ffe5 #theplus-navigation-normal-menu{display: block!important;}.plus-navigation-wrap.nav-menu690a506a4ffe5 #plus-mobile-nav-toggle-nav-menu690a506a4ffe5.collapse.in{display:none;}}@media (max-width:991px){.plus-navigation-wrap.nav-menu690a506a4ffe5 #theplus-navigation-normal-menu{display:none !important;}.plus-navigation-wrap.nav-menu690a506a4ffe5 .plus-mobile-nav-toggle.mobile-toggle{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: flex;-webkit-align-items: center;-moz-align-items: center;-ms-align-items: center;align-items: center;-webkit-justify-content: flex-end;-moz-justify-content: flex-end;-ms-justify-content: flex-end;justify-content: flex-end;}}</style> </div>
+</div>
+<div class="elementor-element elementor-element-6c51248 e-con-full e-flex e-con e-child" data-element_type="container" data-id="6c51248">
+<div class="elementor-element elementor-element-d917323 elementor-widget elementor-widget-image" data-element_type="widget" data-id="d917323" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="image.default">
+<img alt="logo_like_number_one" height="502" loading="lazy" src="./My Blog – My WordPress Blog_files/logo_like_number_one-re0fn28rnks0werdpv6ovvbpr0b2igh85i4fmt6brw.png" title="logo_like_number_one" width="250"/> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-e100949 e-con-full e-flex e-con e-parent e-lazyloaded" data-element_type="container" data-id="e100949" data-settings='{"background_background":"classic"}'>
+<div class="elementor-element elementor-element-c4ce237 f_line elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-element_type="widget" data-id="c4ce237" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="divider.default">
+<div class="elementor-divider">
+<span class="elementor-divider-separator">
+</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-370382b e-flex e-con-boxed e-con e-parent e-lazyloaded" data-element_type="container" data-id="370382b" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-43c7f90 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="43c7f90" data-settings='{"background_background":"classic"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-829bb85 e-con-full e-flex e-con e-child" data-element_type="container" data-id="829bb85">
+<div class="elementor-element elementor-element-d37eb6d e-con-full e-flex e-con e-child" data-element_type="container" data-id="d37eb6d">
+<div class="elementor-element elementor-element-3c76d0d wdt-dark-bg elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="3c76d0d" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="text-editor.default">
+									©<a href="https://andreyegorov.com/luxreal/#" style="color: #A0A0A0;">2025 One Agency</a>. All rights reserved.								</div>
+</div>
+<div class="elementor-element elementor-element-e37e961 e-con-full e-flex e-con e-child" data-element_type="container" data-id="e37e961">
+<div class="elementor-element elementor-element-6002557 elementor-icon-list--layout-inline elementor-align-right elementor-mobile_extra-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-element_type="widget" data-id="6002557" data-settings='{"wdt_animation_effect":"none"}' data-widget_type="icon-list.default">
+<ul class="elementor-icon-list-items elementor-inline-items">
+<li class="elementor-icon-list-item elementor-inline-item">
+<a href="https://www.facebook.com/login/" title="Facebook Login">
+<span class="elementor-icon-list-icon">
+<svg aria-hidden="true" class="e-font-icon-svg e-fab-facebook" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg> </span>
+<span class="elementor-icon-list-text"></span>
+</a>
+</li>
+<li class="elementor-icon-list-item elementor-inline-item">
+<a href="https://twitter.com/login?" title="X Login">
+<span class="elementor-icon-list-icon">
+<svg aria-hidden="true" class="e-font-icon-svg e-fab-x-twitter" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg> </span>
+<span class="elementor-icon-list-text"></span>
+</a>
+</li>
+<li class="elementor-icon-list-item elementor-inline-item">
+<a href="https://www.youtube.com/" title="Youtube Login">
+<span class="elementor-icon-list-icon">
+<svg aria-hidden="true" class="e-font-icon-svg e-fab-youtube" viewbox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg> </span>
+<span class="elementor-icon-list-text"></span>
+</a>
+</li>
+<li class="elementor-icon-list-item elementor-inline-item">
+<a href="https://www.pinterest.com/login/" title="Pinterest Login">
+<span class="elementor-icon-list-icon">
+<svg aria-hidden="true" class="e-font-icon-svg e-fab-pinterest" viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"></path></svg> </span>
+<span class="elementor-icon-list-text"></span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>

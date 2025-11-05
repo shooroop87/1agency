@@ -1,20 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-    {% include 'includes/meta.html' %}
-    {% include 'includes/styles.html' %}
-    {% block extra_css %}{% endblock %}
+  {% include "includes/meta.html" %}
+  {% include "includes/styles.html" %}
+  {% block extra_head %}{% endblock %}
 </head>
 <body>
-    {% include 'includes/header.html' %}
-    
-    <main id="main">
-        {% block content %}{% endblock %}
-    </main>
-    
-    {% include 'includes/footer.html' %}
-    {% include 'includes/scripts.html' %}
-    {% block extra_js %}{% endblock %}
+  {% include "includes/header.html" %}
+  <main id="content">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "includes/footer.html" %}
+  {% include "includes/scripts.html" %}
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
