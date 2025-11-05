@@ -1,13 +1,6 @@
+# core/views.py
 from django.shortcuts import render
 
-def home(request):
-    return render(request, 'core/home.html')
-
-def about(request):
-    return render(request, 'core/about.html')
-
-def services(request):
-    return render(request, 'core/services.html')
-
-def contacts(request):
-    return render(request, 'core/contacts.html')
+def index(request):
+    # Файл шаблона: /templates/index.html
+    return render(request, "pages/index.html")

@@ -85,16 +85,17 @@ DATABASES = {
     }
 }
 
-# Найди WSGI_APPLICATION и замени:
+# --- WSGI ---
 WSGI_APPLICATION = "backend.wsgi.application"
 
+# --- Templates ---
 TEMPLATES_DIR = BASE_DIR / "templates"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "core" / "templates",  # Основные шаблоны
-            BASE_DIR / "templates",  # Общие шаблоны
+            BASE_DIR / "core" / "templates",  # шаблоны приложения
+            BASE_DIR / "templates",           # общие шаблоны (index.html и т.п.)
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -111,6 +112,23 @@ TEMPLATES = [
         },
     },
 ]
+
+LOCALE_PATHS = [BASE_DIR / "core" / "locale"]
+
+# --- Static & Media ---
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]         # у тебя статика в корне проекта
+STATIC_ROOT = BASE_DIR / "collected_static"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+
+# Создаём директорию media при запуске в dev
+MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
+
 
 # PostgreSQL
 # DATABASES = {
@@ -133,29 +151,22 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Языки
+LANGUAGE_CODE = "en"
 LANGUAGES = [
     ("en", "English"),
-    ("fr", _("French")),
-    ("de", _("German")),
-    ("es", _("Spanish")),
-    ("nl", _("Dutch")),
+    ("ru", _("Russian")),
 ]
 
-LOCALE_PATHS = [BASE_DIR / "core" / "locale"]
+# Parler (должен совпадать с LANGUAGES)
+PARLER_LANGUAGES = {
+    None: (
+        {"code": "en"},
+        {"code": "ru"},
+    ),
+    "default": {"fallbacks": ["en"], "hide_untranslated": False},
+}
 
-# Static & media
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "core" / "static"]
-STATIC_ROOT = BASE_DIR / "collected_static"
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-FILE_UPLOAD_PERMISSIONS = 0o644  # rw-r--r--
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # rwxr-xr-x
-
-# Создаем медиа-директорию если не существует
-os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 # Filer / thumbnails
 THUMBNAIL_HIGH_RESOLUTION = True
@@ -334,17 +345,7 @@ GOOGLE_PLACES_API_KEY = os.getenv("GOOGLE_PLACES_API_KEY", "")
 GOOGLE_PLACE_ID = os.getenv("GOOGLE_PLACE_ID", "")
 REVIEWS_CACHE_TIMEOUT = int(os.getenv("REVIEWS_CACHE_TIMEOUT", 86400))
 
-# Parler
-PARLER_LANGUAGES = {
-    None: (
-        {"code": "en"},
-        {"code": "fr"},
-        {"code": "de"},
-        {"code": "es"},
-        {"code": "nl"},
-    ),
-    "default": {"fallbacks": ["en"], "hide_untranslated": False},
-}
+
 
 # ===================== DJANGO TINYMCE =====================
 
