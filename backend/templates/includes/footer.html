@@ -1,1 +1,118 @@
 {% load static %}
+<footer id="footer">
+    <div class="wdt-elementor-container-fluid">
+        <div id="footer-53" class="wdt-footer-tpl footer-53">
+            <!-- Contact Form Section -->
+            <div class="footer-contact-section">
+                <div class="footer-contact-wrapper">
+                    <h6>Tell us what you're looking for — we'll take care of the rest</h6>
+                    <div class="wpcf7-form">
+                        <form method="post" class="contact-form">
+                            {% csrf_token %}
+                            <div class="wdt-service-form-group new">
+                                <input type="text" name="name" placeholder="Your name" required>
+                                <input type="email" name="email" placeholder="Your E-mail" required>
+                                <input type="text" name="whatsapp" placeholder="Your WhatsApp number" required>
+                                <select name="property-type" required>
+                                    <option value="">Property type</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="House">House</option>
+                                    <option value="Office">Office</option>
+                                </select>
+                                <textarea name="message" placeholder="Your message" required></textarea>
+                            </div>
+                            <div class="wdt-service-btn-group">
+                                <button type="submit" class="wdt-career-btn">
+                                    <i class="icon-right-arrow"></i>Submit query
+                                </button>
+                            </div>
+                            <label>
+                                <input type="checkbox" required> I agree to the terms of the Privacy Policy
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Navigation -->
+            <div class="footer-navigation">
+                <div class="footer-logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/One_Agency.svg' %}" alt="One Agency" width="266" height="50">
+                    </a>
+                </div>
+
+                <div class="footer-columns">
+                    <!-- Our Projects -->
+                    <div class="footer-column">
+                        <h6>Our projects</h6>
+                        <ul>
+                            <li><a href="#">Apartements</a></li>
+                            <li><a href="#">Villas</a></li>
+                            <li><a href="#">Townhouses</a></li>
+                            <li><a href="#">Land plots</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Concierge Service -->
+                    <div class="footer-column">
+                        <h6>Concierge service</h6>
+                        <ul>
+                            <li><a href="#">Accommodation</a></li>
+                            <li><a href="#">Transportation</a></li>
+                            <li><a href="#">Legal support</a></li>
+                            <li><a href="#">Travel</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="footer-column">
+                        <h6>Navigation</h6>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">About Bali</a></li>
+                            <li><a href="#">Map</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Reviews</a></li>
+                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contacts -->
+                    <div class="footer-column">
+                        <h6>Contacts</h6>
+                        <ul>
+                            <li><a href="#">Instagram RU</a></li>
+                            <li><a href="#">Instagram ENG</a></li>
+                            <li><a href="tel:+6281339488437">Tel.: +62 813 39 48 8437</a></li>
+                            <li><a href="mailto:info@oneagency.group">E-mail: info@oneagency.group</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Logo Image -->
+                    <div class="footer-column">
+                        <img src="{% static 'images/logo_like_number_one.png' %}" alt="Logo" width="250" height="502">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-copyright">
+                    <p>©<a href="#">2025 One Agency</a>. All rights reserved.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/" title="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.youtube.com/" title="Youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.pinterest.com/" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/+6281227867391" class="social-button whatsapp" target="_blank"></a>

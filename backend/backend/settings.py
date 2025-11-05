@@ -116,9 +116,9 @@ TEMPLATES = [
 LOCALE_PATHS = [BASE_DIR / "core" / "locale"]
 
 # --- Static & Media ---
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]         # у тебя статика в корне проекта
-STATIC_ROOT = BASE_DIR / "collected_static"
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
