@@ -1,0 +1,75 @@
+
+.wdt-sticky-css > .wdt-sticky-inner-wrapper.e-con-inner { width: 100%; flex-grow: 0; padding: 0; }
+
+/** 
+    Sticky Column Style
+*/
+
+@media only screen and (min-width: 1541px) {
+    .wdt-sticky-css.wdt-css-sticky-desktop > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-desktop > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+}
+
+/** 
+    Laptop / Notebook 
+*/
+
+@media only screen and (min-width: 1281px) and (max-width: 1540px) {
+    .wdt-sticky-css.wdt-css-sticky-laptop > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-laptop > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+}
+
+/** 
+    Tablet (Landscape) 
+*/
+
+@media only screen and (min-width: 1025px) and (max-width: 1280px) { 
+    .wdt-sticky-css.wdt-css-sticky-tablet_extra > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-tablet_extra > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+} 
+
+/** 
+    Tablet (Portrait) 
+*/
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) { 
+    .wdt-sticky-css.wdt-css-sticky-tablet > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-tablet > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+}
+
+
+/**
+    Mobile (Landscape) 
+*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+    .wdt-sticky-css.wdt-css-sticky-mobile_extra > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-mobile_extra > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+}
+
+/** 
+    Mobile (Portrait)
+*/
+
+@media only screen and (max-width: 479px) { 
+    .wdt-sticky-css.wdt-css-sticky-mobile > .wdt-sticky-inner-wrapper { position: -webkit-sticky; position: sticky; 
+        top: clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem); /* 20px - 50px */ height: fit-content; }
+
+    body:has(> .wrapper #header-wrapper .sticky-header-active) .wdt-sticky-css.wdt-css-sticky-mobile > .wdt-sticky-inner-wrapper {
+        top: calc(clamp(1.25rem, 0.8173rem + 1.9231vw, 3.125rem) + var(--sticky-header-height)); /* 20px / 50px + sticky header height */ }
+}

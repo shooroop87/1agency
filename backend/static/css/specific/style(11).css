@@ -1,0 +1,62 @@
+
+/**
+    Advanced Toggle Switcher
+*/
+
+.wdt-advanced-toggle-switch-switcher-container { display: flex; align-items:center; justify-content:start; margin: 0 0 clamp(2.5rem, 0.9375rem + 5vw, 3.75rem) /* 60 - 40 */; height:100%; }
+
+.wdt-advanced-toggle-switch-switcher-container .wdt-advanced-checkbox-toggle {
+  margin: 0 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--wdtPrimaryColor);
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  display: block;
+  border-radius: calc(var(--wdtRadius_1X) - 2px);
+  position: relative;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.wdt-advanced-toggle-switch-switcher-container .wdt-advanced-checkbox-toggle:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px; 
+  width: 30px;
+  height: 30px;
+  color: var(--wdtAccentTxtColor);
+  border-radius: calc(var(--wdtRadius_1X) - 6px);
+  background-color: currentColor;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.wdt-advanced-toggle-switch-switcher-container .wdt-advanced-checkbox-toggle:checked:after {
+  transform: translateX(40px); 
+}
+
+
+
+
+.wdt-advanced-toggle-switch-container{
+    display:flex;
+    gap:160px;
+}
+.wdt-advanced-toggle-switch-switcher-container{
+    flex:45%;
+}
+.wdt-advanced-toggle-switch-section{
+    flex:65%;
+}
+
+.wdt-advanced-toggle-switch-container .wdt-advanced-toggle-switch-switcher-container .wdt-advanced-toggle-switch-title { 
+    font-size:var(--wdtFontSize_Base); color: var(--wdtHeadAltColor); margin: 0px; }
+
+/** 
+    RTL Support
+*/
+
+body.rtl .wdt-advanced-toggle-switch-switcher-container .wdt-advanced-checkbox-toggle:after { left: calc(100% - 5px); transform: translateX(-100%); }
+body.rtl .wdt-advanced-toggle-switch-switcher-container .wdt-advanced-checkbox-toggle:checked:after { left: 5px; transform: translateX(0); }

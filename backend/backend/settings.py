@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "tinymce",
     "core",
     "blog",
-    "tours",
+    "portfolio",
 ]
 # Работает в связке с django.contrib.sites
 # SITE_ID = 1
@@ -76,7 +76,19 @@ MIDDLEWARE = [
 if DEBUG:
     MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
-ROOT_URLCONF = "config.urls"
+# Найди строку ROOT_URLCONF и замени:
+ROOT_URLCONF = "backend.urls"  # было "config.urls"
+
+# Найди DATABASES и замени на SQLite:
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+# Найди WSGI_APPLICATION и замени:
+WSGI_APPLICATION = "backend.wsgi.application"
 
 TEMPLATES_DIR = BASE_DIR / "templates"
 TEMPLATES = [
@@ -99,27 +111,22 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
-                "core.context_processors.default_schema",
-                "core.context_processors.tours_context",
-                "core.context_processors.hero_images",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
-
 # PostgreSQL
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "oneagency"),
-        "USER": os.getenv("POSTGRES_USER", "oneagency_user"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
-        "HOST": os.getenv("DB_HOST", ""),
-        "PORT": int(os.getenv("DB_PORT", 5432)),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv("POSTGRES_DB", "oneagency"),
+#         "USER": os.getenv("POSTGRES_USER", "oneagency_user"),
+#         "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
+#         "HOST": os.getenv("DB_HOST", ""),
+#         "PORT": int(os.getenv("DB_PORT", 5432)),
+#     }
+# }
 
 DEFAULT_CHARSET = "utf-8"
 FILE_CHARSET = "utf-8"

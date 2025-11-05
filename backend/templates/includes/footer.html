@@ -1,0 +1,84 @@
+{% load static %}
+<footer id="footer">
+    <div class="footer-wrapper">
+        <!-- Contact Form Section -->
+        <div class="footer-contact-section">
+            <div class="footer-container">
+                <h6>Tell us what you're looking for — we'll take care of the rest</h6>
+                <form class="contact-form" method="post" action="{% url 'core:contacts' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your E-mail" required>
+                    <input type="text" name="whatsapp" placeholder="Your WhatsApp number">
+                    <select name="property_type">
+                        <option value="">Property type</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Land">Land</option>
+                    </select>
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <button type="submit">Submit query</button>
+                    <label>
+                        <input type="checkbox" required> I agree to the terms of the Privacy Policy
+                    </label>
+                </form>
+            </div>
+        </div>
+        <!-- Footer Links Section -->
+        <div class="footer-links-section">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="{% static 'images/One_Agency.svg' %}" alt="One Agency">
+                </div>
+                
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h6>Our projects</h6>
+                        <ul>
+                            <li><a href="#">Apartments</a></li>
+                            <li><a href="#">Villas</a></li>
+                            <li><a href="#">Townhouses</a></li>
+                            <li><a href="#">Land plots</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h6>Concierge service</h6>
+                        <ul>
+                            <li><a href="#">Accommodation</a></li>
+                            <li><a href="#">Transportation</a></li>
+                            <li><a href="#">Legal support</a></li>
+                            <li><a href="#">Travel</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h6>Navigation</h6>
+                        <ul>
+                            <li><a href="{% url 'core:about' %}">About us</a></li>
+                            <li><a href="#">About Bali</a></li>
+                            <li><a href="#">Map</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Reviews</a></li>
+                            <li><a href="{% url 'core:contacts' %}">Contacts</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h6>Contacts</h6>
+                        <ul>
+                            <li><a href="#">Instagram RU</a></li>
+                            <li><a href="#">Instagram ENG</a></li>
+                            <li><a href="tel:+6281339488437">Tel.: +62 813 39 48 8437</a></li>
+                            <li><a href="mailto:info@oneagency.group">E-mail: info@oneagency.group</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>©<a href="{% url 'core:home' %}">2025 One Agency</a>. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
