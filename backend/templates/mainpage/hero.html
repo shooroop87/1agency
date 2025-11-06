@@ -1,99 +1,103 @@
 {% load static %}
-<!-- Hero Section -->
-<section id="hero-section" class="elementor-element elementor-element-18f047d wdt-overflow-hidden e-flex e-con-boxed e-con e-parent e-lazyloaded">
-    <div class="e-con-inner">
-        <!-- Left Column - Logo and Scroll -->
-        <div class="elementor-element elementor-element-fa994c4 e-con-full e-flex e-con e-child">
-            <div class="elementor-element elementor-element-c2a8ef0 e-con-full e-flex e-con e-child">
-                <div class="elementor-element elementor-element-543a00a elementor-widget elementor-widget-image">
-                    <img decoding="async" width="51" height="101" src="{% static 'images/dea1ad423d4365d7f29d697890884435.png' %}" alt="">
+    <!-- Home Banner Style V1 -->
+    <section class="home-banner-style1 p0">
+      <div class="home-style1">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-11 mx-auto">
+              <div class="inner-banner-style1 text-center">
+                <h6 class="hero-sub-title animate-up-1">THE BEST WAY TO</h6>
+                <h2 class="hero-title animate-up-2">Find Your Dream Home</h2>
+                <p class="hero-text fz15 animate-up-3">We’ve more than 745,000 apartments, place & plot.</p>
+                <div class="advance-search-tab mt70 mt30-md mx-auto animate-up-3">
+                  <ul class="nav nav-tabs p-0 m-0" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Buy</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rent</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Sold</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="advance-content-style1">
+                        <div class="row">
+                          <div class="col-md-8 col-lg-9">
+                            <div class="advance-search-field position-relative text-start">
+                              <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
+                                <div class="box-search">
+                                  <span class="icon flaticon-home-1"></span>
+                                  <input class="form-control bgc-f7 bdrs12" type="text" name="search" placeholder="Enter an address, neighborhood, city, or ZIP code">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-lg-3">
+                            <div class="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                              <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
+                              <button class="advance-search-icon ud-btn btn-thm ms-4" type="button"><span class="flaticon-search"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <div class="advance-content-style1">
+                        <div class="row">
+                          <div class="col-md-8 col-lg-9">
+                            <div class="advance-search-field position-relative text-start">
+                              <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
+                                <div class="box-search">
+                                  <span class="icon flaticon-home-1"></span>
+                                  <input class="form-control bgc-f7 bdrs12" type="text" name="search" placeholder="Enter an address, neighborhood, city, or ZIP code">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-lg-3">
+                            <div class="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                              <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
+                              <button class="advance-search-icon ud-btn btn-thm ms-4" type="button"><span class="flaticon-search"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                      <div class="advance-content-style1">
+                        <div class="row">
+                          <div class="col-md-8 col-lg-9">
+                            <div class="advance-search-field position-relative text-start">
+                              <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
+                                <div class="box-search">
+                                  <span class="icon flaticon-home-1"></span>
+                                  <input class="form-control bgc-f7 bdrs12" type="text" name="search" placeholder="Enter an address, neighborhood, city, or ZIP code">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="col-md-4 col-lg-3">
+                            <div class="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                              <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
+                              <button class="advance-search-icon ud-btn btn-thm ms-4" type="button"><span class="flaticon-search"></span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>              
                 </div>
-                <div class="elementor-element elementor-element-612267f elementor-widget elementor-widget-image">
-                    <img decoding="async" width="266" height="50" src="{% static 'images/One_Agency.svg' %}" alt="One Agency">
-                </div>
+              </div>
             </div>
-            <div class="elementor-element elementor-element-e5636d6 e-con-full e-flex e-con e-child">
-                <div class="elementor-element elementor-element-93d9999 elementor-widget__width-initial elementor-widget elementor-widget-heading">
-                    <div class="elementor-heading-title elementor-size-default">Scroll down</div>
-                </div>
-                <div class="elementor-element elementor-element-eb00573 elementor-widget elementor-widget-image">
-                    <img decoding="async" width="8" height="8" src="{% static 'images/31c695c90ff1790db768fc5b9f9f7084.svg' %}" alt="">
-                </div>
-            </div>
+          </div>
         </div>
-
-        <!-- Hero Images -->
-        <div class="elementor-element elementor-element-2bbc7d1 e-con-full e-flex e-con e-child">
-            <div class="elementor-element elementor-element-c0d4855 e-con-full hero-images-wrapper e-flex e-con e-child">
-                <!-- Column 1 -->
-                <div class="elementor-element elementor-element-12e2a7f e-con-full e-flex e-con e-child">
-                    <div class="hero-column">
-                        <div class="hero-image-wrap hero-image-top">
-                            <img decoding="async" src="{% static 'images/Rectangle-3430.png' %}" alt="Volcano Top" width="440" height="440">
-                        </div>
-                        <div class="hero-image-wrap hero-image-bottom">
-                            <img decoding="async" src="{% static 'images/Rectangle-3429.png' %}" alt="Volcano Bottom" width="440" height="440">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 2 -->
-                <div class="elementor-element elementor-element-977ded1 e-con-full e-flex e-con e-child">
-                    <div class="hero-column">
-                        <div class="hero-image-wrap hero-image-top">
-                            <img decoding="async" src="{% static 'images/Rectangle-3429.png' %}" alt="Volcano Bottom" width="440" height="440">
-                        </div>
-                        <div class="hero-image-wrap hero-image-bottom">
-                            <img decoding="async" src="{% static 'images/Rectangle-3430.png' %}" alt="Volcano Top" width="440" height="440">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column - Navigation and Title -->
-            <div class="elementor-element elementor-element-f9c4f80 e-con-full e-flex e-con e-child">
-                <div class="elementor-element elementor-element-83dab3f e-con-full e-flex e-con e-child">
-                    <!-- Desktop Menu -->
-                    <div class="elementor-element elementor-element-63d40be e-con-full elementor-hidden-tablet_extra elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile e-flex e-con e-child">
-                        <nav class="wdt-header-menu">
-                            <ul class="wdt-primary-nav">
-                                <li><a href="#"><span>Our projects</span></a></li>
-                                <li><a href="#"><span>About us</span></a></li>
-                                <li><a href="#"><span>Concierge Service</span></a></li>
-                                <li><a href="#"><span>About Bali</span></a></li>
-                                <li><a href="#"><span>FAQ</span></a></li>
-                                <li><a href="#"><span>Contacts</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <!-- Order Button -->
-                    <div class="elementor-element elementor-element-d34a426 e-con-full e-flex e-con e-child">
-                        <div class="elementor-element elementor-element-4f78d83 e-con-full e-flex e-con e-child">
-                            <img loading="lazy" decoding="async" width="11" height="9" src="{% static 'images/d738065c2ae6b4d6499d3abf9d111f44.svg' %}" alt="">
-                        </div>
-                        <div class="wdt-button-holder">
-                            <a class="wdt-button" href="#">
-                                <span class="wdt-button-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                        <path d="M100,44.896V55.104H94.82449A27.66327,27.66327,0,0,0,68.22692,81.70112v5.104H58.01937v-5.104A37.41244,37.41244,0,0,1,69.95209,55.104H.08V44.896H69.95209A37.41244,37.41244,0,0,1,58.01937,18.29888v-5.104H68.22692v5.104A27.67577,27.67577,0,0,0,94.89644,44.896Z"></path>
-                                    </svg>
-                                </span>
-                                <span class="wdt-button-text">Order a call</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Title -->
-                <div class="elementor-element elementor-element-712fa14 e-con-full e-flex e-con e-child">
-                    <div class="elementor-element elementor-element-87a2e9d e-con-full e-flex e-con e-child">
-                        <h1 class="hero-title elementor-heading-title elementor-size-default">
-                            Sale of real estate and land plots in Bali
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        <a href="#explore-property">
+          <div class="mouse_scroll animate-up-4">
+            <img src="images/about/home-scroll.png" alt="">
+          </div>
+        </a>
+      </div>
+    </section>

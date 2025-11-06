@@ -1,4 +1,5 @@
 {% load static %}
+{% load static %}
 <div class="dashboard__main pl0-md">
         <div class="dashboard__content property-page bgc-f7">
           <div class="row pb40 d-block d-lg-none">
@@ -7,18 +8,18 @@
                 <div class="dropdown">
                   <button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
                   <ul id="myDropdown" class="dropdown-content">
-                    <li><a href="page-dashboard.html"><i class="flaticon-discovery mr10"></i>Dashboard</a></li>
-                    <li><a href="page-dashboard-message.html"><i class="flaticon-chat-1 mr10"></i>Message</a></li>
+                    <li><a href="#"><i class="flaticon-discovery mr10"></i>Dashboard</a></li>
+                    <li><a href="#"><i class="flaticon-chat-1 mr10"></i>Message</a></li>
                     <li><p class="fz15 fw400 ff-heading mt30 pl30">MANAGE LISTINGS</p></li>
-                    <li class="active"><a href="page-dashboard-add-property.html"><i class="flaticon-new-tab mr10"></i>Add New Property</a></li>
-                    <li><a href="page-dashboard-properties.html"><i class="flaticon-home mr10"></i>My Properties</a></li>
-                    <li><a href="page-dashboard-favorites.html"><i class="flaticon-like mr10"></i>My Favorites</a></li>
-                    <li><a href="page-dashboard-savesearch.html"><i class="flaticon-search-2 mr10"></i>Saved Search</a></li>
-                    <li><a href="page-dashboard-review.html"><i class="flaticon-review mr10"></i>Reviews</a></li>
+                    <li class="active"><a href="#"><i class="flaticon-new-tab mr10"></i>Add New Property</a></li>
+                    <li><a href="#"><i class="flaticon-home mr10"></i>My Properties</a></li>
+                    <li><a href="#"><i class="flaticon-like mr10"></i>My Favorites</a></li>
+                    <li><a href="#"><i class="flaticon-search-2 mr10"></i>Saved Search</a></li>
+                    <li><a href="#"><i class="flaticon-review mr10"></i>Reviews</a></li>
                     <li><p class="fz15 fw400 ff-heading mt30 pl30">MANAGE ACCOUNT</p></li>
-                    <li><a href="page-dashboard-package.html"><i class="flaticon-protection mr10"></i>My Package</a></li>
-                    <li><a href="page-dashboard-profile.html"><i class="flaticon-user mr10"></i>My Profile</a></li>
-                    <li><a class="" href="page-login.html"><i class="flaticon-exit mr10"></i>Logout</a></li>
+                    <li><a href="#"><i class="flaticon-protection mr10"></i>My Package</a></li>
+                    <li><a href="#"><i class="flaticon-user mr10"></i>My Profile</a></li>
+                    <li><a class="" href="#"><i class="flaticon-exit mr10"></i>Logout</a></li>
                   </ul>
                 </div>
               </div>
@@ -125,8 +126,8 @@
                             </div>
                             <div class="col-md-12">
                               <div class="d-sm-flex justify-content-between">
-                                <a class="ud-btn btn-white" href="">Prev Step<i class="fal fa-arrow-right-long"></i></a>
-                                <a class="ud-btn btn-dark" href="">Next Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-white" href="#">Prev Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-dark" href="#">Next Step<i class="fal fa-arrow-right-long"></i></a>
                               </div>
                             </div>
                           </div>
@@ -141,18 +142,18 @@
                             <div class="icon mb30"><span class="flaticon-upload"></span></div>
                             <h4 class="title fz17 mb10">Upload photos of your property</h4>
                             <p class="text mb25">Photos must be JPEG or PNG format and least 2048x768</p>
-                            <a class="ud-btn btn-white" href="">Browse Files<i class="fal fa-arrow-right-long"></i></a>
+                            <a class="ud-btn btn-white" href="#">Browse Files<i class="fal fa-arrow-right-long"></i></a>
                           </div>
                         </div>
                         <div class="col-lg-5">
                           <div class="profile-box position-relative d-md-flex align-items-end mb50">
                             <div class="profile-img position-relative overflow-hidden bdrs12 mb20-sm">
-                              <img class="w-100" src="images/listings/profile-1.jpg" alt="">
-                              <a href="" class="tag-del" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete Image" aria-label="Delete Item"><span class="fas fa-trash-can"></span></a>
+                              <img class="w-100" src="{% static 'images/listings/profile-1.jpg' %}" alt="">
+                              <a href="#" class="tag-del" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete Image" aria-label="Delete Item"><span class="fas fa-trash-can"></span></a>
                             </div>
                             <div class="profile-img position-relative overflow-hidden bdrs12 ml20 ml0-sm">
-                              <img class="w-100" src="images/listings/profile-2.jpg" alt="">
-                              <a href="" class="tag-del" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete Image" aria-label="Delete Item"><span class="fas fa-trash-can"></span></a>
+                              <img class="w-100" src="{% static 'images/listings/profile-2.jpg' %}" alt="">
+                              <a href="#" class="tag-del" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete Image" aria-label="Delete Item"><span class="fas fa-trash-can"></span></a>
                             </div>
                           </div>
                         </div>
@@ -188,8 +189,8 @@
                             </div>
                             <div class="col-md-12">
                               <div class="d-sm-flex justify-content-between">
-                                <a class="ud-btn btn-white" href="">Prev Step<i class="fal fa-arrow-right-long"></i></a>
-                                <a class="ud-btn btn-dark" href="">Next Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-white" href="#">Prev Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-dark" href="#">Next Step<i class="fal fa-arrow-right-long"></i></a>
                               </div>
                             </div>
                           </div>
@@ -295,8 +296,8 @@
                             </div>
                             <div class="col-md-12">
                               <div class="d-sm-flex justify-content-between">
-                                <a class="ud-btn btn-white" href="">Prev Step<i class="fal fa-arrow-right-long"></i></a>
-                                <a class="ud-btn btn-dark" href="">Next Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-white" href="#">Prev Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-dark" href="#">Next Step<i class="fal fa-arrow-right-long"></i></a>
                               </div>
                             </div>
                           </div>
@@ -460,8 +461,8 @@
                             </div>
                             <div class="col-md-12">
                               <div class="d-sm-flex justify-content-between">
-                                <a class="ud-btn btn-white" href="">Prev Step<i class="fal fa-arrow-right-long"></i></a>
-                                <a class="ud-btn btn-dark" href="">Next Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-white" href="#">Prev Step<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn btn-dark" href="#">Next Step<i class="fal fa-arrow-right-long"></i></a>
                               </div>
                             </div>
                           </div>
@@ -570,8 +571,8 @@
                           </div>
                           <div class="col-md-12 mt30">
                             <div class="d-sm-flex justify-content-between">
-                              <a class="ud-btn btn-white" href="">Prev Step<i class="fal fa-arrow-right-long"></i></a>
-                              <a class="ud-btn btn-thm" href="">Submit Property<i class="fal fa-arrow-right-long"></i></a>
+                              <a class="ud-btn btn-white" href="#">Prev Step<i class="fal fa-arrow-right-long"></i></a>
+                              <a class="ud-btn btn-thm" href="#">Submit Property<i class="fal fa-arrow-right-long"></i></a>
                             </div>
                           </div>
                         </div>
