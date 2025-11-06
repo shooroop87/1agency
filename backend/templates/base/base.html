@@ -4,15 +4,21 @@
 <head>
   {% include "includes/meta.html" %}
   {% include "includes/styles.html" %}
+  {% include "includes/header.html" %}
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  {% include "includes/header.html" %}
+  {% include "includes/menu-desktop.html" %}
+  {% include "includes/menu-mobile.html" %}
+  {% include "includes/menu-top-bar.html" %}
+  
   <main id="content">
     {% block content %}{% endblock %}
   </main>
+  
   {% include "includes/footer.html" %}
-  {% include "includes/scripts.html" %}
+  {% include "includes/signup-modal.html" %}
+  {% include "includes/scripts_footer.html" %}
   {% block extra_js %}{% endblock %}
 </body>
 </html>
