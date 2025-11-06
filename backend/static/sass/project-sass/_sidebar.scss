@@ -1,0 +1,318 @@
+/* Sidebar Styles */
+.mobile-filter-btn{
+	background-color: $white-color;
+	@include default-box-shadow2;
+  border-radius: 60px;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 98px;
+	span{
+		padding-right: 8px;
+	}
+	@include media-breakpoint-down(sm) {
+		top: 35px;
+	}
+	&.map-page{
+		@include default-border-radius1;
+    height: 55px;
+    line-height: 55px;
+    padding-left: 50px;
+    right: auto;
+    top: 30px;
+    width: 169px;
+    z-index: 1;
+		span{
+			background-color: rgba($white-color, .1);
+			display: inline-block;
+			height: 55px;
+			left: 0;
+			padding: 0;
+			line-height: 55px;
+			position: absolute;
+			width: 55px;
+		}
+	}
+}
+.list-sidebar-style1{
+	@include sidebar-style1;
+	@include default-box-shadow2;
+	@include default-border-radius1;
+	margin-bottom: 30px;
+}
+.widget-wrapper{
+	margin-bottom: 30px;
+	position: relative;
+	.list-title{
+		margin-bottom: 15px;
+	}
+	.form-check-label,
+	.custom_checkbox{
+		font-size: $body-font-size;
+	}
+	.custom_checkbox{
+		line-height: 35px;
+	}
+}
+.search_area{
+	position: relative;
+	.form-control{
+		padding-left: 42px;
+	}
+	label{
+    font-size: 18px;
+		left: 15px;
+    position: absolute;
+    top: 16px;
+	}
+}
+.room-list{
+	display: flex;
+	@include media-breakpoint-down(xl) {
+		display: inherit;
+	}
+	a{
+		background-color: $white-color;
+		border: 1px solid $border-color;
+		@include heading-typo1;
+    height: 45px;
+    line-height: 45px;
+		margin-right: -1px;
+    text-align: center;
+		width: 47px;
+		@include media-breakpoint-down(xl) {
+			display: inline-block;
+			margin-bottom: 10px;
+		}
+		&:first-child{
+			border: 2px solid $dark-color;
+			border-radius: 12px 0 0 12px;
+			margin-right: 0;
+		}
+		&:last-child{
+			border-radius: 0 12px 12px 0;
+			margin-right: 0;
+		}
+	}
+}
+.selection{
+	&:first-child{
+		label{
+		  border-radius: 12px 0px 0px 12px;
+		}
+	}
+	&:last-child{
+		label{
+		  border-radius: 0px 12px 12px 0px;
+		}
+	}
+	label {
+	  background-color: $white-color;
+	  border: 2px solid transparent;
+	  cursor: pointer;
+	  display: inline-block;
+	  @include heading-typo1;
+	  font-size: 13px;
+	  outline: 1px solid $border-color;
+	  margin-right: 1px;
+	  padding:7px 12px;
+	}
+}
+.selection input[type=radio] {
+  display: none;
+}
+.selection input[type=radio]:checked ~ label {
+  border: 2px solid #181A20;
+  outlinie: transparent;
+  z-index: 1;
+}
+.location-area{
+	position: relative;
+	.btn{
+    background-color: $white-color;
+		border: 1px solid $border-color;
+		border-radius: 8px;
+    height: 50px;
+    line-height: 35px;
+    padding-left: 15px;
+		&:before,
+		&:after{
+			display: none;
+		}
+	}
+}
+.space-area{
+	.form-control{
+		max-width: 130px;
+		height: 50px;
+	}
+}
+.feature-button{
+	align-items: center;
+	display: flex;
+	@include heading-typo1;
+	position: relative;
+	span{
+		background-color: $light-color;
+		border-radius: 50%;
+		color: $title-color;
+		height: 40px;
+		line-height:45px;
+		margin-right: 10px;
+		text-align: center;
+		width: 40px;
+	}
+}
+.reset-button{
+	align-items: center;
+	display: flex;
+	@include heading-typo2;
+	span{
+		display: flex;
+    font-size: 16px;
+    padding-right: 10px;
+    line-height: initial;
+	}
+}
+.dropdown-lists{
+	position: relative;
+	.dropdown-toggle{
+		&:after{
+			display: none;
+		}
+	}
+	.open-btn{
+    background-color: $white-color;
+    border-radius: 60px;
+    border: none;
+    @include default-box-shadow2;
+    cursor: pointer;
+    @include heading-typo2;
+    font-weight: 500;
+    letter-spacing: 0em;
+    padding: 7px 20px;
+	}
+	.dropdown-menu,
+	.drop_content,
+	.drop_content2,
+	.drop_content3,
+	.drop_content4{
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+    @include default-border-radius2;
+    @include default-box-shadow1;
+    left: 0px;
+    padding: 20px 0 10px;
+    position: absolute;
+    top: 50px;
+    width: 260px;
+    z-index: 99;
+    &:before{
+	    border-color: transparent transparent $white-color transparent;
+    	border-style: solid;
+	    border-width: 0 5px 5px 5px;
+	    content: "";
+	    height: 0;
+	    left: 30px;
+	    position: absolute;
+	    top: -5px;
+	    width: 0;
+    }
+	}
+	.dropdown-menu.dd3,
+	.dropdown-menu.dd4{
+		width: 330px;
+	}
+	.done-btn{
+		height: 36px;
+    line-height: 5px;
+	}
+	&.at-home8{
+		.open-btn{
+	    @include default-border-radius1;
+	    border: 1px solid $border-color;
+	    box-shadow: none;
+	    height: 55px;
+	    line-height: 40px;
+	    width: 100%;
+	    position: relative;
+	    i{
+	    	position: absolute;
+	    	right: 15px;
+	    }
+		}
+	}
+}
+.agent-page-meta{
+	.form-control{
+		border-radius: 40px;
+		height: 44px;
+		max-width: 300px;
+		width: 100%;
+	}
+	.open-btn{
+		border: 1px solid $border-color;
+		box-shadow: none;
+		padding: 8px 20px;
+	}
+}
+.list-news-style{
+	.news-img{
+		@include default-border-radius2;
+		overflow: hidden;
+	}
+	.title{
+		span{
+			@include heading-typo2;
+		}
+	}
+	.list-meta{
+		a{
+			@include heading-typo2;
+		}
+	}
+	.new-text{
+		@include heading-typo2;
+	}
+}
+.sidebar-widget{
+	background-color: $white-color;
+	@include default-border-radius1;
+	@include default-box-shadow2;
+	padding: 30px;
+	position: relative;
+}
+.search_area{
+	input{
+		&::placeholder{
+			font-size: 14px;
+		}
+	}
+}
+.category-list{
+	a{
+		color: #181A20;
+		display: block;
+		@include heading-typo2;
+		font-size: 14px;
+		line-height: 35px;
+	  @include transition(all, 0.4s, ease);
+		&:hover{
+			font-weight: 600;
+		}
+	}
+}
+.tag-list{
+	a{
+		border: 1px solid $border-color;
+		border-radius: 60px;
+		display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 6px 20px;
+	}
+}

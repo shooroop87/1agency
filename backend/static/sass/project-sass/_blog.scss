@@ -1,0 +1,147 @@
+/* ALl Blogs Styles Here  */
+.blog-style1{
+	margin-bottom: 30px;
+	position: relative;
+	.blog-img{
+		@include default-border-radius1;
+		overflow: hidden;
+		img{
+		  @include transition(all, 0.4s, ease);
+		}
+	}
+	.blog-content{
+		padding: 17px 20px 0 0;
+		position: relative;
+	}
+	.tag{
+		color: $body-light-color;
+		font-size: 13px;
+		@include heading-typo4;
+		letter-spacing: 0em;
+	}
+	.date{
+		background-color: $white-color;
+		@include default-border-radius1;
+		@include default-box-shadow5;
+		height: 70px;
+		line-height: 25px;
+		padding-top: 10px;
+		position: absolute;
+		right: 20px;
+		text-align: center;
+		top: -50px;
+		width: 70px;
+	}
+	.day{
+		font-size: 20px;
+		display: block;
+		@include heading-typo1;
+	}
+	.month{
+		font-size: 13px;
+		@include heading-typo2;
+	}
+	&:hover{
+		.blog-img{
+			img{
+				transform: scale(1.1) rotate(-1deg);
+			}
+		}
+	}
+	&.large-size{
+		@include default-border-radius1;
+		overflow: hidden;
+		.blog-img{
+			border-radius: 0;
+		}
+	}
+	&.list-style{
+		@include default-border-radius1;
+		overflow: hidden;
+		.blog-img{
+			border-radius: 0;
+			position: relative;
+		}
+		img{
+			height: 100%;
+		}
+		.date{
+			background-color: $white-color;
+			@include default-border-radius1;
+			@include default-box-shadow5;
+			bottom: 10px;
+			height: 70px;
+			line-height: 25px;
+			padding-top: 10px;
+			position: absolute;
+			left: 10px;
+			top: auto;
+			text-align: center;
+			width: 70px;
+		}
+	}
+}
+.custom_bsp_grid{
+	position: relative;
+	li {
+		color: $title-color;
+		@include heading-typo4;
+		font-size: 14px;
+		line-height: 46px;
+		list-style-type: disc;
+	}
+}
+.blog_post_share{
+	span{
+		@include heading-typo1;
+		font-size: 15px;
+		line-height: 23px;
+	}
+	a{
+		font-family: 'Font Awesome 5 Brands';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 14px;
+		color: #181A20;
+	}
+}
+.bsp_tags{
+	a{
+		background-color: rgba($theme-color, .07);
+		border-radius: 60px;
+		color: $title-color;
+		display: block;
+		font-family: $body-font;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 28px;
+		padding: 6px 17px;
+	}
+}
+.blog-single-review{
+	position: absolute;
+	right: 0;
+	top: 5px;
+	@include media-breakpoint-down(md) {
+		position: relative;
+	}	
+}
+.review_cansel_btns{
+	a{
+		color: $body-light-color;
+		font-family: $title-font;
+		line-height: 26px;
+		letter-spacing: 0em;
+		margin-right: 30px;
+		&:last-child{
+			margin-right: 0;
+		}
+		&:hover{
+			color: $title-color;
+		}
+	}
+	i{
+		padding-right: 10px;
+	}
+}

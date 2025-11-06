@@ -1,0 +1,198 @@
+/* Table Styles */
+.table-style1{
+	position: relative;
+	.table{
+		thead{
+	    tr{
+		    background-color: #F1FCFA;
+	    	overflow: hidden;
+	    }
+		}
+		th {
+	    color: #222222;
+	    line-height: 55px;
+	    padding-left: 27px;
+	    &:first-child{
+	    	border-radius: 8px 0 0 8px;
+	    }
+	    &:last-child{
+	    	border-radius: 0 8px 8px 0;
+	    }
+		}
+		td {
+	    border-bottom: 1px solid $border-color;
+	    font-family: $title-font;
+	    line-height: 52px;
+	    padding-left: 27px;
+		}
+	}
+}
+.table-style2{
+	position: relative;
+	table.table{
+		.t-head{
+	    tr{
+		    background-color: $light-color;
+	    	overflow: hidden;
+	    }
+			th{
+		    @include heading-typo1;
+		    font-size: 15px;
+		    line-height: 22px;
+		    padding-bottom: 30px;
+		    padding-top: 30px;
+			}
+		}
+		.t-head2{
+			th{
+		    padding-bottom: 22px;
+		    padding-top: 30px;
+			}
+		}
+		th {
+	    &:first-child{
+	    	border-radius: 8px 0 0 8px;
+	    }
+	    &:last-child{
+	    	border-radius: 0 8px 8px 0;
+	    }
+		}
+	}
+	.t-body{
+		th{
+			@include heading-typo1;
+			font-size: 15px;
+			line-height: 23px;
+			letter-spacing: 0em;
+	    padding-bottom: 30px;
+	    padding-top: 30px;
+		}
+		tr{
+			border: 1px solid $border-color;
+		}
+		td{
+			@include heading-typo2;
+	    padding-bottom: 30px;
+	    padding-top: 30px;
+		}
+		.check_circle{
+			background-color: $light-color;
+			border-radius: 50%;
+			color: $title-color;
+			display: block;
+			font-size: 10px;
+			height: 25px;
+			line-height:25px;
+			text-align: center;
+			width: 25px;
+		}
+		.check_circle_close{
+			background-color: rgba($theme-color, 0.07);
+			border-radius: 50%;
+			color: $theme-color;
+			display: block;
+			font-size: 10px;
+			height: 25px;
+			line-height:25px;
+			text-align: center;
+			width: 25px;
+		}
+	}
+}
+.table-style2 table.table > :not(caption) > * > * {
+  border-bottom-width: 0;
+}
+.table-style3{
+	&.table{
+		border-spacing: inherit;
+		border-collapse: separate;
+	}
+	.t-head{
+		background-color: $light-color;
+		@include default-border-radius1;			
+		th{
+			border: 0;
+			@include heading-typo1;
+			font-size: 15px;
+			padding: 20px 30px;
+		}
+	}
+	.t-body{
+		th{
+			@include heading-typo1;
+			font-size: 15px;
+			padding: 20px 30px;
+		}
+		td{
+			@include heading-typo2;
+			padding: 20px 30px;
+		}
+		tr{
+			&:last-child{
+				border-color: transparent;
+			}
+		}
+	}
+	.icon{
+		background-color: $white-color;
+		border-radius: 4px;
+		color: $title-color;
+		height: 40px;
+		line-height:40px;
+		text-align: center;
+		width: 40px;
+    @include transition(all, 0.3s ease 0s);
+		&:hover{
+			background-color: $light-color;
+		}
+	}
+	&.at-savesearch{
+		.t-body{
+			tr{
+				&:last-child{
+					border-color: $border-color;
+				}
+			}
+		}
+	}
+}
+.invoice_table {
+  background-color: $white-color;
+  @include default-box-shadow2;
+	@include default-border-radius1;
+  position: relative;
+  .wrapper{
+  	padding: 120px 100px;
+		@include media-breakpoint-down(lg){
+			padding: 60px 30px;
+		}
+  }
+	.tblh_row {
+    background-color: $light-color;
+    border-radius: 8px;
+    th {
+	    color: $title-color;
+		}
+	}
+	.tbleh_title,
+	.tbl_title,
+	.tblpr_title,
+	.tblp_title{
+		@include heading-typo1;
+		font-size: 15px;
+		padding-bottom: 20px;
+		padding-left: 30px;
+		padding-top: 25px;
+	}
+	.tbl_title,
+	.tblpr_title{
+		font-size: 14px;
+		font-weight: 400;
+	}
+}
+.invoice_footer {
+  background-color: $white-color;
+  border-radius: 0 0 6px 6px;
+  border-top: 1px solid $border-color;
+  padding: 45px 0 40px;
+}

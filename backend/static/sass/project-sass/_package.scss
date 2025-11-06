@@ -1,0 +1,115 @@
+/* Packages And Pricing Tables */
+.pricing_table_switch_slide {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($theme-color, .07);
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  &:before {
+    bottom: 5px;
+    content: "";
+    height: 20px;
+    left: 5px;
+    position: absolute;
+    width: 20px;
+    background-color: white;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  &.round {
+    border-radius: 30px;
+    &:before {
+      border-radius: 50%;
+    }
+  }
+}
+.pricing_packages_top .switch input:checked + .pricing_table_switch_slide {
+  background-color: $theme-color;
+}
+.pricing_packages_top .toggle-btn .switch input:focus + .pricing_table_switch_slide {
+    @include default-box-shadow1;
+}
+.pricing_packages_top .switch input:checked + .pricing_table_switch_slide:before {
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
+}
+.pricing_packages_top{
+  .toggle-btn{
+    input,
+    label{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+  .pricing_save1,
+  .pricing_save2{
+    margin: 12px;
+  }
+  .pricing_save3{
+    background-color: rgba($theme-color, .07);
+    border-radius: 60px;
+    color: $theme-color;
+    font-family: $body-font;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    padding: 8px 17px;
+  }
+}
+.pricing_packages{
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 50px;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 40px 30px;
+  }
+  @include transition(all, 0.4s, ease);
+  &.active,
+  &:hover{
+    background-color: rgba($theme-color, .07);
+    .package_title{
+      color: $theme-color;
+    }
+  }
+  .heading{
+    position: relative;
+  }
+  .price-icon{
+    position: absolute;
+    right: 0;
+    top: -10px;
+  }
+  .text1,
+  .text2{
+    color: #0D1C39;
+    letter-spacing: 0.02em;
+    margin-bottom: 0;
+  }
+  .package_title{
+    margin-bottom: 0;
+    @include transition(all, 0.4s, ease);
+  }
+}

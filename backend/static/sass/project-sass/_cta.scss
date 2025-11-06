@@ -1,0 +1,164 @@
+/* All CTA Styles Here */
+.cta-style1{
+	position: relative;
+	.cta-title{
+		letter-spacing: 0.02em;
+	}
+	.cta-text{
+		font-size: 15px;
+		@include heading-typo2;
+	}
+	@include media-breakpoint-down(lg) {
+		margin-bottom: 20px;
+	}
+}
+.cta-btns-style1{
+	@include media-breakpoint-down(sm) {
+		.ud-btn{
+			width: 100%;
+			&:first-child{
+				margin-bottom: 12px;
+			}
+		}
+	}
+}
+.our-cta2{
+	margin-bottom: -150px;
+	z-index: 1;
+}
+.cta-banner2{
+	position: relative;
+}
+.cta-banner3{
+	&:before{
+		background-image: url(../images/about/cta-side-bg-1.jpg);
+		background-size: cover;
+		content: "";
+		position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 42%;
+		@include media-breakpoint-down(md){
+			display: none;
+		}
+	}
+}
+.cta-style2{
+	position: relative;
+	.cta-title{
+		letter-spacing: 0.02em;
+	}
+	.cta-title,
+	.cta-text{
+		color: $white-color;
+	}
+	.cta-text{
+		font-size: 15px;
+		@include heading-typo4;
+	}
+	img{
+    left: auto;
+    right: 0;
+		position: absolute;
+    top: -65px;
+	}
+}
+.cta-style3{
+	.cta-title{
+		font-family: $body-font;
+	}
+	.cta-text{
+		@include heading-typo2;
+	}
+}
+.cta-banner4{
+	background-attachment: fixed;
+	background-image: url(../images/background/cta-bg-1.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 600px;
+}
+.cta-style4{
+	.cta-title{
+		@include media-breakpoint-down(sm) {
+			font-size: 30px;
+		}
+	}
+}
+.cta-img {
+  bottom: 0;
+  position: absolute;
+}
+.our-cta3{
+	background-color: #f8f8ff;
+}
+.cta-banner5{
+	&:before{
+		background-image: url(../images/about/cta-side-bg-2.jpg);
+		background-size: cover;
+		content: "";
+		position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 51%;
+		@include media-breakpoint-down(md){
+			display: none;
+		}
+	}
+}
+.cta-style5{
+	.app-tag{
+		background-color: $white-color;
+		border-radius: 60px;
+		@include heading-typo2;
+		display: block;
+		height: 34px;
+		text-align: center;
+		line-height: 34px;
+		width: 128px;
+	}
+	.cta-title{
+		color: #0D1C39;
+		letter-spacing: 0.02em;
+	}
+	.cta-text{
+		color: #0D1C39;
+		@include heading-typo4;
+	}
+}
+.cta-banner6{
+	&:before{
+		background-image: url(../images/about/cta-side-bg-3.jpg);
+		background-size: cover;
+		content: "";
+		position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 51%;
+		@include media-breakpoint-down(xl){
+			display: none;
+		}
+	}
+}
+.cta-style6{
+	.cta-title{
+		color: #222222;
+		font-family: $body-font;
+		font-size: 32px;
+	}
+	.cta-text{
+		color: #1F4B3F;
+	}
+}
+@include media-breakpoint-down(sm) {}
+@include media-breakpoint-down(md) {}
+@include media-breakpoint-down(lg) {}
+@include media-breakpoint-down(xl) {}
+@include media-breakpoint-down(xxl) {}

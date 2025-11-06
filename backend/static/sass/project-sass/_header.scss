@@ -1,0 +1,5 @@
+/* Header Styles */
+.login-info{
+	font-size: $body-font-size;
+	@include heading-typo1;
+}

@@ -1,0 +1,59 @@
+/* Social Styles */
+.social-style1{
+	i{
+		color: $gray-color;
+		border-radius: 50%;
+		height: 40px;
+		line-height:40px;
+		text-align: center;
+		width: 40px;
+	  @include transition(all, 0.4s, ease);
+	  &:hover{
+			background-color: rgba($white-color, .05);
+			color: $white-color;
+	  }
+	}
+	&.light-style{
+		i{
+			color: $title-color;
+		  &:hover{
+				background-color: $title-color;
+				color: $white-color;
+		  }
+		}
+	}
+	&.light-style2{
+		i{
+			color: $title-color;
+		  &:hover{
+				background-color: $light-color;
+				color: $title-color;
+		  }
+		}
+	}
+}
+.home8-sidebar-wrapper{
+	.social-style2{
+		bottom: 32%;
+		left: 0;
+		right: 0;
+		position: absolute;
+	}
+	.tel{
+		margin-left: -12px;
+		top: 18%;
+	  width: 92px;
+	}
+	.tel,
+	.mail{
+		font-size: 13px;
+		@include heading-typo4;
+		left: 0;
+		position: absolute;
+		right: 0;
+		transform: rotate(-90deg);
+	}
+	.mail{
+		bottom: 55.2%;
+	}
+}

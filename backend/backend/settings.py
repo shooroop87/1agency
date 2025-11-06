@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#")
 
 # DEBUG выключает все виды кэша и сжатия
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS
 if DEBUG:
@@ -116,9 +116,9 @@ TEMPLATES = [
 LOCALE_PATHS = [BASE_DIR / "core" / "locale"]
 
 # --- Static & Media ---
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]         # у тебя статика в корне проекта
+STATIC_ROOT = BASE_DIR / "collected_static"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

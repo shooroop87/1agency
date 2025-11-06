@@ -1,0 +1,41 @@
+/* Team Styles */
+.team-style1{
+	position: relative;
+	.team-img{
+		@include default-border-radius1;
+		overflow: hidden;
+		position: relative;
+	}
+	img{
+		transform: scale(1.0);
+	  @include transition(all, 0.4s, ease);
+	}
+	&:hover{
+		img{
+				transform: scale(1.1) rotate(-1deg);
+		}
+	}
+}
+.agency-style1{
+	position: relative;
+	.tag{
+		background-color: $theme-color;
+		border-radius: 6px;
+		color: $white-color;
+		@include heading-typo3;
+		font-size: 12px;
+		left: 20px;
+		padding: 0 6px;
+		position: absolute;
+		top: 20px;
+	  @include transition(all, 0.4s, ease);
+	}
+	&:hover{
+		.tag{
+			transform: translateY(30px);
+			opacity: 0;
+		}
+	}
+}
+.agen-personal-info{
+}

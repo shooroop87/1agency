@@ -1,0 +1,42 @@
+/* Funfact Styles */
+.funfact-floating-img1 {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+}
+.funfact-floating-img2{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.funfact_one{
+  .timer,
+  span{
+    @include heading-typo1;
+    font-size: 42px;
+    line-height: 63px;
+  }
+}
+.funfact-style1{
+  background-color: $white-color;
+  @include default-box-shadow1;
+  margin-bottom: 30px;
+  max-width: 280px;
+  padding: 60px 15px 35px;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 30px 15px 25px;
+  }
+  .title,
+  span{
+    color: $title-color;
+    font-family: $body-font;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 59px;
+    letter-spacing: 0em;
+    @include media-breakpoint-down(lg){
+      font-size: 35px;
+    }
+  }
+}

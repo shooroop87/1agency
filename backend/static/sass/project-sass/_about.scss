@@ -1,0 +1,253 @@
+/* About Pages Design Content Styles  */
+.about-box-1{
+	position: relative;
+	.list-style1{
+		li{
+			@include heading-typo1;
+			font-size: 15px;
+			padding-left: 5px;
+		}
+		i{
+			height: 25px;
+			line-height: 25px;
+			width: 25px;
+		}
+	}
+}
+.about-box2{
+	background-color: rgba($theme-color, 0.07);
+	@include default-border-radius1;
+	margin-bottom: 30px;
+	overflow: hidden;
+	padding: 60px 60px 160px;
+	position: relative;
+	@include media-breakpoint-down(lg){
+		padding: 40px 30px;
+	}
+	.title{
+		font-size: 22px;
+		line-height: 33px;
+		letter-spacing: 0.02em;
+	}
+	.img-1 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+		@include media-breakpoint-down(lg){
+			display: none;
+		}
+	}
+}
+.exclusive-agent-widget{
+	background-color: $white-color;
+	@include default-border-radius1;
+	@include default-box-shadow1;
+	max-width: 345px;
+	padding: 30px;
+	position: relative;
+	.title{
+		@include heading-typo3;
+	}
+}
+.exclusive-agent-single{
+	background-color: $white-color;
+  bottom: -90px;
+	@include default-border-radius1;
+	@include default-box-shadow1;
+	max-width: 250px;
+	padding: 20px;
+  position: absolute;
+  right: 70px;
+	.agent-img{
+		@include default-border-radius1;
+		overflow: hidden;
+	}
+	@include media-breakpoint-down(lx){
+		bottom: -60px;
+		right: 30px;
+	}
+	@include media-breakpoint-down(lg){
+		bottom: -20px;
+	}
+	@include media-breakpoint-down(md){
+		bottom: 0;
+		position: relative;
+		right: 0;
+	}
+}
+.img-box-1{
+	vertical-align: bottom;
+	@include media-breakpoint-down(md){
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+.img-box-1,
+.img-box-2,
+.img-box-3,
+.img-box-4{
+	img{
+		@include default-border-radius1;
+	}
+}
+.img-box-2 {
+  margin-left: 30px;
+  margin-bottom: 50px;
+	@include media-breakpoint-down(md){
+		display: block;
+		margin-left: 0;
+	  margin-bottom: 0px;
+	}
+}
+.img-box-3{
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  text-align: center;
+  bottom: -35px;
+	@include media-breakpoint-down(md){
+		bottom: auto;
+		top: 30%;
+	}
+	.img-1{
+		@include default-box-shadow3;
+	}
+}
+.img-box-4 {
+  position: absolute;
+  right: -70px;
+  bottom: 0;
+  z-index: -1;
+}
+.img-box-5 {
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  z-index: -1;
+}
+.img-box-6 {
+  bottom: -70px;
+  left: -70px;
+  position: absolute;
+  z-index: -1;
+}
+.img-box-7{
+	img{
+		@include default-border-radius1;
+	}
+	.img-1{
+		margin-top: -80px;
+		@include media-breakpoint-down(lg){
+			margin-top: 0;
+		}
+	}
+}
+.img-box-8{
+	.img-1 {
+    left: 130px;
+		position: absolute;
+    top: -150px;
+    z-index: -1;
+		@include media-breakpoint-down(lg){
+			left: 30px;
+			top: -210px;
+		}
+	}
+}
+.img-box-9{
+	background-color: $white-color;
+	@include default-border-radius1;
+	@include default-box-shadow3;
+	margin-left: auto;
+	max-width: 210px;
+	padding: 20px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	i{
+		border-radius: 50%;
+		display: block;
+		font-size: 46px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+		outline: 1px solid $title-color;
+		outline-offset: 5px;
+    text-align: center;
+	  @include transition(all, 0.4s, ease);
+	}
+	&:hover{
+		i{
+			outline-offset: 8px;
+		}
+	}
+}
+.img-box-10{
+	.img-1{
+    bottom: 300px;
+    opacity: .2;
+		position: absolute;
+    right: -100px;
+	}
+	.img-2{
+    left: 230px;
+    opacity: 0.2;
+		position: absolute;
+    top: 40px;
+	}
+	.img-3{
+    left: -100px;
+    opacity: .2;
+		position: absolute;
+	}
+	.img-4{
+    bottom: 300px;
+    left: -100px;
+    position: absolute;
+	}
+	.img-5{
+		position: absolute;
+    right: 0;
+    top: 90px;
+	}
+}
+.img-box-11{
+	.img-1{
+    bottom: -20px;
+    left: -20px;
+    opacity: 0.2;
+    position: absolute;
+    z-index: -1;
+	}
+	.img-2{
+    opacity: 0.2;
+		position: absolute;
+    right: 0;
+    top: 0;
+	}
+	.img-3{
+    bottom: 100px;
+    left: -100px;
+    position: absolute;
+	}
+}
+.img-box-12{
+	.img-1{
+    bottom: -20px;
+    left: -20px;
+    position: absolute;
+	}
+	.img-2{
+		position: absolute;
+    right: 0;
+    top: 0;
+	}
+	.img-3{
+    bottom: 100px;
+    left: -100px;
+    position: absolute;
+	}
+}

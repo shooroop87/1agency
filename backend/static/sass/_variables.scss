@@ -1,0 +1,45 @@
+/* Variables */
+:root{
+  --title-font-family    : 'Poppins', sans-serif;
+  --body-font-family     : 'DM Sans', sans-serif;
+  --icon-font-family     : 'Font Awesome 6 Pro';
+  --icon-font-family2    : 'Flaticon';
+  --container-width      : 1290px;
+  --divder-space         : 200px;
+  --headings-color       : #181A20
+}
+// Color Variation
+$theme-color             : #EB6753;
+$theme-color2            : #EE4C34;
+$black-color             : #000000;
+$dark-color              : #181A20;
+$body-light-color        : #717171;
+$black-color             : #000000;
+$white-color             : #ffffff;
+$light-color             : #F7F7F7;
+$gray-color              : #BEBDBD;
+$primary-color           : #4780AA;
+$warning-color           : #927238;
+$review-color            : #E59819;
+$review-color2           : #C4C640;
+$denger-color            : #AB3331;
+$success-color           : #5B7052;
+$success-color2          : #5BBB7B;
+$border-color            : #DDDDDD;
+
+// Font Variations
+$icon-font               : var(--icon-font-family);
+$icon-font2              : var(--icon-font-family2);
+
+// Typography
+$body-font               : var(--body-font-family);
+$body-color              : var(--headings-color);
+$body-font-size          : 14px;
+$body-font-weight        : 400;
+$body-line-Height        : 26px;
+$title-font              : var(--title-font-family);
+$title-color             : var(--headings-color);
+$title-font-weight       : 600;
+$paragraph-line-Height   : 1.85;       
+
+

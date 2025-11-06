@@ -1,0 +1,251 @@
+/* All Type Of Forms Styles */
+.form-style1{
+	position: relative;
+	.form-control{
+		border-radius: 8px;
+		border: 1px solid $border-color;
+		box-shadow: none;
+		font-size: $body-font-size;
+		height: 55px;
+		outline: none;
+		padding-left: 15px;
+		&::placeholder{
+			color: $body-light-color;
+			font-family: $title-font;
+		}
+		&.active,
+		&:focus{
+			border: 1px solid transparent;
+			outline: 2px solid $title-color;
+			color: $title-color;
+		}
+	}
+	.form-label{
+		font-family: $title-font;
+	}
+	.custom_checkbox{
+		line-height: 26px;
+		.checkmark{
+			top: 7px;
+		}
+	}
+	.form-select{
+		height: 50px;
+		option{
+			font-size: 14px;
+			@include heading-typo2;
+			height: 50px;
+			border-bottom: 1px solid $border-color;
+			&:hover{
+				background-color: rgba($theme-color, .07);
+			}
+		}
+		&:before{
+			background-color: $border-color;
+			content: "";
+			position: absolute;
+			height: 50px;
+			right: 30px;
+			width: 1px;
+		}
+	}
+}
+.form-style2{
+	position: relative;
+	.form-control{
+		border-radius: 8px;
+		border: 1px solid $border-color;
+		box-shadow: none;
+		height: 50px;
+		outline: none;
+		padding-left: 15px;
+		&:placeholder{
+			color: $body-light-color;
+			font-family: $title-font;
+		}
+		&.active,
+		&:focus{
+			border: 1px solid transparent;
+			outline: 2px solid $title-color;
+		}
+	}
+	.form-label{
+		font-family: $title-font;
+	}
+}
+textarea{
+	border: 1px solid $border-color;
+	border-radius: 8px;
+	font-family: $title-font;
+	height: auto;
+	width: 100%;
+	padding: 25px 20px;
+	&:focus{
+		border: 1px solid transparent;
+		outline: 2px solid $title-color;
+		box-shadow: none;
+	}
+}
+.form-control{
+	border-radius: 8px;
+	border: 1px solid $border-color;
+	box-shadow: none;
+	font-size: $body-font-size;
+	font-family: $title-font;
+	height: 55px;
+	outline: none;
+	padding-left: 15px;
+	&:placeholder{
+		color: $body-light-color;
+		font-family: $title-font;
+	}
+	&:focus{
+		border: 1px solid transparent;
+		outline: 2px solid $title-color;
+		box-shadow: none;
+	}
+}
+.bootselect-multiselect{
+	.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+		width: 100%;
+	}
+	position: relative;
+	.btn{
+		border-radius: 12px;
+		border: 1px solid $border-color;
+		height: 55px;
+		line-height: 40px;
+		overflow: hidden;
+		padding-left: 15px;
+		width: 100%;
+		&:focus{
+			border: 2px solid $title-color;
+			outline: none;
+		}
+		&.dropdown-toggle{
+			width: 100%;
+			&:focus{
+				box-shadow: none;
+				outline: none !important;
+			}	
+		}
+	}
+	.bootstrap-select{
+		&.dropdown-toggle{
+			&.bs-placeholder{
+				color: $title-color;
+			}
+		}
+	}
+	.dropdown-menu{
+		padding: 10px 15px;
+		.inner{
+			padding: 10px;
+		}
+		.dropdown-item{
+			padding: 10px;	
+			&.active,
+			&:hover,
+			&:focus{
+				background-color: rgba($theme-color, 0.07);
+				color: $title-color;
+				outline: none;
+			}
+		}
+	}
+	.btn-light{
+		background-color: $white-color;
+		&:hover,
+		&:focus{
+			background-color: $white-color;
+			border: 1px solid $border-color;
+			outline: none;
+		}
+		&::placeholder{
+			color: $title-color;
+		}
+	}
+}
+.inquiry-form{
+	.form-control{
+		font-size: 14px;
+		@include heading-typo4;
+	}
+	.dropdown-menu{
+		padding: 0;
+	}
+}
+.agent-single-form{
+	margin-top: -150px;
+	@include media-breakpoint-down(lg){
+		margin-top: 30px;
+	}
+}
+.dropdown-item{
+	&.active{
+		background-color: rgba($theme-color, 0.07);
+		color: $title-color;
+	}
+}
+.advance-feature-modal,
+.sideborder-dropdown{
+	button{
+		font-size: $body-font-size;
+		&.dropdown-toggle {
+	    background-color: transparent;
+	    border: 1px solid $border-color;
+	    border-radius: 8px;
+    	@include heading-typo2;
+	    height: 50px;
+	    line-height: 35px;
+	    padding-left: 20px;
+	    width: 100%;
+	    &:before{
+		    background-color: $border-color;
+		    bottom: 1px;
+  	    content: "";
+		    height: 46px;
+		    position: absolute;
+		    right: 40px;
+		    position: absolute;
+		    top: 1px;
+		    width: 1px;
+	    }
+	    &:after{
+	    	margin-right: 5px;
+	    }
+		}
+	}	
+	.form-style2{
+		.bootstrap-select {
+			.dropdown-toggle{
+				&:focus{
+		    	outline: none !important;
+				}
+			}
+			.dropdown-menu{
+				transform: translate(0px, 0);
+			}
+			.dropdown-item{
+				line-height: 35px;
+	    	@include heading-typo2;
+				font-size: 14px;
+			}
+		}
+	}
+	&.psp-review{
+		button{
+			&.dropdown-toggle{
+				color: $body-light-color;
+				font-family: $title-font;
+			}
+		}
+		.dropdown-menu{
+			li{
+				&:first-child{
+					display: none;
+				}
+			}
+		}
+	}
+}

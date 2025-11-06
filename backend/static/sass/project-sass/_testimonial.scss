@@ -1,0 +1,141 @@
+/* Testimonials Styles */
+.testimonial-style1{
+	background-color: $white-color;
+	@include default-border-radius1;
+	@include default-box-shadow2;
+	margin-bottom: 15px;
+	padding: 30px 10px 30px 30px;
+	.testimonial-content{
+		border-bottom: 1px solid $border-color;
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+	}
+	.icon{
+		color: rgba($theme-color, .15);
+		font-size: 36px;
+		position: absolute;
+		right: 60px;
+		top: 30px;
+	}
+	.title{
+		font-size: 16px;
+		@include heading-typo1;
+		margin-bottom: 25px;
+	}
+	.text{
+		@include heading-typo3;
+		font-size: 14px;
+		margin-bottom: 8px;
+	}
+	.testimonial-review{
+		a{
+			color: $review-color;
+			font-size: 10px;
+		}
+	}
+}
+.testimonial-style2{
+	position: relative;
+	.tab-content{
+		height: auto;
+	}
+	.testi-text{
+		@include heading-typo1;
+		font-size: 22px;
+		line-height: 45px;
+		margin-bottom: 30px;
+	}
+	.icon{
+		color: $border-color;
+		font-size: 60px;
+		margin-bottom: 23px;
+	}
+	.design{
+		@include heading-typo2;
+		font-size: 13px;
+	}
+	.nav-link{
+		opacity: 0.2;
+		@include media-breakpoint-down(sm) {
+			padding-right: 0;
+		}
+		img{
+			@include media-breakpoint-down(sm) {
+				max-height: 50px;
+			}
+			@media (max-width: 339px) {
+				max-width: 45px;
+			}
+		}
+		&.active{
+			background-color: transparent;			
+			opacity: 1;
+		}
+	}
+}
+.testimonial-style3{
+	background-color: $white-color;
+	outline: 1px solid $border-color;
+	@include default-border-radius1;
+	margin-bottom: 30px;
+	overflow: hidden;
+	padding: 60px 60px 55px;
+  @include transition(all, 0.4s, ease);
+	@include media-breakpoint-down(lg) {
+		padding: 40px 30px 35px;
+	}
+	.icon{
+		color: $light-color;
+		font-size: 100px;
+		line-height: initial;
+		position: absolute;
+		right: 60px;
+		top: 15px;
+	}
+	.text{
+		font-size: 15px;
+	}
+	&:before{
+		background-color: $theme-color;
+		bottom: 0;
+		content: "";
+		height: 12px;
+		position: absolute;
+		left: 50%;
+		width: 0;
+	  @include transition(all, 0.4s, ease);
+	}
+	&:hover{
+		&:before{
+			left: 0;
+			right: 0;
+			width: 100%;
+		}
+	}
+}
+.testimonial-style4{
+	padding: 55px 0 30px 60px;
+	@include media-breakpoint-down(xxl){
+		padding: 25px 0 30px 40px;
+	}
+	@include media-breakpoint-down(lg){
+		padding: 25px 0 30px 0;
+	}
+	.icon{
+		color: $light-color;
+		font-size: 36px;
+		position: absolute;
+		right: 60px;
+		top: 50px;
+	}
+	.title{
+		line-height: 40px;
+	}
+	.desig{
+		color: $body-light-color;
+		@include heading-typo4;
+		font-size: 13px;
+		line-height: 20px;
+		letter-spacing: 0em;
+	}
+}
