@@ -1,0 +1,22 @@
+.whatsapp {
+    background-image: url(https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/WA.png);
+    filter: drop-shadow(3.95875px 3.51889px 8.09344px rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(2.28728px);
+}
+.social-button {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 67px;
+    height: 67px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 9999;
+    overflow: visible;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

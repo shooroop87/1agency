@@ -1,11 +1,9 @@
 @charset "UTF-8";
 /*
-Project/Template Name:  Homez - Real Estate HTML Template
-Template Url:  
-Author: CreativeLayers
-Author Url: https://themeforest.net/user/creativelayers/portfolio
-Version: 1.0.0
-Description: Zeomart - Multi-Vendor & Marketplace HTML Template
+Author: Andrey Egorov
+Author Url: https://andreyegorov.com
+Version: 1.0.5
+Description: 1agency
 Tag: advanced search, agency, agent, classified, directory, house, listing, property, real estate, real estate agency, real estate agent, realestate, realtor, rental
 */
 /* == Table Of Content  == */
@@ -56,13 +54,1148 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 /* Variables */
 :root {
-  --title-font-family: "Poppins", sans-serif;
-  --body-font-family: "DM Sans", sans-serif;
   --icon-font-family: "Font Awesome 6 Pro";
   --icon-font-family2: "Flaticon";
-  --container-width: 1290px;
+  --container-width: 1440px;
   --divder-space: 200px;
   --headings-color: #181A20 ;
+
+  /* Типографика */
+  --title-font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --body-font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Контейнер */
+  --container-width: 1440px;
+
+  /* Цвета из гайда */
+  --color-warm-black: #272727;   /* background 1 */
+  --color-black-2:    #232323;   /* background 2 / cards */
+  --color-white:      #FFFFFF;
+  --color-grey:       #656565;   /* disabled */
+  --color-light-grey: #A0A0A0;
+  --color-accent:     #EA9278;
+  --color-form:       #E6E6E6;
+
+  /* Градиент акцента */
+  --gradient-accent: linear-gradient(90deg,
+    #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%,
+    #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%
+  );
+
+  /* Базовые */
+  --headings-color: #E6E6E6;  /* на тёмном фоне читаемее */
+  --text-color:     #E6E6E6;
+  --link-color:     var(--headings-color);
+  --link-hover:     var(--color-accent);
+
+  /* Тени/скорости */
+  --elev-1: 0 4px 20px rgba(207,121,95,.4);
+  --blur-1: blur(1.25919px);
+
+  /* Переменные для стрелок */
+  --arrow-default: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_default.svg");
+  --arrow-hover:   url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_hover.svg");
+
+  /* Локальные для кнопок (чтобы не тянуть ворох wdt-переменных) */
+  --btn-radius: 25px;
+  --btn-pad-y: 7px;
+  --btn-pad-x: 15px;
+  --btn-font-w: 600;
+  --btn-tr: .3s ease;
+}
+
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1360px; /* или 1320px если хочешь чуть больше воздуха */
+  }
+}
+
+/* ===== Reset Bootstrap accordion to bare bones ===== */
+
+/* Кнопка: без фона/бордеров/теней/радиусов */
+.accordion-button{
+  background: transparent !important;
+  color: inherit;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+}
+
+/* Состояния */
+.accordion-button:focus,
+.accordion-button:active,
+.accordion-button:not(.collapsed){
+  background: transparent !important;
+  color: inherit;
+  box-shadow: none !important;
+}
+
+/* Удаляем встроенную «стрелку» Bootstrap */
+.accordion-button::after,
+.accordion-button:not(.collapsed)::after{
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  transform: none !important;
+}
+
+/* Обнуляем «особые» стили для первого/последнего элементов */
+.accordion-item:first-of-type .accordion-button,
+.accordion-item:last-of-type .accordion-button{
+  border-radius: 0 !important;
+}
+
+/* Карточка вопроса: Rectangle 3453 */
+/* Карточка вопроса */
+.accordion-item.faq-card{
+  position:relative;
+  box-sizing:border-box;
+  background:rgba(35,35,35,.3);
+  border:1px solid #fff;
+  border-radius:20px;
+  margin-bottom:10px;
+}
+
+/* Кнопка */
+.accordion-item.faq-card .accordion-button{
+  position:relative;
+  background:transparent !important;
+  color:#fff;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.2;
+  height:60px;
+  padding:12px 60px 12px 38px; /* как в макете */
+  box-shadow:none !important;
+  border-radius:20px !important;
+}
+
+/* Убираем стандартный caret */
+.accordion-item.faq-card .accordion-button::after{ content:none !important; }
+
+/* Точка слева (градиент) */
+.accordion-item.faq-card .accordion-button::before{
+  content:"";
+  position:absolute;
+  left:20px; top:50%;
+  width:8px; height:8px; border-radius:50%;
+  transform:translateY(-50%);
+  background:var(--gradient-accent);
+}
+
+/* Пилюля с плюсиком справа */
+.faq-pill{
+  position:absolute;
+  right:12px; top:50%;
+  transform:translateY(-50%);
+  width:36px; height:36px; border-radius:25px;
+  background:rgba(255,255,255,.08);
+  box-shadow:2.01471px 1.00735px 7.55515px rgba(0,0,0,.5);
+  -webkit-backdrop-filter:var(--blur-1);
+  backdrop-filter:var(--blur-1);
+  display:flex; align-items:center; justify-content:center;
+  pointer-events:none; /* чтобы клик ловил весь button */
+}
+
+/* Иконка внутри пилюли — анимируем поворот */
+.faq-pill i{
+  font-size:15px; color:#fff;
+  transition: transform .2s ease;
+}
+
+/* Открытое состояние: градиентный фон и поворот иконки */
+.accordion-item.faq-card .accordion-button:not(.collapsed) .faq-pill{
+  background:var(--gradient-accent);
+}
+.accordion-item.faq-card .accordion-button:not(.collapsed) .faq-pill i{
+  transform: rotate(45deg);
+}
+
+/* Тело ответа */
+.accordion-item.faq-card .accordion-body{
+  color:#fff;
+  font-weight:300;
+  font-size:15px;
+  line-height:1.2;
+  padding: 12px 20px 18px 38px; /* согласовано с левым отступом заголовка */
+}
+
+/* Фокус/hover без дерганий */
+.accordion-item.faq-card .accordion-button:focus{ box-shadow:none; }
+
+
+/* ===== Partners ===== */
+.partners-section .title{ color: var(--headings-color); }
+
+/* ====== Partner card (внутри слайда) ====== */
+.partners-card{
+  position:relative;
+  min-height:290px; padding:24px;
+  background: var(--color-black-2);
+  border:1px solid hsl(0 0% 100% / .35);
+  border-radius:10px;
+}
+.partners-logo{
+  display:flex; align-items:center; height:110px; margin-bottom:10px;
+}
+.partners-logo img{ max-width:70%; height:auto; opacity:.9; }
+
+.partners-meta{ display:flex; align-items:center; gap:8px; margin-top:6px; }
+.partners-dot{ inline-size:8px; block-size:8px; border-radius:50%; background: var(--gradient-accent); }
+.partners-name{ font:600 16px/1.2 var(--title-font-family); color:#fff; }
+
+.partners-desc{
+  margin:14px 0 18px;
+  font:300 15px/1.2 var(--body-font-family);
+  color: var(--color-white);
+}
+.partners-btn{ margin-top:auto; }
+
+/* ====== Индикатор снизу: стилизуем dots именно этого слайдера ====== */
+.partners-section .feature-listing-slider .owl-dots{
+  display:flex; align-items:center; gap:8px;
+  margin-top:36px; position:relative;
+}
+.partners-section .feature-listing-slider .owl-dots::before{
+  content:""; position:absolute; inset:auto 0 0 0;
+  height:4px; background: hsla(0,0%,100%,.2); border-radius:2px;
+}
+.partners-section .feature-listing-slider .owl-dot{
+  flex:1 1 0; height:4px; padding:0; margin:0; background:transparent; position:relative;
+}
+.partners-section .feature-listing-slider .owl-dot span{
+  display:block; height:4px; width:0%;
+  background: var(--gradient-accent);
+  border-radius:2px; transition: width .6s ease;
+}
+.partners-section .feature-listing-slider .owl-dot.active span{ width:100%; }
+.partners-section .feature-listing-slider .owl-dot.passed span{ width:100%; } /* для «пройденных» */
+
+/* ======= Линия-индикатор (по Figma) ======= */
+.partners-line {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  height: 4px;
+  margin: 50px auto 0;
+  background: hsla(0,0%,100%,.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.partners-line__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+#content > div > div.body_content > section.reviews-section.pb100 > div > div > div.testimonial-slider.navi_pagi_top_right.slider-4-grid.owl-carousel.owl-theme.wow.fadeInUp.owl-loaded.owl-drag > div.owl-nav.disabled {
+  display: none;
+}
+#content > div > div.body_content > section.reviews-section.pb100 > div > div > div.testimonial-slider.navi_pagi_top_right.slider-4-grid.owl-carousel.owl-theme.wow.fadeInUp.owl-loaded.owl-drag > div.owl-dots.disabled {
+  display: none;
+}
+
+/* ===== Reviews (hero background) ===== */
+.reviews-section{ position:relative; }
+.reviews-bg{
+  min-height: 975px;
+  background-size: cover; background-position: center;
+  border-radius: 0; /* во всю ширину контейнера */
+  display:block;
+  padding-top: 150px;
+}
+.reviews-kicker{
+  color: var(--color-light-grey);
+  font:600 15px/1.2 var(--title-font-family);
+  margin:0 0 6px;
+}
+
+/* =========================================================
+   Reviews — glass cards (точно по макету)
+   ========================================================= */
+
+/* ширина айтема слайдера (карточки) и отступ между ними */
+.reviews-section .owl-carousel .owl-item{
+  width: 325px !important;
+  margin-right: 20px !important; /* макет: gap 20px */
+}
+
+/* сама карточка */
+.review-card{ position: relative; width:100%; }
+
+/* внутренняя «плашка» 325×400 с полями 30 => контент 265 */
+.review-card__inner{
+  position: relative;
+  min-height: 400px;
+  padding: 30px;                 /* 30 + 30 = 60; 325-60 = 265 */
+  border-radius: 25px;
+  background: rgba(230,230,230,.30);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 7.55px rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* жёстко фиксируем контентную ширину = 265px (как в фигме) */
+.review-card__head,
+.review-card__body,
+.review-card__more{
+  inline-size: 265px; /* = 325 - 30 - 30 */
+  max-inline-size: 265px;
+}
+
+/* Name — 15/120%, белый, 70% непрозрачности */
+.review-card__name{
+  font: 600 15px/1.2 var(--title-font-family);
+  color: #fff;
+  opacity: .7;
+}
+
+/* Заголовок — 16/120%, ровно одна строка (~19px) */
+.review-card__title{
+  font: 700 16px/1.2 var(--title-font-family);
+  color: #fff;
+  margin: 20px 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;           /* высота ≈ 19px */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Текст — 15/120%, максимум 8 строк (≈ 144px) */
+.review-card__text{
+  font: 500 15px/1.2 var(--body-font-family);
+  color: #fff;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;           /* 8 × (15×1.2) = 144px */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Read more — 12/120%, подчёркнутый; прижат книзу */
+.review-card__more{
+  margin-top: auto;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: #fff;
+  font: 600 12px/1.2 var(--body-font-family);
+  text-decoration: underline;
+}
+.review-card__more-icon{
+  inline-size: 20px;
+  block-size: 20px;
+  border-radius: 4px;
+  background: var(--gradient-accent);
+}
+
+/* ===== Навигация/owl (оставляем, только приводим к виду) ===== */
+.reviews-section .owl-nav{
+  position: absolute;
+  inset-inline: 0;
+  top: -52px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.reviews-section .owl-nav button{
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: 50%;
+  background: hsl(0 0% 100% /.08);
+  border: 1px solid hsl(0 0% 100% /.2);
+  color: #fff;
+}
+.reviews-section .owl-nav button:hover{
+  background: var(--gradient-accent);
+  border-color: transparent;
+}
+
+/* при желании можно скрывать только «disabled» навигацию */
+.reviews-section .owl-nav.disabled{ display:none !important; }
+
+/* ===== Services slider (скоуп) ===== */
+.services-section { position: relative; }
+.services-section .main-title .title{ color:var(--headings-color); }
+
+/* ширина карточек как в макете */
+
+/* Карточка */
+.services-section .apartment-style1{
+  position:relative;
+  height:400px;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+/* Фото */
+.services-section .apartment-style1 .apartment-img{
+  position:absolute; inset:0;
+}
+.services-section .apartment-style1 .apartment-img img{
+  display:block; width:100%; height:100%; object-fit:none;
+}
+
+/* Стеклянная плашка снизу */
+.services-section .apartment-style1::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:27.5%;
+  background:rgba(39,39,39,.30);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-radius:0 0 25px 25px;
+}
+
+/* Контент */
+.services-section .apartment-style1 .apartment-content{
+  position:absolute; left:24px; right:24px; bottom:18px; z-index:2;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.services-section .apartment-style1 .title{
+  margin:0;
+  font:600 16px/1.2 var(--title-font-family);
+  color:#fff;
+}
+
+/* Кнопка-стрелка */
+.services-section .svc-arrow{
+  inline-size:35px; block-size:35px; border-radius:25px;
+  border:1px solid hsl(0 0% 100% / .20);
+  background: hsl(0 0% 100% / .08);
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: var(--blur-1); backdrop-filter: var(--blur-1);
+  position:relative; cursor:pointer;
+  transition: .3s ease;
+}
+.services-section .svc-arrow::before{
+  content:""; position:absolute; inset:0; margin:auto;
+  width:15px; height:15px;
+  background-image: var(--arrow-default);
+  background-size:contain; background-position:center; background-repeat:no-repeat;
+  transition:.3s ease; transform:none;
+}
+.services-section .svc-arrow:hover{
+  background: var(--gradient-accent); border-color:transparent;
+}
+.services-section .svc-arrow:hover::before{
+  background-image: var(--arrow-hover); transform: rotate(-45deg);
+}
+
+/* Навигация и доты — сохраним, но подчистим */
+.services-section .navi_pagi_bottom_center .owl-nav{ display:none !important; }
+
+/* превращаем dots в тонкую линию + активный сегмент */
+.services-section .navi_pagi_bottom_center .owl-dots{
+  position:relative; height:4px; margin-top:24px;
+  background: hsl(0 0% 100% / .20);
+  border-radius:2px; overflow:hidden;
+}
+.services-section .navi_pagi_bottom_center .owl-dot{
+  position:absolute; inset:0; pointer-events:none;
+}
+.services-section .navi_pagi_bottom_center .owl-dot span{ display:none; }
+/* «активная часть» (ширину обновит скрипт ниже) */
+.services-section .navi_pagi_bottom_center .owl-dot.active_{
+  background: hsl(0 0% 100% / .8);
+}
+
+/* ===== Concierge (What we do for you) ===== */
+.concierge-head{ margin-bottom:24px; }
+.concierge-eyebrow{
+  display:block; font:600 15px/1.2 var(--title-font-family);
+  color:var(--color-light-grey); margin-bottom:25px;
+}
+.concierge-title{ margin:0 0 10px; }
+
+/* карточка */
+.concierge-item{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items:center;
+  gap:24px;
+  min-height:110px;
+  padding:30px;
+  background:#272727;
+  border-radius:25px;
+  box-shadow:0 0 7.55px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+}
+
+/* левая часть: иконка + заголовок */
+.concierge-item .ci-left{
+  display:flex; align-items:center; gap:30px;
+  min-width:0;
+}
+.ci-thumb{
+  inline-size:50px; block-size:50px; border-radius:10px; object-fit:cover; display:block;
+}
+/* обёртка для точки и заголовка — в одну линию */
+.concierge-item .ci-left > div{
+  display:flex;
+  align-items:center;
+  gap:12px;            /* расстояние между точкой и заголовком */
+  min-width:0;
+}
+
+/* сама точка — по умолчанию спрятана, но место занимает */
+.ci-dot{
+  display:inline-block;
+  inline-size:8px;
+  block-size:8px;
+  flex:0 0 8px;
+  border-radius:50%;
+  background:var(--gradient-accent);
+  opacity:0;
+  transform:scale(.6);
+  transition:opacity .2s ease, transform .2s ease;
+  pointer-events:none;
+}
+
+/* показать точку при наведении/фокусе всей карточки */
+.concierge-item:hover .ci-dot,
+.concierge-item:focus-within .ci-dot{
+  opacity:1;
+  transform:scale(1);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ci-dot{ transition:none; }
+}
+.ci-title{
+  margin:0; color:#fff; font:600 16px/1.2 var(--title-font-family);
+  white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
+}
+
+/* описание */
+.ci-desc{
+  margin:0; color:#fff; font:300 15px/1.2 var(--body-font-family);
+  opacity:1; /* по макету читаемо */
+  width: 90%;
+}
+
+/* CTA справа — используем уже существующую кнопку */
+.concierge-cta{
+  white-space:nowrap;
+  background: var(--gradient-accent);
+  border-color:transparent;
+  color:#fff;
+  padding: 10.5px 12px 10.5px 15px;
+}
+.concierge-cta:hover{ box-shadow: var(--elev-1); }
+
+/* tight container как в фигме: 1360 */
+@media (min-width:1400px){
+  .container,
+  .container-lg,.container-md,.container-sm,.container-xl,.container-xxl{
+    max-width:1360px;
+  }
+}
+
+/* адаптив */
+@media (max-width: 991.98px){
+  .concierge-item{
+    grid-template-columns: 1fr;
+    gap:14px; padding:16px;
+  }
+  .concierge-item .ci-left{ gap:14px; }
+  .ci-desc{ order:3; }
+  .concierge-cta{ order:4; width:max-content; }
+}
+
+
+/* ===== General Button CTA  ===== */
+
+.button-cta {
+  white-space: nowrap;
+  background: var(--gradient-accent);
+  border-color: transparent;
+  color: #fff;
+  padding: 10.5px 12px 10.5px 15px;
+}
+
+/* === Favorites Button (из Figma) === */
+a.favorites-btn {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 15px;
+  gap: 2px;
+
+  /* можно убрать абсолют, если она в flex-контейнере справа */
+  position: relative; /* было absolute */
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 0.25px solid var(--color-grey, #656565);
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(1.25919px);
+  backdrop-filter: blur(1.25919px);
+
+  border-radius: 25px;
+
+  width: 35px;
+  height: 35px;
+
+  transition: all 0.3s ease;
+}
+
+/* иконка внутри */
+a.favorites-btn .flaticon-like {
+  font-size: 13px;
+  color: #fff;
+  display: block;
+  line-height: 1;
+}
+
+/* hover: немного подсветить */
+a.favorites-btn:hover {
+  background: var(--gradient-accent);
+  border-color: transparent;
+  box-shadow: var(--elev-1);
+}
+
+
+
+/* ===== Areas (общее) ===== */
+.areas-bali{ position:relative; padding-block:40px; }
+@media (min-width:1400px){
+  .areas-bali .container{ max-width:1360px; }
+}
+
+.areas-eyebrow{
+  display:block;
+  font:600 15px/1.2 var(--title-font-family);
+  color:var(--color-light-grey);
+  margin-bottom:8px;
+}
+.areas-heading{ margin:0 0 18px; }
+
+/* ===== Tabs (слева) ===== */
+.areas-tabs{ max-width:590px; }
+.areas-nav{
+  display:flex; align-items:center; gap:56px;
+}
+.areas-nav .nav-link{
+  padding:0; background:transparent; border:0; border-radius:0;
+  color:#656565; font-weight:600; font-size:16px; line-height:1.2;
+}
+.areas-nav .nav-link:focus{ outline:none; box-shadow:none; }
+.area-tab-inner{ display:flex; align-items:center; gap:10px; }
+
+/* точка слева — видна только на активном табе */
+.areas-nav .dot{
+  width:8px; height:8px; border-radius:50%; display:none;
+  background: var(--gradient-accent);
+}
+.areas-nav .nav-link.active .dot{ display:inline-block; }
+
+/* цвет названия */
+.area-title{ color:#656565; transition:color .25s ease; }
+.areas-nav .nav-link.active .area-title{ color:#fff; }
+.areas-nav .nav-link:not(.active):hover .area-title{ color:var(--headings-color); }
+.areas-nav .nav-link .dot {left: 0px;}
+
+
+/* линия под табами */
+.areas-divider{
+  height:0; border-top:1px solid hsl(0 0% 100% / .2);
+  margin:12px 0 18px;
+}
+
+/* текст под табами */
+.areas-desc{
+  margin:0 0 18px;
+  color:#fff; font:300 15px/1.2 var(--body-font-family);
+}
+
+/* ===== Фото справа ===== */
+.areas-photo{ position:relative; min-height:400px; }
+.areas-photo .tab-pane{ position:relative; height:100%; }
+.areas-photo__img{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(0deg, rgba(39,39,39,.15), rgba(39,39,39,.15)),
+    var(--img) center/cover no-repeat;
+  border-radius:0; /* если нужны скругления — задаём тут */
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 991.98px){
+  .areas-bali .row{ row-gap:24px; }
+  .areas-tabs{ max-width:none; }
+  .areas-photo{ min-height:300px; }
+}
+
+
+
+/* ===== About Cards Section ===== */
+
+.about-cards .row {
+  --bs-gutter-x: 20px;
+  --bs-gutter-y: 20px;
+}
+
+/* Base card — 325x340 */
+.about-card {
+  position: relative;
+  inline-size: 325px;
+  block-size: 340px;
+  background: var(--color-black-2, #232323);
+  border-radius: 30px;
+  box-shadow: 0 0 7.55px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+  padding: 95px 30px 30px;
+  display: flex;
+  align-items: flex-start;
+  color: #fff;
+}
+
+/* Icon box top-left */
+.about-card__icon {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  inline-size: 52px;
+  block-size: 52px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Text block */
+.about-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 265px;
+}
+
+/* Title */
+.about-card__title {
+  margin: 0;
+  font-family: var(--title-font-family, "Manrope", sans-serif);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2; /* 120% */
+  color: #fff;
+}
+
+/* Text */
+.about-card__text {
+  margin: 0;
+  font: 300 15px / 1.2 var(--body-font-family);
+  color: #fff;
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .about-card {
+    inline-size: 100%;
+    min-height: auto;
+    padding: 80px 20px 25px;
+  }
+  .about-card__icon {
+    top: 20px;
+    left: 20px;
+  }
+  .about-card__body {
+    width: auto;
+  }
+}
+
+
+
+/* ===== About hero ===== */
+.about-hero{
+  position:relative;
+  isolation:isolate;
+  /* размеры как в фигме */
+  min-block-size:660px;
+  margin-block:0 120px; /* даём место для вылета нижних картинок на мобильных можно убрать */
+}
+
+/* фон с оверлеем */
+.ah-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0;
+  min-height: 660px;
+
+  /* === Background (построчно) === */
+  background-image:
+    url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/5abddfd3dcc0377e6bf70ee0df4b52e6-scaled.png");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* центр-контент */
+.ah-content{
+  inline-size:440px;
+  margin-inline:auto;
+  padding-top: 784px;
+  color:#fff;
+  text-align:left;
+}
+
+/* логотип над дескриптором */
+.ah-logo{
+  display:block;
+  inline-size:22px;
+  block-size:46px;
+  margin:0 auto 10px;
+  object-fit:contain;
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+/* eyebrow */
+.ah-eyebrow{
+  display:block;
+  text-align:center;
+  font:600 15px/1.2 var(--title-font-family);
+  color:#fff;
+  opacity:.5;
+}
+
+/* заголовок 26/100% по фигме */
+.ah-title{
+  margin:0 0 18px;
+  font:600 26px/1 var(--title-font-family); /* 100% */
+  color:#fff;
+}
+
+/* основной текст 18/120% по фигме */
+.ah-text{
+  margin:0 0 26px;
+  font:500 18px/1.2 var(--body-font-family); /* 120% */
+  color:#fff;
+}
+
+/* кнопка */
+.ah-cta{
+  background: rgba(255,255,255,.08);
+  border-color: hsl(0 0% 100% / .15);
+  color:#fff;
+  border-radius:25px;
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+}
+
+/* боковые фотографии */
+.ah-side{
+  position:absolute;
+  inline-size:659px;
+  block-size:440px;
+  background:#222 center/cover no-repeat;
+  border-radius:30px;
+  z-index:1;
+}
+.ah-side--left{
+  left:-295px;
+  top: 845px;
+  background-image:url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/3c493f5ee73e92a24289138d22142d65.png");
+}
+.ah-side--right{
+  right:-365px;
+  top: 1020px;
+  background-image:url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/d5f5931b400ca3facd8da88e928b6a98.png");
+  outline:1px solid rgba(0,0,0,.8); /* как в фигме */
+  outline-offset:-1px;
+}
+
+/* адаптив */
+@media (max-width: 1399.98px){
+  .ah-side--right{ right:-200px; }
+}
+@media (max-width: 1199.98px){
+  .ah-content{ inline-size:min(520px, 92vw); }
+  .ah-side--left{ left:-180px; }
+  .ah-side--right{ right:-120px; }
+}
+@media (max-width: 991.98px){
+  .about-hero{ margin-block:0 60px; }
+  .ah-content{ padding-block:80px 30px; inline-size:90%; text-align:left; }
+  .ah-title{ font-size:22px; }
+  .ah-text{ font-size:16px; }
+  .ah-side{ inline-size:56vw; block-size:auto; aspect-ratio:659/440; }
+  .ah-side--left{ left:-20vw; bottom:-60px; }
+  .ah-side--right{ right:-20vw; bottom:-20px; }
+}
+@media (max-width: 575.98px){
+  .ah-side{ display:none; } /* на маленьких — фокус на тексте */
+  .about-hero{ margin:0; }
+  .ah-content{ inline-size:100%; padding:60px 16px 30px; }
+}
+
+
+
+/* ===== Projects (Portfolio) ===== */
+.projects .container{max-width: var(--container-width);}
+.projects-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+}
+
+/* карточка */
+.project-card{
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  inline-size:100%;
+  block-size:417px;                 /* общий рост как в фигме */
+  position:relative;
+}
+
+/* большие = на всю колонку */
+.project-card--lg .pc-img{ block-size:360px; border-radius:30px; }
+
+/* малые = фиксированная ширина 325, выравнивание внутри колонки */
+.project-card--sm{ inline-size:325px; justify-self:start; }
+.project-card--align-end{ justify-self:end; }
+.project-card--sm .pc-img{ block-size:360px; border-radius:30px; }
+
+/* фото */
+.pc-img{
+  position:relative;
+  inline-size:100%;
+  background-image: var(--img);
+  background-size:cover;
+  background-position:center;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+/* плашки-теги */
+.pc-tags{
+  position:absolute;
+  inset:auto 0 20px 20px;           /* снизу-слева */
+  display:flex; gap:10px; align-items:center;
+}
+.tag{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:7px 15px; gap:2px;
+  background:#272727; border-radius:25px;
+  font:600 12px/1.2 var(--body-font-family);
+  color:#fff; white-space:nowrap;
+}
+
+/* подпись под картинкой */
+.pc-meta{ position:absolute; left:0; right:0; bottom:0; padding:0 0 0 25px; }
+.pc-title{
+  display:inline-flex; align-items:center; gap:4px;
+  font:600 20px/1 var(--title-font-family);
+  margin:0 0 6px 0;
+}
+.pc-title .wdt-button__icon{ inline-size:16px; block-size:16px; }
+
+/* точка-акцент перед заголовком */
+.pc-title .dot{
+  inline-size:8px; block-size:8px; border-radius:50%;
+  background: var(--gradient-accent);
+  display:inline-block; margin-inline-end:8px;
+}
+
+/* локация */
+.pc-loc{
+  font:600 15px/1.2 var(--body-font-family);
+  color: var(--color-light-grey);
+}
+
+/* кнопка снизу по центру */
+.projects-cta{
+  display:flex; justify-content:center; margin-top:70px;
+}
+
+/* адаптив */
+@media (max-width: 1199.98px){
+  .project-card--sm{ inline-size:100%; }
+}
+@media (max-width: 991.98px){
+  .projects-grid{ grid-template-columns:1fr; }
+  .project-card,
+  .project-card--sm{ inline-size:100%; justify-self:stretch; }
+}
+
+
+
+
+/* ===== HERO base ===== */
+/* сцена: сначала живёт 100vh внутри sticky, общий блок 200vh */
+.hero-stage{ height:200vh; position:relative; }
+.hero-sticky{ position:sticky; top:0; height:100vh; --p:0; }
+
+/* карточки */
+.hero-tiles{
+  position:absolute; inset:47px 0 auto 0;
+  width:900px; left:499px;
+  display:grid; grid-template-columns:440px 440px; gap:60px;
+}
+.hero-tile{ position:relative; width:440px; height:440px; border-radius:30px; overflow:hidden;
+  background: linear-gradient(0deg, rgba(39,39,39,.1), rgba(39,39,39,.1));
+}
+.hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; will-change:transform,opacity; }
+.hero-tile .img-a{ opacity: calc(1 - var(--p)); transform: translateY(calc(var(--p) * -12%)); }
+.hero-tile .img-b{ opacity: var(--p); transform: translateY(calc((1 - var(--p)) * 12%)); }
+
+/* панель */
+.hero-controls{
+  position:absolute; left:39px; right:39px; top:386px; height:165px;
+  display:grid; grid-template-columns:320px 1fr auto; align-items:center; gap:20px;
+}
+.hero-brand{ display:flex; align-items:center; gap:20px; }
+.hero-name{
+  font:600 50px/0.89 var(--title-font-family); letter-spacing:-.04em;
+  background: var(--gradient-accent);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; text-fill-color:transparent;
+}
+.hero-nav{ display:flex; gap:25px; justify-content:center; }
+.hero-nav a{ font:600 15px/1.2 var(--body-font-family); color:#fff; }
+.hero-nav a:hover{ color:var(--color-accent); }
+.hero-cta{ display:flex; gap:12px; align-items:center; }
+.hero-fav{ inline-size:35px; block-size:35px; border-radius:25px; border:0.25px solid var(--color-grey);
+  background:hsl(0 0% 100% / .08); box-shadow:2px 1px 8px rgba(0,0,0,.5); -webkit-backdrop-filter:var(--blur-1); backdrop-filter:var(--blur-1);
+}
+.fav-dot{ display:block; inline-size:11px; block-size:9px; margin:13px auto; border-radius:9px; background:#fff; }
+
+/* низ */
+.hero-bottom{ position:absolute; left:39px; right:39px; bottom:20px; display:grid; grid-template-columns:auto 1fr; align-items:end; }
+.hero-scroll{ display:flex; align-items:center; gap:12px; }
+.hero-scroll span{ font:600 15px/1.2 var(--body-font-family); }
+.scroll-dot{ inline-size:8px; block-size:8px; border-radius:50%; background:var(--gradient-accent); display:inline-block; }
+.hero-kicker{ justify-self:center; margin-left:200px; font:600 26px/1 var(--title-font-family); }
+
+/* адаптив */
+@media (max-width:1199.98px){
+  .hero-tiles{ left:50%; transform:translateX(-50%); width:min(90vw,900px); grid-template-columns:1fr 1fr; gap:24px; }
+  .hero-tile{ width:100%; height:42vw; max-height:420px; }
+  .hero-controls{ grid-template-columns:1fr; row-gap:14px; top:360px; height:auto; text-align:center; }
+  .hero-brand{ justify-content:center; }
+  .hero-name{ font-size:40px; }
+  .hero-cta{ justify-content:center; }
+  .hero-bottom{ grid-template-columns:1fr; }
+  .hero-kicker{ margin:0; text-align:center; }
+}
+@media (max-width:575.98px){
+  .hero-stage{ height:180vh; }
+  .hero-tiles{ top:24px; gap:16px; }
+  .hero-tile{ border-radius:22px; }
+  .hero-name{ font-size:32px; }
+}
+
+/* футер-обёртка должна быть позиционирована */
+.footer-reveal{
+  position: relative;
+  z-index: 3;
+}
+
+/* декоративный блок из фигмы (Rectangle 3463) перед футером */
+.footer-reveal::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  top: -150px;              /* выдвигаем над футер */
+  width: min(1440px, 100%);
+  height: 150px;
+  background: #272727;      /* var(--color-warm-black) */
+  box-shadow: 0 -100px 65px rgba(0,0,0,.25); /* тень вверх */
+  border-radius: 55px 55px 0 0;
+  z-index: -1;
+  width: 100%;
+}
+
+/* если сверху есть скругление секции, можно чуть перекрыть */
+.footer-reveal{
+  margin-top: 50px;         /* тонкая подстройка стыка */
+}
+
+.contact-form-section {
+  /* положение и форма блока */
+  position: relative;
+  border-radius: 25px;
+  min-height: 910px;
+  padding: 40px;
+  overflow: hidden;
+
+  /* --- Фон по слоям --- */
+
+  /* 1️⃣ Верхний слой — диагональный градиент справа налево */
+  background-image: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/pre_footer.png");
+
+  /* положение фонового изображения */
+  background-position: center;
+  /* как оно масштабируется */
+  background-size: cover;
+  /* не повторять */
+  background-repeat: no-repeat;
+
+  /* порядок смешивания слоёв */
+  background-blend-mode: normal;
+
+  /* цвет текста по умолчанию */
+  color: var(--color-white, #fff);
+}
+
+/* адаптив */
+@media (max-width: 991.98px) {
+  .contact-form-section {
+    padding: 30px 25px;
+    min-height: 700px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .contact-form-section {
+    padding: 25px 20px;
+    min-height: 550px;
+    border-radius: 15px;
+  }
+}
+
+/* сам футер "приклеиваем" к нижнему краю вьюпорта,
+   когда он доскроллится — появляется */
+.footer-pin{
+  position: sticky;
+  bottom: 0;
+  inset-inline: 0;
+  /* чтобы было ощущение параллакса — лёгкий translate по скроллу */
+  will-change: transform;
+}
+
+
+
+/* mobile fix */
+@media (max-width: 575.98px){
+  .ah-bg{
+    background-position:center center;
+    background-size:cover !important; /* если что-то переопределяет */
+    min-height:60vh;                  /* чтобы был приличный вертикальный размер */
+    -webkit-background-size:cover;    /* iOS Safari */
+  }
 }
 
 /* Mixins */
@@ -73,10 +1206,10 @@ body {
 }
 
 body {
-  background-color: #ffffff;
+  background:#272727; /* мягкий тёмный фон под ваш гайд */
   font-family: var(--body-font-family);
-  font-size: 14px;
-  font-weight: 400;
+  /*font-size: 14px; font-weight: 400;*/
+  font:400 14px/1.85 var(--body-font-family);
   color: var(--headings-color);
   line-height: 26px;
   overflow-x: hidden;
@@ -85,7 +1218,7 @@ body {
 
 a,
 .btn {
-  color: var(--headings-color);
+  color:var(--link-color);
   text-decoration: none;
   outline: none;
   -webkit-transition: all ease 0.4s;
@@ -93,10 +1226,8 @@ a,
   -o-transition: all ease 0.4s;
   transition: all ease 0.4s;
 }
-a:hover,
-.btn:hover {
-  color: #EB6753;
-}
+a:hover, .btn:hover{color:var(--link-hover);}
+
 a:active, a:focus, a:hover, a:visited,
 .btn:active,
 .btn:focus,
@@ -131,11 +1262,16 @@ h4,
 h5,
 .h6,
 h6 {
-  font-family: var(--title-font-family);
-  color: var(--headings-color);
-  font-weight: 600;
-  line-height: 1.5;
+  font-family:var(--title-font-family);
+  color:var(--headings-color);
+  font-weight:700;
+  line-height:1.2;
+  margin:0 0 .5em;
+  /*font-family: var(--title-font-family); color: var(--headings-color); font-weight: 600; line-height: 1.5;*/
 }
+
+h1{font-size:36px;} h2{font-size:30px;} h3{font-size:24px;}
+h4{font-size:20px;} h5{font-size:18px;} h6{font-size:15px;}
 
 p {
   margin: 0 0 15px 0;
@@ -158,6 +1294,7 @@ span a {
   line-height: inherit;
 }
 
+/*
 .h1,
 h1 {
   font-size: 36px;
@@ -187,6 +1324,110 @@ h5 {
 h6 {
   font-size: 15px;
 }
+*/
+
+/* ===== Buttons (clean) ===== */
+
+/* ====== Button (Figma accurate) ====== */
+.wdt-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 25px;
+  border: 1px solid hsl(0 0% 100% / .15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 120%; /* 14px */
+
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+
+  transition:
+    background var(--btn-tr),
+    border-color var(--btn-tr),
+    box-shadow var(--btn-tr),
+    color var(--btn-tr);
+}
+
+.wdt-button:is(:hover, :focus-visible) {
+  background: var(--gradient-accent);
+  border-color: hsl(0 0% 100% / .2);
+  box-shadow: var(--elev-1);
+  color: #fff;
+}
+
+/* ====== Icon ====== */
+.wdt-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 15px;
+  block-size: 15px;
+  transition: transform var(--btn-tr);
+}
+
+.wdt-button__icon::before {
+  content: "";
+  inline-size: 15px;
+  block-size: 15px;
+  background-image: var(--arrow-default);
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform var(--btn-tr), background-image var(--btn-tr);
+}
+
+/* При наведении — смена иконки и поворот под -45° */
+.wdt-button:is(:hover, :focus-visible) .wdt-button__icon::before {
+  background-image: var(--arrow-hover);
+  transform: rotate(45deg);
+}
+
+/* ====== Icon placement ====== */
+.wdt-button.wdt-button--icon-before { flex-direction: row-reverse; }
+.wdt-button.wdt-button--icon-before .wdt-button__icon { margin-inline-start: 8px; }
+.wdt-button.wdt-button--icon-after  .wdt-button__icon { margin-inline-start: 8px; }
+
+/* ====== Variants ====== */
+.wdt-button--textual {
+  background: none;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--color-light-grey);
+}
+
+.wdt-button--textual:is(:hover, :focus-visible) {
+  color: var(--color-accent);
+}
+
+/* ====== Utilities ====== */
+.wdt-button--full { inline-size: 100%; }
+.elementor-align-justify .wdt-button-holder,
+.elementor-align-justify .wdt-button-holder .wdt-button {
+  inline-size: 100%;
+}
+
+.wdt-button-holder {
+  display: inline-flex;
+  position: relative;
+}
+
+/* ====== Accessibility ====== */
+@media (prefers-reduced-motion: reduce) {
+  .wdt-button,
+  .wdt-button__icon::before {
+    transition: none;
+  }
+}
 
 li {
   list-style-type: none;
@@ -208,8 +1449,37 @@ h2 {
 
 /* All Type Of Footer Styles */
 .footer-style1 {
-  background-color: var(--headings-color);
+  background: var(--color-black-2);
+  color: var(--headings-color);
+  box-shadow: 0 -10px 40px rgba(0,0,0,.25); /* лёгкая тень при выезде */
 }
+
+#content {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* анимация лёгкого параллакса (без JS): чем ниже — тем меньше сдвиг) */
+@supports (animation-timeline: scroll()) {
+  .footer-pin{
+    animation: footer-parallax linear both;
+    animation-timeline: view();          /* связать с прогрессом секции */
+    animation-range: entry 0% exit 100%; /* от входа до выхода секции */
+  }
+  @keyframes footer-parallax{
+    from { transform: translateY(10vh); }
+    to   { transform: translateY(0); }
+  }
+}
+
+/* a11y: без анимаций для пользователей с reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .footer-pin{ animation: none !important; transform: none !important; }
+}
+
+
+
 .footer-style1.at-home2 {
   padding-top: 230px;
 }
@@ -7322,7 +8592,7 @@ header.nav-homepage-style.at-home5.stricky.stricky-fixed .ace-responsive-menu .v
 
 /*== Mobile Menu Css ==*/
 .header.innerpage-style {
-  background-color: #ffffff;
+  background-color: transparent;
   -webkit-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   -moz-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   -o-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
@@ -10411,4 +11681,181 @@ input:focus-visible {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+
+/* === HEADER: layout из Figma (1360×43, отступы 41/20) === */
+.header-nav.nav-homepage-style.at-home3.main-menu {
+  position: absolute;
+  left: 41px;
+  right: 41px;              /* чтобы ширина ≈1360px на макете 1440 */
+  top: 20px;
+  height: 43px;
+  background: transparent;
+  border: 0;
+  z-index: 50;
+}
+
+/* Внутренняя строка: логотип + меню + CTA справа */
+.oa-h-row{
+  display:flex;
+  align-items:center;
+  gap: 28px;
+}
+
+/* --- Меню --- */
+.oa-menu{
+  display:flex !important;
+  align-items:center;
+  gap:25px;                 /* Figma gap */
+  margin:0;
+  padding:0;
+}
+.oa-menu > li{ list-style:none; }
+.oa-menu > li > a{ padding:0 !important; }
+
+/* Типографика пунктов */
+.oa-menu .title{
+  font-family: var(--title-font-family);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.2;         /* 120% */
+  color: var(--color-white);
+  opacity: 1;
+  transition: opacity .25s ease, color .25s ease;
+}
+.oa-menu > li:first-child .title{ color: var(--color-light-grey); } /* Our projects — серый */
+
+/* Ховер/актив */
+.oa-menu .title:hover{ color: var(--color-accent); }
+
+/* Логотип — по высоте блока */
+.logos .header-logo img{ height: 43px; width:auto; display:block; }
+
+/* --- Правый блок: избранное + кнопка --- */
+.oa-cta{
+  margin-left: auto;        /* прижать вправо */
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* FAVORITES (круг 35×35) */
+.favorites-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:35px;
+  height:35px;
+  padding:7px 15px;         /* как в фигме, на круге роли не играет */
+  background: hsl(0 0% 100% / .08);
+  border: .25px solid #656565;
+  border-radius:25px;
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5);
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+  position: relative;       /* чтобы легко подвинуть при необходимости */
+  color:#fff;
+  text-decoration:none;
+}
+.favorites-btn .flaticon-like{
+  font-size:14px;           /* визуально ~11×9 */
+  line-height:1;
+}
+
+/* CTA кнопка (35px высотой, 7×15 паддинги) */
+.button-cta{
+  height:35px;
+  padding:7px 15px !important;
+  border-radius:25px !important;
+  background: hsl(0 0% 100% / .08) !important;
+  border: 1px solid hsl(0 0% 100% / .15) !important;
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5) !important;
+  -webkit-backdrop-filter: var(--blur-1);
+  backdrop-filter: var(--blur-1);
+  color:#fff !important;
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+}
+.button-cta .wdt-button__icon::before{
+  transform: rotate(-45deg);              /* стрелка по макету */
+}
+
+/* Скрыть системные отступы контейнера меню, чтобы совпали координаты */
+.header-nav .container.menu_bdrt1{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Адаптив: на очень узких ширинах аккуратно сжимаем отступы */
+@media (max-width: 1200px){
+  .header-nav.nav-homepage-style.at-home3.main-menu{
+    left: 20px; right: 20px;
+  }
+  .oa-menu{ gap:18px; }
+}
+@media (max-width: 992px){
+  .oa-cta{ gap:8px; }
+  .button-cta{ padding:6px 12px !important; }
+}
+
+/* ===== 404 Hero (минимум стилей, завязан на ваши переменные) ===== */
+.hero-404{
+  position:relative;
+  inline-size:100%;
+  min-block-size:56vw;            /* адаптивная высота */
+  max-block-size:856px;
+  border-end-start-radius:55px;
+  border-end-end-radius:55px;
+  overflow:hidden;
+  box-shadow: 0 100px 65px rgba(0,0,0,.25);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(35,35,35,.5) 100%),
+    linear-gradient(0deg, rgba(35,35,35,.45), rgba(35,35,35,.45)),
+    url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/Rectangle-3470.png") center/cover no-repeat;
+}
+
+.hero-404__inner{
+  inline-size:min(1360px, 92vw);
+  margin-inline:auto;
+  padding: min(4vw, 40px);
+  min-block-size: inherit;
+  display:grid;
+  align-content:center;
+  justify-items:center;
+  text-align:center;
+  gap:24px;
+}
+
+.hero-404__code{
+  margin:0;
+  font-family: var(--title-font-family);
+  font-weight:600;
+  line-height:.89;
+  letter-spacing:-.04em;
+  font-size: clamp(96px, 22vw, 267px);
+  background: var(--gradient-accent);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-fill-color:transparent;
+}
+
+.hero-404__divider{
+  inline-size:min(473px, 70vw);
+  height:2px;
+  border:0;
+  background: var(--gradient-accent);
+}
+
+.hero-404__subtitle{
+  margin:0;
+  font:600 20px/1 var(--title-font-family);
+  color: var(--color-white);
+  opacity:.95;
+}
+
+/* мелкая адаптация */
+@media (max-width: 575.98px){
+  .hero-404{ min-block-size:72vw; }
+  .hero-404__subtitle{ font-size:16px; }
+}

@@ -42,6 +42,7 @@ padding: 95px !important;
 }.p100 {
 padding: 100px !important;
 }
+
 /*Padding Top*/
 .pt0 {
 padding-top: 0px !important;
@@ -303,52 +304,75 @@ margin-top: -150px !important;
 margin-top: -200px !important;
 }
 .mb-5 {
-margin-bottom: -5px !important;
-}.mb-10 {
-margin-bottom: -10px !important;
-}.mb-15 {
-margin-bottom: -15px !important;
-}.mb-20 {
-margin-bottom: -20px !important;
-}.mb-25 {
-margin-bottom: -25px !important;
-}.mb-30 {
-margin-bottom: -30px !important;
-}.mb-35 {
-margin-bottom: -35px !important;
-}.mb-40 {
-margin-bottom: -40px !important;
-}.mb-45 {
-margin-bottom: -45px !important;
-}.mb-50 {
-margin-bottom: -50px !important;
-}.mb-55 {
-margin-bottom: -55px !important;
-}.mb-60 {
-margin-bottom: -60px !important;
-}.mb-65 {
-margin-bottom: -65px !important;
-}.mb-70 {
-margin-bottom: -70px !important;
-}.mb-75 {
-margin-bottom: -75px !important;
-}.mb-80 {
-margin-bottom: -80px !important;
-}.mb-85 {
-margin-bottom: -85px !important;
-}.mb-90 {
-margin-bottom: -90px !important;
-}.mb-95 {
-margin-bottom: -95px !important;
-}.mb-100 {
-margin-bottom: -100px !important;
-}.mb-120 {
-margin-bottom: -120px !important;
-}.mb-150 {
-margin-bottom: -150px !important;
-}.mb-200 {
-margin-bottom: -200px !important;
+  margin-bottom: 5px !important;
 }
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+.mb-25 {
+  margin-bottom: 25px !important;
+}
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+.mb-35 {
+  margin-bottom: 35px !important;
+}
+.mb-40 {
+  margin-bottom: 40px !important;
+}
+.mb-45 {
+  margin-bottom: 45px !important;
+}
+.mb-50 {
+  margin-bottom: 50px !important;
+}
+.mb-55 {
+  margin-bottom: 55px !important;
+}
+.mb-60 {
+  margin-bottom: 60px !important;
+}
+.mb-65 {
+  margin-bottom: 65px !important;
+}
+.mb-70 {
+  margin-bottom: 70px !important;
+}
+.mb-75 {
+  margin-bottom: 75px !important;
+}
+.mb-80 {
+  margin-bottom: 80px !important;
+}
+.mb-85 {
+  margin-bottom: 85px !important;
+}
+.mb-90 {
+  margin-bottom: 90px !important;
+}
+.mb-95 {
+  margin-bottom: 95px !important;
+}
+.mb-100 {
+  margin-bottom: 100px !important;
+}
+.mb-120 {
+  margin-bottom: 120px !important;
+}
+.mb-150 {
+  margin-bottom: 150px !important;
+}
+.mb-200 {
+  margin-bottom: 200px !important;
+}
+
 /*Margin minus*/
 .m--1 {
 margin: -1px !important;
@@ -4234,3 +4258,4 @@ margin-top: 50px !important;
 	padding-top: 50px !important;
 	}
 }
+

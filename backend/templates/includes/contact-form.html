@@ -1,94 +1,116 @@
 {% load static %}
-    <!-- Explore Apartment -->
-    <section class="pb90">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
-            <div class="main-title text-center">
-              <h2 class="title">See how Realton can help</h2>
-              <p class="paragraph">Aliquam lacinia diam quis lacus euismod</p>
-            </div>
-          </div>
+
+<section>
+  <div
+    class="container contact-form-section">
+    <div class="row g-4 align-items-start">
+      <!-- ЛЕВАЯ ЧАСТЬ -->
+      <div class="col-lg-6">
+        <div class="mb30">
+          <h3 class="mb10" style="font-weight:600; font-size:26px; line-height:1;">
+            Start your<br>investment journey
+          </h3>
         </div>
-        <div class="row">
-          <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay="00ms">
-            <div class="iconbox-style3 text-center">
-              <div class="icon"><img class="w-100" src="{% static 'images/icon/property-buy.svg' %}" alt=""></div>
-              <div class="iconbox-content">
-                <h4 class="title">Buy a property</h4>
-                <p class="text">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                <a href="#" class="ud-btn btn-thm3">Find a home<i class="fal fa-arrow-right-long"></i></a>
-              </div>
-            </div>
+
+        <!-- нижний левый блок контактов -->
+        <div class="mt-auto" style="margin-top:420px;">
+          <h4 class="mb20" style="font-weight:600; font-size:20px; line-height:1;">
+            Reach out in the way that’s<br>
+            most convenient for you — we’re<br>
+            always here to help
+          </h4>
+
+          <div class="d-flex align-items-center mb15">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%;
+                         background: var(--gradient-accent); margin-right:10px;"></span>
+            <a href="#" class="wdt-button button-cta wdt-button--textual is-sm" style="padding:0;">Request details</a>
           </div>
-          <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-            <div class="iconbox-style3 active text-center">
-              <div class="icon"><img class="w-100" src="{% static 'images/icon/property-sell.svg' %}" alt=""></div>
-              <div class="iconbox-content">
-                <h4 class="title">Sell a property</h4>
-                <p class="text">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                <a href="#" class="ud-btn btn-thm3">Place an ad<i class="fal fa-arrow-right-long"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4 wow fadeInRight" data-wow-delay="300ms">
-            <div class="iconbox-style3 text-center">
-              <div class="icon"><img class="w-100" src="{% static 'images/icon/property-rent.svg' %}" alt=""></div>
-              <div class="iconbox-content">
-                <h4 class="title">Rent a property</h4>
-                <p class="text">Nullam sollicitudin blandit eros eu pretium. Nullam maximus ultricies auctor.</p>
-                <a href="#" class="ud-btn btn-thm3">Find a rental<i class="fal fa-arrow-right-long"></i></a>
-              </div>
-            </div>
-          </div>
+
+          <p class="mb5" style="color:var(--color-light-grey); font-weight:600; font-size:16px; line-height:1.2;">
+            Call us: <a href="tel:+6282266361606" class="text-gray">+62 822 663 61 606</a>
+          </p>
+          <p class="mb0" style="color:var(--color-light-grey); font-weight:600; font-size:16px; line-height:1.2;">
+            Email us: <a href="mailto:one.agency.bali@gmail.com" class="text-gray">one.agency.bali@gmail.com</a>
+          </p>
         </div>
       </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="row d-flex align-items-end">
-          <div class="col-lg-5 position-relative">
-            <div class="home8-contact-form default-box-shadow1 bdrs12 bdr1 p30 mb30-md bgc-white">
-              <h4 class="form-title mb25">Have questions? Get in touch!</h4>
-              <form class="form-style1">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="mb20">
-                      <label class="heading-color ff-heading fw600 mb10">First Name</label>
-                      <input type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="mb20">
-                      <label class="heading-color ff-heading fw600 mb10">Last Name</label>
-                      <input type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="mb20">
-                      <label class="heading-color ff-heading fw600 mb10">Email</label>
-                      <input type="email" class="form-control" placeholder="Your Name">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="mb10">
-                      <label class="heading-color ff-heading fw600 mb10">Textarea</label>
-                      <textarea cols="30" rows="4" placeholder="There are many variations of passages."></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="d-grid">
-                      <a class="ud-btn btn-thm" href="#">Submit<i class="fal fa-arrow-right-long"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </form>
+
+      <!-- ПРАВАЯ ЧАСТЬ — КАРТОЧКА С ФОРМОЙ -->
+      <div class="col-lg-6">
+        <div
+          class="bdrs12 p30"
+          style="
+            background: var(--color-black-2);
+            border-radius:25px;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            box-shadow: var(--elev-1);
+          "
+        >
+          <h4 class="mb10" style="font-weight:600; font-size:20px; line-height:1;">
+            Tell us what you’re<br>looking for — we’ll take<br>care of the rest
+          </h4>
+          <hr class="mb30" style="border:0; border-top:1px solid rgba(234,146,120,.35); width:575px; max-width:100%;">
+
+          <form class="form-style1">
+            <div class="row g-3">
+              <!-- имя -->
+              <div class="col-md-6">
+                <input type="text" class="form-control"
+                  placeholder="Your name"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- email -->
+              <div class="col-md-6">
+                <input type="email" class="form-control"
+                  placeholder="Your E-mail"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- whatsapp -->
+              <div class="col-md-6">
+                <input type="text" class="form-control"
+                  placeholder="Your WhatsApp number"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- тип недвижимости -->
+              <div class="col-md-6">
+                <select class="form-control"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px; appearance:none; padding-right:40px;">
+                  <option selected disabled>Property type</option>
+                  <option>Apartments</option>
+                  <option>Villas</option>
+                  <option>Townhouses</option>
+                  <option>Land plots</option>
+                </select>
+              </div>
+              <!-- сообщение -->
+              <div class="col-12">
+                <textarea class="form-control"
+                  placeholder="Your message"
+                  rows="4"
+                  style="background:var(--color-form); border:0; border-radius:30px; font-weight:600; font-size:12px; padding-top:14px;"></textarea>
+              </div>
+
+              <!-- политика -->
+              <div class="col-12 d-flex align-items-center">
+                <input type="checkbox" id="policy" class="me-2"
+                  style="width:20px; height:20px; accent-color: var(--color-accent);">
+                <label for="policy" class="mb-0" style="font-weight:600; font-size:12px;">
+                  I agree to the terms of the <a href="#" style="text-decoration:underline;">Privacy Policy</a>
+                </label>
+              </div>
+
+              <!-- кнопка -->
+              <div class="col-12">
+                <button type="submit" class="wdt-button button-cta is-sm">
+                  Send <span class="wdt-button button-cta__icon"></span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-5 offset-lg-2">
-            <h2 class="mb30 text-capitalize">We'd love to hear <br class="d-none d-lg-block">from you.</h2>
-            <p class="text">We are here to answer any question you may have. As a partner of corporates, realton has more than 9,000 offices of all sizes and all potential of session.</p>
-          </div>
+          </form>
         </div>
       </div>
-    </section>
+
+    </div>
+  </div>
+</section>

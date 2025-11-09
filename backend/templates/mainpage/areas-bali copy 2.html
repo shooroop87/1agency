@@ -1,0 +1,99 @@
+<section class="areas-bali">
+  <div class="container">
+    <div class="row g-0">
+      <!-- LEFT: text, tabs -->
+      <div class="col-lg-5">
+        <span class="areas-eyebrow">Areas of Bali</span>
+        <h2 class="h2 areas-heading mb20">
+          Explore our available villas in Bali’s <br>most rapidly developing areas
+        </h2>
+
+        <!-- tabs -->
+        <div class="areas-tabs">
+          <div class="nav areas-nav" role="tablist">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#area-canggu" type="button" role="tab">
+              <span class="dot" aria-hidden="true"></span> Canggu
+            </button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#area-bukit" type="button" role="tab">
+              Bukit
+            </button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#area-ubud" type="button" role="tab">
+              Ubud
+            </button>
+          </div>
+          <div class="areas-divider"></div>
+
+          <div class="tab-content">
+            <!-- Canggu -->
+            <div class="tab-pane fade show active" id="area-canggu" role="tabpanel">
+              <p class="areas-desc">
+                Canggu is one of Bali’s most vibrant districts, famous for its world-class surf breaks,
+                trendy cafés, and buzzing nightlife. As the epicenter of modern island living, it attracts
+                digital nomads, expats, and investors alike. With a booming real estate market and strong
+                demand for short-term rentals, Canggu offers some of the highest returns on the island.
+                It’s the perfect choice for active travelers and those looking for reliable passive income.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button button-cta__icon" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <!-- Bukit -->
+            <div class="tab-pane fade" id="area-bukit" role="tabpanel">
+              <p class="areas-desc">
+                Bukit Peninsula is known for dramatic cliffs, iconic beaches and luxury resorts. It’s a
+                hotspot for premium villas with strong holiday-rental demand and high ROI.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button button-cta__icon" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <!-- Ubud -->
+            <div class="tab-pane fade" id="area-ubud" role="tabpanel">
+              <p class="areas-desc">
+                Ubud is Bali’s cultural heart, surrounded by rice terraces and jungle. A great choice for
+                wellness-focused stays and long rentals with stable occupancy year-round.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button button-cta__icon" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: photos (sync with tabs) -->
+      <div class="col-lg-7">
+        <div class="areas-photo tab-content">
+          <div class="tab-pane fade show active" id="photo-canggu">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/canggu.png')"></div>
+          </div>
+          <div class="tab-pane fade" id="photo-bukit">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/bukit.png')"></div>
+          </div>
+          <div class="tab-pane fade" id="photo-ubud">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/ubud.png')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.querySelectorAll('.areas-bali .areas-nav .nav-link').forEach(btn=>{
+  btn.addEventListener('shown.bs.tab', (e)=>{
+    const toId = e.target.getAttribute('data-bs-target'); // like #area-canggu
+    const key  = toId.replace('#area-','');               // canggu
+    // переключаем фото
+    document.querySelectorAll('.areas-photo .tab-pane').forEach(p=>{
+      p.classList.remove('show','active');
+    });
+    const pane = document.getElementById('photo-'+key);
+    if(pane){ pane.classList.add('show','active'); }
+  });
+});
+</script>
