@@ -1,27 +1,24 @@
 {% load static %}
 {% include "includes/contact-form.html" %}
 
-
-
-<!-- Footer -->
- <section class="footer-reveal" aria-label="Site footer" style="padding:0px">
+<section class="footer-reveal" aria-label="Site footer" style="padding:0px">
   <div class="footer-pin">
-<section class="footer-style1 pt60 pb-0" >
+
+<section class="footer-style1 pt60 pb-0 footer-skin">
   <div class="footer-pin">
   <div class="container">
-    <!-- Верхняя часть -->
-    <div class="row bb-white-light pb30 mb60 align-items-start">
-      <!-- Левая зона: логотип/название + 4 колонки навигации -->
+    <div class="row bb-white-light pb30 mb60 align-items-start footer-top">
       <div class="col-lg-9">
-        <div class="row g-4">
-          <!-- Название/логотип -->
+        <div class="row g-4 footer-grid">
           <div class="col-12">
             <div class="footer-widget">
-              <h1 class="mb-0">One Agency</h1>
+              <h1 class="mb-0 footer-brand">One Agency</h1>
+              <!-- если нужен svg-логотип вместо текстового градиента —
+              <img src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/One_Agency.svg" alt="One Agency" class="footer-brand-img"> -->
             </div>
           </div>
 
-          <!-- Колонки со списками -->
+          <!-- 4 колонки меню (как были) -->
           <div class="col-6 col-md-3">
             <div class="link-style1">
               <h6 class="text-white mb25">Our projects</h6>
@@ -67,54 +64,119 @@
               <ul class="ps-0">
                 <li><a href="#" target="_blank" rel="noopener">Instagram RU</a></li>
                 <li><a href="#" target="_blank" rel="noopener">Instagram ENG</a></li>
-                <li>
-                  <span class="d-block text-gray">Tel.:</span>
-                  <a href="tel:+6281339488437">+62 813 39 48 8437</a>
-                </li>
-                <li>
-                  <span class="d-block text-gray">E-mail:</span>
-                  <a href="mailto:info@oneagency.group">info@oneagency.group</a>
-                </li>
+                <li><span class="d-block text-gray">Tel.:</span>
+                  <a href="tel:+6281339488437">+62 813 39 48 8437</a></li>
+                <li><span class="d-block text-gray">E-mail:</span>
+                  <a href="mailto:info@oneagency.group">info@oneagency.group</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Правая зона: декоративный знак (как на макете) -->
+      <!-- большая “1” справа -->
       <div class="col-lg-3 d-none d-lg-flex justify-content-end">
-        <!-- Замените путь на ваш реальный файл знака/ленты из макета -->
-        <img src="{% static 'img/footer-mark.svg' %}" alt="" class="img-fluid">
+        <img
+          src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png"
+          alt=""
+          class="footer-one"
+        >
       </div>
     </div>
   </div>
 
-  <!-- Нижняя полоса -->
-  <div class="container white-bdrt1 py-4">
-    <div class="row align-items-center">
-      <div class="col-sm-2">
-        <div class="text-lg-start">
-          <p class="copyright-text text-gray ff-heading">© 2025 One Agency</p>
-        </div>
+  <!-- разделительная линия и нижняя полоса -->
+  <div class="container white-bdrt1 py-3 footer-bottom">
+    <div class="row align-items-center gy-2">
+      <div class="col-12">
+        <span class="footer-sep" aria-hidden="true"></span>
       </div>
-      <div class="col-sm-4">
-        <div class="text-lg-start">
-          <p class="copyright-text text-gray ff-heading"><a href="#" target="_blank" rel="noopener">Privacy Policy</a></p>
-        </div>
+      <div class="col-sm-6 col-lg-3">
+        <p class="copyright-text text-gray ff-heading mb-0">© 2025 One Agency</p>
       </div>
-      <div class="col-sm-6">
-        <div class="text-lg-end">
-          <p class="footer-menu ff-heading text-gray">
-            <a class="text-gray" href="#">Built with passion by dw.studio & yaushevaweb.com</a>
-          </p>
-        </div>
+      <div class="col-sm-6 col-lg-3">
+        <p class="copyright-text text-gray ff-heading mb-0">
+          <a href="#" target="_blank" rel="noopener">Privacy Policy</a>
+        </p>
+      </div>
+      <div class="col-lg-6 text-lg-end">
+        <p class="footer-menu ff-heading text-gray mb-0">
+          <a class="text-gray" href="#">Built with passion by dw.studio & yaushevaweb.com</a>
+        </p>
       </div>
     </div>
   </div>
-
 </section>
+
   </div>
 </section>
 
 <a href="https://wa.me/+6281227867391" class="social-button whatsapp" target="_blank"></a>
 <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+<style>
+/* общий фон/градиент подвала + скругления как в макете */
+.footer-skin{
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, #2a2a2a 0%, #232323 100%);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* верхняя часть — сетка как в примере, но остаётся bootstrap */
+.footer-top{ position: relative; }
+.footer-grid{ row-gap: 30px; }
+
+/* бренд слева с градиентной заливкой текста */
+.footer-brand{
+  font-family: var(--title-font-family);
+  font-weight: 600;
+  font-size: 50px;
+  line-height: .89;
+  letter-spacing: -0.04em;
+  margin-bottom: 6px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* колонки */
+.link-style1 h6{ font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+.link-style1 a{ color: var(--color-light-grey); font-weight: 600; font-size: 15px; line-height: 1.2; }
+.link-style1 a:hover{ color: var(--color-accent); }
+
+/* большая «1» справа */
+.footer-one{
+  max-height: 260px;
+  width: auto;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+  margin-right: 6px;
+}
+
+/* нижняя разделительная линия акцентного цвета */
+.footer-bottom{ position: relative; }
+.footer-sep{
+  display:block; width:100%; height:0; border-bottom:1px solid rgba(234,146,120,.55);
+  margin-bottom: 12px;
+}
+
+/* подписи внизу */
+.footer-bottom .text-gray,
+.footer-bottom a{ color: rgba(224,224,224,.8); font-size: 12px; font-weight: 300; }
+.footer-bottom a:hover{ color: var(--color-accent); }
+
+/* мобильный/планшет — поведение как в «хорошем примере» */
+@media (max-width: 991.98px){
+  .footer-grid{ display:flex; flex-wrap:wrap; gap: 30px; }
+  .footer-grid > .col-6.col-md-3{ flex: 1 1 45%; }
+  .footer-one{ display:none; } /* на мобилке убираем большую «1» */
+}
+@media (max-width: 575.98px){
+  .footer-grid{ gap: 20px; }
+  .footer-grid > .col-6.col-md-3{ flex: 1 1 100%; }
+  .footer-brand{ font-size: 40px; }
+  .footer-sep{ margin-bottom: 10px; }
+}
+
+</style>
