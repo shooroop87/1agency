@@ -1,0 +1,14 @@
+{% extends "base/base_any.html" %}
+{% load static %}
+
+{% block content %}
+<div class="wrapper ovh">
+  <div class="preloader"></div>
+  
+    {% include "about/hero.html" %}
+    {% include "about/economy.html" %}
+    {% include "about/property.html" %}
+
+  </div>
+</div>
+{% endblock %}

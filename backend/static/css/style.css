@@ -913,12 +913,12 @@ a.favorites-btn:hover {
   z-index:1;
 }
 .ah-side--left{
-  left:-295px;
+  left:-175px;
   top: 845px;
   background-image:url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/3c493f5ee73e92a24289138d22142d65.png");
 }
 .ah-side--right{
-  right:-365px;
+  right:-165px;
   top: 1020px;
   background-image:url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/d5f5931b400ca3facd8da88e928b6a98.png");
   outline:1px solid rgba(0,0,0,.8); /* как в фигме */
@@ -5194,11 +5194,12 @@ h2 {
 
 /*Home 1 Banner Content*/
 .home-banner-style8 {
-  background-image: url(../images/home/home-8.jpg);
+  background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/about-bali.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  min-height: 1240px;
 }
 .home-banner-style8 .home-style8 {
   align-items: center;
@@ -5885,7 +5886,7 @@ section {
 /* Custom Search Sugguestions Code End */
 .preloader {
   background-color: #eaeaea;
-  background-image: url("../images/preloader.gif");
+  background-image: url("{% static 'images/preloader.gif' %}");
   background-position: center center;
   background-repeat: no-repeat;
   height: 100%;
@@ -5937,6 +5938,7 @@ section {
 }
 
 .scrollToHome.show {
+  display:none;
   bottom: 45px;
   right: 45px;
   opacity: 1;
@@ -8505,8 +8507,7 @@ header.nav-homepage-style .sidemenu-btn .img-2 {
   display: none;
 }
 header.nav-homepage-style.stricky.stricky-fixed {
-  background-color: #ffffff;
-  border-bottom: 1px solid #DDDDDD;
+  background-color: transparent;
   -webkit-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   -moz-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   -o-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
@@ -11732,7 +11733,6 @@ input:focus-visible {
 
 /* --- Правый блок: избранное + кнопка --- */
 .oa-cta{
-  margin-left: auto;        /* прижать вправо */
   display:flex;
   align-items:center;
   gap:12px;
@@ -11765,20 +11765,10 @@ input:focus-visible {
 .button-cta{
   height:35px;
   padding:7px 15px !important;
-  border-radius:25px !important;
-  background: hsl(0 0% 100% / .08) !important;
-  border: 1px solid hsl(0 0% 100% / .15) !important;
-  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0,0,0,.5) !important;
-  -webkit-backdrop-filter: var(--blur-1);
-  backdrop-filter: var(--blur-1);
-  color:#fff !important;
-  display:inline-flex;
-  align-items:center;
-  gap:2px;
 }
-.button-cta .wdt-button__icon::before{
-  transform: rotate(-45deg);              /* стрелка по макету */
-}
+
+
+
 
 /* Скрыть системные отступы контейнера меню, чтобы совпали координаты */
 .header-nav .container.menu_bdrt1{
@@ -11858,4 +11848,12 @@ input:focus-visible {
 @media (max-width: 575.98px){
   .hero-404{ min-block-size:72vw; }
   .hero-404__subtitle{ font-size:16px; }
+}
+
+.home-banner-style8 {
+    background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/about-bali.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }

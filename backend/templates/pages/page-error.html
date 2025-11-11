@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  {% include "includes/meta.html" %}
+  {% include "includes/styles.html" %}
+  {% include "includes/header.html" %}
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% include "includes/menu-desktop-any.html" %}
+  
+  <main id="content">
+    {% block content %}{% endblock %}
+  </main>
+  
+  {% include "includes/footer.html" %}
+  {% include "includes/scripts_footer.html" %}
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
