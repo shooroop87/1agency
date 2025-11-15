@@ -743,13 +743,6 @@ a.favorites-btn:hover {
 /* ===== Фото справа ===== */
 .areas-photo{ position:relative; min-height:400px; }
 .areas-photo .tab-pane{ position:relative; height:100%; }
-.areas-photo__img{
-  position:absolute; inset:0;
-  background:
-    linear-gradient(0deg, rgba(39,39,39,.15), rgba(39,39,39,.15)),
-    var(--img) center/cover no-repeat;
-  border-radius:0; /* если нужны скругления — задаём тут */
-}
 
 /* ===== Адаптив ===== */
 @media (max-width: 991.98px){

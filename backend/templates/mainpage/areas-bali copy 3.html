@@ -86,103 +86,27 @@
       </div>
 
       <!-- RIGHT: фото (синхронизируется с табами) -->
-<div class="col-lg-7 ps-lg-4">
-  <div class="areas-photo tab-content">
-    <div class="tab-pane fade show active" id="photo-canggu">
-      <img class="areas-photo__img"
-           src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/area_canggu.png"
-           alt="Canggu">
-    </div>
-    <div class="tab-pane fade" id="photo-bukit">
-      <img class="areas-photo__img"
-           src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/area_bukit.png"
-           alt="Bukit">
-    </div>
-    <div class="tab-pane fade" id="photo-ubud">
-      <img class="areas-photo__img"
-           src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/area_ubud.png"
-           alt="Ubud">
-    </div>
-  </div>
-</div>
+      <div class="col-lg-7 ps-lg-4">
+        <div class="areas-photo tab-content">
+          <div class="tab-pane fade show active" id="photo-canggu">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/canggu.png')"></div>
+          </div>
+          <div class="tab-pane fade" id="photo-bukit">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/bukit.png')"></div>
+          </div>
+          <div class="tab-pane fade" id="photo-ubud">
+            <div class="areas-photo__img"
+                 style="--img:url('https://andreyegorov.com/wp-content/uploads/2025/11/ubud.png')"></div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
-<style>
-/* Контейнер справа (для высоты и позиционирования) */
-.areas-photo {
-  position: relative;
-  height: 715px; /* как в Figma */
-  overflow: hidden;
-}
 
-/* Фоновый большой слой, всегда под фото */
-.areas-photo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/bg_areas.png')
-              center/cover no-repeat;
-  z-index: 1;
-}
-
-/* Фото соответствующей области */
-.areas-photo__img {
-  position: absolute;
-  inset: 0;
-  background-image: var(--img); /* ← вот это важно */
-  background-size: cover;
-  background-position: center;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .6s ease;
-}
-
-/* Активное фото показывается */
-.areas-photo .tab-pane.show .areas-photo__img {
-  opacity: 1;
-}
-/* Секция, чтобы фон можно было растянуть как в макете */
-.areas-bali {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Правая колонка с изображениями */
-.areas-photo {
-  position: relative;
-  height: 715px;   /* как в фигме */
-  overflow: hidden;
-}
-
-/* НЕ меняющийся фон (bg_areas.png) под всеми картинками  */
-.areas-photo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/bg_areas.png')
-              center / cover no-repeat;
-  z-index: 1;
-}
-
-/* Картинка активной области */
-.areas-photo__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .5s ease;
-}
-
-/* Когда таб активен, Bootstrap даёт .show — показываем картинку */
-.areas-photo .tab-pane.show .areas-photo__img {
-  opacity: 1;
-}
-</style>
 <script>
 // Синхронизация правых фото с левыми табами Bootstrap
 document.querySelectorAll('.areas-bali .areas-nav .nav-link').forEach(btn => {
@@ -194,5 +118,4 @@ document.querySelectorAll('.areas-bali .areas-nav .nav-link').forEach(btn => {
     if (targetPane) targetPane.classList.add('show','active');
   });
 });
-
 </script>
