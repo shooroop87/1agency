@@ -1,0 +1,116 @@
+{% load static %}
+
+<section class="section-content">
+  <div
+    class="container contact-form-section">
+    <div class="row g-4 align-items-start">
+      <!-- ЛЕВАЯ ЧАСТЬ -->
+      <div class="col-lg-6">
+        <div class="mb30">
+          <h3 class="mb10" style="font-weight:600; font-size:26px; line-height:1;">
+            Start your<br>investment journey
+          </h3>
+        </div>
+
+        <!-- нижний левый блок контактов -->
+        <div class="mt-auto" style="margin-top:420px;">
+          <h4 class="mb20" style="font-weight:600; font-size:20px; line-height:1;">
+            Reach out in the way that’s<br>
+            most convenient for you — we’re<br>
+            always here to help
+          </h4>
+
+          <div class="d-flex align-items-center mb15">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%;
+                         background: var(--gradient-accent); margin-right:10px;"></span>
+            <a href="#" class="wdt-button button-cta wdt-button--textual is-sm" style="padding:0;">Request details</a>
+          </div>
+
+          <p class="mb5" style="color:var(--color-light-grey); font-weight:600; font-size:16px; line-height:1.2;">
+            Call us: <a href="tel:+6282266361606" class="text-gray">+62 822 663 61 606</a>
+          </p>
+          <p class="mb0" style="color:var(--color-light-grey); font-weight:600; font-size:16px; line-height:1.2;">
+            Email us: <a href="mailto:one.agency.bali@gmail.com" class="text-gray">one.agency.bali@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ ЧАСТЬ — КАРТОЧКА С ФОРМОЙ -->
+      <div class="col-lg-6">
+        <div
+          class="bdrs12 p30"
+          style="
+            background: var(--color-black-2);
+            border-radius:25px;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            box-shadow: var(--elev-1);
+          "
+        >
+          <h4 class="mb10" style="font-weight:600; font-size:20px; line-height:1;">
+            Tell us what you’re<br>looking for — we’ll take<br>care of the rest
+          </h4>
+          <hr class="mb30" style="border:0; border-top:1px solid rgba(234,146,120,.35); width:575px; max-width:100%;">
+
+          <form class="form-style1">
+            <div class="row g-3">
+              <!-- имя -->
+              <div class="col-md-6">
+                <input type="text" class="form-control"
+                  placeholder="Your name"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- email -->
+              <div class="col-md-6">
+                <input type="email" class="form-control"
+                  placeholder="Your E-mail"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- whatsapp -->
+              <div class="col-md-6">
+                <input type="text" class="form-control"
+                  placeholder="Your WhatsApp number"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px;">
+              </div>
+              <!-- тип недвижимости -->
+              <div class="col-md-6">
+                <select class="form-control"
+                  style="background:var(--color-form); border:0; height:50px; border-radius:30px; font-weight:600; font-size:12px; appearance:none; padding-right:40px;">
+                  <option selected disabled>Property type</option>
+                  <option>Apartments</option>
+                  <option>Villas</option>
+                  <option>Townhouses</option>
+                  <option>Land plots</option>
+                </select>
+              </div>
+              <!-- сообщение -->
+              <div class="col-12">
+                <textarea class="form-control"
+                  placeholder="Your message"
+                  rows="4"
+                  style="background:var(--color-form); border:0; border-radius:30px; font-weight:600; font-size:12px; padding-top:14px;"></textarea>
+              </div>
+
+              <!-- политика -->
+              <div class="col-12 d-flex align-items-center">
+                <input type="checkbox" id="policy" class="me-2"
+                  style="width:20px; height:20px; accent-color: var(--color-accent);">
+                <label for="policy" class="mb-0" style="font-weight:600; font-size:12px;">
+                  I agree to the terms of the <a href="#" style="text-decoration:underline;">Privacy Policy</a>
+                </label>
+              </div>
+
+              <!-- кнопка -->
+              <div class="col-12">
+                <button type="submit" class="wdt-button button-cta is-sm">
+                  Send <span class="wdt-button__icon"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
