@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_browser_reload %}
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -8,7 +9,6 @@
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  {% include "includes/menu-desktop.html" %}
   {% include "includes/menu-mobile.html" %}
   {% include "includes/menu-top-bar.html" %}
   
@@ -16,8 +16,8 @@
     {% block content %}{% endblock %}
   </main>
   
-
   {% include "includes/scripts_footer.html" %}
   {% block extra_js %}{% endblock %}
+  {% django_browser_reload_script %}
 </body>
 </html>

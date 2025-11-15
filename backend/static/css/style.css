@@ -462,7 +462,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 /* Контент */
 .services-section .apartment-style1 .apartment-content{
-  position:absolute; left:24px; right:24px; bottom:18px; z-index:2;
+  position:absolute; z-index:2;
   display:flex; align-items:center; justify-content:space-between;
 }
 .services-section .apartment-style1 .title{
@@ -484,16 +484,57 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 .services-section .svc-arrow::before{
   content:""; position:absolute; inset:0; margin:auto;
   width:15px; height:15px;
-  background-image: var(--arrow-default);
   background-size:contain; background-position:center; background-repeat:no-repeat;
   transition:.3s ease; transform:none;
 }
 .services-section .svc-arrow:hover{
   background: var(--gradient-accent); border-color:transparent;
 }
-.services-section .svc-arrow:hover::before{
-  background-image: var(--arrow-hover); transform: rotate(-45deg);
+/* Карточка — базовый container */
+.services-section .apartment-style1{
+  position:relative;
+  height:400px;
+  border-radius:30px;
+  overflow:hidden;
 }
+
+/* Тонкая ховер-рамка всей карточки (0.5px визуально) */
+.services-section .apartment-style1::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  border:1px solid var(--gradient-accent);
+  opacity:0;              /* вместо прозрачного цвета → скрыто по opacity */
+  transform:scale(0.995); /* ← делает её визуально 0.5px */
+  transition:opacity .3s ease;
+  pointer-events:none;
+  z-index:5;
+}
+
+.services-section .apartment-style1:hover::before{
+  opacity:.6;   /* точно так же, как у content */
+}
+
+/* Тонкая и аккуратная подсветка верхнего края контент-блока */
+.services-section .apartment-style1 .apartment-content::before{
+  content:"";
+  position:absolute;
+  top:-1px;
+  left:0;
+  right:0;
+  height:1px;
+  background:var(--gradient-accent);
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+  z-index:6;
+}
+
+.services-section .apartment-style1:hover .apartment-content::before{
+  opacity:.6;   /* точно такая же яркость */
+}
+
 
 /* Навигация и доты — сохраним, но подчистим */
 .services-section .navi_pagi_bottom_center .owl-nav{ display:none !important; }
@@ -741,7 +782,7 @@ a.favorites-btn:hover {
 }
 
 /* ===== Фото справа ===== */
-.areas-photo{ position:relative; min-height:400px; }
+
 .areas-photo .tab-pane{ position:relative; height:100%; }
 
 /* ===== Адаптив ===== */
@@ -847,11 +888,6 @@ a.favorites-btn:hover {
   z-index: -1;
   border-radius: 0;
   min-height: 660px;
-
-  /* === Background (построчно) === */
-  background-image:
-    url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/5abddfd3dcc0377e6bf70ee0df4b52e6-scaled.png");
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1076,7 +1112,7 @@ a.favorites-btn:hover {
 .hero-name{
   font:600 50px/0.89 var(--title-font-family); letter-spacing:-.04em;
   background: var(--gradient-accent);
-  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; text-fill-color:transparent;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;line-height: 1.2!important;text-fill-color:transparent; 
 }
 .hero-nav{ display:flex; gap:25px; justify-content:center; }
 .hero-nav a{ font:600 15px/1.2 var(--body-font-family); color:#fff; }

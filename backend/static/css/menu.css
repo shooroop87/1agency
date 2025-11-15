@@ -584,7 +584,7 @@ transform:translateX(calc(var(--mm-toggle-size) * -.75))
 .mm-page {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	min-height: 100vh;
+	min-height: 0vh!important;
 	background: inherit
 }
 :where(.mm-slideout) {

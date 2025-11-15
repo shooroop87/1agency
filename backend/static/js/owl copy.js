@@ -236,7 +236,7 @@ if($('.slider-3-grid').length){
 if($('.slider-4-grid').length){
   $('.slider-4-grid').owlCarousel({
     loop:true,
-    margin:7,
+    margin:30,
     center:false,
     dots:true,
     nav:true,

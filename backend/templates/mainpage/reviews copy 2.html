@@ -1,18 +1,19 @@
 {% load static %}
 <section class="reviews-section section-content">
   <!-- фон с затемнением -->
-  <div class="reviews-bg" style="
-    background-image:
-      linear-gradient(0deg, rgba(39,39,39,.40), rgba(39,39,39,.40)),
-      url('{% static 'images/bg_reviews.png' %}');">
+  <div class="reviews-bg" style="background-image:
+       linear-gradient(0deg, rgba(39,39,39,.40), rgba(39,39,39,.40)),
+       url('{% static "images/reviews-bg.png" %}');">
     <div class="container">
 
       <!-- заголовки + кнопка -->
       <div class="row align-items-center mb30">
-        <div class="col-lg-12">
-          <p class="reviews-kicker mb25">Reviews about One Agency</p>
-          <h2 class="title mb30">What our clients say</h2>
-          <a href="#" class="wdt-button button-cta is-nm mb70">
+        <div class="col-lg-8">
+          <p class="reviews-kicker">Reviews about One Agency</p>
+          <h2 class="title m-0">What our clients say</h2>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <a href="#" class="wdt-button button-cta is-nm">
             Leave a review
             <span class="wdt-button__icon" aria-hidden="true"></span>
           </a>

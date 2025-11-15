@@ -1,0 +1,95 @@
+{% load static %}
+<section class="home-banner-style1 p0" id="hero">
+  <div class="home-style1">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-11 mx-auto">
+          <!-- sticky-сцена -->
+          <div class="hero-stage animate-up-1">
+            <div class="hero-sticky">
+              <!-- верх: две карточки -->
+              <div class="hero-tiles">
+                <!-- левая (вулкан) -->
+                <figure class="hero-tile">
+                  <img class="hero-img img-a"
+                       src="{% static 'images/hero/hero1.png' %}"
+                       alt="Bali volcano">
+                  <img class="hero-img img-b"
+                       src="https://cdn.prod.website-files.com/6746d4e7508fcde5d1dbac6c/68e7644bacce366b4849994e_01---H0_HERO_2.jpg"
+                       alt="">
+                </figure>
+                <!-- правая (серфер) -->
+                <figure class="hero-tile">
+                  <img class="hero-img img-a"
+                       src="{% static 'images/hero/hero2.png' %}"
+                       alt="Surfer">
+                  <img class="hero-img img-b"
+                       src="https://cdn.prod.website-files.com/6746d4e7508fcde5d1dbac6c/68e764aa54816c7298cc6ef9_01---H0_HERO_3.jpg"
+                       alt="">
+                </figure>
+              </div>
+
+              <!-- центр: бренд, меню, CTA (твоими кнопками) -->
+              <div class="hero-controls animate-up-2">
+                <div class="hero-brand">
+                  <img class="hero-mark" width="51" height="101"
+                       src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png"
+                       alt="">
+                  <div class="hero-name">One Agency</div>
+                </div>
+
+                <nav class="hero-nav">
+                  <a href="#projects">Our projects</a>
+                  <a href="#about">About us</a>
+                  <a href="#concierge">Concierge Service</a>
+                  <a href="#about-bali">About Bali</a>
+                  <a href="#faq">FAQ</a>
+                  <a href="#contacts">Contacts</a>
+                </nav>
+
+                <div class="hero-cta">
+                  <button class="hero-fav" aria-label="favorites"><span class="fav-dot"></span></button>
+                  <a class="wdt-button button-cta is-nm wdt-button--bordered" href="#contact">
+                    Order a call <i class="wdt-button__icon" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- низ: подписи и скролл -->
+              <div class="hero-bottom animate-up-3">
+                <div class="hero-scroll"><span>Scroll down</span><i class="scroll-dot"></i></div>
+                <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- ХОЧЕШЬ — вернём форму поиска ниже героя:
+          <div class="advance-search-tab mt70 mt30-md mx-auto animate-up-4"> ... твой исходный блок ... </div>
+          -->
+        </div>
+      </div>
+    </div>
+
+    <!-- твой «scroll» индикатор можно оставить/заменить -->
+    <a href="#explore-property" class="animate-up-4">
+      <div class="mouse_scroll"><img src="#" alt=""></div>
+    </a>
+  </div>
+</section>
+<script>
+(function(){
+  const stage  = document.querySelector('#hero .hero-stage');
+  const sticky = document.querySelector('#hero .hero-sticky');
+
+  function tick(){
+    const vh = innerHeight;
+    const total = stage.offsetHeight - vh;
+    const y = Math.min(Math.max(-stage.getBoundingClientRect().top, 0), total);
+    const p = total ? (y/total) : 0;          // 0..1
+    sticky.style.setProperty('--p', p.toFixed(4));
+  }
+  tick();
+  addEventListener('scroll', tick, {passive:true});
+  addEventListener('resize', tick);
+})();
+</script>

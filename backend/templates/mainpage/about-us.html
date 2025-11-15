@@ -1,6 +1,10 @@
-<section class="about-hero section-content">
+{% load static %}
+<section class="about-hero section-content" style="margin-block: 0;">
   <!-- фон секции -->
-  <div class="ah-bg"></div>
+  <div class="ah-bg" style="
+    background-image:
+      linear-gradient(0deg, rgba(39,39,39,.40), rgba(39,39,39,.40)),
+      url('{% static 'images/bg_about.png' %}');">></div>
 
   <!-- левое фото (снизу-слева) -->
   <div class="ah-side ah-side--left"></div>
