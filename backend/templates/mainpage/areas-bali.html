@@ -36,7 +36,7 @@
       <!-- Контент табов - ТОЛЬКО ТЕКСТ -->
       <div class="tab-content">
         <div class="tab-pane fade show active" id="area-canggu">
-          <p class="areas-desc">
+          <p class="areas-desc mb60 mt30">
             Canggu is one of Bali's most vibrant districts, famous for its world-class surf breaks,
             trendy cafés, and buzzing nightlife. As the epicenter of modern island living, it attracts
             digital nomads, expats, and investors alike. With a booming real estate market and strong
@@ -48,7 +48,7 @@
         </div>
 
         <div class="tab-pane fade" id="area-bukit">
-          <p class="areas-desc">
+          <p class="areas-desc mb60 mt30">
             Bukit Peninsula is known for dramatic cliffs, iconic beaches and luxury resorts.
             It's a hotspot for premium villas with strong holiday-rental demand and high ROI.
           </p>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="tab-pane fade" id="area-ubud">
-          <p class="areas-desc">
+          <p class="areas-desc mb60 mt30">
             Ubud is Bali's cultural heart, surrounded by rice terraces and jungle.
           </p>
           <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
@@ -86,6 +86,16 @@
   </div>
 </div>
   </div>
+<!-- SVG для маски единицы -->
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <clipPath id="number-one-clip" clipPathUnits="objectBoundingBox">
+      <!-- Путь единицы, масштабированный под 0-1 -->
+      <path d="M 0.26 0.31 L 0.35 0.31 L 0.35 0.67 L 0.26 0.67 Z M 0.30 0.33 L 0.32 0.33 L 0.32 0.65 L 0.30 0.65 Z" 
+            fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
 </section>
 <style>
 /* Контейнер справа (для высоты и позиционирования) */
@@ -166,6 +176,35 @@
 }
 .areas-photo__img {
   z-index: 2;
+}
+.areas-photo {
+  position: relative;
+  height: 715px;
+  overflow: hidden;
+}
+
+.areas-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('{% static "images/bg_areas.png" %}') center/cover no-repeat;
+  z-index: 1;
+}
+
+.areas-photo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .5s ease;
+  clip-path: url(#number-one-clip); /* ← маска единицы */
+}
+
+.areas-photo .tab-pane.show .areas-photo__img {
+  opacity: 1;
 }
 </style>
 <script>

@@ -160,6 +160,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   border:1px solid #fff;
   border-radius:20px;
   margin-bottom:10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Кнопка */
@@ -306,6 +307,101 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   display: none;
 }
 
+
+.partners-section {
+  padding: 240px 0;
+}
+
+.partners-section .title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+
+
+.partners-card {
+  position: relative;
+  width: 325px;
+  max-width: 325px;
+  height: 290px;
+  background: #232323;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.partners-logo {
+  position: absolute;
+  left: 28.92%;
+  right: 28.62%;
+  top: 17.59%;
+  text-align: center;
+}
+
+.partners-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.partners-meta {
+  position: absolute;
+  left: 7.38%;
+  top: 46.55%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.partners-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+}
+
+.partners-name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  color: #FFFFFF;
+}
+
+.partners-desc {
+  position: absolute;
+  left: 7.38%;
+  right: 11.08%;
+  top: 58.28%;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 120%;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.partners-btn {
+  position: absolute;
+  left: 7.38%;
+  top: 77.59%;
+  padding: 7px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.25919px);
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 120%;
+  color: #FFFFFF;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+
+
 /* ===== Reviews (hero background) ===== */
 .reviews-section{ position:relative; }
 .reviews-bg{
@@ -329,6 +425,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 .reviews-section .owl-carousel .owl-item{
   width: 325px !important;
   margin-right: 20px !important; /* макет: gap 20px */
+  left: -30px;
 }
 
 /* сама карточка */
@@ -394,7 +491,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   align-items: center;
   color: #fff;
   font: 600 12px/1.2 var(--body-font-family);
-  text-decoration: underline;
 }
 .review-card__more-icon{
   inline-size: 20px;
@@ -427,6 +523,50 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 /* при желании можно скрывать только «disabled» навигацию */
 .reviews-section .owl-nav.disabled{ display:none !important; }
+
+
+
+/* Карточка отзыва */
+.review-card {
+  width: 325px !important;
+  height: 400px;
+  margin-right: 20px;
+}
+
+.review-card__inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Для Owl Carousel */
+.testimonial-slider .owl-stage {
+  display: flex;
+  align-items: stretch;
+}
+
+.testimonial-slider .owl-item {
+  width: 325px !important;
+  margin-right: 20px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 767px) {
+  .review-card {
+    width: 100% !important;
+    max-width: 325px;
+    margin: 0 auto 20px;
+  }
+  
+  .testimonial-slider .owl-item {
+    width: 100% !important;
+    margin-right: 0;
+  }
+  .reviews-section .owl-carousel .owl-item {
+    left: 30px;
+  }
+}
+
 
 /* ===== Services slider (скоуп) ===== */
 .services-section { position: relative; }
@@ -744,7 +884,12 @@ a.favorites-btn:hover {
 .areas-heading{ margin:0 0 18px; }
 
 /* ===== Tabs (слева) ===== */
-.areas-tabs{ max-width:590px; }
+.areas-tabs {
+    max-width: 590px;
+    top: 200px;
+    position: relative;
+}
+
 .areas-nav{
   display:flex; align-items:center; gap:56px;
 }
