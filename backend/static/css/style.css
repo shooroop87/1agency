@@ -242,9 +242,14 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   border:1px solid hsl(0 0% 100% / .35);
   border-radius:10px;
 }
-.partners-logo{
-  display:flex; align-items:center; height:110px; margin-bottom:10px;
+.partners-logo {
+    display: flex;
+    align-items: center;
+    height: 110px;
+    margin-bottom: 10px;
+    justify-content: center;
 }
+
 .partners-logo img{ max-width:70%; height:auto; opacity:.9; }
 
 .partners-meta{ display:flex; align-items:center; gap:8px; margin-top:6px; }
@@ -307,6 +312,12 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   display: none;
 }
 
+@media (min-width: 1200px) {
+  .services-section .container,
+  .partners-section .container {
+    padding: 0;
+  }
+}
 
 .partners-section {
   padding: 240px 0;
@@ -329,13 +340,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 10px;
   box-sizing: border-box;
-}
-.partners-logo {
-  position: absolute;
-  left: 28.92%;
-  right: 28.62%;
-  top: 17.59%;
-  text-align: center;
 }
 
 .partners-logo img {
@@ -645,8 +649,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   inset:0;
   border-radius:inherit;
   border:1px solid var(--gradient-accent);
-  opacity:0;              /* вместо прозрачного цвета → скрыто по opacity */
-  transform:scale(0.995); /* ← делает её визуально 0.5px */
+  opacity:0;
   transition:opacity .3s ease;
   pointer-events:none;
   z-index:5;
@@ -11986,6 +11989,13 @@ input:focus-visible {
 .about-cards .container {
   max-width: 1440px;
   padding: 0 30px;
+}
+
+@media (max-width: 768px) {
+  .about-cards .container {
+    max-width: 1440px;
+    padding: 0 20px;
+  }
 }
 
 .about-cards .row {

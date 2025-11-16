@@ -10,93 +10,167 @@
       </div>
     </div>
 
-    <div class="feature-listing-slider navi_pagi_bottom_center slider-dib-sm slider-4-grid owl-carousel owl-theme wow fadeInUp"
-         data-wow-delay="300ms">
-
-      <div class="item">
-        <div class="partners-card">
-          <div class="partners-logo">
-            <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+    <div class="swiper partners-swiper wow fadeInUp" data-wow-delay="300ms">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot" aria-hidden="true"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
           </div>
-          <div class="partners-meta">
-            <span class="partners-dot" aria-hidden="true"></span>
-            <span class="partners-name">Revolut</span>
-          </div>
-          <p class="partners-desc">Description<br>Description</p>
-          <a href="#" class="partners-btn">
-            Learn more <span class="partners-btn__icon" aria-hidden="true"></span>
-          </a>
         </div>
-      </div>
 
-      <div class="item">
-        <div class="partners-card">
-          <div class="partners-logo">
-            <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
           </div>
-          <div class="partners-meta">
-            <span class="partners-dot"></span>
-            <span class="partners-name">Revolut</span>
-          </div>
-          <p class="partners-desc">Description<br>Description</p>
-          <a href="#" class="partners-btn">
-            Learn more <span class="partners-btn__icon"></span>
-          </a>
         </div>
-      </div>
 
-      <div class="item">
-        <div class="partners-card">
-          <div class="partners-logo">
-            <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
           </div>
-          <div class="partners-meta">
-            <span class="partners-dot"></span>
-            <span class="partners-name">Revolut</span>
-          </div>
-          <p class="partners-desc">Description<br>Description</p>
-          <a href="#" class="partners-btn">
-            Learn more <span class="partners-btn__icon"></span>
-          </a>
         </div>
-      </div>
 
-      <div class="item">
-        <div class="partners-card">
-          <div class="partners-logo">
-            <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
           </div>
-          <div class="partners-meta">
-            <span class="partners-dot"></span>
-            <span class="partners-name">Revolut</span>
-          </div>
-          <p class="partners-desc">Description<br>Description</p>
-          <a href="#" class="partners-btn">
-            Learn more <span class="partners-btn__icon"></span>
-          </a>
         </div>
-      </div>
 
+      </div>
+      <div class="swiper-scrollbar"></div>
     </div>
+
   </div>
 </section>
 
+<style>
+.partners-swiper {
+  overflow: visible;
+}
+
+.partners-swiper .swiper-wrapper {
+  gap: 20px;
+}
+
+.partners-swiper .swiper-slide {
+  max-width: 325px !important;
+  height: auto;
+}
+
+.partners-card {
+  width: 325px;
+  height: 290px;
+}
+
+.swiper-scrollbar {
+  background: rgba(255, 255, 255, 0.1);
+  height: 2px;
+  margin-top: 70px;
+  position: relative;
+  scrollbar-color: var(--color-accent) rgba(255, 255, 255, 0.1);
+}
+
+.swiper-scrollbar-drag {
+  background: var(--color-accent);
+  height: 100%;
+}
+
+/* Мобильная версия */
+@media (max-width: 575px) {
+  .partners-swiper {
+    overflow: visible;
+  }
+  
+  .partners-swiper .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: var(--color-accent) rgba(255, 255, 255, 0.1);
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 10px;
+  }
+  
+  .partners-swiper .swiper-slide {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  
+  .swiper-scrollbar {
+    display: none;
+  }
+}
+</style>
+
 <script>
-(function($){
-  var $partners = $('.partners-section .feature-listing-slider');
-  var $lineFill = $('.partners-line__fill');
+let partnersSwiper;
 
-  if(!$partners.length) return;
+function initPartnersSwiper() {
+  if (window.innerWidth > 575) {
+    if (!partnersSwiper) {
+      partnersSwiper = new Swiper('.partners-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          draggable: true,
+        }
+      });
+    }
+  } else {
+    if (partnersSwiper) {
+      partnersSwiper.destroy(true, true);
+      partnersSwiper = null;
+    }
+  }
+}
 
-  $partners.on('initialized.owl.carousel changed.owl.carousel', function(e){
-    if(!e.namespace) return;
-    var carousel = e.relatedTarget;
-    var current = carousel.relative(carousel.current());
-    var total = carousel.items().length;
-    var percent = ((current + 1) / total) * 100;
-    $lineFill.css('width', percent + '%');
-  });
-
-  $partners.trigger('changed.owl.carousel');
-})(jQuery);
+initPartnersSwiper();
+window.addEventListener('resize', initPartnersSwiper);
 </script>
