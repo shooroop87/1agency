@@ -1,129 +1,116 @@
 {% load static %}
 <section class="home-banner-style1 p0" id="hero">
   <div class="home-style1">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-11 mx-auto">
+    
+    <!-- Hero section (will be pinned) -->
+    <div class="hero-section-desktop">
+      <div class="hero-contain">
+        
+        <!-- Images -->
+        <div class="hero-images">
+          <figure class="hero-tile hero-tile-left">
+            <img class="hero-img img-b" src="{% static 'images/hero/hero1.png' %}" alt="">
+            <img class="hero-img img-a" src="{% static 'images/hero/hero1-alt.png' %}" alt="">
+          </figure>
           
-          <!-- Контейнер для скролла -->
-          <div class="hero-stage">
-            <div class="hero-sticky">
-              
-              <!-- Две карточки с фото -->
-              <div class="hero-tiles">
-                <figure class="hero-tile">
-                  <img class="hero-img img-a" src="{% static 'images/hero/hero1.png' %}" alt="Bali volcano">
-                  <img class="hero-img img-b" src="{% static 'images/hero/hero1-alt.png' %}" alt="">
-                </figure>
-                
-                <figure class="hero-tile">
-                  <img class="hero-img img-a" src="{% static 'images/hero/hero2.png' %}" alt="Surfer">
-                  <img class="hero-img img-b" src="{% static 'images/hero/hero2-alt.png' %}" alt="">
-                </figure>
-              </div>
-
-              <!-- Центр: лого, меню, кнопки -->
-              <div class="hero-controls">
-                <div class="hero-brand">
-                  <img class="hero-mark" width="51" height="101" 
-                       src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
-                  <div class="hero-name">One Agency</div>
-                </div>
-                
-                <nav class="hero-nav">
-                  <a href="#projects">Our projects</a>
-                  <a href="#about">About us</a>
-                  <a href="#concierge">Concierge Service</a>
-                  <a href="#about-bali">About Bali</a>
-                  <a href="#faq">FAQ</a>
-                  <a href="#contacts">Contacts</a>
-                </nav>
-                
-                <div class="hero-cta">
-                  <a href="#" class="favorites-btn" aria-label="Favorites">
-                    <span class="flaticon-like"></span>
-                  </a>
-                  <a class="wdt-button button-cta" href="#contact">
-                    Order a call
-                  </a>
-                </div>
-              </div>
-
-              <!-- Низ: скролл и заголовок -->
-              <div class="hero-bottom">
-                <div class="hero-scroll">
-                  <span>Scroll down</span>
-                  <span class="scroll-dot"></span>
-                </div>
-                <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
-              </div>
-              
-            </div>
-          </div>
-          
+          <figure class="hero-tile hero-tile-right">
+            <img class="hero-img img-b" src="{% static 'images/hero/hero2.png' %}" alt="">
+            <img class="hero-img img-a" src="{% static 'images/hero/hero2-alt.png' %}" alt="">
+          </figure>
         </div>
+
+        <!-- Logo + Name -->
+        <div class="hero-brand">
+          <img class="hero-mark" width="51" height="101" 
+               src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
+          <div class="hero-name">One Agency</div>
+        </div>
+        
+        <!-- Menu center -->
+        <nav class="hero-nav">
+          <a href="#projects">Our projects</a>
+          <a href="#about">About us</a>
+          <a href="#concierge">Concierge Service</a>
+          <a href="#about-bali">About Bali</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contacts">Contacts</a>
+        </nav>
+        
+        <!-- Buttons right -->
+        <div class="hero-cta">
+          <a href="#" class="favorites-btn" aria-label="Favorites">
+            <span class="flaticon-like"></span>
+          </a>
+          <a class="button-cta" href="#contact">
+            <span>Order a call</span>
+            <span class="arrow-icon">→</span>
+          </a>
+        </div>
+
+        <!-- Bottom left -->
+        <div class="hero-scroll">
+          <span>Scroll down</span>
+          <span class="scroll-dot"></span>
+        </div>
+        
+        <!-- Bottom right -->
+        <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
+        
       </div>
     </div>
+    
+    <!-- Spacer -->
+    <div class="hero-spacer"></div>
+    
   </div>
 </section>
 <style>
-/* Hero fixed container */
-.hero-stage {
-  position: relative;
-  height: 300vh; /* пространство для скролла */
-}
-
-.hero-sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* Hero section */
+.hero-section-desktop {
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 0;
-  z-index: 100;
-  transition: padding 0.6s ease;
 }
 
-.hero-sticky.is-compact {
-  padding: 20px 0;
+.hero-contain {
+  width: 100%;
+  height: 100vh;
+  background: #272727;
 }
 
-/* Tiles container */
-.hero-tiles {
+/* Spacer */
+.hero-spacer {
+  height: 200vh;
+  width: 100%;
+}
+
+/* Images */
+.hero-images {
+  position: absolute;
+  width: 900px;
+  height: 440px;
+  left: 50%;
+  top: 47px;
+  transform: translateX(-50%);
   display: flex;
   gap: 20px;
-  justify-content: center;
-  padding: 0 40px;
-  transition: all 0.6s ease;
-}
-
-.hero-sticky.is-compact .hero-tiles {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-20px);
 }
 
 .hero-tile {
   position: relative;
-  border-radius: 24px;
+  width: 440px;
+  height: 440px;
+  border-radius: 30px;
   overflow: hidden;
   margin: 0;
 }
 
-.hero-name {
-  line-height: 1.2!important;
-}
-
-/* Images with clip-path animation */
 .hero-img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: none;
+  top: 0;
+  left: 0;
 }
 
 .hero-img.img-a {
@@ -134,69 +121,111 @@
 .hero-img.img-b {
   z-index: 1;
 }
-
-/* Controls center */
-.hero-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  gap: 40px;
-  transition: all 0.6s ease;
-}
-
-.hero-sticky.is-compact .hero-controls {
-  padding: 10px 40px;
-}
-
+/* Logo + Name */
 .hero-brand {
+  position: absolute;
+  left: 39px;
+  top: 386px;
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.hero-nav {
-  display: flex;
-  gap: 30px;
-  transition: opacity 0.3s ease;
+.hero-name {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 89%;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.hero-sticky.is-compact .hero-nav {
-  opacity: 0;
+/* Menu */
+.hero-nav {
+  position: absolute;
+  left: 50%;
+  top: 520px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 25px;
 }
 
 .hero-nav a {
-  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 120%;
+  color: #FFFFFF;
   text-decoration: none;
-  font-size: 14px;
+  transition: opacity 0.3s;
 }
 
-/* Bottom section */
-.hero-bottom {
+.hero-nav a:hover {
+  opacity: 0.7;
+}
+/* Buttons */
+.hero-cta {
+  position: absolute;
+  right: 64px;
+  top: 511px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 40px;
-  transition: all 0.6s ease;
+  gap: 10px;
 }
 
-.hero-sticky.is-compact .hero-bottom {
-  opacity: 0;
-  transform: translateY(20px);
+.favorites-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.25px solid #656565;
+  box-shadow: 2px 1px 7.6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.26px);
+  border-radius: 25px;
 }
 
-.hero-kicker {
-  color: white;
-  font-size: 32px;
-  margin: 0;
+.button-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 1px 7.6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.26px);
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
+.button-cta:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.arrow-icon {
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
+/* Bottom */
 .hero-scroll {
+  position: absolute;
+  left: 39px;
+  bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   font-size: 12px;
+  font-family: 'Manrope', sans-serif;
 }
 
 .scroll-dot {
@@ -207,128 +236,53 @@
   margin-top: 8px;
 }
 
-/* Sticky menu when scrolled */
-.hero-controls.is-sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  padding: 15px 40px;
-  animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.hero-kicker {
+  position: absolute;
+  right: 64px;
+  bottom: 40px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 120%;
+  color: white;
+  margin: 0;
 }
 </style>
 <script>
+gsap.registerPlugin(ScrollTrigger);
+
 (function() {
-  const stage = document.querySelector('#hero .hero-stage');
-  const sticky = document.querySelector('#hero .hero-sticky');
-  const tiles = document.querySelectorAll('#hero .hero-tile');
-  const controls = document.querySelector('#hero .hero-controls');
+  const heroSection = document.querySelector('.hero-section-desktop');
+  const heroContain = document.querySelector('.hero-contain');
+  const tiles = document.querySelectorAll('.hero-tile');
+  const spacer = document.querySelector('.hero-spacer');
   
-  if (!stage || !sticky || !tiles.length) return;
-  
-  let isScrollingHero = true;
-  let hasCompletedHeroScroll = false;
-  
-  function tick() {
-    const vh = window.innerHeight;
-    const total = stage.offsetHeight - vh;
-    const scrolled = Math.min(Math.max(-stage.getBoundingClientRect().top, 0), total);
-    const progress = total ? (scrolled / total) : 0;
+  if (!heroSection || !spacer) return;
+
+  ScrollTrigger.create({
+    trigger: heroSection,
+    start: "top top",
+    end: () => "+=" + spacer.offsetHeight,
+    pin: heroContain,
+    pinSpacing: false
+  });
+
+  tiles.forEach(tile => {
+    const imgA = tile.querySelector('.img-a');
     
-    // Первая половина (0-0.5): анимация картинок
-    const imageProgress = Math.min(progress / 0.5, 1);
-    
-    // Анимируем изображения через clip-path
-    tiles.forEach(tile => {
-      const imgA = tile.querySelector('.img-a');
-      if (imgA) {
-        const clipValue = 100 - (imageProgress * 100);
-        imgA.style.clipPath = `polygon(0% 0%, 100% 0%, 100% ${clipValue}%, 0% ${clipValue}%)`;
+    gsap.fromTo(imgA, 
+      { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' },
+      {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+        scrollTrigger: {
+          trigger: heroSection,
+          start: "top top",
+          end: () => "+=" + (spacer.offsetHeight * 0.5),
+          scrub: 1
+        }
       }
-    });
-    
-    // При progress > 0.5 начинаем компактить hero
-    if (progress > 0.5) {
-      const compactProgress = (progress - 0.5) / 0.5;
-      
-      if (compactProgress > 0.3) {
-        sticky.classList.add('is-compact');
-      }
-      
-      // При progress > 0.8 отпускаем скролл страницы
-      if (progress > 0.85 && !hasCompletedHeroScroll) {
-        hasCompletedHeroScroll = true;
-        isScrollingHero = false;
-        
-        // Делаем меню sticky
-        controls.classList.add('is-sticky');
-        
-        // Освобождаем hero-sticky
-        setTimeout(() => {
-          sticky.style.position = 'absolute';
-          sticky.style.top = (total) + 'px';
-        }, 100);
-      }
-    } else {
-      sticky.classList.remove('is-compact');
-    }
-    
-    // Определяем, находимся ли мы в зоне hero
-    const stageRect = stage.getBoundingClientRect();
-    isScrollingHero = stageRect.top < 0 && stageRect.bottom > vh && !hasCompletedHeroScroll;
-  }
-  
-  // Предотвращаем стандартный скролл во время анимации hero
-  function preventScroll(e) {
-    if (isScrollingHero && !hasCompletedHeroScroll) {
-      e.preventDefault();
-      return false;
-    }
-  }
-  
-  // Инициализация
-  tick();
-  
-  // События скролла
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        tick();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-  
-  window.addEventListener('resize', tick);
-  
-  // Плавный скролл для hero (опционально)
-  let targetScroll = 0;
-  let currentScroll = 0;
-  
-  window.addEventListener('wheel', (e) => {
-    if (isScrollingHero && !hasCompletedHeroScroll) {
-      e.preventDefault();
-      targetScroll += e.deltaY * 0.5;
-      targetScroll = Math.max(0, Math.min(targetScroll, stage.offsetHeight - window.innerHeight));
-      window.scrollTo(0, targetScroll);
-    }
-  }, { passive: false });
-  
+    );
+  });
+
 })();
 </script>
