@@ -1125,7 +1125,7 @@ a.favorites-btn:hover {
 
 /* низ */
 .hero-bottom{ position:absolute; left:39px; right:39px; bottom:20px; display:grid; grid-template-columns:auto 1fr; align-items:end; }
-.hero-scroll{ display:flex; align-items:center; gap:12px; }
+.hero-scroll{ display:flex; align-items:center; gap:5px; }
 .hero-scroll span{ font:600 15px/1.2 var(--body-font-family); }
 .scroll-dot{ inline-size:8px; block-size:8px; border-radius:50%; background:var(--gradient-accent); display:inline-block; }
 .hero-kicker{ justify-self:center; margin-left:200px; font:600 26px/1 var(--title-font-family); }
