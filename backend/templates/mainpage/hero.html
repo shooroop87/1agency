@@ -2,133 +2,223 @@
 <section class="home-banner-style1 p0" id="hero">
   <div class="home-style1">
     
-    <!-- Hero section (will be pinned) -->
-    <div class="hero-section-desktop">
-      <div class="hero-contain">
+    <!-- Hero fixed wrapper -->
+    <div class="hero-section-desktop is-fixed">
+      <div class="hero-contain u-container">
         
-        <!-- Images -->
-        <div class="hero-images">
-          <figure class="hero-tile hero-tile-left">
-            <img class="hero-img img-b" src="{% static 'images/hero/hero1.png' %}" alt="">
-            <img class="hero-img img-a" src="{% static 'images/hero/hero1-alt.png' %}" alt="">
-          </figure>
+        <!-- Grid только с изображениями (2 колонки) -->
+        <div class="hero-grid u-grid-custom">
           
-          <figure class="hero-tile hero-tile-right">
-            <img class="hero-img img-b" src="{% static 'images/hero/hero2.png' %}" alt="">
-            <img class="hero-img img-a" src="{% static 'images/hero/hero2-alt.png' %}" alt="">
-          </figure>
+          <!-- Колонка 1 - Изображения -->
+          <div class="hero-col u-column-6">
+            <div class="hero-content-wrap">
+              <div class="hero-grid-item-top">
+                <div class="g-visual-wrap">
+                  <img src="{% static 'images/hero/hero1.png' %}" alt="" class="g-visual-img">
+                </div>
+              </div>
+              <div class="hero-grid-item-bottom">
+                <div class="g-visual-wrap">
+                  <img src="{% static 'images/hero/hero1-alt.png' %}" alt="" class="g-visual-img">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Колонка 2 - Изображения -->
+          <div class="hero-col u-column-6">
+            <div class="hero-content-wrap">
+              <div class="hero-grid-item-top">
+                <div class="g-visual-wrap">
+                  <img src="{% static 'images/hero/hero2.png' %}" alt="" class="g-visual-img">
+                </div>
+              </div>
+              <div class="hero-grid-item-bottom">
+                <div class="g-visual-wrap">
+                  <img src="{% static 'images/hero/hero2-alt.png' %}" alt="" class="g-visual-img">
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
 
-        <!-- Logo + Name -->
-        <div class="hero-brand">
-          <img class="hero-mark" width="51" height="101" 
-               src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
-          <div class="hero-name">One Agency</div>
-        </div>
-        
-        <!-- Menu center -->
-        <nav class="hero-nav">
-          <a href="#projects">Our projects</a>
-          <a href="#about">About us</a>
-          <a href="#concierge">Concierge Service</a>
-          <a href="#about-bali">About Bali</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contacts">Contacts</a>
-        </nav>
-        
-        <!-- Buttons right -->
-        <div class="hero-cta">
-          <a href="#" class="favorites-btn" aria-label="Favorites">
-            <span class="flaticon-like"></span>
-          </a>
-          <a class="button-cta" href="#contact">
-            <span>Order a call</span>
-            <span class="arrow-icon">→</span>
-          </a>
+        <!-- Navigation wrapper - лого, меню, кнопки на одной линии -->
+        <div class="nav-wrap">
+          <div class="nav-contain">
+            
+            <!-- Лого слева -->
+            <div class="hero-brand">
+              <img class="hero-mark" width="51" height="101" 
+                   src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
+              <div class="hero-name">One Agency</div>
+            </div>
+            <!-- Меню по центру -->
+            <nav class="hero-nav">
+              <a href="#projects">Our projects</a>
+              <a href="#about">About us</a>
+              <a href="#concierge">Concierge Service</a>
+              <a href="#about-bali">About Bali</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contacts">Contacts</a>
+            </nav>
+            
+            <!-- Кнопки справа -->
+            <div class="hero-cta">
+              <a href="#" class="favorites-btn" aria-label="Favorites">
+                <span class="flaticon-like"></span>
+              </a>
+              <a class="button-cta" href="#contact">
+                <span>Order a call</span>
+                <span class="arrow-icon">→</span>
+              </a>
+            </div>
+            
+          </div>
         </div>
 
         <!-- Bottom left -->
-        <div class="hero-scroll">
-          <span>Scroll down</span>
-          <span class="scroll-dot"></span>
+        <div class="hero-label-left is-desktop">
+          <div class="hero-scroll">
+            <span>Scroll down</span>
+            <span class="scroll-dot"></span>
+          </div>
         </div>
         
         <!-- Bottom right -->
-        <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
+        <div class="hero-label-right is-desktop">
+          <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
+        </div>
         
       </div>
     </div>
     
-    <!-- Spacer -->
-    <div class="hero-spacer"></div>
+    <!-- Spacer для скролла -->
+    <div hero-scrolltrigger class="hero-spacer"></div>
     
   </div>
 </section>
 <style>
-  /* Hero section */
-.hero-section-desktop {
+:root {
+  --grid-12: repeat(12, 1fr);
+  --size--0rem: 0rem;
+}
+
+/* Container */
+.u-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Hero fixed section */
+.hero-section-desktop.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
+  z-index: 1;
 }
 
 .hero-contain {
   width: 100%;
   height: 100vh;
   background: #272727;
-}
-
-/* Spacer */
-.hero-spacer {
-  height: 200vh;
-  width: 100%;
-}
-
-/* Images */
-.hero-images {
-  position: absolute;
-  width: 900px;
-  height: 440px;
-  left: 50%;
-  top: 47px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-}
-
-.hero-tile {
   position: relative;
-  width: 440px;
+}
+
+/* Grid system - 2 колонки по 6 */
+.u-grid-custom {
+  grid-column-gap: 20px;
+  grid-row-gap: var(--size--0rem);
+  grid-template-rows: auto;
+  grid-auto-columns: minmax(0, 1fr);
+  display: grid;
+}
+
+.hero-grid.u-grid-custom {
+  grid-template-columns: var(--grid-12);
+  width: 100%;
+  padding-top: 47px;
+}
+
+.u-column-6 {
+  grid-column: span 6;
+}
+
+/* Колонки */
+.hero-col {
+  position: relative;
+}
+
+.hero-content-wrap {
+  position: relative;
+  width: 100%;
   height: 440px;
   border-radius: 30px;
   overflow: hidden;
-  margin: 0;
 }
 
-.hero-img {
+/* Top и Bottom части */
+.hero-grid-item-top,
+.hero-grid-item-bottom {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   top: 0;
   left: 0;
 }
 
-.hero-img.img-a {
+.hero-grid-item-bottom {
+  clip-path: polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%);
   z-index: 2;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-.hero-img.img-b {
-  z-index: 1;
-}
-/* Logo + Name */
-.hero-brand {
+.g-visual-wrap {
   position: absolute;
-  left: 39px;
-  top: 386px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.g-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation wrapper */
+.nav-wrap {
+  position: absolute;
+  left: 0;
+  top: 520px;
+  width: 100%;
+  z-index: 10;
+}
+
+.nav-contain {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo слева */
+.hero-brand {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.hero-mark {
+  width: 51px;
+  height: 101px;
+  object-fit: contain;
 }
 
 .hero-name {
@@ -143,13 +233,10 @@
   background-clip: text;
 }
 
-/* Menu */
+/* Navigation по центру */
 .hero-nav {
-  position: absolute;
-  left: 50%;
-  top: 520px;
-  transform: translateX(-50%);
   display: flex;
+  align-items: center;
   gap: 25px;
 }
 
@@ -161,17 +248,17 @@
   color: #FFFFFF;
   text-decoration: none;
   transition: opacity 0.3s;
+  white-space: nowrap;
 }
 
 .hero-nav a:hover {
   opacity: 0.7;
 }
-/* Buttons */
+
+/* CTA buttons справа */
 .hero-cta {
-  position: absolute;
-  right: 64px;
-  top: 511px;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -215,11 +302,15 @@
   display: inline-block;
 }
 
-/* Bottom */
-.hero-scroll {
+/* Labels */
+.hero-label-left.is-desktop {
   position: absolute;
   left: 39px;
   bottom: 40px;
+  z-index: 10;
+}
+
+.hero-scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -236,10 +327,14 @@
   margin-top: 8px;
 }
 
-.hero-kicker {
+.hero-label-right.is-desktop {
   position: absolute;
   right: 64px;
   bottom: 40px;
+  z-index: 10;
+}
+
+.hero-kicker {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 32px;
@@ -247,15 +342,23 @@
   color: white;
   margin: 0;
 }
+
+/* Spacer */
+.hero-spacer {
+  height: 200vh;
+  width: 100%;
+}
 </style>
+
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
 (function() {
   const heroSection = document.querySelector('.hero-section-desktop');
   const heroContain = document.querySelector('.hero-contain');
-  const tiles = document.querySelectorAll('.hero-tile');
+  const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
   const spacer = document.querySelector('.hero-spacer');
+  const navWrap = document.querySelector('.nav-wrap');
   
   if (!heroSection || !spacer) return;
 
@@ -267,13 +370,11 @@ gsap.registerPlugin(ScrollTrigger);
     pinSpacing: false
   });
 
-  tiles.forEach(tile => {
-    const imgA = tile.querySelector('.img-a');
-    
-    gsap.fromTo(imgA, 
-      { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' },
+  bottomItems.forEach(item => {
+    gsap.fromTo(item, 
+      { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
       {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+        clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
         scrollTrigger: {
           trigger: heroSection,
           start: "top top",
@@ -282,6 +383,14 @@ gsap.registerPlugin(ScrollTrigger);
         }
       }
     );
+  });
+
+  ScrollTrigger.create({
+    trigger: navWrap,
+    start: () => "top top+=" + navWrap.offsetTop,
+    end: () => "+=" + (spacer.offsetHeight * 0.5),
+    pin: true,
+    pinSpacing: false
   });
 
 })();
