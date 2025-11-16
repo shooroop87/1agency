@@ -13,17 +13,17 @@
 
         <!-- нижний левый блок контактов -->
         <div class="contact-form-left-bottom">
-          <h4 class="mb20 cf-left-subtitle">
+          <h4 class="mb20 cf-left-subtitle mt300">
             Reach out in the way that’s<br>
             most convenient for you — we’re<br>
             always here to help
           </h4>
 
-          <div class="d-flex align-items-center mb15">
+          <div class="d-flex align-items-center mb20 mt40">
             <span class="cf-dot" aria-hidden="true"></span>
-            <a href="#" class="wdt-button button-cta wdt-button--textual is-sm cf-request-link">
+            <span class="cf-request-link">
               Request details
-            </a>
+            </span>
           </div>
 
           <p class="mb5 cf-contact-line">
@@ -38,13 +38,13 @@
       <!-- ПРАВАЯ ЧАСТЬ — КАРТОЧКА С ФОРМОЙ -->
       <div class="col-lg-6 contact-form-right">
         <div class="bdrs12 p30 contact-form-card">
-          <h4 class="mb10 cf-form-title">
+          <h4 class="mb10 mt40 cf-form-title">
             Tell us what you’re<br>looking for — we’ll take<br>care of the rest
           </h4>
 
-          <hr class="mb30 cf-form-line">
+          <hr class="mb30 mt30 cf-form-line">
 
-          <form class="form-style1">
+          <form class="form-style1 mt250">
             <div class="row g-3">
               <!-- имя -->
               <div class="col-md-6">
@@ -197,6 +197,11 @@
   font-weight:600;
   font-size:12px;
   line-height:1.2;
+}
+@media (min-width: 992px) {
+  .cf-textarea {
+    min-height: 99px!important;
+  }
 }
 .cf-input {
   height:50px;

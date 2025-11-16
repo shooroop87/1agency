@@ -7016,6 +7016,7 @@ section {
   height: 55px;
   outline: none;
   padding-left: 15px;
+  border-radius: 30px;
 }
 .form-style1 .form-control::placeholder {
   color: #717171;
