@@ -2,22 +2,15 @@
 <section class="home-banner-style1 p0" id="hero">
   <div class="home-style1">
     
-    <!-- Hero wrapper (NOT fixed, ScrollTrigger will pin it) -->
+    <!-- Hero fixed wrapper -->
     <div class="hero-section-desktop is-fixed">
       <div class="hero-contain u-container">
         
-        <!-- Grid with images (3 columns) -->
+        <!-- Grid только с изображениями (2 колонки) -->
         <div class="hero-grid u-grid-custom">
           
-          <!-- Card 1 -->
-          <div class="hero-col">
-            <div class="hero-content-wrap">
-
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="hero-col">
+          <!-- Колонка 1 - Изображения -->
+          <div class="hero-col u-column-6">
             <div class="hero-content-wrap">
               <div class="hero-grid-item-top">
                 <div class="g-visual-wrap">
@@ -32,8 +25,8 @@
             </div>
           </div>
 
-          <!-- Card 3 (можешь заменить на любые другие картинки) -->
-          <div class="hero-col">
+          <!-- Колонка 2 - Изображения -->
+          <div class="hero-col u-column-6">
             <div class="hero-content-wrap">
               <div class="hero-grid-item-top">
                 <div class="g-visual-wrap">
@@ -50,17 +43,17 @@
           
         </div>
 
-        <!-- Navigation wrapper -->
-        <div class="nav-wrap header-nav nav-homepage-style stricky main-menu slideIn animated">
+        <!-- Navigation wrapper - лого, меню, кнопки на одной линии -->
+        <div class="nav-wrap">
           <div class="nav-contain">
             
-            <!-- Logo left -->
+            <!-- Лого слева -->
             <div class="hero-brand">
               <img class="hero-mark" width="51" height="101" 
                    src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
               <div class="hero-name">One Agency</div>
             </div>
-            <!-- Navigation center -->
+            <!-- Меню по центру -->
             <nav class="hero-nav">
               <a href="#projects">Our projects</a>
               <a href="#about">About us</a>
@@ -70,12 +63,12 @@
               <a href="#contacts">Contacts</a>
             </nav>
             
-            <!-- CTA right -->
+            <!-- Кнопки справа -->
             <div class="hero-cta">
               <a href="#" class="favorites-btn" aria-label="Favorites">
                 <span class="flaticon-like"></span>
               </a>
-              <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
+              <a class="button-cta" href="#contact">
                 <span>Order a call</span>
                 <span class="arrow-icon">→</span>
               </a>
@@ -100,12 +93,11 @@
       </div>
     </div>
     
-    <!-- Spacer for scroll / pin -->
+    <!-- Spacer для скролла -->
     <div hero-scrolltrigger class="hero-spacer"></div>
     
   </div>
 </section>
-
 <style>
 :root {
   --grid-12: repeat(12, 1fr);
@@ -119,7 +111,7 @@
   padding: 0 40px;
 }
 
-/* Hero section (NOT fixed, ScrollTrigger will pin it) */
+/* Hero section (ВАЖНО: БЕЗ position: fixed) */
 .hero-section-desktop {
   position: relative;
   width: 100%;
@@ -127,7 +119,11 @@
   z-index: 1;
 }
 
-/* Hero background wrapper */
+/* Если в разметке есть .is-fixed — не трогаем позиционирование */
+.hero-section-desktop.is-fixed {
+  /* модификатор, можно добавить стили, но НЕ position */
+}
+
 .hero-contain {
   width: 100%;
   height: 100vh;
@@ -135,39 +131,39 @@
   position: relative;
 }
 
-/* Hero grid wrapper */
-.hero-grid {
+/* Grid system - 2 колонки по 6 */
+.u-grid-custom {
+  grid-column-gap: 20px;
+  grid-row-gap: var(--size--0rem);
+  grid-template-rows: auto;
+  grid-auto-columns: minmax(0, 1fr);
+  display: grid;
+}
+
+.hero-grid.u-grid-custom {
+  grid-template-columns: var(--grid-12);
   width: 100%;
   padding-top: 47px;
 }
 
-/* 3 cards in a row, 20px gaps, inside 1440px container */
-.u-grid-custom {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 20px;
-  row-gap: 20px;
+.u-column-6 {
+  grid-column: span 6;
 }
 
-/* Column: center card within column */
+/* Колонки */
 .hero-col {
   position: relative;
-  display: flex;
-  justify-content: center;
 }
 
-/* Card */
 .hero-content-wrap {
   position: relative;
   width: 100%;
-  max-width: 440px;
   height: 440px;
-  max-height: 440px;
   border-radius: 30px;
   overflow: hidden;
 }
 
-/* Top / bottom layers for image scroll effect */
+/* Top и Bottom части */
 .hero-grid-item-top,
 .hero-grid-item-bottom {
   position: absolute;
@@ -196,7 +192,7 @@
   object-fit: cover;
 }
 
-/* Navigation wrapper (initially inside hero, then ScrollTrigger makes it fixed) */
+/* Navigation wrapper — изначально внутри hero, потом ScrollTrigger сделает fixed */
 .nav-wrap {
   position: absolute;
   left: 0;
@@ -216,7 +212,7 @@
   justify-content: space-between;
 }
 
-/* Logo left */
+/* Logo слева */
 .hero-brand {
   display: flex;
   align-items: center;
@@ -231,7 +227,6 @@
 
 .hero-name {
   font-family: 'Manrope', sans-serif;
-  line-height: 1.3 !important;
   font-weight: 600;
   font-size: 50px;
   line-height: 89%;
@@ -251,7 +246,7 @@
   background-clip: text;
 }
 
-/* Navigation center */
+/* Navigation по центру */
 .hero-nav {
   display: flex;
   align-items: center;
@@ -273,7 +268,7 @@
   opacity: 0.7;
 }
 
-/* CTA right */
+/* CTA buttons справа */
 .hero-cta {
   display: flex;
   align-items: center;
@@ -293,6 +288,33 @@
   border-radius: 25px;
 }
 
+.button-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 1px 7.6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.26px);
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.button-cta:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.arrow-icon {
+  transform: rotate(-45deg);
+  display: inline-block;
+}
+
 /* Labels */
 .hero-label-left.is-desktop {
   position: absolute;
@@ -306,12 +328,8 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  font-size: 12px;
   font-family: 'Manrope', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 120%;
-  gap: 5px;
 }
 
 .scroll-dot {
@@ -324,7 +342,7 @@
 
 .hero-label-right.is-desktop {
   position: absolute;
-  left: 500px;
+  right: 64px;
   bottom: 40px;
   z-index: 10;
 }
@@ -338,7 +356,7 @@
   margin: 0;
 }
 
-/* Sticky nav state (class is added by ScrollTrigger in JS) */
+/* Состояние, когда меню прилипло к верху (ScrollTrigger добавляет .is-sticky + меняет position через JS) */
 .nav-wrap.is-sticky {
   background: rgba(39, 39, 39, 0.95);
   backdrop-filter: blur(10px);
@@ -359,12 +377,13 @@
   font-size: 32px;
 }
 
-/* Spacer defines how long hero is pinned */
+/* Spacer — задаёт длину пина hero */
 .hero-spacer {
   height: 200vh;
   width: 100%;
 }
 </style>
+
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
@@ -377,16 +396,16 @@
     
     if (!heroSection || !spacer) return;
 
-    // Pin hero block
+    // Пинним весь hero-блок
     ScrollTrigger.create({
       trigger: heroSection,
       start: "top top",
-      end: () => spacer.offsetHeight,
-      pin: heroSection,
+      end: () => spacer.offsetHeight,   // сколько «прокручиваем» hero
+      pin: heroSection,                 // ВАЖНО: пинним .hero-section-desktop, а не fixed-элемент
       pinSpacing: false
     });
 
-    // Image reveal on scroll
+    // Скролл картинок (нижний слой поднимается, как у dhk)
     bottomItems.forEach(item => {
       gsap.fromTo(
         item,
@@ -404,10 +423,10 @@
       );
     });
 
-    // Sticky nav
+    // Липкое меню (как у dhk: сначала сидит в hero, потом прилипает к верху)
     ScrollTrigger.create({
       trigger: spacer,
-      start: "top top+=520",
+      start: "top top+=520",          // момент, когда меню доезжает до верха
       end: "bottom top",
       onEnter() {
         navWrap.classList.add('is-sticky');
