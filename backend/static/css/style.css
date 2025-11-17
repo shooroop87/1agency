@@ -817,14 +817,9 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   width: 100%;
   position: relative;
   z-index: 3;
-  float: left;
-}
-
-.height-emulator {
-  float: left;
-  width: 100%;
-  position: relative;
-  z-index: 1;
+  background: radial-gradient(120% 100% at 50% 0%, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 60%), linear-gradient(180deg, #2a2a2a 0%, #232323 100%);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, .25);
 }
 
 /* === Favorites Button (из Figma) === */
@@ -1231,56 +1226,12 @@ a.favorites-btn:hover {
 }
 
 
-
-
-
-
-/* футер-обёртка должна быть позиционирована */
-.footer-reveal{
-  position: relative;
-  z-index: 3;
-}
-
-.footer-pin {
-  position: sticky;
-  bottom: 0;
-  inset-inline: 0;
-  will-change: transform;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #1B1B1B;
-  z-index: 2;
-}
-
 .footer-menu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 5px;
-}
-
-/* декоративный блок из фигмы (Rectangle 3463) перед футером */
-.footer-reveal::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) rotate(180deg);
-  top: -150px;              /* выдвигаем над футер */
-  width: min(1440px, 100%);
-  height: 205px;
-  background: #272727;      /* var(--color-warm-black) */
-  box-shadow: 0 -100px 65px rgba(0,0,0,.25); /* тень вверх */
-  border-radius: 55px 55px 0 0;
-  z-index: -1;
-  width: 100%;
-}
-
-/* если сверху есть скругление секции, можно чуть перекрыть */
-.footer-reveal{
-  margin-top: 50px;         /* тонкая подстройка стыка */
 }
 
 .contact-form-section {
@@ -11702,7 +11653,7 @@ input:focus-visible {
 }
 
 .white-bdrt1 {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(234, 146, 120, .55);
 }
 
 .gray-bdrb1 {
