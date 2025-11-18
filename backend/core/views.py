@@ -7,6 +7,9 @@ def home(request):
 def about(request):
     return render(request, "pages/about-bali.html")
 
+def projects(request):
+    return render(request, "pages/projects.html")
+
 # --- Кастомные страницы ошибок ---
 def custom_404(request, exception):
     # ваш шаблон 404 лежит тут: templates/404/page-error.html

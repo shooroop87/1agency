@@ -20,3 +20,13 @@
     align-items: center;
     justify-content: center;
 }
+/* Мобильные (до 767px) */
+@media (max-width: 767px) {
+    .social-button {
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        z-index: 99999;
+    }
+}

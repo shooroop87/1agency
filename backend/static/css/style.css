@@ -697,6 +697,38 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   background: hsl(0 0% 100% / .8);
 }
 
+/* ===== Projects page ===== */
+.projects-title {
+font-weight: 600;
+font-size: 50px;
+line-height: 89%;
+letter-spacing: -0.04em;
+/* Accent gradient */
+background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+/* Desktop (остается как есть) */
+.projects-heads {
+    display: flex;
+    justify-content: center; /* или любой вариант, который у тебя сейчас */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .projects-heads {
+        justify-content: flex-start; /* выравнивание влево */
+    }
+
+    .projects-title {
+        font-weight: 500!important;
+        font-size: 35px!important;
+        letter-spacing: -0.04em;
+    }
+}
+
 /* ===== Concierge (What we do for you) ===== */
 .concierge-head{ margin-bottom:24px; }
 .concierge-eyebrow{
@@ -814,6 +846,23 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 }
 
 .section-content {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.section-projects2 {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  padding:0px;
+}
+
+.section-projects {
+  padding: 120px 0 0 0;
+}
+
+.section-content-footer {
   width: 100%;
   position: relative;
   z-index: 3;
@@ -1553,10 +1602,26 @@ h2 {
 }
 
 #content {
-  position: relative;
-  z-index: 1;
-  background: transparent;
+    position: relative;
+    z-index: 1; /* контент выше */
+    background-color: #272727;
+    overflow: hidden; /* чтобы псевдоэлемент не вылезал */
 }
+
+/* слой перед фоном, но за контентом */
+#content::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* растянуть на весь блок */
+    background-image: url('https://andreyegorov.com/wp-content/uploads/2025/11/one.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+
+    z-index: -1; /* ставим под контент, но выше фона */
+    opacity: 1; /* если нужно подрегулировать */
+}
+
 
 
 .footer-style1.at-home2 {
@@ -8592,6 +8657,7 @@ header.nav-homepage-style.stricky.stricky-fixed {
   -o-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   z-index: 9;
+  background: #272727;
 }
 header.nav-homepage-style.stricky.stricky-fixed .ace-responsive-menu a {
   color: var(--headings-color);
@@ -8682,8 +8748,7 @@ header.nav-homepage-style.at-home5.stricky.stricky-fixed .ace-responsive-menu .v
 }
 
 .mm-panel {
-  background-color: #ffffff;
-  background: #ffffff;
+  background-color: var(--bs-body-color);
 }
 
 .mm-listitem:after {
@@ -9992,7 +10057,7 @@ input:focus-visible {
 .navi_pagi_top_right.owl-theme .owl-dots,
 .navi_pagi_bottom_left.owl-theme .owl-dots,
 .navi_pagi_bottom_center.owl-theme .owl-dots {
-  display: block;
+  display: none!important;
   text-align: center;
   width: 100px;
 }
@@ -10752,7 +10817,7 @@ input:focus-visible {
 }
 
 .list-sidebar-style1 {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 30px;
   position: relative;
   -webkit-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
@@ -11970,5 +12035,22 @@ input:focus-visible {
   
   .about-cards .row > div {
     max-width: 100%;
+  }
+}
+
+/* Мобильные — эффект всегда включён */
+@media (hover: none) {
+  .wdt-button .wdt-button__icon::before {
+    background-image: var(--arrow-hover);
+    transform: rotate(45deg);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .section-projects {
+    padding: 0px;
+  }
+  .wdt-button.button-cta {
+    background: var(--gradient-accent);
   }
 }
