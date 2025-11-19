@@ -1,0 +1,426 @@
+{% load static %}
+
+<div id="page" class="mobilie_header_nav stylehome1">
+  <div class="mobile-menu">
+    <div class="header innerpage-style">
+      <div class="menu_and_widgets">
+        <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
+
+          <!-- Лого слева -->
+          <a class="mobile_logo hero-brand-mobile" href="/">
+            <img class="hero-mark" width="51" height="101"
+                 src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png"
+                 alt="One Agency">
+            <span class="hero-name-mobile">One Agency</span>
+          </a>
+
+          <!-- Иконки справа -->
+          <div class="mobile_menu_actions d-flex align-items-center">
+            <!-- избранное -->
+            <a href="#" class="favorites-btn" aria-label="Favorites">
+                <span class="flaticon-like"></span>
+            </a>
+
+            <!-- бургер -->
+            <button type="button" class="mobile-burger" id="openMobileMenu" aria-label="Menu">
+              <img src="{% static 'images/mobile_button.svg' %}" alt="Menu">
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Само мобильное меню -->
+<div class="oa-mobile-menu" id="oaMobileMenu">
+  <div class="oa-mobile-menu__overlay" id="menuOverlay"></div>
+  
+  <div class="oa-mobile-menu__panel">
+    <div class="oa-mobile-menu__inner">
+      
+      <!-- Верх: логотип + крестик -->
+      <div class="oa-mobile-menu__top">
+        <a class="hero-brand-mobile oa-mobile-menu__logo" href="/">
+          <img class="hero-mark" width="51" height="101"
+               src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png"
+               alt="One Agency">
+        </a>
+
+        <span type="button" class="oa-mobile-menu__close" id="closeMobileMenu" aria-label="Close menu">
+          <img src="/static/images/save_icon.svg" alt="Favorites" class="favorites-icon">
+        </span>
+      </div>
+
+      <!-- Три колонки меню -->
+      <div class="oa-mobile-menu__columns mt50">
+        <div class="oa-mobile-menu__col">
+          <a href="#" class="oa-mobile-menu__link">About us</a>
+          <a href="{% url 'about' %}" class="oa-mobile-menu__link">About Bali</a>
+          <a href="#" class="oa-mobile-menu__link">Map</a>
+          <a href="#" class="oa-mobile-menu__link">FAQ</a>
+          <a href="#" class="oa-mobile-menu__link">Reviews</a>
+          <a href="#" class="oa-mobile-menu__link">Partners</a>
+          <a href="#" class="oa-mobile-menu__link">Contacts</a>
+        </div>
+
+        <div class="oa-mobile-menu__col">
+          <div class="oa-mobile-menu__col-title">Our projects</div>
+          <a href="#" class="oa-mobile-menu__link">Apartments</a>
+          <a href="#" class="oa-mobile-menu__link">Villas</a>
+          <a href="#" class="oa-mobile-menu__link">Townhouses</a>
+          <a href="#" class="oa-mobile-menu__link">Land plots</a>
+        </div>
+
+        <div class="oa-mobile-menu__col">
+          <div class="oa-mobile-menu__col-title">Concierge service</div>
+          <a href="#" class="oa-mobile-menu__link">Accommodation</a>
+          <a href="#" class="oa-mobile-menu__link">Transportation</a>
+          <a href="#" class="oa-mobile-menu__link">Legal support</a>
+          <a href="#" class="oa-mobile-menu__link">Travel</a>
+        </div>
+      </div>
+
+      <!-- Блок контактов -->
+      <div class="oa-mobile-menu__contacts mt45 mb25">
+        <div class="oa-mobile-menu__contacts-title">
+          <span class="oa-mobile-menu__dot"></span>
+          <span>Request details</span>
+        </div>
+        <div class="oa-mobile-menu__contacts-text">Call us: +62 822 663 61 606</div>
+        <div class="oa-mobile-menu__contacts-text">Email us: one.agency.bali@gmail.com</div>
+        <a href="#" class="oa-mobile-menu__contacts-link">Instagram RU</a>
+        <a href="#" class="oa-mobile-menu__contacts-link">Instagram ENG</a>
+      </div>
+
+      <!-- Низ: избранное + Order a call -->
+      <div class="oa-mobile-menu__bottom">
+        <a href="#" class="favorites-btn" aria-label="Favorites">
+          <span class="flaticon-like"></span>
+        </a>
+
+        <a href="#contact" class="oa-mobile-menu__button">
+          Order a call
+          <i class="oa-mobile-menu__arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<style>
+  /* ---------- HEADER: логотип + избранное + бургер ---------- */
+
+  .mobilie_header_nav .mobile_menu_bar {
+    padding: 10px 0px;
+  }
+
+  .hero-brand-mobile.mobile_logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  .hero-brand-mobile .hero-mark {
+    display: block;
+    height: 32px;
+    width: auto;
+  }
+
+  .hero-brand-mobile .hero-name-mobile {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3!important;
+  }
+
+  .mobile_menu_actions {
+    margin-left: auto;
+    gap: 12px;
+  }
+
+  .favorites-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.25px solid #656565;
+    box-shadow: 2px 1px 7.5px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1.25px);
+    text-decoration: none;
+  }
+
+  .favorites-btn .favorites-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-burger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 72px;
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    box-shadow: 2px 1px 7.5px rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-burger img {
+    display: block;
+  }
+
+  /* ---------- МОБИЛЬНОЕ МЕНЮ ---------- */
+
+  .oa-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s ease;
+  }
+
+  .oa-mobile-menu.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s ease;
+  }
+
+  .oa-mobile-menu__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  .oa-mobile-menu__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: #2D2D2D;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .oa-mobile-menu.is-open .oa-mobile-menu__panel {
+    transform: translateX(0);
+  }
+
+  .oa-mobile-menu__inner {
+    padding: 24px 20px 100px;
+    color: #ffffff;
+  }
+
+  .oa-mobile-menu__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .oa-mobile-menu__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  .oa-mobile-menu__close {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .oa-mobile-menu__columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .oa-mobile-menu__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .oa-mobile-menu__col-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #A0A0A0;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .oa-mobile-menu__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .oa-mobile-menu__contacts-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .oa-mobile-menu__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    flex-shrink: 0;
+  }
+
+  .oa-mobile-menu__contacts-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .oa-mobile-menu__contacts-link {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+
+  .oa-mobile-menu__bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    margin-left: auto;
+    background: #2D2D2D;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .oa-mobile-menu__bottom .favorites-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .oa-mobile-menu__button {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 35px;
+    padding: 0 20px;
+    max-width: 140px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+    box-shadow: 2px 1px 7.5px rgba(0, 0, 0, 0.5);
+  }
+
+  .oa-mobile-menu__arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid #FFFFFF;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+  }
+
+  /* Блокировка скролла */
+  body.menu-open {
+    overflow: hidden;
+  }
+/* Убираем фон у всей мобильной шапки */
+#page.mobilie_header_nav.stylehome1,
+#page.mobilie_header_nav.stylehome1 .mobile-menu,
+#page.mobilie_header_nav.stylehome1 .header.innerpage-style,
+#page.mobilie_header_nav.stylehome1 .menu_and_widgets,
+#page.mobilie_header_nav.stylehome1 .mobile_menu_bar {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Убираем фон-плёнку у nav, если тема добавляет */
+.mobilie_header_nav.stylehome1 {
+  background-color: transparent !important;
+}
+
+/* Удаляем фоновый цвет, который часто задаётся темой через before/after */
+.mobilie_header_nav.stylehome1::before,
+.mobilie_header_nav.stylehome1::after,
+.mobile-menu::before,
+.mobile-menu::after {
+  background: transparent !important;
+}
+
+/* На всякий случай — убираем тень темы */
+.mobilie_header_nav .header,
+.mobilie_header_nav .mobile_menu_bar {
+  box-shadow: none !important;
+}
+</style>
+<script>
+  (function() {
+    const menu = document.getElementById('oaMobileMenu');
+    const openBtn = document.getElementById('openMobileMenu');
+    const closeBtn = document.getElementById('closeMobileMenu');
+    const overlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menu.classList.add('is-open');
+      document.body.classList.add('menu-open');
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+    }
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  })();
+</script>

@@ -1836,10 +1836,12 @@ h2 {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
-.link-style1 a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+.link-style1 a:hover,
+.link-style1 a:focus,
+.link-style1 a:active {
+    text-decoration: none;
 }
 .link-style1.light-style a {
   color: var(--headings-color);
@@ -1848,6 +1850,18 @@ h2 {
 }
 .link-style1.at-home9 a:hover {
   color: #EB6753;
+}
+.link-style1 .footer-menu li {
+    color: var(--color-light-grey);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+}
+.footer-menu li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* All styles about breadcumb */
@@ -5347,7 +5361,8 @@ h2 {
 .home-banner-style8 .home-style8 {
   align-items: center;
   display: flex;
-  height: 860px;
+  /*height: 860px;*/
+  height: 100vh;
 }
 @media (max-width: 1199.98px) {
   .home-banner-style8 .home-style8 {

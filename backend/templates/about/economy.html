@@ -1,7 +1,6 @@
 {% load static %}
 <section class="economy">
-  <div class="economy__bg-one"
-       style="--one:url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/one_bg.png');"></div>
+
   <img class="economy__curve" alt="" 
        src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/%D1%81urve_line.svg">
   <div class="economy__house-wrap">
@@ -12,9 +11,9 @@
 
   <div class="container position-relative">
     <div class="row">
-      <div class="col-xl-7 col-lg-7">
+      <div class="col-xl-7 col-lg-7 mt50-xs">
         <p class="economy__kicker">Economy</p>
-        <h2 class="economy__title">A strong and growing<br> economy</h2>
+        <h2 class="economy__title mt25-xs mb30-xs">A strong and growing<br> economy</h2>
         <p class="economy__lead">
           Indonesia is a politically stable country with one of the fastest-growing
           economies in Southeast Asia, offering high investment potential and long-term security.
@@ -23,8 +22,8 @@
     </div>
 
     <div class="economy__badge">
-      <span>Tourism</span><br>
-      <span>Statistics</span><br>
+      <span>Tourism</span>
+      <span>Statistics</span>
       <span>2024</span>
     </div>
 
@@ -69,10 +68,21 @@
   position: relative;
   padding-top: 100px;
   padding-bottom: 90px;
-  background: var(--color-warm-black);
   border-radius: 0 0 55px 55px;
   overflow: hidden;
-  min-height: 987px;               /* высота из макета */
+  min-height: 987px;
+}
+
+.economy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(https://andreyegorov.com/wp-content/uploads/2025/11/one.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    z-index: -1;
+    opacity: 1;
 }
 
 /* “1” на фоне (one_bg.png) */
@@ -100,7 +110,7 @@
   pointer-events:none;
 }
 .economy__house{
-  width: 640px; height:auto; transform: translateX(-30px);
+  height:auto; transform: translateX(-30px);
   filter: drop-shadow(0 40px 80px rgba(0,0,0,.45));
 }
 .economy__house-grad{
@@ -130,10 +140,11 @@
 .economy__badge{
   position:absolute; left:40px; top:460px; width:79px; height:78px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:2px; text-align:center;
+  gap:5px; text-align:center;
   background: linear-gradient(179.63deg, #F0987D .32%, #272727 99.68%);
   border-radius:10px; color:#fff; font:600 12px/1 var(--title-font-family);
   backdrop-filter: blur(2px);
+  border: 1px solid var(--gradient-accent);
 }
 
 /* Статистики */

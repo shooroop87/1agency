@@ -99,7 +99,6 @@
 
 {% load static %}
 <!-- Property Modal -->
-<!-- Property Modal -->
 <div id="propertyModal" class="property-modal">
   <div class="property-modal__overlay"></div>
   <div class="property-modal__content">
@@ -113,139 +112,124 @@
       <img src="" alt="Property">
     </div>
 
-    <!-- Header Section -->
-    <div class="pm-wrapper">
-      <div class="row gx-5">
-        <!-- Левая колонка: название + кнопки -->
-        <div class="col-12 col-lg-4 mb30">
-          <div class="pm-header">
-            <h2 class="pm-title"></h2>
-            <span class="pm-type"></span>
-            
-            <div class="pm-header__actions mt20">
-              <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
+    <div class="pm-header">
+      <div class="pm-header__left">
+        <h2 class="pm-title"></h2>
+        <span class="pm-type"></span>
+      </div>
+      <div class="pm-header__actions">
+        <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
                 <span>Contact us</span>
                 <span class="arrow-icon">→</span>
               </a>
-              <a href="#" class="favorites-btn" aria-label="Favorites">
-                <span class="flaticon-like"></span>
-              </a>
-            </div>
-          </div>
+        <a href="#" class="favorites-btn" aria-label="Favorites">
+           <span class="flaticon-like"></span>
+         </a>
+              
+      </div>
+    </div>
+
+    <div class="pm-info-grid">
+      <div class="pm-info-item">
+        <div class="pm-info__label">Location</div>
+        <div class="pm-info__value pm-location">
+          Bukit, Bali<br>5 min walk to Melasti Beach
         </div>
+        <svg class="pm-info__icon" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <circle cx="7.5" cy="5" r="2" fill="url(#grad)"/>
+          <path d="M7.5 0C4.5 0 2 2.5 2 5.5C2 9 7.5 15 7.5 15C7.5 15 13 9 13 5.5C13 2.5 10.5 0 7.5 0Z" fill="url(#grad)"/>
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F0987D"/>
+              <stop offset="100%" stop-color="#EA9278"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-        <!-- Правая колонка: инфо -->
-        <div class="col-12 col-lg-8">
-          <div class="pm-info-grid">
-            <!-- Левая подколонка -->
-            <div class="pm-info-col pm-info-col--left">
-              <div class="pm-info-item">
-                <div class="pm-info__label">Location</div>
-                <div class="pm-info__value pm-location">
-                  Bukit, Bali<br>5 min walk to Melasti Beach
-                </div>
-              </div>
+      <div class="pm-info-item">
+        <div class="pm-info__label">Construction</div>
+        <div class="pm-info__value">
+          Completion date: Q1 2028<br>Launch: Q2 2028
+        </div>
+      </div>
 
-              <div class="pm-info-item">
-                <div class="pm-info__label">Construction</div>
-                <div class="pm-info__value">
-                  Completion date: Q1 2028<br>Launch: Q2 2028
-                </div>
-              </div>
+      <div class="pm-info-item">
+        <div class="pm-info__label">ROI</div>
+        <div class="pm-info__value">Projected ROI: 14%</div>
+      </div>
 
-              <div class="pm-info-item">
-                <div class="pm-info__label">ROI</div>
-                <div class="pm-info__value">Projected ROI: 14%</div>
-              </div>
-            </div>
+      <div class="pm-info-item">
+        <div class="pm-info__label">Total units</div>
+        <div class="pm-info__value">145</div>
+      </div>
 
-            <!-- Правая подколонка -->
-            <div class="pm-info-col pm-info-col--right">
-              <div class="pm-info-item">
-                <div class="pm-info__label">Total units</div>
-                <div class="pm-info__value">145</div>
-              </div>
-
-              <div class="pm-info-item">
-                <div class="pm-info__label">Views</div>
-                <div class="pm-info__value">
-                  Pool<br>Courtyard<br>Green Landscape
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="pm-info-item">
+        <div class="pm-info__label">Views</div>
+        <div class="pm-info__value">
+          Pool<br>Courtyard<br>Green Landscape
         </div>
       </div>
     </div>
 
     <div class="pm-separator"></div>
 
-    <div class="pm-wrapper">
-      <div class="row gx-5">
-        <!-- Левая колонка: название + кнопки -->
-        <div class="col-12 col-lg-4 mb30">
-          <div class="pm-header">
-            <h3 class="pm-section-title">Unit types and prices</h3>
-          </div>
-        </div>
+    <h3 class="pm-section-title">Unit types and prices</h3>
 
-        <!-- Правая колонка: инфо -->
-        <div class="col-12 col-lg-8">
-          <div class="pm-units">
+    <div class="pm-units">
       <div class="pm-unit">
         <div class="pm-unit__type">Standard</div>
-        <div class="pm-unit__details">28.7 m²<br>4.2 m² Balcony</div>
+        <div class="pm-unit__details">
+          28.7 m²<br>4.2 m² Balcony
+        </div>
         <div class="pm-unit__price">From $108,724</div>
       </div>
 
       <div class="pm-unit">
         <div class="pm-unit__type">Superior</div>
-        <div class="pm-unit__details">34.3 m²<br>3.7 m² Balcony</div>
+        <div class="pm-unit__details">
+          34.3 m²<br>3.7 m² Balcony
+        </div>
         <div class="pm-unit__price">From $127,610</div>
       </div>
 
       <div class="pm-unit">
         <div class="pm-unit__type">Luxury</div>
-        <div class="pm-unit__details">44.2 m²<br>17.2 m² Balcony</div>
+        <div class="pm-unit__details">
+          44.2 m²<br>17.2 m² Balcony
+        </div>
         <div class="pm-unit__price">From $186,384</div>
       </div>
 
       <div class="pm-unit">
         <div class="pm-unit__type">Superior</div>
-        <div class="pm-unit__details">34.3 m²<br>12 m² Terrace</div>
+        <div class="pm-unit__details">
+          34.3 m²<br>12 m² Terrace
+        </div>
         <div class="pm-unit__price">From $133,787</div>
       </div>
 
       <div class="pm-unit">
         <div class="pm-unit__type">Deluxe</div>
-        <div class="pm-unit__details">38.2 m²<br>5 m² Balcony</div>
+        <div class="pm-unit__details">
+          38.2 m²<br>5 m² Balcony
+        </div>
         <div class="pm-unit__price">From $143,671</div>
       </div>
 
       <div class="pm-unit">
         <div class="pm-unit__type">Deluxe</div>
-        <div class="pm-unit__details">44.2 m²<br>7.6 m² Balcony</div>
+        <div class="pm-unit__details">
+          44.2 m²<br>7.6 m² Balcony
+        </div>
         <div class="pm-unit__price">From $169,440</div>
       </div>
     </div>
-        </div>
-      </div>
-    </div>
-
-    
-
-
   </div>
 </div>
 
 <style>
 /* Property Modal */
-.pm-wrapper {
-  padding: 40px 50px 30px;
-}
-.pm-header {
-  padding: 0;
-}
 .property-modal {
   position: fixed;
   top: 0;
@@ -263,16 +247,6 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  z-index: 4;
-}
-
-/* Когда модалка открыта - прячем header за модалкой */
-body.modal-open header.nav-homepage-style {
-  z-index: 1 !important;
-}
-
-body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
-  z-index: 1 !important;
 }
 
 .property-modal__overlay {
@@ -299,8 +273,8 @@ body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
 
 .property-modal__close {
   position: absolute;
-  top: 30px;
-  right: 15px;
+  top: 40px;
+  right: 40px;
   width: 21px;
   height: 21px;
   background: transparent;
@@ -328,45 +302,16 @@ body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
   object-fit: cover;
 }
 
-css/* Custom Scrollbar */
-.property-modal__content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.property-modal__content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 0 30px 30px 0;
-}
-
-.property-modal__content::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.property-modal__content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FFBEA4 0%, #F0987D 50%, #D7785B 100%);
-}
-
-/* Firefox */
-.property-modal__content {
-  scrollbar-width: thin;
-  scrollbar-color: #E08A72 rgba(0, 0, 0, 0.2);
-}
-
-.pm-header-row {
+.pm-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 30px;
+  padding: 40px 50px 30px;
   gap: 20px;
 }
 
-.pm-title-block {
-  flex: 0 0 auto;
-}
-
 .pm-title {
+  
   font-weight: 600;
   font-size: 18px;
   line-height: 1.2;
@@ -378,6 +323,7 @@ css/* Custom Scrollbar */
 }
 
 .pm-type {
+  
   font-weight: 500;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
@@ -389,17 +335,42 @@ css/* Custom Scrollbar */
   flex-shrink: 0;
 }
 
-/* Info Grid */
-.pm-info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+.pm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.25px solid transparent;
+  border-radius: 25px;
+  box-shadow: 2px 1px 7.5px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.3px);
+  
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
-.pm-info-col {
-  display: flex;
-  flex-direction: column;
+.pm-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.pm-btn--fav {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border-color: #656565;
+}
+
+.pm-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  padding: 0 50px 30px;
 }
 
 .pm-info-item {
@@ -407,6 +378,7 @@ css/* Custom Scrollbar */
 }
 
 .pm-info__label {
+  
   font-weight: 600;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
@@ -414,9 +386,10 @@ css/* Custom Scrollbar */
 }
 
 .pm-info__value {
+  
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.2;
   color: #fff;
 }
 
@@ -426,7 +399,6 @@ css/* Custom Scrollbar */
   right: 0;
 }
 
-/* Separator */
 .pm-separator {
   width: calc(100% - 100px);
   height: 1px;
@@ -434,19 +406,20 @@ css/* Custom Scrollbar */
   margin: 0 50px 20px;
 }
 
-/* Section Title */
 .pm-section-title {
+  
   font-weight: 600;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
+  padding: 0 50px 15px;
   margin: 0;
 }
 
-/* Units Grid */
 .pm-units {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  padding: 0 50px 50px;
 }
 
 .pm-unit {
@@ -457,6 +430,7 @@ css/* Custom Scrollbar */
 }
 
 .pm-unit__type {
+  
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
@@ -468,23 +442,19 @@ css/* Custom Scrollbar */
 }
 
 .pm-unit__details {
+  
   font-weight: 600;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.2;
   color: #fff;
   margin-bottom: 8px;
 }
 
 .pm-unit__price {
+  
   font-weight: 500;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
-}
-.pm-image {
-  padding: 40px 50px 30px;
-}
-.pm-image img {
-  border-radius: 30px;
 }
 
 /* Mobile */
@@ -501,25 +471,9 @@ css/* Custom Scrollbar */
     border-radius: 0;
   }
   
-  .pm-wrapper {
-    padding: 30px 25px 25px;
-  }
-  
-  .pm-header-row {
+  .pm-header {
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  .pm-info-col {
-    gap: 10px;
-  }
-  
-  .pm-header__actions {
-    width: 100%;
-  }
-  
-  .pm-header__actions .wdt-button {
-    flex: 1;
+    padding: 30px 20px 20px;
   }
   
   .property-modal__close {
@@ -527,23 +481,32 @@ css/* Custom Scrollbar */
     right: 20px;
   }
   
+  .pm-header__actions {
+    width: 100%;
+  }
+  
+  .pm-btn--contact {
+    flex: 1;
+  }
+  
   .pm-info-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 0 20px 20px;
   }
   
   .pm-separator {
     width: calc(100% - 40px);
     margin: 0 20px 15px;
   }
-
-
-  .pm-header__actions {
-    flex-direction: row-reverse;
+  
+  .pm-section-title {
+    padding: 0 20px 10px;
   }
   
   .pm-units {
     grid-template-columns: 1fr;
+    padding: 0 20px 30px;
   }
 }
 </style>
