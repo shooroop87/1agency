@@ -51,7 +51,7 @@ jobs:
         run: |
           cd backend/
           # Создаем и применяем миграции для блога перед тестами
-          python manage.py makemigrations blog core tours --check
+          python manage.py makemigrations core --check
           python manage.py migrate
           python manage.py test
 
@@ -195,10 +195,6 @@ jobs:
           
           # ОЧИСТКА REDIS НЕ НУЖНА: Redis настроен с автоматической политикой очистки
           echo "ℹ️ Redis cleanup skipped - automatic cleanup is configured with maxmemory-policy"
-          
-          # 🔧 МИГРАЦИИ БЛОГА
-          echo "📦 Creating blog migrations..."
-          sudo docker compose -f docker-compose.production.yml exec backend python manage.py makemigrations blog || echo "⚠️ Blog migrations already exist"
           
           # Применение всех миграций
           echo "🔄 Running all migrations..."
