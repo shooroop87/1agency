@@ -22,8 +22,8 @@ else:
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost 127.0.0.1").split()
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.oneagency.group",
-    "https://oneagency.group",
+    "https://*.berlinweek.ru",
+    "https://berlinweek.ru",
     "http://localhost",
     "http://localhost:8000",
     "http://backend-1:8000",

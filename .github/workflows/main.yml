@@ -72,13 +72,13 @@ jobs:
     steps:
       - name: Check out the repo
         # Получение исходного кода из репозитория
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Docker Buildx
         # Установка сборщика контейнеров Docker
         uses: docker/setup-buildx-action@v2
       - name: Login to Docker 
         # Авторизация на Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         # При помощи with передаём в action параметры username и password
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -105,10 +105,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up nodeJS
       # Это готовый воркфлоу для установки Node.js на раннер
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         # Это параметр воркфлоу, указывающий нужную версию Node.js
         node-version: 18
@@ -119,11 +119,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to Docker 
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN_RW }}
@@ -144,7 +144,7 @@ jobs:
       - build_gateway_and_push_to_docker_hub
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     # Копируем docker-compose.production.yml на продакшен-сервер
     - name: Copy docker-compose.yml via ssh
       uses: appleboy/scp-action@master
@@ -247,6 +247,9 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           🎉 Деплой oneagency успешно завершен!
+          🔧 Коммит: ${{ github.sha }}
+          👤 Автор: ${{ github.actor }}
+          🔗 Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           
           ✅ Новый блог развернут
           ✅ Миграции применены  
