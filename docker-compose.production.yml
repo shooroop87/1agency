@@ -38,7 +38,7 @@ services:
     environment:
       - DOCKER_ENV=true  # НОВОЕ: Включаем упрощенное логирование для Docker
     volumes:
-      - static_volume:/app/collected_static
+      - static_volume:/app/staticfiles
       - media:/app/media/
     command: >
       sh -c "
