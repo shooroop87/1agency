@@ -22,8 +22,8 @@ else:
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost 127.0.0.1").split()
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.andreyegorov.com",
-    "https://andreyegorov.com",
+    "https://*.oneagency.group",
+    "https://oneagency.group",
     "http://localhost",
     "http://localhost:8000",
     "http://backend-1:8000",
@@ -83,6 +83,18 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# PostgreSQL
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.postgresql",
+#        "NAME": os.getenv("POSTGRES_DB", "oneagency"),
+#        "USER": os.getenv("POSTGRES_USER", "oneagency_user"),
+#        "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
+#        "HOST": os.getenv("DB_HOST", "127.0.0.1"),
+#        "PORT": int(os.getenv("DB_PORT", 5432)),
+#    }
+#}
 
 # --- WSGI ---
 WSGI_APPLICATION = "backend.wsgi.application"
@@ -206,12 +218,12 @@ EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "your-email@domain.com")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "your-password")
-DEFAULT_FROM_EMAIL = "Abroads Tours <noreply@andreyegorov.com>"
-CONTACT_EMAIL = "abroadstour@gmail.com"
+DEFAULT_FROM_EMAIL = "Abroads Tours <noreply@info@oneagency.group>"
+CONTACT_EMAIL = "info@oneagency.group"
 
 # Контакты
-CONTACT_PHONE = "+39-339-2168555"
-WHATSAPP_NUMBER = "393392168555"
+CONTACT_PHONE = "+6281339488437"
+WHATSAPP_NUMBER = "6281339488437"
 
 # SendPulse
 SENDPULSE_API_USER_ID = os.getenv("SENDPULSE_API_USER_ID", "your-user-id")
