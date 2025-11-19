@@ -85,7 +85,7 @@ services:
         condition: service_completed_successfully
     command: >
       sh -c "echo 'Starting Gunicorn server...' &&
-      gunicorn config.wsgi:application --bind 0.0.0.0:8000
+      gunicorn backend.wsgi:application --bind 0.0.0.0:8000
       --worker-class gthread --workers 3 --threads 4
       --timeout 120 --graceful-timeout 30 --keep-alive 5
       --access-logfile - --error-logfile - --log-level info"

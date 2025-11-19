@@ -39,4 +39,4 @@ RUN chown -R app:app /app
 USER app
 
 # Команда запуска
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application"]

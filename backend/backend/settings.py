@@ -74,7 +74,7 @@ if DEBUG:
     MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
 # Найди строку ROOT_URLCONF и замени:
-ROOT_URLCONF = "backend.urls"  # было "config.urls"
+ROOT_URLCONF = "backend.urls"
 
 # Найди DATABASES и замени на SQLite:
 DATABASES = {
