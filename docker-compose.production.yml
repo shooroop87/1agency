@@ -54,33 +54,6 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-  # Автообновление отзывов каждые 12 часов
-  reviews-updater:
-    image: egorovdocker/oneagency_backend
-    env_file: .env
-    environment:
-      - DOCKER_ENV=true
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    command: >
-      sh -c "
-        echo 'Starting reviews updater daemon...' &&
-        # Устанавливаем cron задачи
-        echo '0 6 * * * cd /app && python manage.py import_reviews --max-reviews=100 2>&1 | logger -t reviews-updater' > /tmp/crontab &&
-        echo '0 18 * * * cd /app && python manage.py import_reviews --max-reviews=100 2>&1 | logger -t reviews-updater' >> /tmp/crontab &&
-        crontab /tmp/crontab &&
-        echo 'Cron schedule installed:' &&
-        crontab -l &&
-        echo 'Reviews updater started at' \$(date) &&
-        # Запускаем cron в фоне и держим контейнер живым
-        crond &&
-        while true; do sleep 3600; done
-      "
-    restart: unless-stopped
-
   gateway:
     image: egorovdocker/oneagency_gateway
     env_file: .env

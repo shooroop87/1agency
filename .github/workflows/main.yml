@@ -101,18 +101,6 @@ jobs:
           # на сервере и в docker-compose.yml не указывать версию
           tags: egorovdocker/oneagency_backend:latest
 
-  frontend_tests:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up nodeJS
-      # Это готовый воркфлоу для установки Node.js на раннер
-      uses: actions/setup-node@v4
-      with:
-        # Это параметр воркфлоу, указывающий нужную версию Node.js
-        node-version: 18
-
 #Workflow для Nginx образ с конфигом и отправить его на Docker Hub
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
@@ -179,7 +167,7 @@ jobs:
           
           # БЕЗОПАСНЫЙ ПЕРЕЗАПУСК: только приложение, БД и Redis остаются работать
           echo "🔄 Restarting application services..."
-          sudo docker compose -f docker-compose.production.yml up -d --no-deps backend gateway reviews-updater
+          sudo docker compose -f docker-compose.production.yml up -d --no-deps backend gateway
           
           # Ожидание запуска сервисов
           echo "⏳ Waiting for services to start..."
