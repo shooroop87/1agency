@@ -169,7 +169,7 @@ LANGUAGES = [
     ("ru", _("Russian")),
 ]
 
-# Parler (должен совпадать с LANGUAGES)
+# Parler
 PARLER_LANGUAGES = {
     None: (
         {"code": "en"},
