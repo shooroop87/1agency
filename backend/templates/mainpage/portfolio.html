@@ -4,7 +4,11 @@
 
     <div class="projects-grid">
       <!-- 1. Pandawa Hills — large, top-left -->
-      <a href="#" class="project-card project-card--lg mb50">
+      <a href="#" class="project-card project-card--lg mb50"
+         data-title="Pandawa Hills"
+         data-type="Hotel"
+         data-location="Bukit, Bali"
+         data-image="{% static 'images/port1.png' %}">
         <div class="pc-img" style="--img:url('{% static 'images/port1.png' %}')">
           <div class="pc-tags">
             <span class="tag">Any types and sizes</span>
@@ -22,7 +26,11 @@
       </a>
 
       <!-- 2. Baza Kedungu — small, top-right (align right) -->
-      <a href="#" class="project-card project-card--sm project-card--align-end">
+      <a href="#" class="project-card project-card--sm project-card--align-end"
+         data-title="Baza Kedungu"
+         data-type="Apartments"
+         data-location="Canggu, Bali"
+         data-image="{% static 'images/port2.png' %}">
         <div class="pc-img" style="--img:url('{% static 'images/port2.png' %}')">
           <div class="pc-tags">
             <span class="tag">Any types and sizes</span>
@@ -35,12 +43,16 @@
             Baza Kedungu
             <i class="wdt-button__icon" aria-hidden="true"></i>
           </h3>
-          <div class="pc-loc">Bukit, Bali</div>
+          <div class="pc-loc">Canggu, Bali</div>
         </div>
       </a>
 
       <!-- 3. Moono Villas — small, bottom-left (align start) -->
-      <a href="#" class="project-card project-card--sm">
+      <a href="#" class="project-card project-card--sm"
+         data-title="Moono Villas"
+         data-type="Villas"
+         data-location="Ubud, Bali"
+         data-image="{% static 'images/port3.png' %}">
         <div class="pc-img" style="--img:url('{% static 'images/port3.png' %}')">
           <div class="pc-tags">
             <span class="tag">Villas</span>
@@ -58,7 +70,11 @@
       </a>
 
       <!-- 4. Satu Melasti Village — large, bottom-right -->
-      <a href="#" class="project-card project-card--lg">
+      <a href="#" class="project-card project-card--lg"
+         data-title="Satu Melasti Village"
+         data-type="Villas"
+         data-location="Bukit, Bali"
+         data-image="{% static 'images/port4.png' %}">
         <div class="pc-img" style="--img:url('{% static 'images/port4.png' %}')">
           <div class="pc-tags">
             <span class="tag">Villas</span>
@@ -77,11 +93,497 @@
     </div>
 
     <div class="projects-cta mt70">
-
       <a href="#" class="wdt-button button-cta is-nm concierge-cta">
-            View full catalog <i class="wdt-button__icon" aria-hidden="true"></i>
-          </a>
+        View full catalog <i class="wdt-button__icon" aria-hidden="true"></i>
+      </a>
     </div>
 
   </div>
 </section>
+
+<!-- Property Modal -->
+<div id="propertyModal" class="property-modal">
+  <div class="property-modal__overlay"></div>
+  <div class="property-modal__content">
+    <button class="property-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="pm-image">
+      <img src="" alt="Property">
+    </div>
+
+    <!-- Header Section -->
+    <div class="pm-wrapper">
+      <div class="row gx-5">
+        <!-- Левая колонка: название + кнопки -->
+        <div class="col-12 col-lg-4 mb30">
+          <div class="pm-header">
+            <h2 class="pm-title"></h2>
+            <span class="pm-type"></span>
+            
+            <div class="pm-header__actions mt20">
+              <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
+                <span>Contact us</span>
+                <span class="arrow-icon">→</span>
+              </a>
+              <a href="#" class="favorites-btn" aria-label="Favorites">
+                <span class="flaticon-like"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая колонка: инфо -->
+        <div class="col-12 col-lg-8">
+          <div class="pm-info-grid">
+            <!-- Левая подколонка -->
+            <div class="pm-info-col pm-info-col--left">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Location</div>
+                <div class="pm-info__value pm-location">
+                  Bukit, Bali<br>5 min walk to Melasti Beach
+                </div>
+              </div>
+
+              <div class="pm-info-item">
+                <div class="pm-info__label">Construction</div>
+                <div class="pm-info__value">
+                  Completion date: Q1 2028<br>Launch: Q2 2028
+                </div>
+              </div>
+
+              <div class="pm-info-item">
+                <div class="pm-info__label">ROI</div>
+                <div class="pm-info__value">Projected ROI: 14%</div>
+              </div>
+            </div>
+
+            <!-- Правая подколонка -->
+            <div class="pm-info-col pm-info-col--right">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Total units</div>
+                <div class="pm-info__value">145</div>
+              </div>
+
+              <div class="pm-info-item">
+                <div class="pm-info__label">Views</div>
+                <div class="pm-info__value">
+                  Pool<br>Courtyard<br>Green Landscape
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pm-separator"></div>
+
+    <div class="pm-wrapper">
+      <div class="row gx-5">
+        <!-- Левая колонка: название + кнопки -->
+        <div class="col-12 col-lg-4 mb30">
+          <div class="pm-header">
+            <h3 class="pm-section-title">Unit types and prices</h3>
+          </div>
+        </div>
+
+        <!-- Правая колонка: инфо -->
+        <div class="col-12 col-lg-8">
+          <div class="pm-units">
+            <div class="pm-unit">
+              <div class="pm-unit__type">Standard</div>
+              <div class="pm-unit__details">28.7 m²<br>4.2 m² Balcony</div>
+              <div class="pm-unit__price">From $108,724</div>
+            </div>
+
+            <div class="pm-unit">
+              <div class="pm-unit__type">Superior</div>
+              <div class="pm-unit__details">34.3 m²<br>3.7 m² Balcony</div>
+              <div class="pm-unit__price">From $127,610</div>
+            </div>
+
+            <div class="pm-unit">
+              <div class="pm-unit__type">Luxury</div>
+              <div class="pm-unit__details">44.2 m²<br>17.2 m² Balcony</div>
+              <div class="pm-unit__price">From $186,384</div>
+            </div>
+
+            <div class="pm-unit">
+              <div class="pm-unit__type">Superior</div>
+              <div class="pm-unit__details">34.3 m²<br>12 m² Terrace</div>
+              <div class="pm-unit__price">From $133,787</div>
+            </div>
+
+            <div class="pm-unit">
+              <div class="pm-unit__type">Deluxe</div>
+              <div class="pm-unit__details">38.2 m²<br>5 m² Balcony</div>
+              <div class="pm-unit__price">From $143,671</div>
+            </div>
+
+            <div class="pm-unit">
+              <div class="pm-unit__type">Deluxe</div>
+              <div class="pm-unit__details">44.2 m²<br>7.6 m² Balcony</div>
+              <div class="pm-unit__price">From $169,440</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Property Modal */
+.pm-wrapper {
+  padding: 40px 50px 30px;
+}
+.pm-header {
+  padding: 0;
+}
+.property-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.property-modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 4;
+}
+
+/* Когда модалка открыта - прячем header за модалкой */
+body.modal-open header.nav-homepage-style {
+  z-index: 1 !important;
+}
+
+body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
+  z-index: 1 !important;
+}
+
+.property-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.property-modal__content {
+  position: relative;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  background: #272727;
+  border-radius: 30px;
+  overflow-y: auto;
+  z-index: 1;
+  padding: 0;
+}
+
+.property-modal__close {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  width: 21px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.property-modal__close:hover {
+  transform: rotate(90deg);
+}
+
+.pm-image {
+  width: 100%;
+  height: 333px;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+  padding: 40px 50px 30px;
+}
+
+.pm-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+/* Custom Scrollbar */
+.property-modal__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.property-modal__content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 30px 30px 0;
+}
+
+.property-modal__content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.property-modal__content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFBEA4 0%, #F0987D 50%, #D7785B 100%);
+}
+
+/* Firefox */
+.property-modal__content {
+  scrollbar-width: thin;
+  scrollbar-color: #E08A72 rgba(0, 0, 0, 0.2);
+}
+
+.pm-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.pm-title-block {
+  flex: 0 0 auto;
+}
+
+.pm-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 5px;
+}
+
+.pm-type {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.pm-header__actions {
+  display: flex;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+/* Info Grid */
+.pm-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.pm-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.pm-info-item {
+  position: relative;
+}
+
+.pm-info__label {
+  font-weight: 600;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+.pm-info__value {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.pm-info__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Separator */
+.pm-separator {
+  width: calc(100% - 100px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 50px 20px;
+}
+
+/* Section Title */
+.pm-section-title {
+  font-weight: 600;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Units Grid */
+.pm-units {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.pm-unit {
+  background: #232323;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+}
+
+.pm-unit__type {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.pm-unit__details {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.pm-unit__price {
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .property-modal__content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .pm-image {
+    height: 250px;
+    border-radius: 0;
+    padding: 0px;
+  }
+  
+  .pm-wrapper {
+    padding: 30px 25px 25px;
+  }
+  
+  .pm-header-row {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .pm-info-col {
+    gap: 10px;
+  }
+  
+  .pm-header__actions {
+    width: 100%;
+    flex-direction: row-reverse;
+  }
+  
+  .pm-header__actions .wdt-button {
+    flex: 1;
+  }
+  
+  .property-modal__close {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .pm-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .pm-separator {
+    width: calc(100% - 40px);
+    margin: 0 20px 15px;
+  }
+  
+  .pm-units {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('propertyModal');
+  const projectCards = document.querySelectorAll('.project-card');
+  const closeBtn = modal.querySelector('.property-modal__close');
+  const overlay = modal.querySelector('.property-modal__overlay');
+
+  // Открытие модалки
+  projectCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const title = this.getAttribute('data-title');
+      const type = this.getAttribute('data-type');
+      const location = this.getAttribute('data-location');
+      const image = this.getAttribute('data-image');
+
+      // Заполняем данные
+      modal.querySelector('.pm-title').textContent = title;
+      modal.querySelector('.pm-type').textContent = type;
+      modal.querySelector('.pm-location').textContent = location;
+      modal.querySelector('.pm-image img').src = image;
+
+      // Открываем модалку
+      modal.classList.add('is-active');
+      document.body.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Закрытие модалки
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+
+  // Закрытие по ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+      closeModal();
+    }
+  });
+});
+</script>

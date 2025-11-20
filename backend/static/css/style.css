@@ -12067,5 +12067,6 @@ input:focus-visible {
   }
   .wdt-button.button-cta {
     background: var(--gradient-accent);
+    width: 100%;
   }
 }

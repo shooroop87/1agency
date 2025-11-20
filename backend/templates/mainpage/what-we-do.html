@@ -1,5 +1,5 @@
 {% load static %}
-<section class="concierge section-content">
+<section class="concierge">
   <div class="container">
 
     <div class="row">
@@ -26,7 +26,7 @@
             We help you find and book the ideal villa, apartment, or house, with tailored recommendations
             on the best areas and rental opportunities.
           </p>
-          <a href="#" class="wdt-button button-cta is-nm concierge-cta">
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
             Request service <i class="wdt-button__icon" aria-hidden="true"></i>
           </a>
         </article>
@@ -46,7 +46,7 @@
             Seamless airport transfers, car and motorbike rentals, or a dedicated personal driver —
             making travel across Bali easy and stress-free.
           </p>
-          <a href="#" class="wdt-button button-cta is-nm concierge-cta">
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
             Request service <i class="wdt-button__icon" aria-hidden="true"></i>
           </a>
         </article>
@@ -66,7 +66,7 @@
             From property transactions to visas and permits, our legal experts provide reliable guidance
             and ensure every process is secure and transparent.
           </p>
-          <a href="#" class="wdt-button button-cta is-nm concierge-cta">
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
             Request service <i class="wdt-button__icon" aria-hidden="true"></i>
           </a>
         </article>
@@ -87,7 +87,7 @@
             Go beyond the ordinary with curated excursions, private tours, and unique experiences.
             A personal manager takes care of every detail, so you can simply enjoy Bali.
           </p>
-          <a href="#" class="wdt-button button-cta is-nm concierge-cta">
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
             Request service <i class="wdt-button__icon" aria-hidden="true"></i>
           </a>
         </article>
@@ -96,3 +96,367 @@
 
   </div>
 </section>
+
+<!-- Service Request Modal -->
+<div id="serviceModal" class="service-modal">
+  <div class="service-modal__overlay"></div>
+  <div class="service-modal__content">
+    <button class="service-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="service-modal__header">
+      <h2 class="service-modal__title">We will process your request for the</h2>
+      <p class="service-modal__subtitle">Please fill out the form below.</p>
+    </div>
+
+    <form class="service-form" id="serviceForm">
+      <div class="service-form__field">
+        <input type="text" name="name" placeholder="Your name" required>
+      </div>
+
+      <div class="service-form__field">
+        <input type="tel" name="phone" placeholder="Your WhatsApp or phone number" required>
+      </div>
+
+      <div class="service-form__field">
+        <input type="email" name="email" placeholder="Your E-mail" required>
+      </div>
+
+      <div class="service-form__field">
+        <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+      </div>
+
+      <div class="service-form__checkbox">
+        <label>
+          <input type="checkbox" name="privacy" required>
+          <span class="checkbox-custom"></span>
+          <span class="checkbox-text">I agree to the terms of the Privacy Policy</span>
+        </label>
+      </div>
+
+      <button type="submit" class="service-form__submit">
+        Send
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+/* Service Modal */
+.service-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.service-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.service-modal__content {
+  position: relative;
+  width: 442px;
+  max-width: 95%;
+  max-height: 90vh;
+  background: #3A3A3A;
+  border-radius: 30px;
+  padding: 50px 40px 40px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.service-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 21px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.service-modal__close:hover {
+  transform: rotate(90deg);
+}
+
+.service-modal__header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.service-modal__title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 130%;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+
+.service-modal__subtitle {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.service-form__field {
+  margin-bottom: 15px;
+}
+
+.service-form__field input,
+.service-form__field textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  border: none;
+  padding: 15px 25px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000;
+  resize: none;
+}
+
+.service-form__field input {
+  height: 50px;
+}
+
+.service-form__field textarea {
+  min-height: 100px;
+  border-radius: 25px;
+  padding: 15px 25px;
+}
+
+.service-form__field input::placeholder,
+.service-form__field textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.service-form__checkbox {
+  margin: 20px 0 25px;
+}
+
+.service-form__checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: #FFFFFF;
+}
+
+.service-form__checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.3s;
+}
+
+.service-form__checkbox input[type="checkbox"]:checked + .checkbox-custom {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  border-color: transparent;
+}
+
+.service-form__checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.checkbox-text {
+  line-height: 1.4;
+}
+
+.service-form__submit {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  border-radius: 50px;
+  border: none;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-form__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(240, 152, 125, 0.4);
+}
+
+.service-form__submit svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Custom Scrollbar для service modal */
+.service-modal__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.service-modal__content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 30px 30px 0;
+}
+
+.service-modal__content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-radius: 10px;
+}
+
+.service-modal__content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFBEA4 0%, #F0987D 50%, #D7785B 100%);
+}
+
+/* Firefox */
+.service-modal__content {
+  scrollbar-width: thin;
+  scrollbar-color: #E08A72 rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .service-modal__content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 20px;
+    padding: 40px 25px 30px;
+  }
+
+  .service-modal__title {
+    font-size: 18px;
+  }
+
+  .service-modal__subtitle {
+    font-size: 14px;
+  }
+
+  .service-form__field textarea {
+    min-height: 80px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('serviceModal');
+  
+  // Проверяем, что модалка существует
+  if (!modal) return;
+  
+  const openBtns = document.querySelectorAll('.open-service-modal');
+  const closeBtn = modal.querySelector('.service-modal__close');
+  const overlay = modal.querySelector('.service-modal__overlay');
+  const form = document.getElementById('serviceForm');
+
+  // Открытие модалки
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Закрытие модалки
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+  
+  if (overlay) {
+    overlay.addEventListener('click', closeModal);
+  }
+
+  // Закрытие по ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+      closeModal();
+    }
+  });
+
+  // Отправка формы
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+        privacy: formData.get('privacy')
+      };
+
+      // Здесь можно добавить отправку данных на сервер
+      console.log('Service form data:', data);
+      
+      // Показать сообщение об успехе
+      alert('Thank you! We will process your request soon.');
+      
+      // Закрыть модалку и очистить форму
+      closeModal();
+      form.reset();
+    });
+  }
+});
+</script>
