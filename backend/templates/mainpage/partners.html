@@ -152,6 +152,13 @@
 let partnersSwiper;
 
 function initPartnersSwiper() {
+  // Проверяем загрузку Swiper
+  if (typeof Swiper === 'undefined') {
+    console.warn('Swiper not loaded yet, retrying...');
+    setTimeout(initPartnersSwiper, 100);
+    return;
+  }
+  
   if (window.innerWidth > 575) {
     if (!partnersSwiper) {
       partnersSwiper = new Swiper('.partners-swiper', {
@@ -171,6 +178,12 @@ function initPartnersSwiper() {
   }
 }
 
-initPartnersSwiper();
+// Инициализация при загрузке
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPartnersSwiper);
+} else {
+  initPartnersSwiper();
+}
+
 window.addEventListener('resize', initPartnersSwiper);
 </script>

@@ -586,82 +586,97 @@
 </style>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
+  // Ждём загрузки DOM и GSAP
+  document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем загрузку GSAP
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
 
-  (function() {
-    const heroSection = document.querySelector('.hero-section-desktop');
-    const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
-    const spacer      = document.querySelector('.hero-spacer');
-    const navWrap     = document.querySelector('.nav-wrap');
-    
-    if (!heroSection || !spacer) return;
+      const heroSection = document.querySelector('.hero-section-desktop');
+      const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
+      const spacer      = document.querySelector('.hero-spacer');
+      const navWrap     = document.querySelector('.nav-wrap');
+      
+      if (heroSection && spacer && navWrap) {
+        // Pin hero block
+        ScrollTrigger.create({
+          trigger: heroSection,
+          start: "top top",
+          end: () => spacer.offsetHeight,
+          pin: heroSection,
+          pinSpacing: false
+        });
 
-    // Pin hero block
-    ScrollTrigger.create({
-      trigger: heroSection,
-      start: "top top",
-      end: () => spacer.offsetHeight,
-      pin: heroSection,
-      pinSpacing: false
-    });
+        // Image reveal on scroll
+        bottomItems.forEach(item => {
+          gsap.fromTo(
+            item,
+            { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
+            {
+              clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
+              ease: "none",
+              scrollTrigger: {
+                trigger: heroSection,
+                start: "top top",
+                end: () => spacer.offsetHeight * 0.5,
+                scrub: true
+              }
+            }
+          );
+        });
 
-    // Image reveal on scroll
-    bottomItems.forEach(item => {
-      gsap.fromTo(
-        item,
-        { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
-        {
-          clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroSection,
-            start: "top top",
-            end: () => spacer.offsetHeight * 0.5,
-            scrub: true
+        // Sticky nav
+        ScrollTrigger.create({
+          trigger: spacer,
+          start: "top top+=520",
+          end: "bottom top",
+          onEnter() {
+            navWrap.classList.add('is-sticky');
+            gsap.to(navWrap, {
+              position: 'fixed',
+              top: 0,
+              duration: 0.3
+            });
+          },
+          onEnterBack() {
+            navWrap.classList.add('is-sticky');
+            gsap.to(navWrap, {
+              position: 'fixed',
+              top: 0,
+              duration: 0.3
+            });
+          },
+          onLeaveBack() {
+            navWrap.classList.remove('is-sticky');
+            gsap.to(navWrap, {
+              position: 'absolute',
+              top: 520,
+              duration: 0.3
+            });
           }
-        }
-      );
-    });
-
-    // Sticky nav
-    ScrollTrigger.create({
-      trigger: spacer,
-      start: "top top+=520",
-      end: "bottom top",
-      onEnter() {
-        navWrap.classList.add('is-sticky');
-        gsap.to(navWrap, {
-          position: 'fixed',
-          top: 0,
-          duration: 0.3
-        });
-      },
-      onEnterBack() {
-        navWrap.classList.add('is-sticky');
-        gsap.to(navWrap, {
-          position: 'fixed',
-          top: 0,
-          duration: 0.3
-        });
-      },
-      onLeaveBack() {
-        navWrap.classList.remove('is-sticky');
-        gsap.to(navWrap, {
-          position: 'absolute',
-          top: 520,
-          duration: 0.3
         });
       }
-    });
-  })();
+    } else {
+      console.warn('GSAP or ScrollTrigger not loaded');
+    }
 
-  // Callback Modal
-  document.addEventListener('DOMContentLoaded', function() {
+    // Callback Modal
     const modal = document.getElementById('callbackModal');
+    
+    if (!modal) {
+      console.warn('Callback modal not found');
+      return;
+    }
+
     const openBtns = document.querySelectorAll('.open-callback-modal');
     const closeBtn = modal.querySelector('.callback-modal__close');
     const overlay = modal.querySelector('.callback-modal__overlay');
     const form = document.getElementById('callbackForm');
+
+    if (!closeBtn || !overlay || !form) {
+      console.warn('Modal elements not found');
+      return;
+    }
 
     // Открытие модалки
     openBtns.forEach(btn => {
@@ -699,13 +714,9 @@
         privacy: formData.get('privacy')
       };
 
-      // Здесь можно добавить отправку данных на сервер
       console.log('Form data:', data);
-      
-      // Показать сообщение об успехе
       alert('Thank you! We will contact you soon.');
       
-      // Закрыть модалку и очистить форму
       closeModal();
       form.reset();
     });

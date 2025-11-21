@@ -183,7 +183,6 @@
 }
 
 .apartment-content .title {
-  font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.2;
@@ -483,6 +482,13 @@
 let servicesSwiper;
 
 function initServicesSwiper() {
+  // Проверяем загрузку Swiper
+  if (typeof Swiper === 'undefined') {
+    console.warn('Swiper not loaded yet, retrying...');
+    setTimeout(initServicesSwiper, 100);
+    return;
+  }
+  
   if (window.innerWidth > 575) {
     if (!servicesSwiper) {
       servicesSwiper = new Swiper('.services-swiper', {
@@ -503,14 +509,23 @@ function initServicesSwiper() {
   }
 }
 
-initServicesSwiper();
+// Инициализация при загрузке
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initServicesSwiper);
+} else {
+  initServicesSwiper();
+}
+
 window.addEventListener('resize', initServicesSwiper);
 
 // Service Details Modal
 document.addEventListener('DOMContentLoaded', function() {
   const detailsModal = document.getElementById('serviceDetailsModal');
   
-  if (!detailsModal) return;
+  if (!detailsModal) {
+    console.warn('Service details modal not found');
+    return;
+  }
   
   const openDetailsBtns = document.querySelectorAll('.open-service-details');
   const closeDetailsBtn = detailsModal.querySelector('.service-details-modal__close');
@@ -518,6 +533,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const detailsTitle = detailsModal.querySelector('.sdm-title');
   const detailsList = detailsModal.querySelector('.sdm-list');
   const requestFromDetailsBtn = detailsModal.querySelector('.open-service-modal-from-details');
+
+  if (!closeDetailsBtn || !detailsOverlay || !detailsTitle || !detailsList) {
+    console.warn('Service details modal elements not found');
+    return;
+  }
 
   // Открытие модалки деталей услуги
   openDetailsBtns.forEach(btn => {

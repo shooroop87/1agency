@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
+<!-- Swiper CSS (критически важен для слайдеров) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
 <!-- 2. Все остальные — через preload → stylesheet (самый чистый современный способ) -->
 <link rel="preload" href="{% static 'css/jquery-ui.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/ace-responsive-menu.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
