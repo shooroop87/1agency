@@ -1,21 +1,12 @@
+{% extends "base/base_error.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-  {% include "includes/meta.html" %}
-  {% include "includes/styles.html" %}
-  {% include "includes/header.html" %}
-  {% block extra_head %}{% endblock %}
-</head>
-<body>
-  {% include "includes/menu-desktop-any.html" %}
+
+{% block content %}
+<div class="wrapper ovh">
+  <div class="preloader"></div>
   
-  <main id="content">
-    {% block content %}{% endblock %}
-  </main>
-  
-  {% include "includes/footer.html" %}
-  {% include "includes/scripts_footer.html" %}
-  {% block extra_js %}{% endblock %}
-</body>
-</html>
+    {% include "404/hero.html" %}
+
+  </div>
+</div>
+{% endblock %}

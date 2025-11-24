@@ -1,134 +1,133 @@
-{% load static %}
-<section class="home-banner-style8 p0 hero-cover">
+  {% load static %}
+  <section class="home-banner-style8 p0 hero-cover">
 
-  <div class="home-style8">
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-lg-12">
-          <div class="inner-banner-style8 hero-cover__content">
-            <h1 class="hero-cover__title">The №1</h1>
+    <div class="home-style8">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-12">
+            <div class="inner-banner-style8 hero-cover__content">
+              <h1 class="hero-cover__title">The №1</h1>
 
-            <div class="hero-cover__badge">
-              <span>Investor’s choice</span><br>
-              <span>in 2025</span>
-            </div>
+              <div class="hero-cover__badge">
+                <span>Investor’s choice</span><br>
+                <span>in 2025</span>
+              </div>
 
-            <div class="hero-cover__desc">
-              <span class="hero-cover__line" aria-hidden="true"></span>
-              <p>
-                With year-round tourism and a steadily growing influx of visitors
-                and expats from all over the world, Bali has become one of the
-                most attractive destinations for property investment.
-              </p>
+              <div class="hero-cover__desc">
+                <span class="hero-cover__line" aria-hidden="true"></span>
+                <p>
+                  With year-round tourism and a steadily growing influx of visitors
+                  and expats from all over the world, Bali has become one of the
+                  most attractive destinations for property investment.
+                </p>
+              </div>
             </div>
           </div>
+          <!-- правая колонка оставлена пустой, как было -->
+          <div class="col-lg-6 col-xl-4 d-none"></div>
         </div>
-        <!-- правая колонка оставлена пустой, как было -->
-        <div class="col-lg-6 col-xl-4 d-none"></div>
       </div>
     </div>
-  </div>
-</section>
-<style>
-/* ===== Hero cover (как в Figma) ===== */
-.hero-cover {
-  position: relative;
-  isolation: isolate;              /* чтобы тень не резалась */
-  min-height: 1240px;              /* как в макете */
-}
-.hero-name {line-height: 1.2!important;}
-.hero-cover__bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(35,35,35,0.2) 100%),
-    linear-gradient(0deg, rgba(35,35,35,0.45), rgba(35,35,35,0.45)),
-    var(--hero-img) center/cover no-repeat;
-  box-shadow: 0px 100px 65px rgba(0,0,0,0.25);
-  border-radius: 0 0 55px 55px;
-  z-index: -1;
-  filter: var(--blur-1);           /* лёгкий блюр как в макете */
-}
+  </section>
+  <style>
+  /* ===== Hero cover (как в Figma) ===== */
+  .hero-cover {
+    position: relative;
+    isolation: isolate;              /* чтобы тень не резалась */
+    min-height: 1240px;              /* как в макете */
+  }
+  .hero-name {line-height: 1.2!important;}
+  .hero-cover__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(35,35,35,0.2) 100%),
+      linear-gradient(0deg, rgba(35,35,35,0.45), rgba(35,35,35,0.45)),
+      var(--hero-img) center/cover no-repeat;
+    box-shadow: 0px 100px 65px rgba(0,0,0,0.25);
+    border-radius: 0 0 55px 55px;
+    z-index: -1;
+    filter: var(--blur-1);           /* лёгкий блюр как в макете */
+  }
 
-/* Контентная область — чтобы совпали отступы "40px слева" и вертикальные позиции */
-.hero-cover__content {
-  position: relative;
-  padding-left: 40px;
-  padding-top: 635px;              /* позиция заголовка от верха */
-}
+  /* Контентная область — чтобы совпали отступы "40px слева" и вертикальные позиции */
+  .hero-cover__content {
+    position: relative;
+    padding-top: 635px;
+  }
 
-/* Большой заголовок с градиентом */
-.hero-cover__title {
-  margin: 0;
-  max-width: 900px;
-  font-family: var(--title-font-family);
-  font-weight: 600;
-  font-size: clamp(72px, 12vw, 268px); /* масштаб на меньших экранах */
-  line-height: 0.89;
-  letter-spacing: -0.04em;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  /* Большой заголовок с градиентом */
+  .hero-cover__title {
+    margin: 0;
+    max-width: 900px;
+    font-family: var(--title-font-family);
+    font-weight: 600;
+    font-size: clamp(72px, 15vw, 268px); /* масштаб на меньших экранах */
+    line-height: 0.89;
+    letter-spacing: -0.04em;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-/* Бейдж справа "Investor’s choice in 2025" (960px слева, 804px сверху) */
-.hero-cover__badge {
-  position: absolute;
-  left: 960px;
-  top: 804px;
-  width: 232px;
-  color: var(--color-white);
-  font-family: var(--title-font-family);
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 1;
-  text-align: left;
-}
+  /* Бейдж справа "Investor’s choice in 2025" (960px слева, 804px сверху) */
+  .hero-cover__badge {
+    position: absolute;
+    left: 920px;
+    top: 804px;
+    width: 232px;
+    color: var(--color-white);
+    font-family: var(--title-font-family);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1;
+    text-align: left;
+  }
 
-/* Нижний блок с линией и текстом (40/916/440 как в макете) */
-.hero-cover__desc {
-  position: absolute;
-  left: 40px;
-  top: 916px;
-  width: 440px;
-}
-.hero-cover__line {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--gradient-accent);
-  margin-bottom: 30px;
-}
-.hero-cover__desc p {
-  margin: 0;
-  font-family: var(--body-font-family);
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 1;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  /* Нижний блок с линией и текстом (40/916/440 как в макете) */
+  .hero-cover__desc {
+    position: absolute;
+    top: 916px;
+    width: 440px;
+  }
+  .hero-cover__line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-accent);
+    margin-bottom: 30px;
+  }
+  .hero-cover__desc p {
+    margin: 0;
+    font-family: var(--body-font-family);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 430px;
+  }
 
-/* ===== Адаптив (чтобы не ломалось на ноутбуках и мобилках) ===== */
-@media (max-width: 1399.98px) {
-  .hero-cover { min-height: 1000px; }
-  .hero-cover__content { padding-top: 520px; }
-  .hero-cover__badge { left: 780px; top: 700px; }
-}
-@media (max-width: 1199.98px) {
-  .hero-cover { min-height: 900px; }
-  .hero-cover__content { padding-top: 460px; padding-left: 14px; }
-  .hero-cover__badge { position: static; margin-top: 24px; }
-  .hero-cover__desc { position: static; width: auto; margin-top: 32px; }
-}
-@media (max-width: 767.98px) {
-  .hero-cover { min-height: 720px; }
-  .hero-cover__title { font-size: clamp(56px, 16vw, 120px); }
-  .hero-cover__line { margin-bottom: 16px; }
-  .hero-cover__desc p { font-size: 18px; line-height: 1.25; }
-}
+  /* ===== Адаптив (чтобы не ломалось на ноутбуках и мобилках) ===== */
+  @media (max-width: 1399.98px) {
+    .hero-cover { min-height: 1000px; }
+    .hero-cover__content { padding-top: 520px; }
+    .hero-cover__badge { left: 780px; top: 700px; }
+  }
+  @media (max-width: 1199.98px) {
+    .hero-cover { min-height: 900px; }
+    .hero-cover__content { padding-top: 460px; padding-left: 15px;padding-right: 15px; }
+    .hero-cover__badge { position: static; margin-top: 24px; }
+    .hero-cover__desc { position: static; width: auto; margin-top: 32px; }
+  }
+  @media (max-width: 767.98px) {
+    .hero-cover { min-height: 720px; }
+    .hero-cover__title { font-size: clamp(56px, 16vw, 120px); }
+    .hero-cover__line { margin-bottom: 16px; }
+    .hero-cover__desc p { font-size: 18px; line-height: 1.25; max-width: 100%;}
+  }
 
-</style>
+  </style>

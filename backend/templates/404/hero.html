@@ -1,223 +1,185 @@
+<section class="home-banner-style9 p0">
+  <div class="home-style8">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="page-404-wrapper">
+            <div class="page-404-number">404</div>
 
-{% load static %}
-<section class="home-banner-style8 p0">
-      <div class="home-style8">
-        <div class="container">
-          <div class="row align-items-center justify-content-between">
-            <div class="col-lg-6 col-xl-6">
-              <div class="inner-banner-style8">
-                <h6 class="hero-sub-title animate-up-1">THE BEST WAY TO</h6>
-                <h2 class="hero-title animate-up-2">Find your happy</h2>
-                <p class="hero-text fz15 animate-up-3">Search properties for sale and to rent in the UK</p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xl-4">
-              <div class="advance-search-tab mt-5 mx-auto animate-up-3">
-                <ul class="nav nav-tabs p-0 m-0 border-bottom-0" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Buy</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rent</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Sold</button>
-                  </li>
-                </ul>
-                <div class="tab-content p30" id="myTabContent">
-                  <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="advance-content-style1 at-home8">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb20">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Property Type</option>
-                              <option>Apartments</option>
-                              <option>Bungalow</option>
-                              <option>Houses</option>
-                              <option>Loft</option>
-                              <option>Office</option>
-                              <option>TownHome</option>
-                              <option>Villa</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-3" aria-haspopup="listbox" aria-expanded="false" title="Property Type"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Property Type</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-3" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="dropdown-lists at-home8 mb20">
-                            <div class="btn open-btn drop_btn3 text-start dropdown-toggle" data-bs-toggle="dropdown">Price <i class="fas fa-caret-down float-end fz11"></i></div>
-                            <div class="dropdown-menu">
-                              <div class="widget-wrapper pb20 mb0 pl20 pr20">
-                                <!-- Range Slider Mobile Version -->
-                                <div class="range-slider-style2">
-                                  <div class="range-wrapper at-home10">
-                                    <div class="slider-range mb30 mt35 ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0.02%; width: 70.967%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0.02%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 70.987%;"></span></div>
-                                    <div class="text-center">
-                                      <input type="text" class="amount" placeholder="$20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
-                                      <input type="text" class="amount2" placeholder="$70987">
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb15">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Location</option>
-                              <option value="California">California</option>
-                              <option value="Chicago">Chicago</option>
-                              <option value="LosAngeles">Los Angeles</option>
-                              <option value="Manhattan">Manhattan</option>
-                              <option value="NewJersey">New Jersey</option>
-                              <option value="NewYork">New York</option>
-                              <option value="SanDiego">San Diego</option>
-                              <option value="SanFrancisco">San Francisco</option>
-                              <option value="Texas">Texas</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-4" aria-haspopup="listbox" aria-expanded="false" title="Location"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Location</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-4" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="d-bloc mt-3 mt-md-0 mb15">
-                            <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
-                          </div>
-                          <div class="d-grid">
-                            <button class="ud-btn btn-dark" type="button"><span class="flaticon-search pe-2 vam"></span>Search</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="advance-content-style1 at-home8">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb20">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Property Type</option>
-                              <option>Apartments</option>
-                              <option>Bungalow</option>
-                              <option>Houses</option>
-                              <option>Loft</option>
-                              <option>Office</option>
-                              <option>TownHome</option>
-                              <option>Villa</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-5" aria-haspopup="listbox" aria-expanded="false" title="Property Type"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Property Type</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-5" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="dropdown-lists at-home8 mb20">
-                            <div class="btn open-btn drop_btn3 text-start dropdown-toggle" data-bs-toggle="dropdown">Price <i class="fas fa-caret-down float-end fz11"></i></div>
-                            <div class="dropdown-menu">
-                              <div class="widget-wrapper pb20 mb0 pl20 pr20">
-                                <!-- Range Slider Mobile Version -->
-                                <div class="range-slider-style2">
-                                  <div class="range-wrapper at-home10">
-                                    <div class="slider-range mb30 mt35 ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0.02%; width: 70.967%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0.02%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 70.987%;"></span></div>
-                                    <div class="text-center">
-                                      <input type="text" class="amount" placeholder="$20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
-                                      <input type="text" class="amount2" placeholder="$70987">
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb15">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Location</option>
-                              <option value="California">California</option>
-                              <option value="Chicago">Chicago</option>
-                              <option value="LosAngeles">Los Angeles</option>
-                              <option value="Manhattan">Manhattan</option>
-                              <option value="NewJersey">New Jersey</option>
-                              <option value="NewYork">New York</option>
-                              <option value="SanDiego">San Diego</option>
-                              <option value="SanFrancisco">San Francisco</option>
-                              <option value="Texas">Texas</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-6" aria-haspopup="listbox" aria-expanded="false" title="Location"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Location</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-6" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="d-bloc mt-3 mt-md-0 mb15">
-                            <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
-                          </div>
-                          <div class="d-grid">
-                            <button class="ud-btn btn-dark" type="button"><span class="flaticon-search pe-2 vam"></span>Search</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div class="advance-content-style1 at-home8">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb20">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Property Type</option>
-                              <option>Apartments</option>
-                              <option>Bungalow</option>
-                              <option>Houses</option>
-                              <option>Loft</option>
-                              <option>Office</option>
-                              <option>TownHome</option>
-                              <option>Villa</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-7" aria-haspopup="listbox" aria-expanded="false" title="Property Type"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Property Type</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-7" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="dropdown-lists at-home8 mb20">
-                            <div class="btn open-btn drop_btn3 text-start dropdown-toggle" data-bs-toggle="dropdown">Price <i class="fas fa-caret-down float-end fz11"></i></div>
-                            <div class="dropdown-menu">
-                              <div class="widget-wrapper pb20 mb0 pl20 pr20">
-                                <!-- Range Slider Mobile Version -->
-                                <div class="range-slider-style2">
-                                  <div class="range-wrapper at-home10">
-                                    <div class="slider-range mb30 mt35 ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0.02%; width: 70.967%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0.02%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 70.987%;"></span></div>
-                                    <div class="text-center">
-                                      <input type="text" class="amount" placeholder="$20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
-                                      <input type="text" class="amount2" placeholder="$70987">
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="bootselect-multiselect mb15">
-                            <div class="dropdown bootstrap-select"><select class="selectpicker">
-                              <option>Location</option>
-                              <option value="California">California</option>
-                              <option value="Chicago">Chicago</option>
-                              <option value="LosAngeles">Los Angeles</option>
-                              <option value="Manhattan">Manhattan</option>
-                              <option value="NewJersey">New Jersey</option>
-                              <option value="NewYork">New York</option>
-                              <option value="SanDiego">San Diego</option>
-                              <option value="SanFrancisco">San Francisco</option>
-                              <option value="Texas">Texas</option>
-                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-8" aria-haspopup="listbox" aria-expanded="false" title="Location"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Location</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-8" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="d-bloc mt-3 mt-md-0 mb15">
-                            <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Advanced</button>
-                          </div>
-                          <div class="d-grid">
-                            <button class="ud-btn btn-dark" type="button"><span class="flaticon-search pe-2 vam"></span>Search</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="page-404-divider"></div>
+
+            <p class="page-404-text">
+              Looks like you’re lost... this page doesn’t exist.
+            </p>
+
+            <a href="/" class="wdt-button button-cta2 is-nm concierge-cta page-404-btn">
+  Back to home page
+  <i class="wdt-button__icon" aria-hidden="true"></i>
+</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+<style>
+  /* Родитель, чтобы можно было центрировать 404 */
+.page-404-wrapper {
+  position: relative;
+  max-width: 473px;
+  margin: 0 auto;
+  padding-top: 242px;  /* как в макете по вертикали */
+  padding-bottom: 80px;
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Большой 404 */
+.page-404-number {
+  width: 472px;
+  max-width: 100%;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 267px;
+  line-height: 0.89;
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    90deg,
+    #F0987D 0%,
+    #CE7F63 16.83%,
+    #FFBEA4 28.85%,
+    #CF795F 60.1%,
+    #FFAC93 69.71%,
+    #D7785B 83.65%,
+    #EA9278 97.12%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Линия под 404 */
+.page-404-divider {
+  width: 473px;
+  max-width: 100%;
+  height: 0;
+  margin: 10px auto 30px;
+  border: 2px solid #EA9278;
+  background: linear-gradient(
+    90deg,
+    #F0987D 0%,
+    #CE7F63 16.83%,
+    #FFBEA4 28.85%,
+    #CF795F 60.1%,
+    #FFAC93 69.71%,
+    #D7785B 83.65%,
+    #EA9278 97.12%
+  );
+}
+
+/* Подзаголовок */
+.page-404-text {
+  width: 440px;
+  max-width: 100%;
+  margin: 0 auto 35px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+/* Кнопка */
+.page-404-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  gap: 2px;
+
+  min-width: 148px;
+  height: 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 2.01471px 1.00735px 7.55515px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.25919px);
+
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+/* Текст в кнопке */
+.page-404-btn-text {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+/* Внешний контейнер иконки */
+.page-404-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+}
+
+/* Внутренняя "стрелка" (квадрат под 45°) */
+.page-404-btn-icon-inner {
+  width: 100%;
+  height: 100%;
+  border: 0.988011px solid #FFFFFF;
+  transform: rotate(-45deg);
+}
+
+/* Небольшой ховер */
+.page-404-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+/* Мобильная версия 404 (по макету) */
+@media (max-width: 767.98px) {
+
+  .page-404-wrapper {
+    max-width: 217px;
+    padding-top: 298px;       /* отступ сверху как в фигме */
+    padding-bottom: 40px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .page-404-number {
+    width: 115px;
+    margin: 0 auto 18px;
+    font-size: 65px;
+    line-height: 0.89;
+    letter-spacing: -0.04em;
+  }
+
+  /* Линию можно сделать короче или вовсе скрыть */
+  .page-404-divider {
+    display: none;
+  }
+
+  .page-404-text {
+    width: 217px;
+    margin: 0 auto 30px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 992px) {
+  .mobile-menu .header {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+.header, .footer {
+    background: transparent;
+}
+.mobile-menu .header {
+    background: transparent!important;
+}
+</style>

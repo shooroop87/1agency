@@ -1,5 +1,5 @@
 {% load static %}
-<section class="economy">
+<section id="economy" class="economy mb150">
 
   <img class="economy__curve" alt="" 
        src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/%D1%81urve_line.svg">
@@ -11,7 +11,7 @@
 
   <div class="container position-relative">
     <div class="row">
-      <div class="col-xl-7 col-lg-7 mt50-xs">
+      <div class="col-xl-7 col-lg-7 mt20 mt50-xs">
         <p class="economy__kicker">Economy</p>
         <h2 class="economy__title mt25-xs mb30-xs">A strong and growing<br> economy</h2>
         <p class="economy__lead">
@@ -66,11 +66,8 @@
 /* ===== Economy section ===== */
 .economy{
   position: relative;
-  padding-top: 100px;
-  padding-bottom: 90px;
-  border-radius: 0 0 55px 55px;
   overflow: hidden;
-  min-height: 987px;
+  min-height: 1240px;
 }
 
 .economy::before {
@@ -100,22 +97,36 @@
   width: 1253px; height:auto; 
   opacity:.75; pointer-events:none;
   transform: translateY(calc(-1527px + 420px)); /* опускаем в секцию */
+  z-index: 3;
 }
 
 /* Вилла + затемняющий градиент снизу */
 .economy__house-wrap{
   position:absolute;
-  right:0; top:120px; width: 700px; height: 700px;
-  display:grid; place-items:end;
+  top:130px;
+  right:0;
+  width:758px;
+  height:676px;
   pointer-events:none;
 }
 .economy__house{
-  height:auto; transform: translateX(-30px);
+  position:absolute;
+  left:130px;              /* 811.02 - 681.08 ≈ 130 */
+  top:22px;                /* 1321.82 - 1300 ≈ 22 */
+  width:629px;
+  height:654px;
+  object-fit:cover;
+  transform: scaleX(-1);   /* matrix(-1,0,0,1,0,0) из фигмы */
   filter: drop-shadow(0 40px 80px rgba(0,0,0,.45));
 }
 .economy__house-grad{
-  position:absolute; inset:auto 0 0 0; height: 70%;
-  background: linear-gradient(180deg, rgba(35,35,35,0) 0%, #232323 100%);
+  position:absolute;
+  left:73px;               /* 754 - 681.08 ≈ 73 */
+  top:0;
+  width:686px;
+  height:676px;
+  background: linear-gradient(180deg, rgba(35, 35, 35, 0) 0%, #232323 100%);
+  z-index:-1;
 }
 
 /* Заголовки/текст слева */
@@ -138,18 +149,19 @@
 
 /* Бейдж слева снизу */
 .economy__badge{
-  position:absolute; left:40px; top:460px; width:79px; height:78px;
+  position:absolute; top:721px; width:79px; height:78px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:5px; text-align:center;
   background: linear-gradient(179.63deg, #F0987D .32%, #272727 99.68%);
   border-radius:10px; color:#fff; font:600 12px/1 var(--title-font-family);
   backdrop-filter: blur(2px);
   border: 1px solid var(--gradient-accent);
+  z-index: 4;
 }
 
 /* Статистики */
 .economy__stats{
-  position:absolute; left:40px; right:40px; bottom:80px;
+  position:absolute; top:643px; right:40px; bottom:80px;
   display:grid; grid-template-columns: 325px 388px 388px;
   gap: 80px 140px; align-items:start;
 }

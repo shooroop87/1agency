@@ -33,24 +33,22 @@
         </div>
       </div>
 
-      <!-- ГАЛЕРЕЯ НА SWIPER -->
-      <div class="pr-gallery-wrap mt100 pb70">
-        <div class="swiper pr-swiper">
-          <div class="swiper-wrapper">
-            {% for i in bali_images %}
-              <div class="swiper-slide">
-                <img class="pr-thumb" src="{% static 'images/bali/' %}{{ i }}.png" alt="">
-              </div>
-            {% endfor %}
-          </div>
-          <div class="swiper-scrollbar"></div>
+      <!-- галерея (заменил только класс сетки и src) -->
+      <div class="pr-gallery-wrap">
+        <div class="slider-4-grid owl-carousel owl-theme">
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img1.png" alt=""></div>
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img2.png" alt=""></div>
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img3.png" alt=""></div>
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img4.png" alt=""></div>
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img5.png" alt=""></div>
+          <div class="item"><img class="pr-thumb" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/img6.png" alt=""></div>
         </div>
+        <span class="pr-line" aria-hidden="true"></span>
       </div>
 
     </div>
   </div>
 </section>
-
 <style>
 /* секция и фон */
 .property-rise .reviews-bg{
@@ -114,7 +112,18 @@
   max-width: 378px;
 }
 
-/* адаптив для карточки/таблицы */
+/* галерея */
+.pr-gallery-wrap{ position: relative; margin-top: 24px; }
+.pr-thumb{
+  display:block; width: 210px; height: 216px; object-fit: cover;
+  border-radius: 30px;
+}
+.pr-line{
+  position:absolute; left:0; right:0; bottom:-18px; height:0;
+  border-bottom: 4px solid rgba(255,255,255,.2); /* индикаторная линия */
+}
+
+/* адаптив */
 @media (max-width: 1199.98px){
   .pr-row{ grid-template-columns: 1fr; gap: 20px;}
   .pr-note{ order: 3; }
@@ -123,118 +132,4 @@
   .hero-cover__badge{text-align: center;width: 100%;font-size: 18px;line-height: 120%;}
 }
 
-/* ГАЛЕРЕЯ SWIPER */
-.pr-gallery-wrap{
-  position: relative;
-}
-
-.pr-swiper{
-  overflow: visible;
-}
-
-.pr-swiper .swiper-wrapper{
-  gap: 20px;
-}
-
-.pr-swiper .swiper-slide{
-  width: 210px !important;
-  height: 216px;
-}
-
-.pr-thumb{
-  display:block;
-  width: 210px;
-  height: 216px;
-  object-fit: cover;
-  border-radius: 30px;
-}
-
-/* Линия-индикатор = scrollbar */
-.pr-swiper .swiper-scrollbar {
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  width:100%;
-  height:4px;
-  background: rgba(255,255,255,0.2); /* линия по Figma */
-  border-radius: 4px;
-}
-
-/* Ползунок */
-.pr-swiper .swiper-scrollbar-drag {
-  background: var(--gradient-accent);   /* твой градиент */
-  border-radius: 4px;
-}
-
-/* Мобильная версия галереи */
-@media (max-width: 575px){
-  .pr-swiper{
-    overflow: visible;
-  }
-
-  .pr-swiper .swiper-wrapper{
-    display:flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .pr-swiper .swiper-slide{
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
-
-  .pr-swiper .swiper-scrollbar{
-    display:none; /* на мобиле без линии */
-  }
-}
 </style>
-
-<script>
-let propertySwiper;
-
-function initPropertySwiper() {
-  // ждём, пока Swiper загрузится
-  if (typeof Swiper === 'undefined') {
-    console.warn('Swiper for property gallery not loaded yet, retrying...');
-    setTimeout(initPropertySwiper, 100);
-    return;
-  }
-
-  const galleryEl = document.querySelector('.pr-swiper');
-  if (!galleryEl) return;
-
-  if (window.innerWidth > 575) {
-    if (!propertySwiper) {
-      propertySwiper = new Swiper('.pr-swiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-        freeMode: true,
-        grabCursor: true,
-        scrollbar: {
-          el: '.pr-swiper .swiper-scrollbar',
-          draggable: true,
-          dragSize: 210, // примерно ширина одного слайда
-        }
-      });
-    }
-  } else {
-    // на мобиле – обычный горизонтальный скролл
-    if (propertySwiper) {
-      propertySwiper.destroy(true, true);
-      propertySwiper = null;
-    }
-  }
-}
-
-// инициализация
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initPropertySwiper);
-} else {
-  initPropertySwiper();
-}
-
-window.addEventListener('resize', initPropertySwiper);
-</script>

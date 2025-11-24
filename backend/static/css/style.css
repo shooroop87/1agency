@@ -408,12 +408,13 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 /* ===== Reviews (hero background) ===== */
 .reviews-section{ position:relative; }
+
 .reviews-bg{
   min-height: 975px;
-  background-size: cover; background-position: center;
+  background-size: cover;
+  background-position: center;
   border-radius: 0; /* во всю ширину контейнера */
   display:block;
-  padding-top: 150px;
 }
 .reviews-kicker{
   color: var(--color-light-grey);
@@ -820,6 +821,7 @@ background-clip: text;
   .container,
   .container-lg,.container-md,.container-sm,.container-xl,.container-xxl{
     max-width:1360px;
+    padding-left: 0px;
   }
 }
 
@@ -5349,6 +5351,30 @@ h2 {
   right: 0;
 }
 
+#economy {
+  padding: 130px 0;
+}
+
+#property {
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  min-height: 1204px;
+  background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/property.png')
+}
+
+#economy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(https://andreyegorov.com/wp-content/uploads/2025/11/one.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    z-index: -1;
+    opacity: 1;
+}
+
 /*Home 1 Banner Content*/
 .home-banner-style8 {
   background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/about-bali.png');
@@ -5359,9 +5385,7 @@ h2 {
   min-height: 1240px;
 }
 .home-banner-style8 .home-style8 {
-  align-items: center;
   display: flex;
-  /*height: 860px;*/
   height: 100vh;
 }
 @media (max-width: 1199.98px) {
@@ -5379,6 +5403,53 @@ h2 {
   font-family: var(--title-font-family);
   font-weight: 600;
 }
+
+
+@media (max-width: 767.98px) {
+  .inner-banner-style8 .hero-title {
+    font-size: 36px;
+  }
+}
+.inner-banner-style8 .hero-text {
+  font-family: var(--title-font-family);
+  font-weight: 400;
+}
+
+
+/*Home 2 Banner Content*/
+.home-banner-style9 {
+  background-image: url('https://andreyegorov.com/wp-content/uploads/2025/11/bg_error.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 120vh;
+}
+.home-banner-style9 .home-style9 {
+  align-items: center;
+  display: flex;
+  /*height: 860px;*/
+  height: 100vh;
+}
+@media (max-width: 1199.98px) {
+  .home-banner-style9 .home-style9 {
+    height: 600px;
+  }
+}
+
+
+
+.inner-banner-style9 .hero-sub-title {
+  font-family: var(--title-font-family);
+  font-weight: 400;
+}
+.inner-banner-style9 .hero-title {
+  font-size: 52px;
+  font-family: var(--title-font-family);
+  font-weight: 600;
+}
+
+
 @media (max-width: 767.98px) {
   .inner-banner-style8 .hero-title {
     font-size: 36px;
@@ -11926,7 +11997,11 @@ input:focus-visible {
   padding:7px 15px !important;
 }
 
-
+/* CTA кнопка (35px высотой, 7×15 паддинги) */
+.button-cta2{
+  height:35px;
+  padding:7px 15px !important;
+}
 
 
 /* Скрыть системные отступы контейнера меню, чтобы совпали координаты */
@@ -12068,5 +12143,20 @@ input:focus-visible {
   .wdt-button.button-cta {
     background: var(--gradient-accent);
     width: 100%;
+  }
+  .wdt-button.button-cta2 {
+    background: var(--gradient-accent);
+  }
+  .home-banner-style9 {
+    background-size: auto;
+  }
+  #page2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: 1000;
   }
 }
