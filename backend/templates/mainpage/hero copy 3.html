@@ -399,15 +399,8 @@
 
 /* Spacer defines how long hero is pinned */
 .hero-spacer {
-  display: none;
-}
-
-/* Фикс для pin-spacer от GSAP */
-.pin-spacer {
-  pointer-events: none;
-}
-.pin-spacer > * {
-  pointer-events: auto;
+  height: 200vh;
+  width: 100%;
 }
 
 /* Callback Modal */
@@ -591,115 +584,139 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Проверка GSAP
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('GSAP или ScrollTrigger не загружены');
-    return;
-  }
-  
-  gsap.registerPlugin(ScrollTrigger);
+  // Ждём загрузки DOM и GSAP
+  document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем загрузку GSAP
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
 
-  const hero = document.querySelector('.hero-section-desktop');
-  const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
-  const navWrap = document.querySelector('.nav-wrap');
-  
-  if (!hero || !navWrap) return;
+      const heroSection = document.querySelector('.hero-section-desktop');
+      const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
+      const spacer      = document.querySelector('.hero-spacer');
+      const navWrap     = document.querySelector('.nav-wrap');
+      
+      if (heroSection && spacer && navWrap) {
+        // Pin hero block
+        ScrollTrigger.create({
+          trigger: heroSection,
+          start: "top top",
+          end: () => spacer.offsetHeight,
+          pin: heroSection,
+          pinSpacing: false
+        });
 
-  // 1. PIN hero секции
-  const heroTL = gsap.timeline({
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: '+=150%',      // pin на 150% viewport
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
-      onLeave: () => {
-        navWrap.classList.add('is-sticky');
-        navWrap.style.position = 'fixed';
-        navWrap.style.top = '0';
-      },
-      onEnterBack: () => {
-        navWrap.classList.add('is-sticky');
-        navWrap.style.position = 'fixed';
-        navWrap.style.top = '0';
-      },
-      onLeaveBack: () => {
-        navWrap.classList.remove('is-sticky');
-        navWrap.style.position = 'absolute';
-        navWrap.style.top = '520px';
+        // Image reveal on scroll
+        bottomItems.forEach(item => {
+          gsap.fromTo(
+            item,
+            { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
+            {
+              clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
+              ease: "none",
+              scrollTrigger: {
+                trigger: heroSection,
+                start: "top top",
+                end: () => spacer.offsetHeight * 0.5,
+                scrub: true
+              }
+            }
+          );
+        });
+
+        // Sticky nav
+        ScrollTrigger.create({
+          trigger: spacer,
+          start: "top top+=520",
+          end: "bottom top",
+          onEnter() {
+            navWrap.classList.add('is-sticky');
+            gsap.to(navWrap, {
+              position: 'fixed',
+              top: 0,
+              duration: 0.3
+            });
+          },
+          onEnterBack() {
+            navWrap.classList.add('is-sticky');
+            gsap.to(navWrap, {
+              position: 'fixed',
+              top: 0,
+              duration: 0.3
+            });
+          },
+          onLeaveBack() {
+            navWrap.classList.remove('is-sticky');
+            gsap.to(navWrap, {
+              position: 'absolute',
+              top: 520,
+              duration: 0.3
+            });
+          }
+        });
       }
+    } else {
+      console.warn('GSAP or ScrollTrigger not loaded');
     }
-  });
-// 2. Анимация clip-path для каждого изображения
-  bottomItems.forEach((item, index) => {
-    const startProgress = index * 0.4;  // 0, 0.4, 0.8
-    
-    heroTL.fromTo(item,
-      { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },  // скрыто внизу
-      { 
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',        // полностью открыто
-        ease: 'power2.inOut',
-        duration: 0.5
-      },
-      startProgress
-    );
-  });
 
-  // 3. Скрытие "Scroll down" при скролле
-  const scrollLabel = document.querySelector('.hero-label-left');
-  if (scrollLabel) {
-    gsap.to(scrollLabel, {
-      opacity: 0,
-      y: 20,
-      scrollTrigger: {
-        trigger: hero,
-        start: 'top top',
-        end: '+=20%',
-        scrub: true
+    // Callback Modal
+    const modal = document.getElementById('callbackModal');
+    
+    if (!modal) {
+      console.warn('Callback modal not found');
+      return;
+    }
+
+    const openBtns = document.querySelectorAll('.open-callback-modal');
+    const closeBtn = modal.querySelector('.callback-modal__close');
+    const overlay = modal.querySelector('.callback-modal__overlay');
+    const form = document.getElementById('callbackForm');
+
+    if (!closeBtn || !overlay || !form) {
+      console.warn('Modal elements not found');
+      return;
+    }
+
+    // Открытие модалки
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Закрытие модалки
+    function closeModal() {
+      modal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+        closeModal();
       }
     });
-  }
 
-  console.log('✅ Hero GSAP готов');
-
-// === CALLBACK MODAL ===
-  const modal = document.getElementById('callbackModal');
-  if (!modal) return;
-
-  const openBtns = document.querySelectorAll('.open-callback-modal');
-  const closeBtn = modal.querySelector('.callback-modal__close');
-  const overlay = modal.querySelector('.callback-modal__overlay');
-  const form = document.getElementById('callbackForm');
-
-  function closeModal() {
-    modal.classList.remove('is-active');
-    document.body.style.overflow = '';
-  }
-
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', e => {
+    // Отправка формы
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      modal.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
+      
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        privacy: formData.get('privacy')
+      };
 
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (overlay) overlay.addEventListener('click', closeModal);
-  
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) closeModal();
-  });
-
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Спасибо! Мы свяжемся с вами.');
+      console.log('Form data:', data);
+      alert('Thank you! We will contact you soon.');
+      
       closeModal();
       form.reset();
     });
-  }
-});
+  });
 </script>
