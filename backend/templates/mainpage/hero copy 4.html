@@ -158,13 +158,12 @@
   padding: 0 40px;
 }
 
-/* Hero section */
+/* Hero section (NOT fixed, ScrollTrigger will pin it) */
 .hero-section-desktop {
   position: relative;
   width: 100%;
   height: 100vh;
   z-index: 1;
-  overflow: hidden;
 }
 
 /* Hero background wrapper */
@@ -180,7 +179,7 @@
   padding-top: 47px;
 }
 
-/* 3 cards in a row */
+/* 3 cards in a row, 20px gaps, inside 1440px container */
 .u-grid-custom {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -188,7 +187,7 @@
   row-gap: 20px;
 }
 
-/* Column */
+/* Column: center card within column */
 .hero-col {
   position: relative;
   display: flex;
@@ -206,7 +205,7 @@
   overflow: hidden;
 }
 
-/* Top / bottom layers */
+/* Top / bottom layers for image scroll effect */
 .hero-grid-item-top,
 .hero-grid-item-bottom {
   position: absolute;
@@ -217,7 +216,7 @@
 }
 
 .hero-grid-item-bottom {
-  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  clip-path: polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%);
   z-index: 2;
 }
 
@@ -235,33 +234,14 @@
   object-fit: cover;
 }
 
-/* Navigation - изначально absolute внутри hero */
+/* Navigation wrapper (initially inside hero, then ScrollTrigger makes it fixed) */
 .nav-wrap {
   position: absolute;
   left: 0;
   top: 520px;
   width: 100%;
-  z-index: 100;
-  transition: background 0.3s ease, padding 0.3s ease;
-}
-
-/* Sticky state - добавляется JS когда nav касается верха */
-.nav-wrap.is-sticky {
-  position: fixed !important;
-  top: 0 !important;
-  background: rgba(39, 39, 39, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 20px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.nav-wrap.is-sticky .hero-mark {
-  width: 22px;
-  height: 44px;
-}
-
-.nav-wrap.is-sticky .hero-name {
-  font-size: 32px;
+  z-index: 10;
+  transition: all 0.3s ease;
 }
 
 .nav-contain {
@@ -274,7 +254,7 @@
   justify-content: space-between;
 }
 
-/* Logo */
+/* Logo left */
 .hero-brand {
   display: flex;
   align-items: center;
@@ -285,7 +265,6 @@
   width: 51px;
   height: 101px;
   object-fit: contain;
-  transition: all 0.3s ease;
 }
 
 .hero-name {
@@ -295,11 +274,19 @@
   font-size: 50px;
   line-height: 89%;
   letter-spacing: -0.04em;
-  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  background: linear-gradient(
+    90deg,
+    #F0987D 0%,
+    #CE7F63 16.83%,
+    #FFBEA4 28.85%,
+    #CF795F 60.1%,
+    #FFAC93 69.71%,
+    #D7785B 83.65%,
+    #EA9278 97.12%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: font-size 0.3s ease;
 }
 
 /* Navigation center */
@@ -358,10 +345,19 @@
   align-items: center;
   color: white;
   font-family: 'Manrope', sans-serif;
+  font-style: normal;
   font-weight: 600;
   font-size: 15px;
   line-height: 120%;
   gap: 5px;
+}
+
+.scroll-dot {
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  margin-top: 8px;
 }
 
 .hero-label-right.is-desktop {
@@ -380,10 +376,40 @@
   margin: 0;
 }
 
-/* Spacer - создаёт пространство для scrub анимации */
-.hero-spacer {
-  height: 100vh;
+/* Sticky nav state (class is added by ScrollTrigger in JS) */
+.nav-wrap.is-sticky {
+  background: rgba(39, 39, 39, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+
+.nav-wrap.is-sticky .nav-contain {
+  max-width: 1440px;
+}
+
+.nav-wrap.is-sticky .hero-mark {
+  width: 22px;
+  height: 44px;
+}
+
+.nav-wrap.is-sticky .hero-name {
+  font-size: 32px;
+}
+
+/* Spacer defines how long hero is pinned */
+.hero-spacer {
+  display: none;
+}
+
+/* Фикс для pin-spacer от GSAP */
+.pin-spacer {
+  pointer-events: none;
+}
+.pin-spacer > * {
+  pointer-events: auto;
+}
+
 /* Callback Modal */
 .callback-modal {
   position: fixed;
@@ -566,6 +592,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Проверка GSAP
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP или ScrollTrigger не загружены');
     return;
@@ -573,72 +600,71 @@ document.addEventListener('DOMContentLoaded', function() {
   
   gsap.registerPlugin(ScrollTrigger);
 
-  const heroSection = document.querySelector('.hero-section-desktop');
+  const hero = document.querySelector('.hero-section-desktop');
   const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
   const navWrap = document.querySelector('.nav-wrap');
-  const scrollLabel = document.querySelector('.hero-label-left');
   
-  if (!heroSection || !navWrap) return;
+  if (!hero || !navWrap) return;
 
-  // Запоминаем начальную позицию nav
-  const navOriginalTop = 520;
-
-  // === 1. PIN hero + анимация картинок ===
+  // 1. PIN hero секции
   const heroTL = gsap.timeline({
     scrollTrigger: {
-      trigger: heroSection,
+      trigger: hero,
       start: 'top top',
-      end: '+=100%',  // Длина скролла для анимации = 1 viewport
+      end: '+=150%',      // pin на 150% viewport
       pin: true,
-      scrub: 0.5,
+      scrub: 1,
       anticipatePin: 1,
-      pinSpacing: true
-    }
-  });
-
-  // Анимация clip-path для обеих карточек одновременно
-  bottomItems.forEach((item) => {
-    heroTL.fromTo(item,
-      { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
-      { 
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        ease: 'none',
-        duration: 1
-      },
-      0  // Все начинают одновременно
-    );
-  });
-
-  // Fade out "Scroll down"
-  if (scrollLabel) {
-    heroTL.to(scrollLabel, {
-      opacity: 0,
-      duration: 0.3
-    }, 0);
-  }
-
-  // === 2. Sticky навигация после hero ===
-  ScrollTrigger.create({
-    trigger: heroSection,
-    start: () => `top+=${navOriginalTop}px top`,
-    endTrigger: 'body',
-    end: 'bottom top',
-    onUpdate: (self) => {
-      // Когда nav должен стать sticky
-      const heroRect = heroSection.getBoundingClientRect();
-      const navShouldBeSticky = heroRect.top + navOriginalTop <= 0;
-      
-      if (navShouldBeSticky) {
+      onLeave: () => {
         navWrap.classList.add('is-sticky');
-      } else {
+        navWrap.style.position = 'fixed';
+        navWrap.style.top = '0';
+      },
+      onEnterBack: () => {
+        navWrap.classList.add('is-sticky');
+        navWrap.style.position = 'fixed';
+        navWrap.style.top = '0';
+      },
+      onLeaveBack: () => {
         navWrap.classList.remove('is-sticky');
+        navWrap.style.position = 'absolute';
+        navWrap.style.top = '520px';
       }
     }
   });
+// 2. Анимация clip-path для каждого изображения
+  bottomItems.forEach((item, index) => {
+    const startProgress = index * 0.4;  // 0, 0.4, 0.8
+    
+    heroTL.fromTo(item,
+      { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },  // скрыто внизу
+      { 
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',        // полностью открыто
+        ease: 'power2.inOut',
+        duration: 0.5
+      },
+      startProgress
+    );
+  });
 
-  console.log('✅ Hero scroll готов');
+  // 3. Скрытие "Scroll down" при скролле
+  const scrollLabel = document.querySelector('.hero-label-left');
+  if (scrollLabel) {
+    gsap.to(scrollLabel, {
+      opacity: 0,
+      y: 20,
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: '+=20%',
+        scrub: true
+      }
+    });
+  }
 
-  // === CALLBACK MODAL ===
+  console.log('✅ Hero GSAP готов');
+
+// === CALLBACK MODAL ===
   const modal = document.getElementById('callbackModal');
   if (!modal) return;
 
