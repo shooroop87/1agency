@@ -219,3 +219,29 @@ coverage/
 
 backend/backend/static/img/
 static/img/
+
+
+# Credentials - НИКОГДА не коммитить!
+credentials/*.json
+!credentials/.gitkeep
+
+# Token файлы
+credentials/token.json
+
+# Environment
+.env
+.env.local
+.env.production
+```
+
+---
+
+## 81. credentials/.gitkeep
+```
+# This directory stores Google API credentials
+# NEVER commit actual credential files!
+# 
+# Required files:
+# - gmail-credentials.json (Service Account key from Google Cloud Console)
+# OR
+# - oauth-credentials.json (OAuth2 credentials for personal Gmail)

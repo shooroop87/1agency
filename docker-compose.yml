@@ -1,10 +1,8 @@
-version: "3.9"
-
 volumes:
   pg_data:
   redis_data:
-  static:           # собранная статика Django (collectstatic)
-  media:            # медиа-файлы (upload)
+  static:
+  media:
 
 networks:
   webnet:

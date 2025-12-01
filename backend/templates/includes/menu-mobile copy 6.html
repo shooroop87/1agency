@@ -1,99 +1,114 @@
-{% load static i18n %}
+{% load static %}
+
 <div id="page" class="mobilie_header_nav stylehome1">
   <div class="mobile-menu">
     <div class="header innerpage-style">
       <div class="menu_and_widgets">
         <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
 
-          <a class="mobile_logo hero-brand-mobile" href="{% url 'home' %}">
+          <!-- Лого слева -->
+          <a class="mobile_logo hero-brand-mobile" href="/">
             <img class="hero-mark" width="51" height="101"
-                 src="{% static 'images/logo-mark.png' %}" alt="{{ site_settings.site_name }}">
-            <span class="hero-name-mobile">{{ site_settings.site_name }}</span>
+                 src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png"
+                 alt="One Agency">
+            <span class="hero-name-mobile">One Agency</span>
           </a>
 
+          <!-- Иконки справа -->
           <div class="mobile_menu_actions d-flex align-items-center">
+            <!-- избранное -->
             <a href="#" class="favorites-btn" aria-label="Favorites">
-              <span class="flaticon-like"></span>
+                <span class="flaticon-like"></span>
             </a>
+
+            <!-- бургер -->
             <button type="button" class="mobile-burger" id="openMobileMenu" aria-label="Menu">
               <img src="{% static 'images/mobile_button.svg' %}" alt="Menu">
             </button>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Mobile Menu Panel -->
+<!-- Само мобильное меню -->
 <div class="oa-mobile-menu" id="oaMobileMenu">
   <div class="oa-mobile-menu__overlay" id="menuOverlay"></div>
   
   <div class="oa-mobile-menu__panel">
     <div class="oa-mobile-menu__inner">
       
+      <!-- Верх: логотип + крестик -->
       <div class="oa-mobile-menu__top">
-        <a class="hero-brand-mobile oa-mobile-menu__logo" href="{% url 'home' %}">
+        <a class="hero-brand-mobile oa-mobile-menu__logo" href="/">
           <img class="hero-mark" width="51" height="101"
-               src="{% static 'images/logo-mark.png' %}" alt="{{ site_settings.site_name }}">
+               src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png"
+               alt="One Agency">
         </a>
-        <span class="oa-mobile-menu__close" id="closeMobileMenu" aria-label="Close menu">×</span>
+
+        <span type="button" class="oa-mobile-menu__close" id="closeMobileMenu" aria-label="Close menu">
+          <img src="/static/images/save_icon.svg" alt="Favorites" class="favorites-icon">
+        </span>
       </div>
 
+      <!-- Три колонки меню -->
       <div class="oa-mobile-menu__columns mt50">
         <div class="oa-mobile-menu__col">
-          <a href="#aboutus" class="oa-mobile-menu__link">{% trans "About us" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "About Bali" %}</a>
-          <a href="#faq" class="oa-mobile-menu__link">{% trans "FAQ" %}</a>
-          <a href="#contactus" class="oa-mobile-menu__link">{% trans "Contacts" %}</a>
+          <a href="#" class="oa-mobile-menu__link">About us</a>
+          <a href="{% url 'about' %}" class="oa-mobile-menu__link">About Bali</a>
+          <a href="#" class="oa-mobile-menu__link">Map</a>
+          <a href="#" class="oa-mobile-menu__link">FAQ</a>
+          <a href="#" class="oa-mobile-menu__link">Reviews</a>
+          <a href="#" class="oa-mobile-menu__link">Partners</a>
+          <a href="#" class="oa-mobile-menu__link">Contacts</a>
         </div>
 
         <div class="oa-mobile-menu__col">
-          <div class="oa-mobile-menu__col-title">{% trans "Our projects" %}</div>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Apartments" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Villas" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Townhouses" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Land plots" %}</a>
+          <div class="oa-mobile-menu__col-title">Our projects</div>
+          <a href="#" class="oa-mobile-menu__link">Apartments</a>
+          <a href="#" class="oa-mobile-menu__link">Villas</a>
+          <a href="#" class="oa-mobile-menu__link">Townhouses</a>
+          <a href="#" class="oa-mobile-menu__link">Land plots</a>
         </div>
 
         <div class="oa-mobile-menu__col">
-          <div class="oa-mobile-menu__col-title">{% trans "Concierge service" %}</div>
-          <a href="#concierge" class="oa-mobile-menu__link">{% trans "All services" %}</a>
+          <div class="oa-mobile-menu__col-title">Concierge service</div>
+          <a href="#" class="oa-mobile-menu__link">Accommodation</a>
+          <a href="#" class="oa-mobile-menu__link">Transportation</a>
+          <a href="#" class="oa-mobile-menu__link">Legal support</a>
+          <a href="#" class="oa-mobile-menu__link">Travel</a>
         </div>
       </div>
 
-      <!-- Language Switcher -->
-      <div class="oa-mobile-menu__lang mt30">
-        {% for lang_code, lang_name in LANGUAGES %}
-          <a href="{% url 'set_language' %}?language={{ lang_code }}" 
-             class="lang-link {% if lang_code == current_language %}active{% endif %}">
-            {{ lang_code|upper }}
-          </a>
-        {% endfor %}
-      </div>
-
+      <!-- Блок контактов -->
       <div class="oa-mobile-menu__contacts mt45 mb25">
         <div class="oa-mobile-menu__contacts-title">
           <span class="oa-mobile-menu__dot"></span>
-          <span>{% trans "Request details" %}</span>
+          <span>Request details</span>
         </div>
-        <div class="oa-mobile-menu__contacts-text">{% trans "Call us" %}: {{ site_settings.phone }}</div>
-        <div class="oa-mobile-menu__contacts-text">{% trans "Email us" %}: {{ site_settings.email }}</div>
+        <div class="oa-mobile-menu__contacts-text">Call us: +62 822 663 61 606</div>
+        <div class="oa-mobile-menu__contacts-text">Email us: one.agency.bali@gmail.com</div>
+        <a href="#" class="oa-mobile-menu__contacts-link">Instagram RU</a>
+        <a href="#" class="oa-mobile-menu__contacts-link">Instagram ENG</a>
       </div>
 
+      <!-- Низ: избранное + Order a call -->
       <div class="oa-mobile-menu__bottom">
         <a href="#" class="favorites-btn" aria-label="Favorites">
           <span class="flaticon-like"></span>
         </a>
-        <a href="#" class="oa-mobile-menu__button open-callback-modal">
-          {% trans "Order a call" %}
+
+        <a href="#contact" class="oa-mobile-menu__button">
+          Order a call
           <i class="oa-mobile-menu__arrow" aria-hidden="true"></i>
         </a>
       </div>
+
     </div>
   </div>
 </div>
-
 <style>
   /* ---------- HEADER: логотип + избранное + бургер ---------- */
 

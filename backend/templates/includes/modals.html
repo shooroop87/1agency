@@ -1,0 +1,237 @@
+{% load static i18n %}
+
+<!-- Callback Modal -->
+<div id="callbackModal" class="callback-modal">
+  <div class="callback-modal__overlay"></div>
+  <div class="callback-modal__content">
+    <button class="callback-modal__close" type="button">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <!-- Form Body -->
+    <div class="modal-body" id="callbackModalBody">
+      <h2 class="callback-modal__title">
+        {% if popup_callback %}
+          {{ popup_callback.title }}
+        {% else %}
+          {% trans "Request a callback using this form" %}
+        {% endif %}
+      </h2>
+
+      <form class="callback-form" id="callbackForm">
+        {% csrf_token %}
+        <div class="callback-form__field">
+          <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
+        </div>
+        <div class="callback-form__field">
+          <input type="tel" name="phone" placeholder="{% trans 'Your WhatsApp or phone number' %}" required>
+        </div>
+        <div class="callback-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required>
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-text">{% trans "I agree to the terms of the Privacy Policy" %}</span>
+          </label>
+        </div>
+        <button type="submit" class="callback-form__submit">
+          {% if popup_callback %}{{ popup_callback.button_text }}{% else %}{% trans "Send" %}{% endif %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="modal-success" id="callbackModalSuccess" style="display: none;">
+      <p class="modal-success__title">
+        {% if popup_callback %}{{ popup_callback.success_title }}{% else %}{% trans "Thank you!" %}{% endif %}
+      </p>
+      <p class="modal-success__text">
+        {% if popup_callback %}{{ popup_callback.success_message }}{% else %}{% trans "Your request has been successfully submitted." %}{% endif %}
+      </p>
+      <button type="button" class="modal-success__btn close-modal-btn">
+        {% trans "Close" %}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Service Request Modal -->
+<div id="serviceModal" class="service-modal">
+  <div class="service-modal__overlay"></div>
+  <div class="service-modal__content">
+    <button class="service-modal__close" type="button">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <!-- Form Body -->
+    <div class="modal-body" id="serviceModalBody">
+      <div class="service-modal__header">
+        <h2 class="service-modal__title">
+          {% if popup_service %}{{ popup_service.title }}{% else %}{% trans "Request a service" %}{% endif %}
+        </h2>
+        {% if popup_service and popup_service.subtitle %}
+        <p class="service-modal__subtitle">{{ popup_service.subtitle }}</p>
+        {% endif %}
+      </div>
+
+      <form class="service-form" id="serviceForm">
+        {% csrf_token %}
+        <div class="service-form__field">
+          <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
+        </div>
+        <div class="service-form__field">
+          <input type="tel" name="phone" placeholder="{% trans 'Your WhatsApp or phone number' %}" required>
+        </div>
+        <div class="service-form__field">
+          <input type="email" name="email" placeholder="{% trans 'Your E-mail' %}" required>
+        </div>
+        <div class="service-form__field">
+          <textarea name="message" placeholder="{% trans 'Your message' %}" rows="4"></textarea>
+        </div>
+        <div class="service-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required>
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-text">{% trans "I agree to the terms of the Privacy Policy" %}</span>
+          </label>
+        </div>
+        <button type="submit" class="service-form__submit">
+          {% if popup_service %}{{ popup_service.button_text }}{% else %}{% trans "Send" %}{% endif %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="modal-success" id="serviceModalSuccess" style="display: none;">
+      <p class="modal-success__title">
+        {% if popup_service %}{{ popup_service.success_title }}{% else %}{% trans "Thank you!" %}{% endif %}
+      </p>
+      <p class="modal-success__text">
+        {% if popup_service %}{{ popup_service.success_message }}{% else %}{% trans "Your request has been successfully submitted." %}{% endif %}
+      </p>
+      <button type="button" class="modal-success__btn close-modal-btn">
+        {% trans "Close" %}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Question Modal -->
+<div id="faqQuestionModal" class="question-modal">
+  <div class="question-modal__overlay"></div>
+  <div class="question-modal__content">
+    <button class="question-modal__close" type="button">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <!-- Form Body -->
+    <div class="modal-body" id="faqQuestionBody">
+      <div class="question-modal__header">
+        <h2 class="question-modal__title">
+          {% if popup_faq %}{{ popup_faq.title }}{% else %}{% trans "Ask your question" %}{% endif %}
+        </h2>
+      </div>
+
+      <form class="question-form" id="faqQuestionForm">
+        {% csrf_token %}
+        <div class="question-form__field">
+          <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
+        </div>
+        <div class="question-form__field">
+          <input type="tel" name="phone" placeholder="{% trans 'Your WhatsApp or phone number' %}" required>
+        </div>
+        <div class="question-form__field">
+          <input type="email" name="email" placeholder="{% trans 'Your E-mail' %}" required>
+        </div>
+        <div class="question-form__field">
+          <textarea name="message" placeholder="{% trans 'Your question' %}" rows="4" required></textarea>
+        </div>
+        <div class="question-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required>
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-text">{% trans "I agree to the terms of the Privacy Policy" %}</span>
+          </label>
+        </div>
+        <button type="submit" class="question-form__submit">
+          {% if popup_faq %}{{ popup_faq.button_text }}{% else %}{% trans "Send" %}{% endif %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="modal-success" id="faqQuestionSuccess" style="display: none;">
+      <p class="modal-success__title">
+        {% if popup_faq %}{{ popup_faq.success_title }}{% else %}{% trans "Thank you!" %}{% endif %}
+      </p>
+      <p class="modal-success__text">
+        {% if popup_faq %}{{ popup_faq.success_message }}{% else %}{% trans "Your question has been successfully submitted." %}{% endif %}
+      </p>
+      <button type="button" class="modal-success__btn close-modal-btn">
+        {% trans "Close" %}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Service Details Modal -->
+<div id="serviceDetailsModal" class="service-details-modal">
+  <div class="service-details-modal__overlay"></div>
+  <div class="service-details-modal__content">
+    <button class="service-details-modal__close" type="button">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="sdm-header">
+      <h2 class="sdm-title"></h2>
+      <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal-from-details">
+        {% trans "Request service" %}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="sdm-separator"></div>
+    <ul class="sdm-list"></ul>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="review-modal">
+  <div class="review-modal__overlay"></div>
+  <div class="review-modal__content">
+    <button class="review-modal__close" type="button">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="review-modal__header">
+      <span class="review-modal__name"></span>
+      <h3 class="review-modal__title"></h3>
+    </div>
+
+    <div class="review-modal__separator"></div>
+    <div class="review-modal__text"></div>
+  </div>
+</div>

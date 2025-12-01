@@ -1,0 +1,210 @@
+{% load i18n %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // ===== GENERIC MODAL FUNCTIONS =====
+  function openModal(modal) {
+    if (!modal) return;
+    modal.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+  
+  function resetModal(modal) {
+    const form = modal.querySelector('form');
+    const body = modal.querySelector('.modal-body');
+    const success = modal.querySelector('.modal-success');
+    
+    if (form) form.reset();
+    if (body) body.style.display = 'block';
+    if (success) success.style.display = 'none';
+  }
+  
+  function showSuccess(modal) {
+    const body = modal.querySelector('.modal-body');
+    const success = modal.querySelector('.modal-success');
+    
+    if (body) body.style.display = 'none';
+    if (success) success.style.display = 'flex';
+  }
+  
+  // ===== CALLBACK MODAL =====
+  const callbackModal = document.getElementById('callbackModal');
+  const callbackForm = document.getElementById('callbackForm');
+  
+  document.querySelectorAll('.open-callback-modal').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetModal(callbackModal);
+      openModal(callbackModal);
+    });
+  });
+  
+  if (callbackModal) {
+    callbackModal.querySelector('.callback-modal__close')?.addEventListener('click', () => closeModal(callbackModal));
+    callbackModal.querySelector('.callback-modal__overlay')?.addEventListener('click', () => closeModal(callbackModal));
+  }
+  
+  if (callbackForm) {
+    callbackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      fetch('{% url "submit_callback" %}', {
+        method: 'POST',
+        body: new FormData(callbackForm),
+        headers: { 'X-CSRFToken': getCookie('csrftoken') }
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) showSuccess(callbackModal);
+      })
+      .catch(err => console.error(err));
+    });
+  }
+  
+  // ===== SERVICE MODAL =====
+  const serviceModal = document.getElementById('serviceModal');
+  const serviceForm = document.getElementById('serviceForm');
+  
+  document.querySelectorAll('.open-service-modal').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetModal(serviceModal);
+      openModal(serviceModal);
+    });
+  });
+  
+  if (serviceModal) {
+    serviceModal.querySelector('.service-modal__close')?.addEventListener('click', () => closeModal(serviceModal));
+    serviceModal.querySelector('.service-modal__overlay')?.addEventListener('click', () => closeModal(serviceModal));
+  }
+  
+  if (serviceForm) {
+    serviceForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      fetch('{% url "submit_service" %}', {
+        method: 'POST',
+        body: new FormData(serviceForm),
+        headers: { 'X-CSRFToken': getCookie('csrftoken') }
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) showSuccess(serviceModal);
+      })
+      .catch(err => console.error(err));
+    });
+  }
+  
+  // ===== FAQ QUESTION MODAL =====
+  const faqModal = document.getElementById('faqQuestionModal');
+  const faqForm = document.getElementById('faqQuestionForm');
+  
+  document.querySelectorAll('.open-faq-modal').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetModal(faqModal);
+      openModal(faqModal);
+    });
+  });
+  
+  if (faqModal) {
+    faqModal.querySelector('.question-modal__close')?.addEventListener('click', () => closeModal(faqModal));
+    faqModal.querySelector('.question-modal__overlay')?.addEventListener('click', () => closeModal(faqModal));
+  }
+  
+  if (faqForm) {
+    faqForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      fetch('{% url "submit_faq_question" %}', {
+        method: 'POST',
+        body: new FormData(faqForm),
+        headers: { 'X-CSRFToken': getCookie('csrftoken') }
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) showSuccess(faqModal);
+      })
+      .catch(err => console.error(err));
+    });
+  }
+  
+  // ===== SERVICE DETAILS MODAL =====
+  const detailsModal = document.getElementById('serviceDetailsModal');
+  
+  document.querySelectorAll('.open-service-details').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const title = this.dataset.serviceTitle;
+      const items = this.dataset.serviceItems.split(',');
+      
+      detailsModal.querySelector('.sdm-title').textContent = title;
+      const list = detailsModal.querySelector('.sdm-list');
+      list.innerHTML = '';
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.trim();
+        list.appendChild(li);
+      });
+      
+      openModal(detailsModal);
+    });
+  });
+  
+  if (detailsModal) {
+    detailsModal.querySelector('.service-details-modal__close')?.addEventListener('click', () => closeModal(detailsModal));
+    detailsModal.querySelector('.service-details-modal__overlay')?.addEventListener('click', () => closeModal(detailsModal));
+    
+    detailsModal.querySelector('.open-service-modal-from-details')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeModal(detailsModal);
+      setTimeout(() => {
+        resetModal(serviceModal);
+        openModal(serviceModal);
+      }, 300);
+    });
+  }
+  
+  // ===== REVIEW MODAL =====
+  const reviewModal = document.getElementById('reviewModal');
+  
+  document.querySelectorAll('.open-review-modal').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      reviewModal.querySelector('.review-modal__name').textContent = this.dataset.reviewName;
+      reviewModal.querySelector('.review-modal__title').textContent = this.dataset.reviewTitle;
+      reviewModal.querySelector('.review-modal__text').textContent = this.dataset.reviewText;
+      
+      openModal(reviewModal);
+    });
+  });
+  
+  if (reviewModal) {
+    reviewModal.querySelector('.review-modal__close')?.addEventListener('click', () => closeModal(reviewModal));
+    reviewModal.querySelector('.review-modal__overlay')?.addEventListener('click', () => closeModal(reviewModal));
+  }
+  
+  // ===== CLOSE BUTTONS & ESC =====
+  document.querySelectorAll('.close-modal-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const modal = this.closest('[class$="-modal"]');
+      closeModal(modal);
+    });
+  });
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.is-active').forEach(modal => closeModal(modal));
+    }
+  });
+  
+});
+</script>

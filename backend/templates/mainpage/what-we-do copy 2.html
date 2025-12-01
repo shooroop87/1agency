@@ -1,44 +1,151 @@
-{% load static i18n %}
-<section class="concierge section-content" id="concierge">
+{% load static %}
+<section class="concierge">
   <div class="container">
 
     <div class="row">
       <div class="col-12">
         <div class="concierge-head">
-          <span class="concierge-eyebrow mb25">{% trans "What we do for you" %}</span>
-          <h2 class="concierge-title h2 mb30">{% trans "Concierge service in Bali" %}</h2>
+          <span class="concierge-eyebrow mb25">What we do for you</span>
+          <h2 class="concierge-title h2 mb30">Concierge service in Bali</h2>
         </div>
       </div>
     </div>
 
     <div class="row gx-0 gy-30">
-      {% for service in concierge_services %}
       <div class="col-12">
+        <!-- item 1 -->
         <article class="concierge-item mb-15">
           <div class="ci-left">
-            {% if service.image %}
-            <img class="ci-thumb" src="{{ service.image.url }}" alt="{{ service.title }}">
-            {% endif %}
+            <img class="ci-thumb" src="https://andreyegorov.com/wp-content/uploads/2025/11/Rectangle-3448-3.png" alt="">
             <div>
               <span class="ci-dot" aria-hidden="true"></span>
-              <h4 class="ci-title">{{ service.title }}</h4>
+              <h4 class="ci-title">Housing assistance</h4>
             </div>
           </div>
-          <p class="ci-desc">{{ service.description }}</p>
+          <p class="ci-desc">
+            We help you find and book the ideal villa, apartment, or house, with tailored recommendations
+            on the best areas and rental opportunities.
+          </p>
           <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
-            {% trans "Request service" %} <i class="wdt-button__icon" aria-hidden="true"></i>
+            Request service <i class="wdt-button__icon" aria-hidden="true"></i>
           </a>
         </article>
       </div>
-      {% empty %}
+
       <div class="col-12">
-        <p class="text-center text-muted">{% trans "No concierge services available" %}</p>
+        <!-- item 2 -->
+       <article class="concierge-item mb-15">
+          <div class="ci-left">
+            <img class="ci-thumb" src="https://andreyegorov.com/wp-content/uploads/2025/11/Rectangle-3448-2.png" alt="">
+            <div>
+              <span class="ci-dot" aria-hidden="true"></span>
+              <h4 class="ci-title">Transfers & Transportation</h4>
+            </div>
+          </div>
+          <p class="ci-desc">
+            Seamless airport transfers, car and motorbike rentals, or a dedicated personal driver —
+            making travel across Bali easy and stress-free.
+          </p>
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
+            Request service <i class="wdt-button__icon" aria-hidden="true"></i>
+          </a>
+        </article>
       </div>
-      {% endfor %}
+
+      <div class="col-12">
+        <!-- item 3 -->
+        <article class="concierge-item mb-15">
+          <div class="ci-left">
+            <img class="ci-thumb" src="https://andreyegorov.com/wp-content/uploads/2025/11/Rectangle-3448-1.png" alt="">
+            <div>
+              <span class="ci-dot" aria-hidden="true"></span>
+              <h4 class="ci-title">Legal support</h4>
+            </div>
+          </div>
+          <p class="ci-desc">
+            From property transactions to visas and permits, our legal experts provide reliable guidance
+            and ensure every process is secure and transparent.
+          </p>
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
+            Request service <i class="wdt-button__icon" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="col-12">
+        <!-- item 4 -->
+        <article class="concierge-item mb-15">
+          <div class="ci-left">
+            <img class="ci-thumb" src="https://andreyegorov.com/wp-content/uploads/2025/11/Rectangle-3448.png" alt="">
+            <div>
+              <span class="ci-dot" aria-hidden="true"></span>
+              <h4 class="ci-title">Bespoke travel experiences</h4>
+            </div>
+
+          </div>
+          <p class="ci-desc">
+            Go beyond the ordinary with curated excursions, private tours, and unique experiences.
+            A personal manager takes care of every detail, so you can simply enjoy Bali.
+          </p>
+          <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal">
+            Request service <i class="wdt-button__icon" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
     </div>
 
   </div>
 </section>
+
+<!-- Service Request Modal -->
+<div id="serviceModal" class="service-modal">
+  <div class="service-modal__overlay"></div>
+  <div class="service-modal__content">
+    <button class="service-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="service-modal__header">
+      <h2 class="service-modal__title">We will process your request for the</h2>
+      <p class="service-modal__subtitle">Please fill out the form below.</p>
+    </div>
+
+    <form class="service-form" id="serviceForm">
+      <div class="service-form__field">
+        <input type="text" name="name" placeholder="Your name" required>
+      </div>
+
+      <div class="service-form__field">
+        <input type="tel" name="phone" placeholder="Your WhatsApp or phone number" required>
+      </div>
+
+      <div class="service-form__field">
+        <input type="email" name="email" placeholder="Your E-mail" required>
+      </div>
+
+      <div class="service-form__field">
+        <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+      </div>
+
+      <div class="service-form__checkbox">
+        <label>
+          <input type="checkbox" name="privacy" required>
+          <span class="checkbox-custom"></span>
+          <span class="checkbox-text">I agree to the terms of the Privacy Policy</span>
+        </label>
+      </div>
+
+      <button type="submit" class="service-form__submit">
+        Send
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
 
 <style>
 /* Service Modal */

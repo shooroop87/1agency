@@ -1,42 +1,82 @@
-{% load static i18n %}
-<section class="services-section section-content" id="services">
+{% load static %}
+<section class="services-section " id="concierge">
   <div class="container">
-    <div class="row">
+    <div>
       <div class="col-lg-6">
         <div class="main-title">
-          <h2 class="title">{% trans "All our services" %}</h2>
+          <h2 class="title">All our services</h2>
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div>
       <div class="col-lg-12">
         <div class="swiper services-swiper wow fadeInUp" data-wow-delay="300ms">
           <div class="swiper-wrapper">
             
-            {% for service in services %}
             <div class="swiper-slide">
               <a href="#" class="open-service-details"
-                 data-service-title="{{ service.title }}"
-                 data-service-items="{{ service.items }}">
+                 data-service-title="Logistics"
+                 data-service-items="Taxi booking and rentals,Car rentals (with or without driver),Motorbike, scooter, and bicycle rentals,Yacht, boat, and catamaran charters,Private helicopter bookings,Inter-area transfers,Check-in / check-out assistance and housing support,Laundry services,Food water and grocery delivery,Pharmacy deliveries,Personal driver services">
                 <div class="apartment-style1">
                   <div class="apartment-img">
-                    {% if service.image %}
-                    <img src="{{ service.image.url }}" alt="{{ service.title }}">
-                    {% endif %}
+                    <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Logistics.png" alt="Logistics">
                   </div>
                   <div class="apartment-content">
-                    <h6 class="title">{{ service.title }}</h6>
+                    <h6 class="title">Logistics</h6>
                     <button class="svc-arrow" aria-label="open"></button>
                   </div>
                 </div>
               </a>
             </div>
-            {% empty %}
+
             <div class="swiper-slide">
-              <p class="text-muted">{% trans "No services available" %}</p>
+              <a href="#" class="open-service-details"
+                 data-service-title="Housekeeping"
+                 data-service-items="Daily cleaning services,Deep cleaning,Laundry and ironing,Garden maintenance,Pool maintenance,Property management">
+                <div class="apartment-style1">
+                  <div class="apartment-img">
+                    <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Housekeeping.png" alt="Housekeeping">
+                  </div>
+                  <div class="apartment-content">
+                    <h6 class="title">Housekeeping</h6>
+                    <button class="svc-arrow" aria-label="open"></button>
+                  </div>
+                </div>
+              </a>
             </div>
-            {% endfor %}
+
+            <div class="swiper-slide">
+              <a href="#" class="open-service-details"
+                 data-service-title="Events"
+                 data-service-items="Wedding planning,Birthday celebrations,Corporate events,Private parties,Beach events,Villa events,Event catering,Entertainment booking">
+                <div class="apartment-style1">
+                  <div class="apartment-img">
+                    <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Events.png" alt="Events">
+                  </div>
+                  <div class="apartment-content">
+                    <h6 class="title">Events</h6>
+                    <button class="svc-arrow" aria-label="open"></button>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a href="#" class="open-service-details"
+                 data-service-title="Tours & Adventures"
+                 data-service-items="Temple tours,Volcano trekking,Water sports,Diving and snorkeling,Surfing lessons,Cultural experiences,Food tours,Photography tours,Private guided tours">
+                <div class="apartment-style1">
+                  <div class="apartment-img">
+                    <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Tours_adventures.png" alt="Tours & Adventures">
+                  </div>
+                  <div class="apartment-content">
+                    <h6 class="title">Tours & Adventures</h6>
+                    <button class="svc-arrow" aria-label="open"></button>
+                  </div>
+                </div>
+              </a>
+            </div>
 
           </div>
           <div class="swiper-scrollbar"></div>
@@ -46,20 +86,31 @@
   </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof Swiper !== 'undefined') {
-    new Swiper('.services-swiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      scrollbar: {
-        el: '.services-swiper .swiper-scrollbar',
-        draggable: true,
-      }
-    });
-  }
-});
-</script>
+<!-- Service Details Modal -->
+<div id="serviceDetailsModal" class="service-details-modal">
+  <div class="service-details-modal__overlay"></div>
+  <div class="service-details-modal__content">
+    <button class="service-details-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div class="sdm-header">
+      <h2 class="sdm-title"></h2>
+      <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal-from-details">
+        Request service
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="sdm-separator"></div>
+
+    <ul class="sdm-list"></ul>
+  </div>
+</div>
 
 <style>
 /* Services Swiper - независимые стили */

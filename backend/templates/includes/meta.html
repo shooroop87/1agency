@@ -1,28 +1,18 @@
-{% load static %}
+{% load static i18n %}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Primary SEO -->
-<title>One Agency — Smart investing with a human touch</title>
-<meta name="title" content="One Agency — Smart investing with a human touch">
-<meta name="description" content="One Agency helps you build a goals-aligned investment portfolio, manage risk transparently, and grow your capital — from passive income to long-term wealth.">
-<meta name="keywords" content="One Agency, investment agency, investment advisory, financial consulting, investment portfolio, passive income, stocks, bonds, ETFs, capital management, risk management, wealth management, discretionary management, analytics, real estate investing, venture investing">
+<title>{% block title %}{{ site_settings.site_name }} — {% trans "Smart investing with a human touch" %}{% endblock %}</title>
+<meta name="description" content="{% trans 'One Agency helps you find the perfect property in Bali' %}">
 
-<link rel="canonical" href="https://1-agency.pro/">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://1-agency.pro/">
-<meta property="og:title" content="One Agency — Smart investing with a human touch">
-<meta property="og:description" content="Goal-driven portfolios, transparent risk management, and sustainable capital growth.">
-<meta property="og:image" content="https://static.tildacdn.com/tild3636-3663-4565-b466-636437613434/__1.png">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ site_settings.site_name }}">
+<meta property="og:description" content="{% trans 'Real estate in Bali' %}">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="One Agency — Smart investing with a human touch">
-<meta name="twitter:description" content="Goal-driven portfolios, transparent risk management, and sustainable capital growth.">
-<meta name="twitter:image" content="https://static.tildacdn.com/tild3636-3663-4565-b466-636437613434/__1.png">
-
-<!-- Misc -->
 <meta name="format-detection" content="telephone=no">
+

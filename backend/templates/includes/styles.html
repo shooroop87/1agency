@@ -1,22 +1,28 @@
 {% load static %}
-<!-- =================================================================== -->
-<!--  ПРОСТОЕ РЕШЕНИЕ: 2 критических файла сразу + остальные через preload  -->
-<!-- =================================================================== -->
-
-<!-- 1. Критические стили — грузятся сразу, без хаков (чтобы не было FOUC) -->
+<!-- Bootstrap -->
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+<!-- Main Styles -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
-<!-- Swiper CSS (критически важен для слайдеров) -->
+<!-- Swiper -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-<!-- 2. Все остальные — через preload → stylesheet (самый чистый современный способ) -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Others -->
 <link rel="preload" href="{% static 'css/jquery-ui.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/ace-responsive-menu.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/menu.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="{% static 'css/fontawesome.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="{% static 'css/flaticon.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
 <link rel="preload" href="{% static 'css/bootstrap-select.min.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/animate.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/magnific-popup.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -24,19 +30,6 @@
 <link rel="preload" href="{% static 'css/ud-custom-spacing.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{% static 'css/whatsapp.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<!-- 3. Если у пользователя выключен JavaScript — подгрузим всё обычным способом -->
-<noscript>
-  <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/ace-responsive-menu.css' %}">
-  <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
-  <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
-  <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-  <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-  <link rel="stylesheet" href="{% static 'css/ud-custom-spacing.css' %}">
-  <link rel="stylesheet" href="{% static 'css/whatsapp.css' %}">
-</noscript>
 
 <!-- HTML5 shim и Respond.js для IE8 -->
 <!--[if lt IE 9]>

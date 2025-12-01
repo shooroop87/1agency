@@ -1,11 +1,11 @@
-{% load static i18n %}
-<section class="partners-section section-content">
+{% load static %}
+<section class="partners-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 wow fadeInUp" data-wow-delay="00ms">
         <div class="mb40">
-          <p class="text-white-50 fw600 mb25">{% trans "Growing together" %}</p>
-          <h2 class="title mb70">{% trans "Our partners" %}</h2>
+          <p class="text-white-50 fw600 mb25">Growing together</p>
+          <h2 class="title mb70">Our partners</h2>
         </div>
       </div>
     </div>
@@ -13,33 +13,61 @@
     <div class="swiper partners-swiper wow fadeInUp" data-wow-delay="300ms">
       <div class="swiper-wrapper">
         
-        {% for partner in partners %}
         <div class="swiper-slide">
           <div class="partners-card">
             <div class="partners-logo">
-              {% if partner.logo %}
-              <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
-              {% endif %}
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
             </div>
             <div class="partners-meta">
               <span class="partners-dot" aria-hidden="true"></span>
-              <span class="partners-name">{{ partner.name }}</span>
+              <span class="partners-name">Revolut</span>
             </div>
-            {% if partner.description %}
-            <p class="partners-desc">{{ partner.description }}</p>
-            {% endif %}
-            {% if partner.link %}
-            <a href="{{ partner.link }}" target="_blank" class="wdt-button button-cta is-sm partners-btn">
-              {% trans "Learn more" %} <span class="wdt-button__icon"></span>
-            </a>
-            {% endif %}
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
           </div>
         </div>
-        {% empty %}
+
         <div class="swiper-slide">
-          <p class="text-muted">{% trans "No partners available" %}</p>
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
+          </div>
         </div>
-        {% endfor %}
+
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="partners-card">
+            <div class="partners-logo">
+              <img src="https://andreyegorov.com/wp-content/uploads/2025/11/Vector-1.svg" alt="Partner logo">
+            </div>
+            <div class="partners-meta">
+              <span class="partners-dot"></span>
+              <span class="partners-name">Revolut</span>
+            </div>
+            <p class="partners-desc">Description<br>Description</p>
+            <a href="#" class="wdt-button button-cta is-sm partners-btn">Learn more <span class="wdt-button__icon"></span></a>
+          </div>
+        </div>
 
       </div>
       <div class="swiper-scrollbar"></div>
@@ -47,21 +75,6 @@
 
   </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof Swiper !== 'undefined') {
-    new Swiper('.partners-swiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      scrollbar: {
-        el: '.partners-swiper .swiper-scrollbar',
-        draggable: true,
-      }
-    });
-  }
-});
-</script>
 
 <style>
 .partners-swiper {

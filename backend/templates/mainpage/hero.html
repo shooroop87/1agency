@@ -1,22 +1,12 @@
-{% load static %}
+{% load static i18n %}
 <section class="home-banner-style1 p0" id="hero">
   <div class="home-style1">
-    
-    <!-- Hero wrapper (NOT fixed, ScrollTrigger will pin it) -->
-    <div class="hero-section-desktop is-fixed">
+    <div class="hero-section-desktop">
       <div class="hero-contain u-container">
         
-        <!-- Grid with images (3 columns) -->
-        <div class="hero-grid u-grid-custom">
-          
-          <!-- Card 1 -->
-          <div class="hero-col">
-            <div class="hero-content-wrap">
-
-            </div>
-          </div>
-
-          <!-- Card 2 -->
+        <!-- Desktop Grid -->
+        <div class="hero-grid">
+          <div class="hero-col"></div>
           <div class="hero-col">
             <div class="hero-content-wrap">
               <div class="hero-grid-item-top">
@@ -31,8 +21,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Card 3 (можешь заменить на любые другие картинки) -->
           <div class="hero-col">
             <div class="hero-content-wrap">
               <div class="hero-grid-item-top">
@@ -47,10 +35,9 @@
               </div>
             </div>
           </div>
-          
         </div>
 
-        <!-- Mobile Grid 2x2 -->
+        <!-- Mobile Grid -->
         <div class="hero-grid-mobile">
           <div class="hero-grid-mobile__item">
             <img src="{% static 'images/hero/hero1.png' %}" alt="">
@@ -66,104 +53,61 @@
           </div>
         </div>
 
-        <!-- Mobile "1" background -->
-        <img class="hero-one-mobile" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png" alt="">
-
-
-        <!-- Navigation wrapper -->
-        <div class="nav-wrap header-nav nav-homepage-style stricky main-menu slideIn animated">
+        <!-- Navigation -->
+        <div class="nav-wrap header-nav nav-homepage-style main-menu">
           <div class="nav-contain">
-            
-            <!-- Logo left -->
             <div class="hero-brand">
               <img class="hero-mark" width="51" height="101" 
-                   src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="">
-              <div class="hero-name">One Agency</div>
+                   src="{% static 'images/logo-mark.png' %}" alt="">
+              <div class="hero-name">{{ site_settings.site_name }}</div>
             </div>
-            <!-- Navigation center -->
+            
             <nav class="hero-nav">
-              <a href="#projects">Our projects</a>
-              <a href="#about">About us</a>
-              <a href="#concierge">Concierge Service</a>
-              <a href="{% url 'about' %}">About Bali</a>
-              <a href="#faq">FAQ</a>
-              <a href="#contacts">Contacts</a>
+              <a href="#projects">{% trans "Our projects" %}</a>
+              <a href="#aboutus">{% trans "About us" %}</a>
+              <a href="#concierge">{% trans "Concierge Service" %}</a>
+              <a href="#faq">{% trans "FAQ" %}</a>
+              <a href="#contactus">{% trans "Contacts" %}</a>
             </nav>
             
-            <!-- CTA right -->
             <div class="hero-cta">
+              <!-- Language Switcher -->
+              <div class="hero-lang">
+                {% for lang_code, lang_name in LANGUAGES %}
+                  <a href="{% url 'set_language' %}?language={{ lang_code }}" 
+                     class="lang-btn {% if lang_code == current_language %}active{% endif %}">
+                    {{ lang_code|upper }}
+                  </a>
+                {% endfor %}
+              </div>
+              
               <a href="#" class="favorites-btn" aria-label="Favorites">
                 <span class="flaticon-like"></span>
               </a>
               <a href="#" class="wdt-button button-cta is-nm concierge-cta open-callback-modal">
-                <span>Order a call</span>
+                <span>{% trans "Order a call" %}</span>
                 <span class="arrow-icon">→</span>
               </a>
             </div>
-            
           </div>
         </div>
 
-        <!-- Bottom left -->
+        <!-- Bottom Labels -->
         <div class="hero-label-left is-desktop">
           <div class="hero-scroll">
-            <span>Scroll down</span>
-            <span class="partners-dot"></span>
+            <span>{% trans "Scroll down" %}</span>
+            <span class="scroll-dot"></span>
           </div>
         </div>
         
-        <!-- Bottom right -->
         <div class="hero-label-right is-desktop">
-          <h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2>
+          <h2 class="hero-kicker">{% trans "Sale of real estate" %}<br>{% trans "and land plots in Bali" %}</h2>
         </div>
         
       </div>
     </div>
-    
-    <!-- Spacer for scroll / pin -->
-    <div hero-scrolltrigger class="hero-spacer"></div>
-    
   </div>
 </section>
-
-<!-- Callback Modal -->
-<div id="callbackModal" class="callback-modal">
-  <div class="callback-modal__overlay"></div>
-  <div class="callback-modal__content">
-    <button class="callback-modal__close">
-      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
-        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
-      </svg>
-    </button>
-
-    <h2 class="callback-modal__title">Request a callback using this form</h2>
-
-    <form class="callback-form" id="callbackForm">
-      <div class="callback-form__field">
-        <input type="text" name="name" placeholder="Your name" required>
-      </div>
-
-      <div class="callback-form__field">
-        <input type="tel" name="phone" placeholder="Your WhatsApp or phone number" required>
-      </div>
-
-      <div class="callback-form__checkbox">
-        <label>
-          <input type="checkbox" name="privacy" required>
-          <span class="checkbox-custom"></span>
-          <span class="checkbox-text">I agree to the terms of the Privacy Policy</span>
-        </label>
-      </div>
-
-      <button type="submit" class="callback-form__submit">
-        Send
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </form>
-  </div>
-</div>
 
 <style>
 :root {

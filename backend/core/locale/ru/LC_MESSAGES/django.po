@@ -1,0 +1,221 @@
+# locale/ru/LC_MESSAGES/django.po
+
+#: templates/includes/menu-mobile.html:25
+msgid "About us"
+msgstr "О нас"
+
+#: templates/includes/menu-mobile.html:26
+msgid "About Bali"
+msgstr "О Бали"
+
+#: templates/includes/menu-mobile.html:27
+msgid "FAQ"
+msgstr "Вопросы и ответы"
+
+#: templates/includes/menu-mobile.html:28
+msgid "Contacts"
+msgstr "Контакты"
+
+#: templates/includes/menu-mobile.html:32
+msgid "Our projects"
+msgstr "Наши проекты"
+
+#: templates/includes/menu-mobile.html:33
+msgid "Apartments"
+msgstr "Апартаменты"
+
+#: templates/includes/menu-mobile.html:34
+msgid "Villas"
+msgstr "Виллы"
+
+#: templates/includes/menu-mobile.html:35
+msgid "Townhouses"
+msgstr "Таунхаусы"
+
+#: templates/includes/menu-mobile.html:36
+msgid "Land plots"
+msgstr "Земельные участки"
+
+#: templates/includes/menu-mobile.html:40
+msgid "Concierge service"
+msgstr "Консьерж-сервис"
+
+#: templates/includes/menu-mobile.html:41
+msgid "All services"
+msgstr "Все услуги"
+
+#: templates/includes/menu-mobile.html:52
+msgid "Request details"
+msgstr "Запросить информацию"
+
+#: templates/includes/menu-mobile.html:54
+msgid "Call us"
+msgstr "Позвоните нам"
+
+#: templates/includes/menu-mobile.html:55
+msgid "Email us"
+msgstr "Напишите нам"
+
+#: templates/includes/menu-mobile.html:62
+msgid "Order a call"
+msgstr "Заказать звонок"
+
+#: templates/mainpage/hero.html
+msgid "Scroll down"
+msgstr "Листайте вниз"
+
+#: templates/mainpage/hero.html
+msgid "Sale of real estate"
+msgstr "Продажа недвижимости"
+
+#: templates/mainpage/hero.html
+msgid "and land plots in Bali"
+msgstr "и земельных участков на Бали"
+
+#: templates/includes/contact-form.html
+msgid "Start your"
+msgstr "Начните свой"
+
+#: templates/includes/contact-form.html
+msgid "investment journey"
+msgstr "инвестиционный путь"
+
+#: templates/includes/contact-form.html
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: templates/includes/contact-form.html
+msgid "Your E-mail"
+msgstr "Ваш E-mail"
+
+#: templates/includes/contact-form.html
+msgid "Your WhatsApp number"
+msgstr "Ваш номер WhatsApp"
+
+#: templates/includes/contact-form.html
+msgid "Property type"
+msgstr "Тип недвижимости"
+
+#: templates/includes/contact-form.html
+msgid "Your message"
+msgstr "Ваше сообщение"
+
+#: templates/includes/contact-form.html
+msgid "I agree to the terms of the"
+msgstr "Я соглашаюсь с условиями"
+
+#: templates/includes/contact-form.html
+msgid "Privacy Policy"
+msgstr "Политики конфиденциальности"
+
+#: templates/includes/contact-form.html
+msgid "Send"
+msgstr "Отправить"
+
+#: templates/includes/contact-form.html
+msgid "Thank you!"
+msgstr "Спасибо!"
+
+#: templates/includes/contact-form.html
+msgid "Your request has been successfully submitted."
+msgstr "Ваша заявка успешно отправлена."
+
+#: templates/mainpage/concierge.html
+msgid "What we do for you"
+msgstr "Что мы делаем для вас"
+
+#: templates/mainpage/concierge.html
+msgid "Concierge service in Bali"
+msgstr "Консьерж-сервис на Бали"
+
+#: templates/mainpage/concierge.html
+msgid "Request service"
+msgstr "Заказать услугу"
+
+#: templates/mainpage/services.html
+msgid "All our services"
+msgstr "Все наши услуги"
+
+#: templates/mainpage/reviews.html
+msgid "Reviews about One Agency"
+msgstr "Отзывы о One Agency"
+
+#: templates/mainpage/reviews.html
+msgid "What our clients say"
+msgstr "Что говорят наши клиенты"
+
+#: templates/mainpage/reviews.html
+msgid "Leave a review"
+msgstr "Оставить отзыв"
+
+#: templates/mainpage/reviews.html
+msgid "Read more"
+msgstr "Читать далее"
+
+#: templates/mainpage/partners.html
+msgid "Growing together"
+msgstr "Растём вместе"
+
+#: templates/mainpage/partners.html
+msgid "Our partners"
+msgstr "Наши партнёры"
+
+#: templates/mainpage/partners.html
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: templates/mainpage/faq.html
+msgid "Most popular questions"
+msgstr "Популярные вопросы"
+
+#: templates/mainpage/faq.html
+msgid "Submit a question"
+msgstr "Задать вопрос"
+
+#: templates/includes/modals.html
+msgid "Request a callback using this form"
+msgstr "Запросите обратный звонок через эту форму"
+
+#: templates/includes/modals.html
+msgid "Your WhatsApp or phone number"
+msgstr "Ваш WhatsApp или номер телефона"
+
+#: templates/includes/modals.html
+msgid "I agree to the terms of the Privacy Policy"
+msgstr "Я соглашаюсь с условиями Политики конфиденциальности"
+
+#: templates/includes/modals.html
+msgid "Close"
+msgstr "Закрыть"
+
+#: templates/includes/modals.html
+msgid "Request a service"
+msgstr "Заказать услугу"
+
+#: templates/includes/modals.html
+msgid "Ask your question"
+msgstr "Задайте ваш вопрос"
+
+#: templates/includes/modals.html
+msgid "Your question"
+msgstr "Ваш вопрос"
+
+#: templates/includes/footer.html
+msgid "Navigation"
+msgstr "Навигация"
+
+#: templates/includes/footer.html
+msgid "Accommodation"
+msgstr "Проживание"
+
+#: templates/includes/footer.html
+msgid "Transportation"
+msgstr "Транспорт"
+
+#: templates/includes/footer.html
+msgid "Legal support"
+msgstr "Юридическая поддержка"
+
+#: templates/includes/footer.html
+msgid "Travel"
+msgstr "Путешествия"

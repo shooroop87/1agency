@@ -1,27 +1,21 @@
-{% load static %}
-{% if debug %}
-  {% load django_browser_reload %}
-  {% django_browser_reload_script %}
-{% endif %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   {% include "includes/meta.html" %}
   {% include "includes/styles.html" %}
-  {% include "includes/header.html" %}
   {% block extra_head %}{% endblock %}
 </head>
 <body>
   {% include "includes/menu-mobile.html" %}
-  {% include "includes/menu-top-bar.html" %}
   
   <main id="content">
     {% block content %}{% endblock %}
   </main>
   
   {% include "includes/footer.html" %}
-  {% include "includes/scripts_footer.html" %}
+  {% include "includes/modals.html" %}
+  {% include "includes/scripts.html" %}
   {% block extra_js %}{% endblock %}
-  {% django_browser_reload_script %}
 </body>
 </html>
