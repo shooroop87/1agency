@@ -97,9 +97,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME', 'oneagency'),
         'USER': os.environ.get('DB_USER', 'oneagency_user'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'oneagency_password'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
+        "HOST": os.getenv("DB_HOST", ""),
+        "PORT": int(os.getenv("DB_PORT", 5432)),
     }
 }
 
