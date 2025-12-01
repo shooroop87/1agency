@@ -1065,13 +1065,37 @@ function initHeroAnimation() {
   const dropdown = document.getElementById('stickyDropdown');
   const closeBtn = document.getElementById('closeStickyDropdown');
 
-  if (burger && dropdown) {
-    burger.addEventListener('click', () => dropdown.classList.add('is-open'));
-    closeBtn.addEventListener('click', () => dropdown.classList.remove('is-open'));
-  
-    // Закрыть при клике вне
-    dropdown.addEventListener('click', (e) => {
-      if (e.target === dropdown) dropdown.classList.remove('is-open');
+  // Перемещаем dropdown в body сразу (чтобы был доступен всегда)
+  if (dropdown) {
+    document.body.appendChild(dropdown);
+  }
+
+  if (burger && dropdown && closeBtn) {
+    burger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdown.classList.add('is-open');
+      console.log('Dropdown: OPEN');
+    });
+    
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      dropdown.classList.remove('is-open');
+      console.log('Dropdown: CLOSE');
+    });
+
+    // Закрыть при клике на overlay
+    dropdown.addEventListener('click', function(e) {
+      if (e.target === dropdown) {
+        dropdown.classList.remove('is-open');
+      }
+    });
+    
+    // Закрыть по Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+        dropdown.classList.remove('is-open');
+      }
     });
   }
   
