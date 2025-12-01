@@ -89,8 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Продолжение backend/oneagency/settings.py
-
 # Database
 DATABASES = {
     'default': {
