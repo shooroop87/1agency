@@ -1,5 +1,8 @@
 {% load static %}
-{% load django_browser_reload %}
+{% if debug %}
+  {% load django_browser_reload %}
+  {% django_browser_reload_script %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en-US">
 <head>

@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#")
 
 # DEBUG
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS
 if DEBUG:
@@ -32,7 +32,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://0.0.0.0:8000",
 ]
 
-# Приложения
+# Прило
 INSTALLED_APPS = [
     # Django
     "django.contrib.admin",
