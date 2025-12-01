@@ -10,7 +10,7 @@
         });
     }
 
-/*      ----- Navbar Scroll To Fixed ----- 
+    /* ----- Navbar Scroll To Fixed ----- */
     function navbarScrollfixed() {
         $('.navbar-scrolltofixed').scrollToFixed();
         var summaries = $('.summary');
@@ -31,7 +31,7 @@
                 zIndex: 999
             });
         });
-    } */
+    }
 
     /** Main Menu Custom Script Start **/
     $(document).on('ready', function() {
@@ -68,7 +68,7 @@
                 $('.scroll-to-top').fadeOut(500);
             }
         };
-/*         if ($('.stricky').length) {
+        if ($('.stricky').length) {
             var headerScrollPos = $('.header-navigation').next().offset().top;
             var stricky = $('.stricky');
             if ($(window).scrollTop() > headerScrollPos) {
@@ -79,7 +79,7 @@
                 stricky.addClass('slideIn animated');
             }
         };
-    }); */
+    });
     
     $(".mouse_scroll").on('click', function() {
         $('html, body').animate({

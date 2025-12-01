@@ -148,56 +148,65 @@
 <style>
 :root {
   --grid-12: repeat(12, 1fr);
+  --size--0rem: 0rem;
 }
 
+/* Container */
 .u-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
 }
 
-/* Hero wrapper - будет pinned GSAP */
+/* Hero section */
 .hero-section-desktop {
   position: relative;
   width: 100%;
   height: 100vh;
   z-index: 1;
   overflow: hidden;
-  background: #1a1a1a;
 }
 
+/* Hero background wrapper */
 .hero-contain {
   width: 100%;
   height: 100vh;
   position: relative;
 }
 
+/* Hero grid wrapper */
 .hero-grid {
   width: 100%;
   padding-top: 47px;
 }
 
+/* 3 cards in a row */
 .u-grid-custom {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 20px;
+  row-gap: 20px;
 }
 
+/* Column */
 .hero-col {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
+/* Card */
 .hero-content-wrap {
   position: relative;
   width: 100%;
   max-width: 440px;
   height: 440px;
+  max-height: 440px;
   border-radius: 30px;
   overflow: hidden;
 }
 
+/* Top / bottom layers */
 .hero-grid-item-top,
 .hero-grid-item-bottom {
   position: absolute;
@@ -216,6 +225,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .g-visual-img {
@@ -224,31 +235,23 @@
   object-fit: cover;
 }
 
-/* Navigation - убираем stricky класс, управляем через JS */
+/* Navigation - изначально absolute внутри hero */
 .nav-wrap {
   position: absolute;
   left: 0;
   top: 520px;
   width: 100%;
   z-index: 100;
-  transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+  transition: background 0.3s ease, padding 0.3s ease;
 }
 
-/* Убираем влияние старых классов */
-.nav-wrap.stricky,
-.nav-wrap.main-menu,
-.nav-wrap.slideIn,
-.nav-wrap.animated {
-  animation: none !important;
-}
-
-/* Sticky state */
+/* Sticky state - добавляется JS когда nav касается верха */
 .nav-wrap.is-sticky {
   position: fixed !important;
   top: 0 !important;
   background: rgba(39, 39, 39, 0.95);
   backdrop-filter: blur(10px);
-  padding: 15px 0;
+  padding: 20px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -258,7 +261,7 @@
 }
 
 .nav-wrap.is-sticky .hero-name {
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .nav-contain {
@@ -271,6 +274,7 @@
   justify-content: space-between;
 }
 
+/* Logo */
 .hero-brand {
   display: flex;
   align-items: center;
@@ -281,22 +285,24 @@
   width: 51px;
   height: 101px;
   object-fit: contain;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .hero-name {
   font-family: 'Manrope', sans-serif;
+  line-height: 1.3 !important;
   font-weight: 600;
   font-size: 50px;
-  line-height: 1.1;
+  line-height: 89%;
   letter-spacing: -0.04em;
   background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: font-size 0.3s;
+  transition: font-size 0.3s ease;
 }
 
+/* Navigation center */
 .hero-nav {
   display: flex;
   align-items: center;
@@ -307,6 +313,7 @@
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 15px;
+  line-height: 120%;
   color: #FFFFFF;
   text-decoration: none;
   transition: opacity 0.3s;
@@ -317,6 +324,7 @@
   opacity: 0.7;
 }
 
+/* CTA right */
 .hero-cta {
   display: flex;
   align-items: center;
@@ -331,24 +339,17 @@
   height: 35px;
   background: rgba(255, 255, 255, 0.08);
   border: 0.25px solid #656565;
+  box-shadow: 2px 1px 7.6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.26px);
   border-radius: 25px;
 }
 
-/* Labels - НЕ fixed, остаются внутри hero */
-.hero-label-left.is-desktop,
-.hero-label-right.is-desktop {
-  position: absolute;
-  z-index: 10;
-}
-
+/* Labels */
 .hero-label-left.is-desktop {
+  position: absolute;
   left: 39px;
   bottom: 40px;
-}
-
-.hero-label-right.is-desktop {
-  left: 500px;
-  bottom: 40px;
+  z-index: 10;
 }
 
 .hero-scroll {
@@ -359,7 +360,15 @@
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 15px;
+  line-height: 120%;
   gap: 5px;
+}
+
+.hero-label-right.is-desktop {
+  position: absolute;
+  left: 500px;
+  bottom: 40px;
+  z-index: 10;
 }
 
 .hero-kicker {
@@ -371,9 +380,9 @@
   margin: 0;
 }
 
-/* Spacer - НЕТ высоты, GSAP сам создаст */
+/* Spacer - создаёт пространство для scrub анимации */
 .hero-spacer {
-  display: none;
+  height: 100vh;
 }
 /* Callback Modal */
 .callback-modal {
@@ -558,7 +567,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('GSAP не загружен');
+    console.warn('GSAP или ScrollTrigger не загружены');
     return;
   }
   
@@ -568,30 +577,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
   const navWrap = document.querySelector('.nav-wrap');
   const scrollLabel = document.querySelector('.hero-label-left');
-  const kickerLabel = document.querySelector('.hero-label-right');
   
   if (!heroSection || !navWrap) return;
 
-  // Убираем классы которые мешают
-  navWrap.classList.remove('stricky', 'slideIn', 'animated', 'stricky-fixed', 'slideInDown');
-
+  // Запоминаем начальную позицию nav
   const navOriginalTop = 520;
 
   // === 1. PIN hero + анимация картинок ===
-  // Скролл страницы ЗАБЛОКИРОВАН пока анимация не закончится
   const heroTL = gsap.timeline({
     scrollTrigger: {
       trigger: heroSection,
       start: 'top top',
-      end: '+=150%',  // 1.5 viewport высоты для анимации
+      end: '+=100%',  // Длина скролла для анимации = 1 viewport
       pin: true,
-      pinSpacing: true,  // Создаёт пространство после hero
-      scrub: 0.8,
-      anticipatePin: 1
+      scrub: 0.5,
+      anticipatePin: 1,
+      pinSpacing: true
     }
   });
 
-  // Анимация clip-path - обе картинки одновременно
+  // Анимация clip-path для обеих карточек одновременно
   bottomItems.forEach((item) => {
     heroTL.fromTo(item,
       { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
@@ -600,54 +605,38 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'none',
         duration: 1
       },
-      0
+      0  // Все начинают одновременно
     );
   });
 
-  // Fade labels
+  // Fade out "Scroll down"
   if (scrollLabel) {
-    heroTL.to(scrollLabel, { opacity: 0, duration: 0.3 }, 0);
-  }
-  if (kickerLabel) {
-    heroTL.to(kickerLabel, { opacity: 0, duration: 0.3 }, 0.5);
+    heroTL.to(scrollLabel, {
+      opacity: 0,
+      duration: 0.3
+    }, 0);
   }
 
-  // === 2. Sticky навигация ===
-  // Отдельный ScrollTrigger для навигации
+  // === 2. Sticky навигация после hero ===
   ScrollTrigger.create({
     trigger: heroSection,
     start: () => `top+=${navOriginalTop}px top`,
-    endTrigger: document.body,
-    end: 'bottom bottom',
-    onEnter: () => {
-      navWrap.classList.add('is-sticky');
-    },
-    onLeaveBack: () => {
-      navWrap.classList.remove('is-sticky');
-    }
-  });
-
-  // Также проверяем при любом скролле (для надёжности)
-  ScrollTrigger.create({
-    trigger: document.body,
-    start: 'top top',
-    end: 'bottom bottom',
+    endTrigger: 'body',
+    end: 'bottom top',
     onUpdate: (self) => {
-      const scrollY = window.scrollY;
+      // Когда nav должен стать sticky
       const heroRect = heroSection.getBoundingClientRect();
-      const navTriggerPoint = heroRect.top + navOriginalTop;
+      const navShouldBeSticky = heroRect.top + navOriginalTop <= 0;
       
-      if (navTriggerPoint <= 0) {
-        if (!navWrap.classList.contains('is-sticky')) {
-          navWrap.classList.add('is-sticky');
-        }
+      if (navShouldBeSticky) {
+        navWrap.classList.add('is-sticky');
       } else {
         navWrap.classList.remove('is-sticky');
       }
     }
   });
 
-  console.log('✅ Hero готов');
+  console.log('✅ Hero scroll готов');
 
   // === CALLBACK MODAL ===
   const modal = document.getElementById('callbackModal');
@@ -681,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
-      alert('Спасибо!');
+      alert('Спасибо! Мы свяжемся с вами.');
       closeModal();
       form.reset();
     });
