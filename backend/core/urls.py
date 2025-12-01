@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -11,4 +11,7 @@ urlpatterns = [
     path('api/callback/', views.submit_callback, name='submit_callback'),
     path('api/service/', views.submit_service, name='submit_service'),
     path('api/faq-question/', views.submit_faq_question, name='submit_faq_question'),
+    
+    # Properties API
+    path('', include('properties.urls')),
 ]

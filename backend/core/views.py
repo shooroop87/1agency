@@ -100,7 +100,21 @@ def about(request):
     })
 
 def projects(request):
-    return render(request, "pages/projects.html")
+    from properties.models import Property, PropertyType, Location
+    
+    # Получаем все активные объекты для начальной загрузки
+    properties = Property.objects.filter(is_active=True).select_related(
+        'developer', 'property_type', 'location', 'image'
+    )[:12]  # Первые 12 для SSR
+    
+    # Опции фильтров из БД
+    context = {
+        'properties': properties,
+        'property_types': PropertyType.objects.all(),
+        'locations': Location.objects.all(),
+        'total_count': Property.objects.filter(is_active=True).count(),
+    }
+    return render(request, "pages/projects.html", context)
 
 def error(request):
     return render(request, "pages/page-error.html")

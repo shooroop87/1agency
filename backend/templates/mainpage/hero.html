@@ -167,7 +167,10 @@
       
       <div class="sticky-dropdown__cta">
         <a href="#" class="favorites-btn"><span class="flaticon-like"></span></a>
-        <a href="#" class="order-call-btn open-callback-modal">Order a call <span>↗</span></a>
+        <a href="#" class="wdt-button button-cta is-nm concierge-cta open-callback-modal">
+                <span>Order a call</span>
+                <span class="arrow-icon">→</span>
+        </a>
       </div>
     </div>
   </div>
@@ -987,6 +990,45 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  
+  // ===== DROPDOWN TOGGLE через делегирование =====
+  const dropdown = document.getElementById('stickyDropdown');
+  
+  // Перемещаем dropdown в body
+  if (dropdown) {
+    document.body.appendChild(dropdown);
+  }
+
+  // Клик по всему документу
+  document.addEventListener('click', function(e) {
+    // Открыть по burger
+    if (e.target.closest('#openMobileMenu')) {
+      e.preventDefault();
+      if (dropdown) {
+        dropdown.classList.add('is-open');
+        console.log('Dropdown: OPEN');
+      }
+    }
+    
+    // Закрыть по крестику
+    if (e.target.closest('#closeStickyDropdown')) {
+      e.preventDefault();
+      if (dropdown) {
+        dropdown.classList.remove('is-open');
+        console.log('Dropdown: CLOSE');
+      }
+    }
+  });
+
+  // Закрыть по Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && dropdown && dropdown.classList.contains('is-open')) {
+      dropdown.classList.remove('is-open');
+    }
+  });
+
+
+  // ===== GSAP ANIMATION =====
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP не загружен');
     return;
@@ -1008,12 +1050,11 @@ function initHeroAnimation() {
   
   if (!heroWrapper || !navWrap) return;
 
-  // Чистим старые классы
   navWrap.classList.remove('stricky', 'slideIn', 'animated', 'stricky-fixed', 'slideInDown');
   
-  // Запоминаем высоту pin-анимации
-  const pinDuration = window.innerHeight; // 100vh
-  // ШАГ 1-2: Pin hero + clip-path анимация
+  const pinDuration = window.innerHeight;
+
+  // ШАГ 1-2: Pin hero + clip-path
   gsap.timeline({
     scrollTrigger: {
       trigger: heroWrapper,
@@ -1030,77 +1071,32 @@ function initHeroAnimation() {
     { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' },
     0
   );
-// ШАГ 3: Sticky nav — перемещаем в body когда достигает верха
-  
+
+  // ШАГ 3: Sticky nav
   const navParent = navWrap.parentNode;
   const navNextSibling = navWrap.nextSibling;
   let isSticky = false;
   
   function handleStickyNav() {
     const scrollY = window.scrollY;
-    // Порог = высота pin-анимации (100vh) + начальная позиция nav (520px)
     const stickyPoint = pinDuration + 520;
     
     if (scrollY >= stickyPoint && !isSticky) {
-      // Становится sticky — перемещаем в body
       isSticky = true;
       document.body.appendChild(navWrap);
       navWrap.classList.add('is-sticky');
-      console.log('Nav: sticky ON');
     } 
     else if (scrollY < stickyPoint && isSticky) {
-      // Возвращаем на место
       isSticky = false;
       navParent.insertBefore(navWrap, navNextSibling);
       navWrap.classList.remove('is-sticky');
-      console.log('Nav: sticky OFF');
     }
   }
   
   window.addEventListener('scroll', handleStickyNav, { passive: true });
   handleStickyNav();
-
-  // Sticky dropdown toggle
-  const burger = document.getElementById('openMobileMenu');
-  const dropdown = document.getElementById('stickyDropdown');
-  const closeBtn = document.getElementById('closeStickyDropdown');
-
-  // Перемещаем dropdown в body сразу (чтобы был доступен всегда)
-  if (dropdown) {
-    document.body.appendChild(dropdown);
-  }
-
-  if (burger && dropdown && closeBtn) {
-    burger.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      dropdown.classList.add('is-open');
-      console.log('Dropdown: OPEN');
-    });
-    
-    closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      dropdown.classList.remove('is-open');
-      console.log('Dropdown: CLOSE');
-    });
-
-    // Закрыть при клике на overlay
-    dropdown.addEventListener('click', function(e) {
-      if (e.target === dropdown) {
-        dropdown.classList.remove('is-open');
-      }
-    });
-    
-    // Закрыть по Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
-        dropdown.classList.remove('is-open');
-      }
-    });
-  }
   
   ScrollTrigger.refresh();
   console.log('✅ Hero готов');
 }
-
 </script>

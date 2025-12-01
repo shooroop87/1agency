@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     
     # Third party - порядок важен!
     'easy_thumbnails',
@@ -45,12 +46,13 @@ INSTALLED_APPS = [
     'tinymce',
     'taggit',
     'meta',
-    
+
     # Dev
     'django_browser_reload',
     
     # Local apps
     'core',
+    'properties',
 ]
 
 MIDDLEWARE = [

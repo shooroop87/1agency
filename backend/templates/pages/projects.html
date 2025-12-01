@@ -1,67 +1,15 @@
 {% extends "base/base_projects.html" %}
-{% load static %}
+{% load static humanize %}
 
 {% block content %}
 <div class="wrapper ovh">
-  <div class="preloader"></div>
-  
   <div class="body_content">
-    
     {% include "portfolio/filters.html" %}
     {% include "portfolio/portfolio.html" %}
-
-
   </div>
 </div>
 {% endblock %}
+
 {% block extra_js %}
-<script>
-jQuery(document).ready(function($) {
-  
-  console.log('Modal script started');
-  console.log('Cards found:', $('.project-card').length);
-  
-  // Открытие модалки
-  $('.project-card').on('click', function(e) {
-    e.preventDefault();
-    
-    console.log('Card clicked!');
-    
-    var title = $(this).attr('data-title');
-    var type = $(this).attr('data-type');
-    var location = $(this).attr('data-location');
-    var image = $(this).attr('data-image');
-    
-    console.log('Title:', title);
-    console.log('Image:', image);
-    
-    // Заполняем
-    $('#propertyModal .pm-title').text(title);
-    $('#propertyModal .pm-type').text(type);
-    $('#propertyModal .pm-location').html(location + '<br>5 min walk to Melasti Beach');
-    $('#propertyModal .pm-image img').attr('src', image);
-    
-    // Открываем
-    $('#propertyModal').addClass('is-active');
-    $('body').css('overflow', 'hidden').addClass('modal-open');
-    
-    console.log('Modal opened');
-  });
-
-  // Закрытие
-  $('.property-modal__overlay, .property-modal__close').on('click', function() {
-    $('#propertyModal').removeClass('is-active');
-    $('body').css('overflow', '').removeClass('modal-open');
-  });
-
-  // ESC
-  $(document).on('keydown', function(e) {
-    if (e.key === 'Escape') {
-      $('#propertyModal').removeClass('is-active');
-      $('body').css('overflow', '').removeClass('modal-open');
-    }
-  });
-  
-});
-</script>
+<script src="{% static 'js/properties.js' %}"></script>
 {% endblock %}
