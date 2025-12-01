@@ -67,7 +67,7 @@
         </div>
 
         <!-- Mobile "1" background -->
-        <img class="hero-one-mobile" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png" alt="">
+        <img class="hero-one-mobile" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png" alt="One Agency Logo">
 
 
         <!-- Navigation wrapper -->
@@ -99,10 +99,79 @@
                 <span>Order a call</span>
                 <span class="arrow-icon">→</span>
               </a>
+              <!-- Бургер — виден только в sticky -->
+              <button type="button" class="mobile-burger sticky-burger" id="openMobileMenu" aria-label="Menu">
+                <img src="/static/images/mobile_button.svg" alt="Menu">
+              </button>
             </div>
             
           </div>
         </div>
+
+        <!-- Dropdown Menu (sticky) -->
+<div class="sticky-dropdown" id="stickyDropdown">
+  <button class="sticky-dropdown__close" id="closeStickyDropdown">
+    <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+      <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+    </svg>
+  </button>
+  
+  <div class="sticky-dropdown__inner">
+    <!-- Лого -->
+    <div class="sticky-dropdown__logo">
+      <img src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="" width="22" height="44">
+    </div>
+    
+    <!-- Меню колонки -->
+    <div class="sticky-dropdown__menu">
+      <!-- Колонка 1 -->
+      <div class="sticky-dropdown__col">
+        <a href="#about">About us</a>
+        <a href="{% url 'about' %}">About Bali</a>
+        <a href="#map">Map</a>
+        <a href="#faq">FAQ</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#partners">Partners</a>
+        <a href="#contacts">Contacts</a>
+      </div>
+      
+      <!-- Колонка 2 -->
+      <div class="sticky-dropdown__col">
+        <span class="sticky-dropdown__title">Our projects</span>
+        <a href="#">Apartments</a>
+        <a href="#">Villas</a>
+        <a href="#">Townhouses</a>
+        <a href="#">Land plots</a>
+      </div>
+      
+      <!-- Колонка 3 -->
+      <div class="sticky-dropdown__col">
+        <span class="sticky-dropdown__title">Concierge service</span>
+        <a href="#">Accommodation</a>
+        <a href="#">Transportation</a>
+        <a href="#">Legal support</a>
+        <a href="#">Travel</a>
+      </div>
+    </div>
+    
+    <!-- Контакты справа -->
+    <div class="sticky-dropdown__contacts">
+      <div class="sticky-dropdown__request">
+        <span class="dot"></span>
+        <span>Request details</span>
+      </div>
+      <a href="tel:+6282266361606" class="sticky-dropdown__phone">Call us: +62 822 663 61 606</a>
+      <a href="mailto:one.agency.bali@gmail.com" class="sticky-dropdown__email">Email us: one.agency.bali@gmail.com</a>
+      <a href="#" class="sticky-dropdown__social">Instagram RU</a>
+      <a href="#" class="sticky-dropdown__social">Instagram ENG</a>
+      
+      <div class="sticky-dropdown__cta">
+        <a href="#" class="favorites-btn"><span class="flaticon-like"></span></a>
+        <a href="#" class="order-call-btn open-callback-modal">Order a call <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</div>
 
         <!-- Bottom left -->
         <div class="hero-label-left is-desktop">
@@ -280,8 +349,40 @@
   height: 44px;
 }
 
+/* Прячем название */
 .nav-wrap.is-sticky .hero-name {
-  font-size: 28px;
+  display: none;
+}
+
+/* Прячем меню */
+.nav-wrap.is-sticky .hero-nav {
+  display: none;
+}
+
+/* Прячем favorites и order a call */
+.nav-wrap.is-sticky .favorites-btn,
+.nav-wrap.is-sticky .concierge-cta {
+  display: none;
+}
+
+/* Показываем бургер только в sticky */
+.sticky-burger {
+  display: none;
+}
+
+.nav-wrap.is-sticky .sticky-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sticky-burger img {
+  width: 40px;
+  height: 40px;
 }
 
 .nav-contain {
@@ -414,6 +515,146 @@
   .u-container {
     padding: 0;
   }
+}
+
+/* ===== STICKY DROPDOWN MENU ===== */
+.sticky-dropdown {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1360px;
+  max-width: calc(100% - 80px);
+  background: #232323;
+  border-radius: 0 0 25px 25px;
+  padding: 40px 40px 50px;
+  z-index: 10000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.sticky-dropdown.is-open {
+  display: block;
+}
+
+.sticky-dropdown__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.sticky-dropdown__inner {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 60px;
+  align-items: start;
+}
+
+.sticky-dropdown__logo img {
+  width: 22px;
+  height: 44px;
+}
+
+.sticky-dropdown__menu {
+  display: flex;
+  gap: 75px;
+  padding-top: 90px;
+}
+
+.sticky-dropdown__col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sticky-dropdown__col a,
+.sticky-dropdown__title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+.sticky-dropdown__col a {
+  color: #FFFFFF;
+  transition: opacity 0.3s;
+}
+
+.sticky-dropdown__col a:hover {
+  opacity: 0.7;
+}
+
+.sticky-dropdown__title {
+  color: #A0A0A0;
+  margin-bottom: 14px;
+}
+
+/* Контакты */
+.sticky-dropdown__contacts {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sticky-dropdown__request {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.sticky-dropdown__request .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+}
+
+.sticky-dropdown__request span:last-child {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.sticky-dropdown__phone,
+.sticky-dropdown__email,
+.sticky-dropdown__social {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #A0A0A0;
+  text-decoration: none;
+}
+
+.sticky-dropdown__social {
+  color: #FFFFFF;
+}
+
+.sticky-dropdown__cta {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sticky-dropdown__cta .order-call-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 15px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 25px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 /* Callback Modal */
@@ -818,8 +1059,24 @@ function initHeroAnimation() {
   
   window.addEventListener('scroll', handleStickyNav, { passive: true });
   handleStickyNav();
+
+  // Sticky dropdown toggle
+  const burger = document.getElementById('openMobileMenu');
+  const dropdown = document.getElementById('stickyDropdown');
+  const closeBtn = document.getElementById('closeStickyDropdown');
+
+  if (burger && dropdown) {
+    burger.addEventListener('click', () => dropdown.classList.add('is-open'));
+    closeBtn.addEventListener('click', () => dropdown.classList.remove('is-open'));
+  
+    // Закрыть при клике вне
+    dropdown.addEventListener('click', (e) => {
+      if (e.target === dropdown) dropdown.classList.remove('is-open');
+    });
+  }
   
   ScrollTrigger.refresh();
   console.log('✅ Hero готов');
 }
+
 </script>
