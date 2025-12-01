@@ -79,7 +79,8 @@
                 stricky.addClass('slideIn animated');
             }
         };
-    }); */
+        */
+    }); 
     
     $(".mouse_scroll").on('click', function() {
         $('html, body').animate({
