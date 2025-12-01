@@ -18,6 +18,11 @@ urlpatterns += i18n_patterns(
     prefix_default_language=False,
 )
 
+# Media и Static файлы в режиме DEBUG
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 # Обработчики ошибок
 handler404 = "core.views.custom_404"
 handler500 = "core.views.custom_500"

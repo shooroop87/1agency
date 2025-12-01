@@ -6,21 +6,21 @@
         <div class="col-auto">
           <div class="d-flex align-items-center justify-content-between">
             <div class="logos mr40 mr10-lg">
-              <a class="header-logo" href="/"><img src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" width="21px" alt="One Agency"></a>
+              <a class="header-logo" href="{% url 'home' %}"><img src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" width="21px" alt="One Agency"></a>
             </div>
             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-              <li><a class="list-item" href="#"><span class="title">Our projects</span></a></li>
-              <li><a class="list-item" href="#aboutus"><span class="title">About us</span></a></li>
-              <li><a class="list-item" href="#concierge"><span class="title">Concierge Service</span></a></li>
+              <li><a class="list-item" href="{% url 'projects' %}"><span class="title">Our projects</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#aboutus"><span class="title">About us</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#concierge"><span class="title">Concierge Service</span></a></li>
               <li><a class="list-item" href="{% url 'about' %}"><span class="title">About Bali</span></a></li>
-              <li><a class="list-item" href="#faq"><span class="title">FAQ</span></a></li>
-              <li><a class="list-item" href="#contactus"><span class="title">Contacts</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#faq"><span class="title">FAQ</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#contactus"><span class="title">Contacts</span></a></li>
             </ul>
           </div>
         </div>
         <div class="col-auto">
           <div class="d-flex align-items-center">
-            <a class="ud-btn btn-transparent bdrs60 ms-2 ms-xl-4" href="#">Add Property<i class="fal fa-arrow-right-long"></i></a>
+            <a class="ud-btn btn-transparent bdrs60 ms-2 ms-xl-4" href="{% url 'projects' %}">Add Property<i class="fal fa-arrow-right-long"></i></a>
           </div>
         </div>
       </div>

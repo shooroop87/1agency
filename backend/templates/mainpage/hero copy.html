@@ -66,6 +66,10 @@
           </div>
         </div>
 
+        <!-- Mobile "1" background -->
+        <img class="hero-one-mobile" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png" alt="One Agency Logo">
+
+
         <!-- Navigation wrapper -->
         <div class="nav-wrap header-nav nav-homepage-style stricky main-menu slideIn animated">
           <div class="nav-contain">
@@ -976,120 +980,6 @@
     height: auto !important;
     padding: 0 !important;
   }
-  /* Отключаем pin-spacer от GSAP */
-  .home-banner-style1 {
-    position: relative !important;
-    transform: none !important;
-    height: auto !important;
-  }
-  /* Убираем любые pin-spacer */
-  .pin-spacer {
-    display: contents !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    height: auto !important;
-  }
-  /* Hero секция */
-  .hero-section-desktop {
-    position: relative !important;
-    height: auto !important;
-    min-height: auto !important;
-    padding: 20px;
-    transform: none !important;
-  }
-  
-  .hero-contain {
-    height: auto !important;
-    position: relative !important;
-  }
-  
-  /* Прячем десктопную сетку */
-  .hero-grid {
-    display: none !important;
-  }
-  
-  /* Прячем spacer */
-  .hero-spacer {
-    display: none !important;
-    height: 0 !important;
-  }
-  
-  /* Мобильная сетка 2x2 */
-  .hero-grid-mobile {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 30px;
-  }
-  
-  .hero-grid-mobile__item {
-    aspect-ratio: 1 / 1.1;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  
-  .hero-grid-mobile__item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* Навигация */
-  .nav-wrap {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-    margin-bottom: 30px;
-  }
-  
-  .nav-wrap.is-sticky {
-    position: relative !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-  
-  .nav-wrap .hero-nav,
-  .nav-wrap .hero-cta {
-    display: none !important;
-  }
-  
-  .nav-wrap .hero-mark {
-    width: 26px !important;
-    height: 52px !important;
-  }
-  
-  .nav-wrap .hero-name {
-    font-size: 24px !important;
-  }
-  
-  /* Labels */
-  .hero-label-left.is-desktop,
-  .hero-label-right.is-desktop {
-    position: relative !important;
-    left: auto !important;
-    bottom: auto !important;
-    margin-bottom: 20px;
-  }
-  
-  .hero-kicker {
-    font-size: 28px;
-  }
-  
-  .hero-scroll {
-    flex-direction: row;
-    gap: 10px;
-  }
-  
-  /* Большая "1" */
-  .hero-one-mobile {
-    display: block !important;
-    max-width: 280px;
-    opacity: 0.15;
-    margin-bottom: 40px;
-  }
 }
 
 /* Прячем мобильные элементы на десктопе */
@@ -1105,50 +995,58 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   
-  // ===== DROPDOWN TOGGLE =====
+  // ===== DROPDOWN TOGGLE через делегирование =====
   const dropdown = document.getElementById('stickyDropdown');
-  if (dropdown) document.body.appendChild(dropdown);
+  
+  // Перемещаем dropdown в body
+  if (dropdown) {
+    document.body.appendChild(dropdown);
+  }
 
+  // Клик по всему документу
   document.addEventListener('click', function(e) {
+    // Открыть по burger
     if (e.target.closest('#openMobileMenu2')) {
       e.preventDefault();
-      dropdown && dropdown.classList.add('is-open');
+      if (dropdown) {
+        dropdown.classList.add('is-open');
+        console.log('Dropdown: OPEN');
+      }
     }
+    
+    // Закрыть по крестику
     if (e.target.closest('#closeStickyDropdown')) {
       e.preventDefault();
-      dropdown && dropdown.classList.remove('is-open');
+      if (dropdown) {
+        dropdown.classList.remove('is-open');
+        console.log('Dropdown: CLOSE');
+      }
     }
   });
 
+  // Закрыть по Escape
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && dropdown?.classList.contains('is-open')) {
+    if (e.key === 'Escape' && dropdown && dropdown.classList.contains('is-open')) {
       dropdown.classList.remove('is-open');
     }
   });
 
-  // ===== GSAP — ТОЛЬКО DESKTOP =====
-  if (window.innerWidth < 768) {
-    console.log('📱 Mobile: GSAP disabled');
-    return;
-  }
-  
+
+  // ===== GSAP ANIMATION =====
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP не загружен');
     return;
   }
   
   gsap.registerPlugin(ScrollTrigger);
-  
-  // Ждём полной загрузки
   window.addEventListener('load', initHeroAnimation);
+  if (document.readyState === 'complete') {
+    initHeroAnimation();
+  }
 });
 
 function initHeroAnimation() {
-  // Двойная проверка на мобильные
-  if (window.innerWidth < 768) {
-    ScrollTrigger.getAll().forEach(st => st.kill());
-    return;
-  }
+  if (window.innerWidth < 768) return;
 
   const heroWrapper = document.querySelector('.home-banner-style1');
   const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
@@ -1160,7 +1058,7 @@ function initHeroAnimation() {
   
   const pinDuration = window.innerHeight;
 
-  // Pin hero + clip-path animation
+  // ШАГ 1-2: Pin hero + clip-path
   gsap.timeline({
     scrollTrigger: {
       trigger: heroWrapper,
@@ -1178,7 +1076,7 @@ function initHeroAnimation() {
     0
   );
 
-  // Sticky nav
+  // ШАГ 3: Sticky nav
   const navParent = navWrap.parentNode;
   const navNextSibling = navWrap.nextSibling;
   let isSticky = false;
@@ -1191,7 +1089,8 @@ function initHeroAnimation() {
       isSticky = true;
       document.body.appendChild(navWrap);
       navWrap.classList.add('is-sticky');
-    } else if (scrollY < stickyPoint && isSticky) {
+    } 
+    else if (scrollY < stickyPoint && isSticky) {
       isSticky = false;
       navParent.insertBefore(navWrap, navNextSibling);
       navWrap.classList.remove('is-sticky');
@@ -1201,16 +1100,7 @@ function initHeroAnimation() {
   window.addEventListener('scroll', handleStickyNav, { passive: true });
   handleStickyNav();
   
-  // При ресайзе — убиваем на мобильных
-  window.addEventListener('resize', function() {
-    if (window.innerWidth < 768) {
-      ScrollTrigger.getAll().forEach(st => st.kill());
-      navWrap.classList.remove('is-sticky');
-      if (navParent) navParent.insertBefore(navWrap, navNextSibling);
-    }
-  });
-  
   ScrollTrigger.refresh();
-  console.log('✅ Hero готов (desktop only)');
+  console.log('✅ Hero готов');
 }
 </script>

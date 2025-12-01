@@ -5,7 +5,7 @@
       <div class="row align-items-center justify-content-between oa-h-row"><!-- new scope -->
         <div class="col-auto">
             <div class="logos mr40 mr10-lg">
-              <a class="header-logo" href="/">
+              <a class="header-logo" href="{% url 'home' %}">
                 <img src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" width="21px" alt="One Agency">
               </a>
             </div>
@@ -13,12 +13,12 @@
         <div class="col-auto">
           <!-- меню — твой ace-responsive-menu -->
             <ul id="respMenu" class="ace-responsive-menu oa-menu" data-menu-style="horizontal">
-              <li><a class="list-item" href="#"><span class="title">Our projects</span></a></li>
-              <li><a class="list-item" href="#"><span class="title">About us</span></a></li>
-              <li><a class="list-item" href="#"><span class="title">Concierge Service</span></a></li>
+              <li><a class="list-item" href="{% url 'projects' %}"><span class="title">Our projects</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#aboutus"><span class="title">About us</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#concierge"><span class="title">Concierge Service</span></a></li>
               <li><a class="list-item" href="{% url 'about' %}"><span class="title">About Bali</span></a></li>
-              <li><a class="list-item" href="#"><span class="title">FAQ</span></a></li>
-              <li><a class="list-item" href="#"><span class="title">Contacts</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#faq"><span class="title">FAQ</span></a></li>
+              <li><a class="list-item" href="{% url 'home' %}#contactus"><span class="title">Contacts</span></a></li>
             </ul>
         </div>
         <!-- правый блок: избранное + кнопка (используем твой .wdt-button) -->
@@ -253,11 +253,41 @@
     margin-bottom: 25px;
   }
 }
+
+/* Sticky Header */
+.header-nav {
+  transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-nav.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(39, 39, 39, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
 </style>
 
 <script>
   // Ждём загрузки DOM и GSAP
   document.addEventListener('DOMContentLoaded', function() {
+
+    // Sticky Header on Scroll
+const header = document.querySelector('.header-nav');
+if (header) {
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      header.classList.add('is-sticky');
+    } else {
+      header.classList.remove('is-sticky');
+    }
+  });
+}
+
     // Проверяем загрузку GSAP
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);

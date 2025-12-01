@@ -35,7 +35,7 @@
                  aria-labelledby="q{{ faq.id }}" 
                  data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                {{ faq.answer|linebreaks }}
+                {{ faq.answer|safe }}
               </div>
             </div>
           </div>

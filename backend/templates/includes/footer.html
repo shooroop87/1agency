@@ -1,5 +1,5 @@
 {% load static i18n %}
-{% include "includes/contact-form.html" %}
+{% include "includes/contact-form2.html" %}
 
 <section class="footer-style1 pt60 pb-0 footer-skin">
   <div class="container">
@@ -16,10 +16,10 @@
             <div class="link-style1">
               <h6 class="text-white mb25">{% trans "Our projects" %}</h6>
               <ul class="ps-0 footer-menu">
-                <li><a href="#">{% trans "Apartments" %}</a></li>
-                <li><a href="#">{% trans "Villas" %}</a></li>
-                <li><a href="#">{% trans "Townhouses" %}</a></li>
-                <li><a href="#">{% trans "Land plots" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=apartment">{% trans "Apartments" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=villa">{% trans "Villas" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=townhouse">{% trans "Townhouses" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=land">{% trans "Land plots" %}</a></li>
               </ul>
             </div>
           </div>
@@ -28,10 +28,10 @@
             <div class="link-style1">
               <h6 class="text-white mb25">{% trans "Concierge service" %}</h6>
               <ul class="ps-0 footer-menu">
-                <li><a href="#">{% trans "Accommodation" %}</a></li>
-                <li><a href="#">{% trans "Transportation" %}</a></li>
-                <li><a href="#">{% trans "Legal support" %}</a></li>
-                <li><a href="#">{% trans "Travel" %}</a></li>
+                <li><a href="{% url 'home' %}#concierge">{% trans "Accommodation" %}</a></li>
+                <li><a href="{% url 'home' %}#concierge">{% trans "Transportation" %}</a></li>
+                <li><a href="{% url 'home' %}#concierge">{% trans "Legal support" %}</a></li>
+                <li><a href="{% url 'home' %}#concierge">{% trans "Travel" %}</a></li>
               </ul>
             </div>
           </div>
@@ -40,10 +40,10 @@
             <div class="link-style1">
               <h6 class="text-white mb25">{% trans "Navigation" %}</h6>
               <ul class="ps-0 footer-menu">
-                <li><a href="#aboutus">{% trans "About us" %}</a></li>
-                <li><a href="#">{% trans "About Bali" %}</a></li>
-                <li><a href="#faq">{% trans "FAQ" %}</a></li>
-                <li><a href="#contactus">{% trans "Contacts" %}</a></li>
+                <li><a href="{% url 'home' %}#aboutus">{% trans "About us" %}</a></li>
+                <li><a href="{% url 'about' %}">{% trans "About Bali" %}</a></li>
+                <li><a href="{% url 'home' %}#faq">{% trans "FAQ" %}</a></li>
+                <li><a href="{% url 'home' %}#contactus">{% trans "Contacts" %}</a></li>
               </ul>
             </div>
           </div>
@@ -66,31 +66,43 @@
         </div>
       </div>
 
+      <!-- большая "1" справа -->
       <div class="col-lg-3 d-none d-lg-flex justify-content-end">
-        <img src="{% static 'images/logo-one.png' %}" alt="" class="footer-one">
+        <img
+          src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/logo_like_number_one.png"
+          alt=""
+          class="footer-one"
+        >
       </div>
     </div>
   </div>
 
+  <!-- разделительная линия и нижняя полоса -->
   <div class="container white-bdrt1 py-3 footer-bottom">
     <div class="row align-items-center gy-2">
-      <div class="col-sm-6 col-lg-4">
+
+      <div class="col-sm-6 col-lg-2">
         <p class="copyright-text text-gray ff-heading mb-0">© {% now "Y" %} {{ site_settings.site_name }}</p>
       </div>
       <div class="col-sm-6 col-lg-4">
-        <a href="#" class="text-gray">{% trans "Privacy Policy" %}</a>
+        <p class="copyright-text text-gray ff-heading mb-0">
+          <a href="#" target="_blank" rel="noopener">{% trans "Privacy Policy" %}</a>
+        </p>
       </div>
-      <div class="col-lg-4 text-lg-end">
-        <!-- Language Switcher -->
-        <div class="footer-lang">
-          {% for lang_code, lang_name in LANGUAGES %}
-            <a href="{% url 'set_language' %}?language={{ lang_code }}" 
-               class="lang-link {% if lang_code == current_language %}active{% endif %}">
-              {{ lang_name }}
-            </a>
-            {% if not forloop.last %} | {% endif %}
-          {% endfor %}
-        </div>
+      <div class="col-lg-6 text-lg-end">
+        <p class="ff-heading text-gray mb-0">
+          <a class="text-gray" href="#">Built with passion by dw.studio & yaushevaweb.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- разделительная линия и нижняя полоса -->
+  <div class="container white-bdrt1 py-3 footer-bottom">
+    <div class="row align-items-center gy-2">
+
+      <div class="col-sm-12 col-lg-12">
+        <p class="copyright-text text-gray ff-heading mb-0">PT DREAM ESTATE GROUP, Nomor Induk Berusaha (NIB): 2808240112275, Alamat Kantor: Benoa,
+Desa/Kelurahan Benoa, Kec. Kuta Selatan, Kab. Badung, Provinsi, Bali, Kode Pos: 80362</p>
       </div>
     </div>
   </div>
@@ -102,8 +114,6 @@
   <svg fill="#000" width="26px" height="26px" viewBox="0 0 32 32"><path d="M26.576 5.363c-2.69-2.69-6.406-4.354-10.511-4.354-8.209 0-14.865 6.655-14.865 14.865 0 2.732 0.737 5.291 2.022 7.491l-2.109 7.702 7.879-2.067c2.051 1.139 4.498 1.809 7.102 1.809 8.209 0 14.862-6.659 14.862-14.868 0-4.103-1.662-7.817-4.349-10.507z"/></svg>
 </a>
 {% endif %}
-
-
 
 <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
 <style>

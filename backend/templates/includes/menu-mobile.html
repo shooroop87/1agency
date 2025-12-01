@@ -7,7 +7,7 @@
 
           <a class="mobile_logo hero-brand-mobile" href="{% url 'home' %}">
             <img class="hero-mark" width="51" height="101"
-                 src="{% static 'images/logo-mark.png' %}" alt="{{ site_settings.site_name }}">
+                 src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="{{ site_settings.site_name }}">
             <span class="hero-name-mobile">{{ site_settings.site_name }}</span>
           </a>
 
@@ -35,30 +35,30 @@
       <div class="oa-mobile-menu__top">
         <a class="hero-brand-mobile oa-mobile-menu__logo" href="{% url 'home' %}">
           <img class="hero-mark" width="51" height="101"
-               src="{% static 'images/logo-mark.png' %}" alt="{{ site_settings.site_name }}">
+               src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="{{ site_settings.site_name }}">
         </a>
         <span class="oa-mobile-menu__close" id="closeMobileMenu" aria-label="Close menu">×</span>
       </div>
 
       <div class="oa-mobile-menu__columns mt50">
         <div class="oa-mobile-menu__col">
-          <a href="#aboutus" class="oa-mobile-menu__link">{% trans "About us" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "About Bali" %}</a>
-          <a href="#faq" class="oa-mobile-menu__link">{% trans "FAQ" %}</a>
-          <a href="#contactus" class="oa-mobile-menu__link">{% trans "Contacts" %}</a>
+          <a href="{% url 'home' %}#aboutus" class="oa-mobile-menu__link">{% trans "About us" %}</a>
+          <a href="{% url 'about' %}" class="oa-mobile-menu__link">{% trans "About Bali" %}</a>
+          <a href="{% url 'home' %}#faq" class="oa-mobile-menu__link">{% trans "FAQ" %}</a>
+          <a href="{% url 'home' %}#contactus" class="oa-mobile-menu__link">{% trans "Contacts" %}</a>
         </div>
 
         <div class="oa-mobile-menu__col">
           <div class="oa-mobile-menu__col-title">{% trans "Our projects" %}</div>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Apartments" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Villas" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Townhouses" %}</a>
-          <a href="#" class="oa-mobile-menu__link">{% trans "Land plots" %}</a>
+          <a href="{% url 'projects' %}?type=apartment" class="oa-mobile-menu__link">{% trans "Apartments" %}</a>
+          <a href="{% url 'projects' %}?type=villa" class="oa-mobile-menu__link">{% trans "Villas" %}</a>
+          <a href="{% url 'projects' %}?type=townhouse" class="oa-mobile-menu__link">{% trans "Townhouses" %}</a>
+          <a href="{% url 'projects' %}?type=land" class="oa-mobile-menu__link">{% trans "Land plots" %}</a>
         </div>
 
         <div class="oa-mobile-menu__col">
           <div class="oa-mobile-menu__col-title">{% trans "Concierge service" %}</div>
-          <a href="#concierge" class="oa-mobile-menu__link">{% trans "All services" %}</a>
+          <a href="{% url 'home' %}#concierge" class="oa-mobile-menu__link">{% trans "All services" %}</a>
         </div>
       </div>
 
@@ -77,8 +77,8 @@
           <span class="oa-mobile-menu__dot"></span>
           <span>{% trans "Request details" %}</span>
         </div>
-        <div class="oa-mobile-menu__contacts-text">{% trans "Call us" %}: {{ site_settings.phone }}</div>
-        <div class="oa-mobile-menu__contacts-text">{% trans "Email us" %}: {{ site_settings.email }}</div>
+        <div class="oa-mobile-menu__contacts-text">{% trans "Call us" %}: <a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a></div>
+        <div class="oa-mobile-menu__contacts-text">{% trans "Email us" %}: <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></div>
       </div>
 
       <div class="oa-mobile-menu__bottom">
