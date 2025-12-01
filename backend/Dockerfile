@@ -26,9 +26,6 @@ COPY . .
 # КРИТИЧНО: Очистка старых статических файлов
 RUN rm -rf /app/collected_static/* || true
 
-# Сборка статических файлов с принудительной перегенерацией
-RUN python manage.py collectstatic --noinput --clear --verbosity=2
-
 # НОВОЕ: Создаем timestamp файл для отслеживания версии сборки
 RUN echo "BUILD_TIMESTAMP=$(date +%Y%m%d_%H%M%S)" > /app/.build_info && \
     echo "BUILD_HASH=$(echo $RANDOM | md5sum | head -c 8)" >> /app/.build_info
