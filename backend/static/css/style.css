@@ -698,6 +698,13 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   background: hsl(0 0% 100% / .8);
 }
 
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+    .projects {
+        padding: 5px;
+    }
+}
+
 /* ===== Projects page ===== */
 .projects-title {
 font-weight: 600;
@@ -12164,4 +12171,200 @@ input:focus-visible {
     box-shadow: none !important;
     z-index: 1000;
   }
+}
+/* ===== MAP SECTION ===== */
+.map-section {
+  position: relative;
+  padding: 80px 0 0;
+  background: #1a1a1a;
+}
+
+.map-section .section-kicker {
+  font-size: 15px;
+  font-weight: 600;
+  color: #a0a0a0;
+  margin-bottom: 12px;
+}
+
+.map-section .section-title {
+  font-size: 50px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+
+.map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Zoom buttons */
+.map-zoom {
+  position: absolute;
+  left: 30px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(39, 39, 39, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.map-zoom__btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.map-zoom__btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ===== MAP POPUP CARD ===== */
+.map-popup {
+  position: absolute;
+  right: 40px;
+  bottom: 60px;
+  width: 340px;
+  background: rgba(39, 39, 39, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 30px;
+  padding: 20px;
+  z-index: 100;
+}
+
+.map-popup__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.map-popup__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #F0987D 0%, #D7785B 100%);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.map-popup__headings {
+  flex: 1;
+}
+
+.map-popup__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 1;
+}
+
+.map-popup__place {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.map-popup__menu {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.map-popup__menu span {
+  width: 4px;
+  height: 4px;
+  background: #a0a0a0;
+  border-radius: 50%;
+}
+
+.map-popup__body {
+  display: flex;
+  gap: 15px;
+}
+
+.map-popup__thumb {
+  width: 113px;
+  height: 113px;
+  border-radius: 15px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.map-popup__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-popup__meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.map-popup__meta .meta-row {
+  display: flex;
+  gap: 5px;
+}
+
+.map-popup__meta .lbl {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.map-popup__meta .val {
+  font-size: 15px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.map-popup__meta .price-row .val {
+  font-weight: 600;
+  background: linear-gradient(90deg, #F0987D 0%, #D7785B 83%, #EA9278 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.map-popup__meta .muted {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.5;
+  margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+  .map-section .section-title { font-size: 30px; }
+  .map-wrapper { height: 500px; }
+  .map-popup { right: 15px; bottom: 15px; width: 300px; padding: 15px; }
 }

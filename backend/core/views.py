@@ -1,4 +1,7 @@
 # backend/core/views.py
+import json
+import random
+
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import translation
@@ -13,6 +16,45 @@ from .email import send_contact_notification
 
 
 def home(request):
+    from properties.models import Property
+
+    # Координаты локаций Бали
+    location_coords = {
+        'canggu': {'lat': -8.6478, 'lng': 115.1385},
+        'ubud': {'lat': -8.5069, 'lng': 115.2625},
+        'seminyak': {'lat': -8.6893, 'lng': 115.1685},
+        'uluwatu': {'lat': -8.8291, 'lng': 115.0849},
+        'sanur': {'lat': -8.7089, 'lng': 115.2551},
+        'nusa-dua': {'lat': -8.8005, 'lng': 115.2317},
+        'bukit': {'lat': -8.8095, 'lng': 115.1550},
+        'gianyar': {'lat': -8.5406, 'lng': 115.3227},
+        'denpasar': {'lat': -8.6500, 'lng': 115.2167},
+    }
+    
+    # Данные для карты
+    map_properties = []
+    for prop in Property.objects.filter(is_active=True).select_related('location', 'image'):
+        loc_slug = prop.location.slug if prop.location else ''
+        coords = location_coords.get(loc_slug, {'lat': -8.4095, 'lng': 115.1889})
+        
+        # Смещение чтобы маркеры не накладывались
+        lat = coords['lat'] + random.uniform(-0.02, 0.02)
+        lng = coords['lng'] + random.uniform(-0.02, 0.02)
+        
+        map_properties.append({
+            'id': prop.id,
+            'title': prop.safe_translation_getter('title', default=''),
+            'location': f"{prop.location.name}, Bali" if prop.location else 'Bali',
+            'lat': lat,
+            'lng': lng,
+            'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
+            'status': prop.get_status_display(),
+            'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
+            'roi': str(prop.roi) if prop.roi else '',
+            'price': f"${int(prop.price):,}" if prop.price else '',
+            'units': f"Includes {prop.bedrooms} unit types" if prop.bedrooms else '',
+        })
+    
     context = {
         'services': Service.objects.filter(is_active=True),
         'reviews': Review.objects.filter(is_active=True),

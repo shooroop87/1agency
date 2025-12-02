@@ -87,6 +87,7 @@
 </section>
 
 <!-- Service Details Modal -->
+<!-- Service Details Modal -->
 <div id="serviceDetailsModal" class="service-details-modal">
   <div class="service-details-modal__overlay"></div>
   <div class="service-details-modal__content">
@@ -96,21 +97,30 @@
       </svg>
     </button>
 
-    <div class="sdm-header">
-      <h2 class="sdm-title"></h2>
-      <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal-from-details">
-        Request service
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <div class="sdm-wrapper">
+      <div class="row gx-5">
+        <div class="sdm-separator"></div>
+        <!-- Левая колонка: название + кнопка -->
+        <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+          <div class="sdm-header">
+            <h2 class="sdm-title"></h2>
+            <a href="#" class="wdt-button button-cta3 is-nm concierge-cta open-service-modal-from-details">
+              Request service
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- Правая колонка: список -->
+        <div class="col-12 col-lg-8">
+          <ul class="sdm-list"></ul>
+        </div>
+      </div>
     </div>
-
-    <div class="sdm-separator"></div>
-
-    <ul class="sdm-list"></ul>
   </div>
 </div>
+
 
 <style>
 /* Services Swiper - независимые стили */
@@ -475,6 +485,59 @@
   .services-swiper .swiper-scrollbar {
     display: none;
   }
+}
+
+.sdm-wrapper {
+  padding-top: 20px;
+}
+
+.sdm-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.sdm-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.sdm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sdm-list li {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #FFFFFF;
+  padding-left: 20px;
+  position: relative;
+}
+
+.sdm-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-radius: 50%;
 }
 </style>
 

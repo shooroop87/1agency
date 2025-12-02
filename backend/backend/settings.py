@@ -1,5 +1,6 @@
 # backend/oneagency/settings.py
 import os
+import sys
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
@@ -101,6 +102,9 @@ DATABASES = {
     }
 }
 
+if 'runserver' in sys.argv:
+    DATABASES['default']['HOST'] = 'localhost'
+
 # Cache (Redis)
 if os.environ.get('REDIS_URL'):
     CACHES = {
@@ -140,6 +144,11 @@ LANGUAGES = [
     ('ru', _('Russian')),
 ]
 
+PARLER_ENABLE_CACHING = True
+
+if 'runserver' in sys.argv:
+    PARLER_ENABLE_CACHING = False
+
 # Django-parler
 PARLER_LANGUAGES = {
     None: (
@@ -170,53 +179,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Продолжение backend/oneagency/settings.py
 
 # TinyMCE
-# Основная конфигурация (аналог CKEditor 5 'default')
+# TinyMCE
 TINYMCE_DEFAULT_CONFIG = {
     "height": 800,
     "width": "auto",
     "menubar": "file edit view insert format tools table",
-    # для встроенных плагинов TinyMCE
     "plugins": """
-        tableofcontents accordion advlist autolink lists link image charmap preview anchor searchreplace 
-        visualblocks code fullscreen insertdatetime media table code 
-        help wordcount table lists emoticons template codesample nonbreaking toc pagebreak
+        accordion advlist autolink lists link image charmap preview anchor searchreplace 
+        visualblocks code fullscreen insertdatetime media table 
+        help wordcount emoticons codesample nonbreaking pagebreak
     """,
     "toolbar": """
         undo redo | styles | bold italic | accordion underline strikethrough | 
         forecolor backcolor | alignleft aligncenter alignright alignjustify |
-        bullist numlist | tableofcontents | outdent indent | link image media swipergallery | 
-        table | template | removeformat code fullscreen help
+        bullist numlist | outdent indent | link image media | 
+        table | removeformat code fullscreen help
     """,
-    # external_plugins - для кастомных плагинов
-    "external_plugins": {
-        "swipergallery": "/static/tinymce/plugins/swipergallery/plugin.js",
-        "tableofcontents": "/static/tinymce/plugins/tableofcontents/plugin.js",
-    },
     "license_key": "gpl",
-    "templates": [
-        {
-            "title": "CTA Button",
-            "description": "Centered button",
-            "content": """
-                <p class="mt-30" style="text-align:center">
-                    <a href="#" class="button -md -dark-1 bg-accent-1 text-white" title="..." aria-label="...">
-                        Call to Action
-                    </a>
-                </p>
-            """,
-        },
-        {
-            "title": "Highlight Box",
-            "description": "Highlighted content block with border and background",
-            "content": """
-                <div style="border: 1.5px solid #f8ebde; background: #f8f5f1; padding: 15px 20px; border-radius: 8px; margin: 30px 0;">
-                    <div class="ck-content">
-                        <p>Your highlighted content here...</p>
-                    </div>
-                </div>
-            """,
-        },
-    ],
     "style_formats": [
         {"title": "Paragraph", "format": "p", "classes": "mt-20"},
         {"title": "Heading 1", "format": "h1"},
@@ -237,40 +216,23 @@ TINYMCE_DEFAULT_CONFIG = {
         },
     ],
     "color_map": [
-        "000000",
-        "Black",
-        "4D4D4D",
-        "Dark grey",
-        "999999",
-        "Grey",
-        "E6E6E6",
-        "Light grey",
-        "FFFFFF",
-        "White",
-        "E64C4C",
-        "Red",
-        "E6804C",
-        "Orange",
-        "E6E64C",
-        "Yellow",
-        "99E64C",
-        "Light green",
-        "4CE64C",
-        "Green",
-        "4CE699",
-        "Aquamarine",
-        "4CE6E6",
-        "Turquoise",
-        "4C99E6",
-        "Light blue",
-        "4C4CE6",
-        "Blue",
-        "994CE6",
-        "Purple",
-        "E64CE6",
-        "Magenta",
-        "E64C99",
-        "Pink",
+        "000000", "Black",
+        "4D4D4D", "Dark grey",
+        "999999", "Grey",
+        "E6E6E6", "Light grey",
+        "FFFFFF", "White",
+        "E64C4C", "Red",
+        "E6804C", "Orange",
+        "E6E64C", "Yellow",
+        "99E64C", "Light green",
+        "4CE64C", "Green",
+        "4CE699", "Aquamarine",
+        "4CE6E6", "Turquoise",
+        "4C99E6", "Light blue",
+        "4C4CE6", "Blue",
+        "994CE6", "Purple",
+        "E64CE6", "Magenta",
+        "E64C99", "Pink",
     ],
     "image_advtab": True,
     "image_caption": True,
@@ -292,9 +254,6 @@ TINYMCE_DEFAULT_CONFIG = {
     "table_resize_bars": True,
     "table_default_attributes": {"border": "1"},
     "table_default_styles": {"border-collapse": "collapse", "width": "100%"},
-    "content_css": [
-        "/static/css/tinymce-content.css",
-    ],
     "content_style": """
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -303,25 +262,7 @@ TINYMCE_DEFAULT_CONFIG = {
             color: #32373c;
             padding: 20px;
         }
-        .table-of-contents {
-            background: #f5f5f5;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #333;
-        }
-        .table-of-contents h2 {
-            margin-top: 0;
-        }
-        .table-of-contents ul {
-            list-style: none;
-            padding-left: 20px;
-        }
-        .table-of-contents a {
-            text-decoration: none;
-            color: #333;
-        }
     """,
-    # Разрешенные элементы
     "extended_valid_elements": """
         div[class|style|data-*],
         span[class|style|data-*],
@@ -368,7 +309,9 @@ TINYMCE_DEFAULT_CONFIG = {
         "summary": "button text-16 text-dark-1",
         "a": "cta-button cta-button-outline button -md -dark-1 bg-accent-1 text-white mt-30",
     },
-    # Опции
+    "valid_styles": {
+        "*": "text-align,color,background-color,font-size,font-weight,text-decoration,margin,margin-left,margin-right,padding"
+    },
     "branding": False,
     "promotion": False,
     "relative_urls": False,
@@ -379,13 +322,10 @@ TINYMCE_DEFAULT_CONFIG = {
     "paste_as_text": False,
     "paste_data_images": True,
     "browser_spellcheck": True,
-    # "contextmenu": "link image table",
     "contextmenu": False,
     "verify_html": False,
-    # Сохранение переносов строк и пустых абзацев
     "forced_root_block": "p",
     "force_br_newlines": False,
-    "force_p_newlines": True,
     "remove_trailing_brs": False,
     "remove_linebreaks": False,
     "convert_newlines_to_brs": False,
@@ -411,9 +351,6 @@ TINYMCE_DEFAULT_CONFIG = {
             },
         },
     },
-}
-TINYMCE_DEFAULT_CONFIG["valid_styles"] = {
-    "*": "text-align,color,background-color,font-size,font-weight,text-decoration,margin,margin-left,margin-right,padding"
 }
 
 # Django Filer

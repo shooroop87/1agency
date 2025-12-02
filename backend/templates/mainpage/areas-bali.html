@@ -1,228 +1,169 @@
 {% load static %}
 <!-- ===== Areas of Bali ===== -->
 <section class="areas-bali section-content">
+  <!-- Фоновые фото - ВНЕ контейнера -->
+  <div class="areas-bg-photos">
+    <div class="areas-bg-photo active" data-area="canggu">
+      <img src="{% static 'images/area_canggu.png' %}" alt="Canggu">
+    </div>
+    <div class="areas-bg-photo" data-area="bukit">
+      <img src="{% static 'images/area_bukit.png' %}" alt="Bukit">
+    </div>
+    <div class="areas-bg-photo" data-area="ubud">
+      <img src="{% static 'images/area_ubud.png' %}" alt="Ubud">
+    </div>
+  </div>
+  
+  <!-- Единица поверх фото -->
+  <div class="areas-one-overlay"></div>
+
   <div class="container">
-<div class="row g-0 align-items-start">
-  <!-- LEFT: табы -->
-  <div class="col-lg-5 pe-lg-4">
-    <span class="areas-eyebrow mb25">Areas of Bali</span>
-    <h2 class="h2 areas-heading mb20">
-      Explore our available villas in Bali's <br>most rapidly developing areas
-    </h2>
+    <div class="row g-0 align-items-start">
+      <!-- LEFT: табы -->
+      <div class="col-lg-5 pe-lg-4">
+        <span class="areas-eyebrow mb25">Areas of Bali</span>
+        <h2 class="h2 areas-heading mb20">
+          Explore our available villas in Bali's <br>most rapidly developing areas
+        </h2>
 
-    <div class="areas-tabs">
-      <div class="nav areas-nav" role="tablist">
-        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#area-canggu" type="button">
-          <div class="area-tab-inner">
-            <span class="dot"></span>
-            <span class="area-title">Canggu</span>
+        <div class="areas-tabs">
+          <div class="nav areas-nav" role="tablist">
+            <button class="nav-link active" data-area="canggu" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Canggu</span>
+              </div>
+            </button>
+            <button class="nav-link" data-area="bukit" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Bukit</span>
+              </div>
+            </button>
+            <button class="nav-link" data-area="ubud" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Ubud</span>
+              </div>
+            </button>
           </div>
-        </button>
-        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#area-bukit" type="button">
-          <div class="area-tab-inner">
-            <span class="dot"></span>
-            <span class="area-title">Bukit</span>
+
+          <div class="areas-divider"></div>
+          
+          <!-- Контент табов -->
+          <div class="areas-tab-content">
+            <div class="areas-tab-pane active" data-area="canggu">
+              <p class="areas-desc mb60 mt30">
+                Canggu is one of Bali’s most vibrant districts, famous for its world-class surf breaks, trendy cafés, and buzzing nightlife. As the epicenter of modern island living, it attracts digital nomads, expats, and investors alike. With a booming real estate market and strong demand for short-term rentals, Canggu offers some of the highest returns on the island. It’s the perfect choice for active travelers and those looking for reliable passive income.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button__icon"></i>
+              </a>
+            </div>
+            <div class="areas-tab-pane" data-area="bukit">
+              <p class="areas-desc mb60 mt30">
+                The Bukit Peninsula is home to Bali’s most iconic beaches, luxury resorts, and breathtaking cliffside villas with panoramic ocean views. This area appeals to those seeking privacy, elegance, and long-term value. Popular among surfers, families, and lifestyle investors, Bukit combines unspoiled natural beauty with the comforts of upscale seaside living — making it an ideal location for both holiday homes and long-term investments.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button__icon"></i>
+              </a>
+            </div>
+            <div class="areas-tab-pane" data-area="ubud">
+              <p class="areas-desc mb60 mt30">
+                Ubud is the cultural and spiritual heart of Bali, surrounded by lush rice terraces and tropical jungle. Known for its tranquil rhythm of life, Ubud attracts those in search of harmony, wellness, and creativity. The area is a favorite among expats, yogis, and artists, with strong demand for private villa rentals. For investors, Ubud presents unique opportunities in long-term rentals and eco-conscious developments.
+              </p>
+              <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
+                View property <i class="wdt-button__icon"></i>
+              </a>
+            </div>
           </div>
-        </button>
-        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#area-ubud" type="button">
-          <div class="area-tab-inner">
-            <span class="dot"></span>
-            <span class="area-title">Ubud</span>
-          </div>
-        </button>
-      </div>
-
-      <div class="areas-divider"></div>
-      <!-- Контент табов - ТОЛЬКО ТЕКСТ -->
-      <div class="tab-content">
-        <div class="tab-pane fade show active" id="area-canggu">
-          <p class="areas-desc mb60 mt30">
-            Canggu is one of Bali's most vibrant districts, famous for its world-class surf breaks,
-            trendy cafés, and buzzing nightlife. As the epicenter of modern island living, it attracts
-            digital nomads, expats, and investors alike. With a booming real estate market and strong
-            demand for short-term rentals, Canggu offers some of the highest returns on the island.
-          </p>
-          <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
-            View property <i class="wdt-button__icon"></i>
-          </a>
-        </div>
-
-        <div class="tab-pane fade" id="area-bukit">
-          <p class="areas-desc mb60 mt30">
-            Bukit Peninsula is known for dramatic cliffs, iconic beaches and luxury resorts.
-            It's a hotspot for premium villas with strong holiday-rental demand and high ROI.
-          </p>
-          <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
-            View property <i class="wdt-button__icon"></i>
-          </a>
-        </div>
-
-        <div class="tab-pane fade" id="area-ubud">
-          <p class="areas-desc mb60 mt30">
-            Ubud is Bali's cultural heart, surrounded by rice terraces and jungle.
-          </p>
-          <a href="#" class="wdt-button button-cta is-nm wdt-button--bordered">
-            View property <i class="wdt-button__icon"></i>
-          </a>
         </div>
       </div>
+      
+      <div class="col-lg-7"></div>
     </div>
   </div>
-  <!-- RIGHT: фото - синхронизируется с табами автоматически -->
-  <div class="col-lg-7 ps-lg-4">
-    <div class="areas-photo">
-      <div class="tab-content">
-        <div class="tab-pane fade show active" id="photo-canggu">
-          <img class="areas-photo__img" src="{% static 'images/area_canggu.png' %}" alt="Canggu">
-        </div>
-        <div class="tab-pane fade" id="photo-bukit">
-          <img class="areas-photo__img" src="{% static 'images/area_bukit.png' %}" alt="Bukit">
-        </div>
-        <div class="tab-pane fade" id="photo-ubud">
-          <img class="areas-photo__img" src="{% static 'images/area_ubud.png' %}" alt="Ubud">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-<!-- SVG для маски единицы -->
-<svg width="0" height="0" style="position: absolute;">
-  <defs>
-    <clipPath id="number-one-clip" clipPathUnits="objectBoundingBox">
-      <!-- Путь единицы, масштабированный под 0-1 -->
-      <path d="M 0.26 0.31 L 0.35 0.31 L 0.35 0.67 L 0.26 0.67 Z M 0.30 0.33 L 0.32 0.33 L 0.32 0.65 L 0.30 0.65 Z" 
-            fill="white"/>
-    </clipPath>
-  </defs>
-</svg>
 </section>
+
 <style>
-/* Контейнер справа (для высоты и позиционирования) */
-.areas-photo {
-  position: relative;
-  height: 715px; /* как в Figma */
-  overflow: hidden;
-}
-
-/* Фоновый большой слой, всегда под фото */
-.areas-photo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('{% static "images/bg_areas.png" %}')
-              center/cover no-repeat;
-  z-index: 1;
-}
-
-/* Фото соответствующей области */
-.areas-photo__img {
-  position: absolute;
-  inset: 0;
-  background-image: var(--img); /* ← вот это важно */
-  background-size: cover;
-  background-position: center;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .6s ease;
-}
-
-/* Активное фото показывается */
-.areas-photo .tab-pane.show .areas-photo__img {
-  opacity: 1;
-}
-/* Секция, чтобы фон можно было растянуть как в макете */
 .areas-bali {
   position: relative;
+  min-height: 715px;
   overflow: hidden;
 }
 
-/* Правая колонка с изображениями */
-.areas-photo {
-  position: relative;
-  height: 715px;   /* как в фигме */
-  overflow: hidden;
-}
-
-/* НЕ меняющийся фон (bg_areas.png) под всеми картинками  */
-.areas-photo::before {
-  content: "";
+/* Фоновые фото на всю ширину */
+.areas-bg-photos {
   position: absolute;
-  inset: 0;
-  background: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/bg_areas.png')
-              center / cover no-repeat;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
   z-index: 1;
 }
 
-/* Картинка активной области */
-.areas-photo__img {
+.areas-bg-photo {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.areas-bg-photo.active {
+  opacity: 1;
+}
+
+.areas-bg-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .5s ease;
 }
 
-/* Когда таб активен, Bootstrap даёт .show — показываем картинку */
-.areas-photo .tab-pane.show .areas-photo__img {
-  opacity: 1;
-}
-.areas-photo::before {
-  z-index: 3;  /* поверх фото */
-  mix-blend-mode: multiply; /* или другой режим наложения */
-}
-.areas-photo__img {
+/* Единица как overlay */
+.areas-one-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/static/images/bg_areas.png') center/cover no-repeat;
   z-index: 2;
+  pointer-events: none;
 }
-.areas-photo {
+
+/* Контент поверх */
+.areas-bali .container {
   position: relative;
-  height: 715px;
-  overflow: hidden;
+  z-index: 3;
 }
 
-.areas-photo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('{% static "images/bg_areas.png" %}') center/cover no-repeat;
-  z-index: 1;
+/* Табы */
+.areas-tab-pane {
+  display: none;
 }
-
-.areas-photo__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .5s ease;
-  clip-path: url(#number-one-clip); /* ← маска единицы */
-}
-
-.areas-photo .tab-pane.show .areas-photo__img {
-  opacity: 1;
+.areas-tab-pane.active {
+  display: block;
 }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.areas-nav .nav-link').forEach(btn => {
-    btn.addEventListener('shown.bs.tab', e => {
-      // Получаем ID активного таба (например "area-canggu")
-      const targetId = e.target.getAttribute('data-bs-target').replace('#area-', '');
-      
-      // Переключаем соответствующее фото
-      document.querySelectorAll('.areas-photo .tab-pane').forEach(pane => {
-        pane.classList.remove('show', 'active');
-      });
-      
-      const photoPane = document.querySelector(`#photo-${targetId}`);
-      if (photoPane) {
-        photoPane.classList.add('show', 'active');
-      }
+  const buttons = document.querySelectorAll('.areas-nav .nav-link');
+  const photos = document.querySelectorAll('.areas-bg-photo');
+  const panes = document.querySelectorAll('.areas-tab-pane');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const area = btn.dataset.area;
+
+      // Убираем active у всех
+      buttons.forEach(b => b.classList.remove('active'));
+      photos.forEach(p => p.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+
+      // Добавляем active нужным
+      btn.classList.add('active');
+      document.querySelector(`.areas-bg-photo[data-area="${area}"]`).classList.add('active');
+      document.querySelector(`.areas-tab-pane[data-area="${area}"]`).classList.add('active');
     });
   });
 });
