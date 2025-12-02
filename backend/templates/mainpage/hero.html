@@ -482,7 +482,6 @@
   flex-direction: column;
   align-items: center;
   color: white;
-  font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 15px;
   gap: 5px;
@@ -956,7 +955,7 @@
   }
   
   .hero-kicker {
-    font-size: 28px;
+    font-size: 26px;
   }
   
   .hero-label-left.is-desktop {
@@ -964,8 +963,11 @@
   }
   
   .hero-scroll {
-    flex-direction: row;
+    display: grid;
     gap: 10px;
+  }
+  .partners-dot {
+    margin-left: 35px;
   }
   
   /* Отключаем GSAP pin на мобилке */
@@ -1017,7 +1019,7 @@
     display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 80%;
   }
   
   .hero-grid-mobile__item {
@@ -1073,7 +1075,7 @@
   }
   
   .hero-kicker {
-    font-size: 28px;
+    font-size: 26px;
   }
   
   .hero-scroll {
@@ -1209,6 +1211,7 @@ function initHeroAnimation() {
   });
   
   ScrollTrigger.refresh();
+  ScrollTrigger.normalizeScroll(true);
   console.log('✅ Hero готов (desktop only)');
 }
 </script>

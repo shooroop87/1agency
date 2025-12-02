@@ -9,7 +9,7 @@
     <div class="economy__house-grad"></div>
   </div>
 
-  <div class="container position-relative economy-container">
+  <div class="container position-relative">
     <div class="row">
       <div class="col-xl-7 col-lg-7 mt20 mt50-xs">
         <p class="economy__kicker">Economy</p>
@@ -93,8 +93,7 @@
 /* Кривая линия */
 .economy__curve{
   position:absolute;
-  left:310px;
-  top: 1527px;          /* базовая позиция для 1440 */
+  left:40px; top: 1527px;          /* базовая позиция для 1440 */
   width: 1253px; height:auto; 
   opacity:.75; pointer-events:none;
   transform: translateY(calc(-1527px + 420px)); /* опускаем в секцию */
@@ -150,7 +149,7 @@
 
 /* Бейдж слева снизу */
 .economy__badge{
-  position:absolute; top:720px; width:79px; height:78px;
+  position:absolute; top:721px; width:79px; height:78px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:5px; text-align:center;
   background: linear-gradient(179.63deg, #F0987D .32%, #272727 99.68%);
@@ -160,13 +159,9 @@
   z-index: 4;
 }
 
-.economy-container {
-  padding: 20px;
-}
-
 /* Статистики */
 .economy__stats{
-  position:absolute; top:840px; bottom:80px;
+  position:absolute; top:643px; right:40px; bottom:80px;
   display:grid; grid-template-columns: 325px 388px 388px;
   gap: 80px 140px; align-items:start;
 }
@@ -205,32 +200,6 @@
   .economy__stats{ grid-template-columns: 1fr; }
   .economy__badge{ position:static; margin:24px 0; }
 }
-/* Позиция среднего блока 16.45 */
-.stat:nth-child(2){
-  position: relative;
-  top: -80px;  /* поднимаем выше как в Figma */
-}
 
-/* Позиция правого блока 24.78% */
-.stat:nth-child(3){
-  position: relative;
-  top: -206px;  /* ещё выше - лесенка */
-}
 
-/* Кривая линия */
-.economy__curve{
-  position: absolute;
-  left:420px;
-  bottom: 180px;
-  width: 1253px;
-  height: auto;
-  opacity: .75;
-  pointer-events: none;
-  z-index: 3;
-}
-@media (max-width: 991.98px){
-  .economy-container {
-    padding: 0 20px;
-  }
-}
 </style>

@@ -1,45 +1,183 @@
 {% load static %}
-<section class="about-hero " style="margin-block: 0;" id="aboutus">
-  <!-- фон секции -->
-  <div class="ah-bg" style="
-    background-image:
-      linear-gradient(0deg, rgba(39,39,39,.40), rgba(39,39,39,.40)),
-      url('{% static 'images/bg_about.png' %}');">></div>
-
-  <!-- левое фото (снизу-слева) -->
+<section class="about-hero" id="aboutus">
+  <div class="ah-bg"></div>
   <div class="ah-side ah-side--left"></div>
-
-  <!-- правое фото (справа) -->
   <div class="ah-side ah-side--right"></div>
 
-  <!-- центр-контент -->
   <div class="container">
     <div class="ah-content">
       <img class="ah-logo" src="https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/479ca7c85bb1e2e8fdf70efdeb5d0b6e.png" alt="" loading="lazy" />
-      <span class="ah-eyebrow mb50">About us</span>
+      <span class="ah-eyebrow">About us</span>
 
-      <h2 class="ah-title mb30">
-        With over a decade of expertise<br>
-        in Bali’s real estate market,<br>
-        One Agency is more than just a<br>
-        property agency — we are your<br>
+      <h2 class="ah-title">
+        With over a decade of expertise
+        in Bali's real estate market,
+        One Agency is more than just a
+        property agency — we are your
         trusted partner on the island.
       </h2>
 
-      <p class="ah-text mb20">
+      <p class="ah-text">
         Our dedicated team of English- and French-speaking professionals will guide you through
-        every step of buying, selling, or renting a villa. 
+        every step of buying, selling, or renting a villa.
+      </p>
         
-      <p class="ah-text mb35">Whether you are an international buyer
-        or a local resident, we ensure each transaction is seamless, transparent, and stress-free.
-        From the first consultation to closing the deal, our approachable and knowledgeable agents
-        make navigating Bali’s dynamic property market effortless.
+      <p class="ah-text">
+        Whether you are an international buyer or a local resident, we ensure each transaction is 
+        seamless, transparent, and stress-free. From the first consultation to closing the deal, 
+        our approachable and knowledgeable agents make navigating Bali's dynamic property market effortless.
       </p>
 
-      <a href="{% url 'projects' %}" class="wdt-button button-cta is-nm wdt-button--bordered ah-cta">
+      <a href="{% url 'projects' %}" class="wdt-button button-cta is-nm concierge-cta">
         Browse properties <span class="wdt-button__icon" aria-hidden="true"></span>
       </a>
-
     </div>
   </div>
 </section>
+
+<style>
+.about-hero {
+  position: relative;
+  height: 660px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  margin-block: 0;
+  margin-bottom: 250px;
+}
+
+.ah-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(0deg, rgba(35,35,35,.35), rgba(35,35,35,.35)),
+    url('{% static "images/bg_about.png" %}');
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.ah-side {
+  position: absolute;
+  width: 659px;
+  height: 440px;
+  background: #222 center/cover no-repeat;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.ah-side--left {
+  left: -295px;
+  top: 424px;
+  background-image: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/3c493f5ee73e92a24289138d22142d65.png");
+}
+
+.ah-side--right {
+  right: -216px;
+  top: 558px;
+  background-image: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/d5f5931b400ca3facd8da88e928b6a98.png");
+}
+
+.ah-content {
+  position: relative;
+  z-index: 3;
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ah-logo {
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.ah-eyebrow {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 120%;
+  color: #FFFFFF;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+.ah-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 100%;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+.ah-text {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.ah-text:last-of-type {
+  margin-bottom: 35px;
+}
+
+.ah-cta {
+  display: inline-flex;
+}
+
+@media (max-width: 1400px) {
+  .ah-side--left {
+    left: -400px;
+  }
+  .ah-side--right {
+    right: -350px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ah-side {
+    width: 500px;
+    height: 340px;
+  }
+  .ah-side--left {
+    left: -300px;
+    top: 350px;
+  }
+  .ah-side--right {
+    right: -280px;
+    top: 450px;
+  }
+  .about-hero {
+    margin-bottom: 180px;
+  }
+}
+
+@media (max-width: 991px) {
+  .ah-side--left,
+  .ah-side--right {
+    display: none;
+  }
+  
+  .about-hero {
+    height: auto;
+    min-height: 500px;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+  
+  .ah-content {
+    padding: 60px 15px;
+  }
+  
+  .ah-title {
+    font-size: 22px;
+  }
+  
+  .ah-text {
+    font-size: 16px;
+  }
+}
+</style>
