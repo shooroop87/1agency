@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#")
 
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS
 if DEBUG:
@@ -47,10 +47,6 @@ INSTALLED_APPS = [
     'tinymce',
     'taggit',
     'meta',
-
-    # Dev
-    'django_browser_reload',
-    
     # Local apps
     'core',
     'properties',
@@ -64,9 +60,17 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        "django_browser_reload",
+    ]
+
+    MIDDLEWARE += [
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
+    ]
 
 ROOT_URLCONF = 'backend.urls'
 

@@ -51,7 +51,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 /*=================================
    Theme Based
 ==================================*/
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
 /* Variables */
 :root {
   --icon-font-family: "Font Awesome 6 Pro";
@@ -12386,11 +12385,6 @@ input:focus-visible {
   .map-wrapper { height: 500px; }
   .map-popup { right: 15px; bottom: 15px; width: 300px; padding: 15px; }
 }
-html, body {
-  overscroll-behavior: none;
-  overflow-x: hidden;
-}
-
 /* Фикс для GSAP pin */
 .pin-spacer {
   overflow: visible !important;

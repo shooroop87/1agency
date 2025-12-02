@@ -4,6 +4,7 @@ import random
 
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.utils import translation
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -13,6 +14,10 @@ from .models import (
 )
 from .forms import ContactForm, CallbackForm, ServiceRequestForm, FAQQuestionForm
 from .email import send_contact_notification
+
+
+def ping(request):
+    return HttpResponse("ok")
 
 
 def home(request):
