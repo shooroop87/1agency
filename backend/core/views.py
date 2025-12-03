@@ -179,3 +179,13 @@ def custom_404(request, exception):
 def custom_500(request):
     # можно использовать тот же шаблон или сделать отдельный 500
     return render(request, "pages/page-error.html", status=500)
+
+
+def oauth2callback(request):
+    code = request.GET.get("code")
+    error = request.GET.get("error")
+
+    if error:
+        return HttpResponse(f"Error: {error}")
+
+    return HttpResponse(f"Your auth code: {code}")
