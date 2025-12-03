@@ -17,7 +17,7 @@
         <article class="concierge-item mb-15">
           <div class="ci-left">
             {% if service.image %}
-            <img class="ci-thumb" src="{{ service.image.url }}" alt="{{ service.title }}">
+            <img class="ci-thumb" src="{{ service.image.url }}" alt="{{ service.title }}" loading="lazy" decoding="async">
             {% endif %}
             <div>
               <span class="ci-dot" aria-hidden="true"></span>

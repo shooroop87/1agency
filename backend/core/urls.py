@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/service/', views.submit_service, name='submit_service'),
     path('api/faq-question/', views.submit_faq_question, name='submit_faq_question'),
     path("ping/", views.ping, name="ping"),
+    path("privacy-policy/", views.privacy, name="privacy"),
 
     # Properties API
     path('', include('properties.urls')),

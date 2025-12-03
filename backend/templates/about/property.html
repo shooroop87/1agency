@@ -39,7 +39,7 @@
           <div class="swiper-wrapper">
             {% for i in bali_images %}
               <div class="swiper-slide">
-                <img class="pr-thumb" src="{% static 'images/bali/' %}{{ i }}.png" alt="">
+                <img class="pr-thumb" src="{% static 'images/bali/' %}{{ i }}.png" alt="" loading="lazy" decoding="async">
               </div>
             {% endfor %}
           </div>

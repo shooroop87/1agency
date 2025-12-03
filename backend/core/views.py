@@ -166,6 +166,11 @@ def projects(request):
 def error(request):
     return render(request, "pages/page-error.html")
 
+
+def privacy(request):
+    return render(request, "pages/privacy-policy.html")
+
+
 # --- Кастомные страницы ошибок ---
 def custom_404(request, exception):
     # ваш шаблон 404 лежит тут: templates/404/page-error.html
