@@ -1,6 +1,6 @@
 {% load static %}
 <!-- ===== Areas of Bali ===== -->
-<section class="areas-bali section-content mt70-xs">
+<section class="areas-bali section-content mt70-xs" style="z-index: auto;">
   <!-- Фоновые фото - ВНЕ контейнера -->
   <div class="areas-bg-photos">
     <div class="areas-bg-photo active" data-area="canggu">
@@ -27,26 +27,26 @@
         </h2>
 
         <div class="areas-tabs">
-          <div class="areas-nav" role="tablist">
-    <button class="areas-nav-link active" data-area="canggu" type="button">
-      <div class="area-tab-inner">
-        <span class="dot"></span>
-        <span class="area-title">Canggu</span>
-      </div>
-    </button>
-    <button class="areas-nav-link" data-area="bukit" type="button">
-      <div class="area-tab-inner">
-        <span class="dot"></span>
-        <span class="area-title">Bukit</span>
-      </div>
-    </button>
-    <button class="areas-nav-link" data-area="ubud" type="button">
-      <div class="area-tab-inner">
-        <span class="dot"></span>
-        <span class="area-title">Ubud</span>
-      </div>
-    </button>
-  </div>
+          <div class="nav areas-nav" role="tablist">
+            <button class="nav-link active" data-area="canggu" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Canggu</span>
+              </div>
+            </button>
+            <button class="nav-link" data-area="bukit" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Bukit</span>
+              </div>
+            </button>
+            <button class="nav-link" data-area="ubud" type="button">
+              <div class="area-tab-inner">
+                <span class="dot"></span>
+                <span class="area-title">Ubud</span>
+              </div>
+            </button>
+          </div>
 
           <div class="areas-divider"></div>
           
@@ -157,22 +157,31 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.areas-nav-link');
+  const buttons = document.querySelectorAll('.areas-nav .nav-link');
   const photos = document.querySelectorAll('.areas-bg-photo');
   const panes = document.querySelectorAll('.areas-tab-pane');
+
+  console.log('Areas tabs init:', buttons.length, photos.length, panes.length);
 
   buttons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const area = btn.dataset.area;
+      console.log('Tab clicked:', area);
 
+      // Убираем active у всех
       buttons.forEach(b => b.classList.remove('active'));
       photos.forEach(p => p.classList.remove('active'));
       panes.forEach(p => p.classList.remove('active'));
 
+      // Добавляем active нужным
       btn.classList.add('active');
-      document.querySelector(`.areas-bg-photo[data-area="${area}"]`)?.classList.add('active');
-      document.querySelector(`.areas-tab-pane[data-area="${area}"]`)?.classList.add('active');
+      
+      const photo = document.querySelector(`.areas-bg-photo[data-area="${area}"]`);
+      const pane = document.querySelector(`.areas-tab-pane[data-area="${area}"]`);
+      
+      if (photo) photo.classList.add('active');
+      if (pane) pane.classList.add('active');
     });
   });
 });

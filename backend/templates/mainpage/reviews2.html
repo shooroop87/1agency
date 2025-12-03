@@ -136,24 +136,59 @@
   </div>
 </section>
 
-<!-- Review Modal -->
-<div id="reviewModal" class="review-modal">
-  <div class="review-modal__overlay"></div>
-  <div class="review-modal__content">
-    <button class="review-modal__close">
+<!-- Leave Review Modal -->
+<div id="leaveReviewModal" class="question-modal">
+  <div class="question-modal__overlay"></div>
+  <div class="question-modal__content">
+    <button class="question-modal__close">
       <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
         <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
       </svg>
     </button>
 
-    <div class="review-modal__header">
-      <span class="review-modal__name"></span>
-      <h3 class="review-modal__title"></h3>
+    <div id="leaveReviewBody">
+      <div class="question-modal__header">
+        <h3 class="question-modal__title">Leave a review</h3>
+      </div>
+
+      <form id="leaveReviewForm" class="question-form">
+        <div class="question-form__field">
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="question-form__field">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="question-form__field">
+          <textarea name="review" placeholder="Your review..." required></textarea>
+        </div>
+        <div class="question-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required>
+            <span class="checkbox-custom"></span>
+            <span>I agree to the processing of personal data</span>
+          </label>
+        </div>
+        <button type="submit" class="question-form__submit">
+          Submit review
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </form>
     </div>
 
-    <div class="review-modal__separator"></div>
-
-    <div class="review-modal__text"></div>
+    <div id="leaveReviewSuccess" class="question-modal__success">
+      <div class="question-modal__success-inner">
+        <h4 class="question-modal__success-title">Thank you!</h4>
+        <p class="question-modal__success-text">Your review has been submitted</p>
+        <button class="question-modal__success-btn close-leave-review">
+          Close
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -309,58 +344,53 @@
 </style>
 
 <script>
-// Review Modal
 document.addEventListener('DOMContentLoaded', function() {
-  const reviewModal = document.getElementById('reviewModal');
-  
-  if (!reviewModal) return;
-  
-  const openReviewBtns = document.querySelectorAll('.open-review-modal');
-  const closeReviewBtn = reviewModal.querySelector('.review-modal__close');
-  const reviewOverlay = reviewModal.querySelector('.review-modal__overlay');
-  const reviewName = reviewModal.querySelector('.review-modal__name');
-  const reviewTitle = reviewModal.querySelector('.review-modal__title');
-  const reviewText = reviewModal.querySelector('.review-modal__text');
+  const leaveModal = document.getElementById('leaveReviewModal');
+  if (!leaveModal) return;
 
-  // Открытие модалки отзыва
-  openReviewBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const name = this.getAttribute('data-review-name');
-      const title = this.getAttribute('data-review-title');
-      const text = this.getAttribute('data-review-text');
+  const openBtn = document.querySelector('.reviews-section .wdt-button.button-cta3');
+  const closeBtn = leaveModal.querySelector('.question-modal__close');
+  const overlay = leaveModal.querySelector('.question-modal__overlay');
+  const form = document.getElementById('leaveReviewForm');
+  const body = document.getElementById('leaveReviewBody');
+  const success = document.getElementById('leaveReviewSuccess');
+  const successCloseBtn = leaveModal.querySelector('.close-leave-review');
 
-      // Заполняем данные
-      reviewName.textContent = name;
-      reviewTitle.textContent = title;
-      reviewText.textContent = text;
+  function reset() {
+    if (form) form.reset();
+    if (body) body.style.display = 'block';
+    if (success) success.style.display = 'none';
+  }
 
-      // Открываем модалку
-      reviewModal.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
+  function open(e) {
+    if (e) e.preventDefault();
+    reset();
+    leaveModal.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
 
-  // Закрытие модалки отзыва
-  function closeReviewModal() {
-    reviewModal.classList.remove('is-active');
+  function close() {
+    leaveModal.classList.remove('is-active');
     document.body.style.overflow = '';
   }
 
-  if (closeReviewBtn) {
-    closeReviewBtn.addEventListener('click', closeReviewModal);
-  }
-  
-  if (reviewOverlay) {
-    reviewOverlay.addEventListener('click', closeReviewModal);
-  }
+  if (openBtn) openBtn.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  if (overlay) overlay.addEventListener('click', close);
+  if (successCloseBtn) successCloseBtn.addEventListener('click', close);
 
-  // Закрытие по ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && reviewModal.classList.contains('is-active')) {
-      closeReviewModal();
-    }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && leaveModal.classList.contains('is-active')) close();
   });
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // TODO: отправка на сервер
+      console.log('Review submitted:', Object.fromEntries(new FormData(form)));
+      if (body) body.style.display = 'none';
+      if (success) success.style.display = 'block';
+    });
+  }
 });
 </script>
