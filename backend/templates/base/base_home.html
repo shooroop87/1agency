@@ -1,4 +1,27 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  {% include "includes/meta.html" %}
+  {% include "includes/styles.html" %}
+  <style>
+    .loader-tim{position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a1a;z-index:99999}
+    .loader-tim-wrap{position:relative;width:100%;height:100%}
+    .loader-imgs{position:absolute;top:0;left:0;width:100%;height:100%}
+    .loader-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0}
+    .loader-img.is-active{opacity:1}
+    .loader-counter{position:absolute;bottom:40px;left:40px}
+    .loader-number{font-size:48px;font-weight:300;color:#fff}
+    .loader-text{position:absolute;bottom:40px;right:40px}
+    .loader-text p{font-size:15px;font-weight:600;color:#fff;margin:0}
+    .loader-tim.is-hidden{opacity:0;pointer-events:none;transition:opacity .5s}
+    body.is-loading{overflow:hidden}
+    body.is-loading #content,body.is-loading .mobilie_header_nav{visibility:hidden}
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
 <body class="is-loading">
+
 <!-- Loader -->
 <div class="loader-tim" id="loader">
   <div class="loader-tim-wrap">
@@ -22,33 +45,21 @@
 </div>
 <script>
 (function(){
-  var imgs = document.querySelectorAll('.loader-img');
-  var counter = document.querySelector('.loader-number');
-  var loader = document.getElementById('loader');
-  var idx = 0, total = imgs.length;
-  
-  function run() {
-    var iv = setInterval(function(){
-      imgs[idx].classList.remove('is-active');
-      idx++;
-      if(counter) counter.textContent = Math.round((idx/total)*100);
-      if(idx >= total) {
-        clearInterval(iv);
-        setTimeout(function(){
-          loader.classList.add('is-hidden');
-          document.body.classList.remove('is-loading');
-          setTimeout(function(){ loader.remove(); }, 500);
-        }, 200);
-        return;
-      }
-      imgs[idx].classList.add('is-active');
-    }, 180);
-  }
-  
-  // Старт сразу — первая картинка уже is-active
-  setTimeout(run, 100);
+  var imgs=document.querySelectorAll('.loader-img'),counter=document.querySelector('.loader-number'),loader=document.getElementById('loader'),idx=0,total=imgs.length;
+  function run(){var iv=setInterval(function(){imgs[idx].classList.remove('is-active');idx++;if(counter)counter.textContent=Math.round((idx/total)*100);if(idx>=total){clearInterval(iv);setTimeout(function(){loader.classList.add('is-hidden');document.body.classList.remove('is-loading');setTimeout(function(){loader.remove()},500)},200);return}imgs[idx].classList.add('is-active')},180)}
+  setTimeout(run,100);
 })();
 </script>
 
 {% include "includes/menu-mobile.html" %}
-<!-- остальной контент -->
+
+<main id="content">
+  {% block content %}{% endblock %}
+</main>
+
+{% include "includes/footer4.html" %}
+{% include "includes/modals.html" %}
+{% include "includes/scripts_footer.html" %}
+{% block extra_js %}{% endblock %}
+</body>
+</html>

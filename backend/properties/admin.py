@@ -30,7 +30,7 @@ class DeveloperAdmin(admin.ModelAdmin):
 @admin.register(Property)
 class PropertyAdmin(TranslatableAdmin):
     list_display = ['get_title', 'get_image_preview', 'developer', 'location', 
-                    'property_type', 'price', 'status', 'is_active', 'is_featured']
+                    'property_type', 'get_price', 'status', 'is_active', 'is_featured']
     list_editable = ['is_active', 'is_featured']
     list_filter = ['status', 'is_active', 'is_featured', 'location', 'property_type', 'developer']
     search_fields = ['translations__title', 'developer__name']
@@ -41,19 +41,33 @@ class PropertyAdmin(TranslatableAdmin):
             'fields': ('title', 'description', 'developer', 'property_type', 'location'),
         }),
         (_('Pricing'), {
-            'fields': ('price', 'price_per_sqm'),
+            'fields': (
+                ('price_min', 'price_max'),
+                ('price_per_sqm_min', 'price_per_sqm_max'),
+            ),
+            'description': _('Enter price range. If single value, fill only "from" field.')
         }),
         (_('Size'), {
-            'fields': ('bedrooms', 'total_area', 'living_area', 'plot_area'),
+            'fields': (
+                ('bedrooms_min', 'bedrooms_max'),
+                ('total_area_min', 'total_area_max'),
+                ('living_area_min', 'living_area_max'),
+                ('plot_area_min', 'plot_area_max'),
+            ),
+            'description': _('Enter size ranges. 0 bedrooms = Studio.')
         }),
         (_('Status'), {
             'fields': ('status', 'completion_year', 'completion_quarter'),
         }),
         (_('Investment'), {
-            'fields': ('roi', 'leasehold_years'),
+            'fields': (
+                ('roi_min', 'roi_max'),
+                'leasehold_years',
+            ),
         }),
         (_('Features'), {
             'fields': ('view', 'facilities'),
+            'description': _('View examples: Ocean / Sunset / Pool. Facilities: Pool, Sauna, Restaurant')
         }),
         (_('Media'), {
             'fields': ('image', 'video_url', 'presentation_ru', 'presentation_en'),
@@ -66,6 +80,10 @@ class PropertyAdmin(TranslatableAdmin):
     def get_title(self, obj):
         return obj.safe_translation_getter('title', default='-')[:50]
     get_title.short_description = _('Title')
+
+    def get_price(self, obj):
+        return obj.get_price_display() or '-'
+    get_price.short_description = _('Price')
 
     def get_image_preview(self, obj):
         if obj.image:

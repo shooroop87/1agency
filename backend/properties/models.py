@@ -67,23 +67,31 @@ class Property(TranslatableModel):
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
     
-    # Pricing
-    price = models.DecimalField(_('Price $'), max_digits=12, decimal_places=2, null=True, blank=True)
-    price_per_sqm = models.DecimalField(_('Price per m²'), max_digits=10, decimal_places=2, null=True, blank=True)
+    # Pricing (ranges)
+    price_min = models.DecimalField(_('Price $ from'), max_digits=12, decimal_places=2, null=True, blank=True)
+    price_max = models.DecimalField(_('Price $ to'), max_digits=12, decimal_places=2, null=True, blank=True)
+    price_per_sqm_min = models.DecimalField(_('Price per m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
+    price_per_sqm_max = models.DecimalField(_('Price per m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
     
-    # Size
-    bedrooms = models.PositiveIntegerField(_('Bedrooms'), null=True, blank=True)
-    total_area = models.DecimalField(_('Total area m²'), max_digits=10, decimal_places=2, null=True, blank=True)
-    living_area = models.DecimalField(_('Living area m²'), max_digits=10, decimal_places=2, null=True, blank=True)
-    plot_area = models.DecimalField(_('Plot area m²'), max_digits=10, decimal_places=2, null=True, blank=True)
+    # Size (ranges)
+    bedrooms_min = models.PositiveIntegerField(_('Bedrooms from'), null=True, blank=True, 
+                                                help_text=_('0 = Studio'))
+    bedrooms_max = models.PositiveIntegerField(_('Bedrooms to'), null=True, blank=True)
+    total_area_min = models.DecimalField(_('Total area m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
+    total_area_max = models.DecimalField(_('Total area m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
+    living_area_min = models.DecimalField(_('Living area m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
+    living_area_max = models.DecimalField(_('Living area m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
+    plot_area_min = models.DecimalField(_('Plot area m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
+    plot_area_max = models.DecimalField(_('Plot area m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
     
     # Status & Dates
     status = models.CharField(_('Status'), max_length=20, choices=STATUS_CHOICES, default='off_plan')
     completion_year = models.PositiveIntegerField(_('Completion Year'), null=True, blank=True)
     completion_quarter = models.CharField(_('Quarter'), max_length=10, blank=True)
     
-    # Investment
-    roi = models.DecimalField(_('ROI %'), max_digits=5, decimal_places=2, null=True, blank=True)
+    # Investment (ranges)
+    roi_min = models.DecimalField(_('ROI % from'), max_digits=5, decimal_places=2, null=True, blank=True)
+    roi_max = models.DecimalField(_('ROI % to'), max_digits=5, decimal_places=2, null=True, blank=True)
     leasehold_years = models.PositiveIntegerField(_('Leasehold Years'), null=True, blank=True)
     
     # Features
@@ -112,11 +120,89 @@ class Property(TranslatableModel):
     def __str__(self):
         return self.safe_translation_getter('title', default=f'Property #{self.pk}')
     
+    # === Helper methods for display ===
+    
+    def get_price_display(self):
+        """Returns formatted price range: $155,000 – $220,000"""
+        if self.price_min and self.price_max and self.price_min != self.price_max:
+            return f"${int(self.price_min):,} – ${int(self.price_max):,}"
+        elif self.price_min:
+            return f"${int(self.price_min):,}"
+        elif self.price_max:
+            return f"${int(self.price_max):,}"
+        return ''
+    
+    def get_price_per_sqm_display(self):
+        """Returns formatted price per sqm range"""
+        if self.price_per_sqm_min and self.price_per_sqm_max and self.price_per_sqm_min != self.price_per_sqm_max:
+            return f"${int(self.price_per_sqm_min):,} – ${int(self.price_per_sqm_max):,}"
+        elif self.price_per_sqm_min:
+            return f"${int(self.price_per_sqm_min):,}"
+        elif self.price_per_sqm_max:
+            return f"${int(self.price_per_sqm_max):,}"
+        return ''
+    
+    def get_bedrooms_display(self):
+        """Returns formatted bedrooms range: Studio – 2"""
+        def format_bed(val):
+            return 'Studio' if val == 0 else str(val)
+        
+        if self.bedrooms_min is not None and self.bedrooms_max is not None:
+            if self.bedrooms_min != self.bedrooms_max:
+                return f"{format_bed(self.bedrooms_min)} – {format_bed(self.bedrooms_max)}"
+            return format_bed(self.bedrooms_min)
+        elif self.bedrooms_min is not None:
+            return format_bed(self.bedrooms_min)
+        elif self.bedrooms_max is not None:
+            return format_bed(self.bedrooms_max)
+        return ''
+    
+    def get_total_area_display(self):
+        """Returns formatted area range: 36.4–60 m²"""
+        if self.total_area_min and self.total_area_max and self.total_area_min != self.total_area_max:
+            return f"{self.total_area_min}–{self.total_area_max} m²"
+        elif self.total_area_min:
+            return f"{self.total_area_min} m²"
+        elif self.total_area_max:
+            return f"{self.total_area_max} m²"
+        return ''
+    
+    def get_living_area_display(self):
+        """Returns formatted living area range"""
+        if self.living_area_min and self.living_area_max and self.living_area_min != self.living_area_max:
+            return f"{self.living_area_min}–{self.living_area_max} m²"
+        elif self.living_area_min:
+            return f"{self.living_area_min} m²"
+        elif self.living_area_max:
+            return f"{self.living_area_max} m²"
+        return ''
+    
+    def get_plot_area_display(self):
+        """Returns formatted plot area range"""
+        if self.plot_area_min and self.plot_area_max and self.plot_area_min != self.plot_area_max:
+            return f"{self.plot_area_min}–{self.plot_area_max} m²"
+        elif self.plot_area_min:
+            return f"{self.plot_area_min} m²"
+        elif self.plot_area_max:
+            return f"{self.plot_area_max} m²"
+        return ''
+    
+    def get_roi_display(self):
+        """Returns formatted ROI range: 10–12%"""
+        if self.roi_min and self.roi_max and self.roi_min != self.roi_max:
+            return f"{self.roi_min}–{self.roi_max}%"
+        elif self.roi_min:
+            return f"{self.roi_min}%"
+        elif self.roi_max:
+            return f"{self.roi_max}%"
+        return ''
+    
     def get_price_range(self):
-        """For filter display"""
-        if not self.price:
+        """For filter matching - uses price_min"""
+        price = self.price_min
+        if not price:
             return None
-        p = int(self.price)
+        p = int(price)
         if p < 100000: return 'up_to_100k'
         if p < 150000: return '100k_150k'
         if p < 200000: return '150k_200k'

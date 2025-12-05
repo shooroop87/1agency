@@ -22,16 +22,24 @@ def property_list(request):
         q = Q()
         for b in bedrooms:
             if b == 'studio':
-                q |= Q(bedrooms=0)
+                # Studio = 0 bedrooms, check if range includes 0
+                q |= Q(bedrooms_min=0) | Q(bedrooms_max=0) | Q(bedrooms_min__isnull=True, bedrooms_max=0)
             elif b.isdigit():
-                q |= Q(bedrooms=int(b))
+                num = int(b)
+                # Check if number falls within the range [bedrooms_min, bedrooms_max]
+                q |= (
+                    Q(bedrooms_min__lte=num, bedrooms_max__gte=num) |
+                    Q(bedrooms_min=num, bedrooms_max__isnull=True) |
+                    Q(bedrooms_min__isnull=True, bedrooms_max=num) |
+                    Q(bedrooms_min=num, bedrooms_max=num)
+                )
         if q:
             qs = qs.filter(q)
     
     if statuses := request.GET.getlist('status'):
         qs = qs.filter(status__in=statuses)
     
-    # Price ranges
+    # Price ranges - check if property price range overlaps with filter range
     if prices := request.GET.getlist('price'):
         q = Q()
         ranges = {
@@ -46,15 +54,21 @@ def property_list(request):
         }
         for p in prices:
             if p in ranges:
-                q |= Q(price__gte=ranges[p][0], price__lt=ranges[p][1])
+                f_min, f_max = ranges[p]
+                # Property overlaps with filter if: prop_min <= filter_max AND prop_max >= filter_min
+                q |= (
+                    Q(price_min__lte=f_max, price_max__gte=f_min) |
+                    Q(price_min__lte=f_max, price_max__isnull=True, price_min__gte=f_min) |
+                    Q(price_min__isnull=True, price_max__lte=f_max, price_max__gte=f_min)
+                )
         if q:
             qs = qs.filter(q)
     
     # Сортировка
     sort = request.GET.get('sort', 'order')
     sort_map = {
-        'price_asc': 'price',
-        'price_desc': '-price',
+        'price_asc': 'price_min',
+        'price_desc': '-price_min',
         'newest': '-created_at',
         'order': 'order',
     }
@@ -76,13 +90,25 @@ def property_list(request):
             'type_slug': prop.property_type.slug if prop.property_type else '',
             'location': prop.location.name if prop.location else '',
             'location_slug': prop.location.slug if prop.location else '',
-            'price': float(prop.price) if prop.price else None,
-            'price_display': f"${int(prop.price):,}" if prop.price else '',
-            'bedrooms': prop.bedrooms,
-            'total_area': float(prop.total_area) if prop.total_area else None,
+            # Price ranges
+            'price_min': float(prop.price_min) if prop.price_min else None,
+            'price_max': float(prop.price_max) if prop.price_max else None,
+            'price_display': prop.get_price_display(),
+            'price_per_sqm_display': prop.get_price_per_sqm_display(),
+            # Size ranges
+            'bedrooms': prop.get_bedrooms_display(),
+            'bedrooms_min': prop.bedrooms_min,
+            'bedrooms_max': prop.bedrooms_max,
+            'total_area': prop.get_total_area_display(),
+            'living_area': prop.get_living_area_display(),
+            'plot_area': prop.get_plot_area_display(),
+            # Status
             'status': prop.status,
             'status_display': prop.get_status_display(),
-            'roi': float(prop.roi) if prop.roi else None,
+            # Investment
+            'roi': prop.get_roi_display(),
+            'leasehold': prop.leasehold_years,
+            # Other
             'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
             'view': prop.view,
             'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
@@ -114,20 +140,47 @@ def property_detail(request, pk):
         'type': prop.property_type.name if prop.property_type else '',
         'developer': prop.developer.name if prop.developer else '',
         'location': prop.location.name if prop.location else '',
-        'price': float(prop.price) if prop.price else None,
-        'price_display': f"${int(prop.price):,}" if prop.price else '',
-        'price_per_sqm': float(prop.price_per_sqm) if prop.price_per_sqm else None,
-        'bedrooms': prop.bedrooms,
-        'total_area': float(prop.total_area) if prop.total_area else None,
-        'living_area': float(prop.living_area) if prop.living_area else None,
-        'plot_area': float(prop.plot_area) if prop.plot_area else None,
+        
+        # Pricing
+        'price_min': float(prop.price_min) if prop.price_min else None,
+        'price_max': float(prop.price_max) if prop.price_max else None,
+        'price_display': prop.get_price_display(),
+        'price_per_sqm_min': float(prop.price_per_sqm_min) if prop.price_per_sqm_min else None,
+        'price_per_sqm_max': float(prop.price_per_sqm_max) if prop.price_per_sqm_max else None,
+        'price_per_sqm_display': prop.get_price_per_sqm_display(),
+        
+        # Size
+        'bedrooms': prop.get_bedrooms_display(),
+        'bedrooms_min': prop.bedrooms_min,
+        'bedrooms_max': prop.bedrooms_max,
+        'total_area': prop.get_total_area_display(),
+        'total_area_min': float(prop.total_area_min) if prop.total_area_min else None,
+        'total_area_max': float(prop.total_area_max) if prop.total_area_max else None,
+        'living_area': prop.get_living_area_display(),
+        'living_area_min': float(prop.living_area_min) if prop.living_area_min else None,
+        'living_area_max': float(prop.living_area_max) if prop.living_area_max else None,
+        'plot_area': prop.get_plot_area_display(),
+        'plot_area_min': float(prop.plot_area_min) if prop.plot_area_min else None,
+        'plot_area_max': float(prop.plot_area_max) if prop.plot_area_max else None,
+        
+        # Status
         'status': prop.status,
         'status_display': prop.get_status_display(),
         'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
-        'roi': float(prop.roi) if prop.roi else None,
+        'completion_year': prop.completion_year,
+        'completion_quarter': prop.completion_quarter,
+        
+        # Investment
+        'roi': prop.get_roi_display(),
+        'roi_min': float(prop.roi_min) if prop.roi_min else None,
+        'roi_max': float(prop.roi_max) if prop.roi_max else None,
         'leasehold': prop.leasehold_years,
+        
+        # Features
         'view': prop.view,
         'facilities': prop.facilities,
+        
+        # Media
         'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
         'video': prop.video_url,
     })
