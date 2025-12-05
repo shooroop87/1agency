@@ -55,9 +55,9 @@ def home(request):
             'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
             'status': prop.get_status_display(),
             'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
-            'roi': str(prop.roi) if prop.roi else '',
-            'price': f"${int(prop.price):,}" if prop.price else '',
-            'units': f"Includes {prop.bedrooms} unit types" if prop.bedrooms else '',
+            'roi': prop.get_roi_display(),
+            'price': prop.get_price_display(),
+            'units': prop.get_bedrooms_display(),
         })
     
     context = {
