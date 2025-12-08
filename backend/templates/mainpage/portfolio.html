@@ -1,5 +1,5 @@
 {% load static humanize %}
-<section class="projects pb120 section-content" style="z-index: auto;">
+<section class="projects pb120 section-content mt40-xs" style="z-index: auto;">
   <div class="container">
     <div class="projects-grid">
       {% for prop in featured_properties %}
@@ -37,3 +37,198 @@
     </div>
   </div>
 </section>
+
+<!-- Property Modal for Homepage -->
+<div id="propertyModal" class="property-modal">
+  <div class="property-modal__overlay"></div>
+  <div class="property-modal__content">
+    <button class="property-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+    <div class="pm-image">
+      <img src="" alt="Property" loading="lazy">
+    </div>
+    <div class="pm-wrapper">
+      <div class="row gx-5">
+        <div class="col-12 col-lg-4 mb30">
+          <div class="pm-header">
+            <h2 class="pm-title"></h2>
+            <span class="pm-type"></span>
+            <div class="pm-developer"></div>
+            <div class="pm-header__actions mt20">
+              <a class="wdt-button button-cta is-nm concierge-cta" href="#contactus">
+                <span>Contact us</span>
+                <span class="arrow-icon">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="pm-info-grid">
+            <div class="pm-info-col pm-info-col--left">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Location</div>
+                <div class="pm-info__value pm-location"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">Construction</div>
+                <div class="pm-info__value pm-construction"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">ROI</div>
+                <div class="pm-info__value pm-roi"></div>
+              </div>
+            </div>
+            <div class="pm-info-col pm-info-col--right">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Total area</div>
+                <div class="pm-info__value pm-area"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">Leasehold</div>
+                <div class="pm-info__value pm-leasehold"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">Price</div>
+                <div class="pm-info__value pm-price"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.property-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.property-modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+body.modal-open { overflow: hidden; }
+body.modal-open header.nav-homepage-style { z-index: 1 !important; }
+.property-modal__overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+.property-modal__content {
+  position: relative;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  background: #272727;
+  border-radius: 30px;
+  overflow-y: auto;
+  z-index: 1;
+}
+.property-modal__close {
+  position: absolute;
+  top: 30px; right: 15px;
+  width: 21px; height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+.pm-image { padding: 40px 50px 30px; }
+.pm-image img { width: 100%; height: 280px; object-fit: cover; border-radius: 30px; }
+.pm-wrapper { padding: 0 50px 40px; }
+.pm-header { padding: 0; }
+.pm-title {
+  font-weight: 600; font-size: 18px; line-height: 1.2;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 17%, #FFBEA4 29%, #CF795F 60%, #FFAC93 70%, #D7785B 84%, #EA9278 97%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin: 0 0 5px;
+}
+.pm-type { font-weight: 500; font-size: 14px; color: rgba(255,255,255,0.6); }
+.pm-developer { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 5px; }
+.pm-header__actions { display: flex; gap: 11px; }
+.pm-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.pm-info-col { display: flex; flex-direction: column; gap: 20px; }
+.pm-info__label { font-weight: 600; font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.pm-info__value { font-weight: 500; font-size: 12px; line-height: 1.4; color: #fff; }
+@media (max-width: 767px) {
+  .property-modal__content { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; }
+  .pm-image { padding: 20px; }
+  .pm-image img { height: 200px; }
+  .pm-wrapper { padding: 0 25px 30px; }
+  .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('propertyModal');
+  if (!modal) return;
+  
+  const overlay = modal.querySelector('.property-modal__overlay');
+  const closeBtn = modal.querySelector('.property-modal__close');
+  
+  // Открытие модалки по клику на карточку
+  document.querySelectorAll('.projects .project-card[data-id]').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const propertyId = this.dataset.id;
+      if (propertyId) {
+        loadPropertyData(propertyId);
+      }
+    });
+  });
+  
+  // Загрузка данных через API
+  function loadPropertyData(id) {
+    fetch(`/api/properties/${id}/`)
+      .then(r => r.json())
+      .then(data => {
+        fillModal(data);
+        openModal();
+      })
+      .catch(err => console.error('Error loading property:', err));
+  }
+  
+  // Заполнение модалки
+  function fillModal(data) {
+    modal.querySelector('.pm-image img').src = data.image || '';
+    modal.querySelector('.pm-title').textContent = data.title || '';
+    modal.querySelector('.pm-type').textContent = data.property_type || '';
+    modal.querySelector('.pm-developer').textContent = data.developer ? `by ${data.developer}` : '';
+    modal.querySelector('.pm-location').textContent = data.location || '';
+    modal.querySelector('.pm-construction').textContent = data.completion_date ? `Completion: ${data.completion_date}` : '—';
+    modal.querySelector('.pm-roi').textContent = data.roi ? `Projected ROI: ${data.roi}%` : '—';
+    modal.querySelector('.pm-area').textContent = data.total_area ? `${data.total_area} m²` : '—';
+    modal.querySelector('.pm-leasehold').textContent = data.leasehold || '—';
+    modal.querySelector('.pm-price').textContent = data.price ? `From $${Number(data.price).toLocaleString()}` : '—';
+  }
+  
+  function openModal() {
+    modal.classList.add('is-active');
+    document.body.classList.add('modal-open');
+  }
+  
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.classList.remove('modal-open');
+  }
+  
+  // Закрытие
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+});
+</script>

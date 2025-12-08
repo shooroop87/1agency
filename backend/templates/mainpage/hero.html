@@ -352,11 +352,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape' && dropdown?.classList.contains('is-open')) dropdown.classList.remove('is-open');
   });
 
-  if (window.innerWidth < 768) { console.log('📱 Mobile: GSAP disabled'); return; }
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { console.warn('GSAP не загружен'); return; }
+  if (window.innerWidth < 768) return;
   
-  gsap.registerPlugin(ScrollTrigger);
-  window.addEventListener('load', initHeroAnimation);
+  // Ждём и лоадер, и GSAP
+  function waitForReady(callback) {
+    const checkInterval = setInterval(() => {
+      const loaderGone = !document.getElementById('loader') || document.getElementById('loader').classList.contains('is-hidden');
+      const gsapReady = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+      
+      if (loaderGone && gsapReady) {
+        clearInterval(checkInterval);
+        setTimeout(callback, 100); // небольшая задержка для стабильности
+      }
+    }, 50);
+  }
+  
+  waitForReady(initHeroAnimation);
 });
 
 function initHeroAnimation() {

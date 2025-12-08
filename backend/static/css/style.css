@@ -5422,7 +5422,7 @@ h2 {
 
 /*Home 1 Banner Content*/
 .home-banner-style8 {
-  background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/about-bali.png');
+  background-image: url('images/about-bali.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12130,13 +12130,12 @@ input:focus-visible {
 }
 
 .home-banner-style8 {
-    background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/about-bali.png');
+    background-image: url('images/about-bali.webp');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
-
 
 .about-cards .container {
   max-width: 1440px;
