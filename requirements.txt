@@ -39,3 +39,6 @@ requests>=2.31.0  # ДОБАВЛЕНО: для HTTP запросов (испол
 # Удалено: django-ckeditor - больше не нужен
 # Удалено: django-ckeditor-uploader - больше не нужен
 pytz>=2023.3
+
+# SendPulse для email рассылок
+django-sendpulse

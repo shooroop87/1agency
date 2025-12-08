@@ -387,18 +387,13 @@ META_USE_OG_PROPERTIES = True
 META_USE_TWITTER_PROPERTIES = True
 
 
-# Продолжение backend/oneagency/settings.py
+# SendPulse API
+SENDPULSE_API_ID = '65b93af1f38d59489ca664514590071e'
+SENDPULSE_API_SECRET = '7b12c26e7d2d3cdd9e61d6dd3e977f5f'
+SENDPULSE_FROM_EMAIL = 'astarta7776@gmail.com'
+SENDPULSE_FROM_NAME = 'One Agency'
+ADMIN_EMAIL = ['one.agency.bali@gmail.com', 'egorov87@gmail.com']
 
-# Email Configuration (Gmail SMTP)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@oneagency.group')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'One Agency <noreply@oneagency.group>')
 
 # Security (для production)
 if not DEBUG:

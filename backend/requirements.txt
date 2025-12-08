@@ -38,3 +38,6 @@ requests>=2.31.0
 
 # Временные зоны (для совместимости проектов)
 pytz>=2023.3
+
+# SendPulse для email рассылок
+django-sendpulse

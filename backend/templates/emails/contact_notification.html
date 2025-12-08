@@ -23,7 +23,7 @@
     
     <div class="content">
       <div class="field">
-        <div class="field-label">Имя</div>
+        <div class="field-label">Name</div>
         <div class="field-value">{{ contact.name }}</div>
       </div>
       
@@ -36,21 +36,21 @@
       
       {% if contact.phone %}
       <div class="field">
-        <div class="field-label">Телефон</div>
+        <div class="field-label">Phone</div>
         <div class="field-value"><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></div>
       </div>
       {% endif %}
       
       {% if contact.property_type %}
       <div class="field">
-        <div class="field-label">Тип недвижимости</div>
+        <div class="field-label">Property Type</div>
         <div class="field-value">{{ contact.property_type }}</div>
       </div>
       {% endif %}
       
       {% if contact.message %}
       <div class="field">
-        <div class="field-label">Сообщение</div>
+        <div class="field-label">Message</div>
         <div class="message-box">{{ contact.message|linebreaks }}</div>
       </div>
       {% endif %}
