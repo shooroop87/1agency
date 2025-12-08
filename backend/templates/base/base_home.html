@@ -2,8 +2,10 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
+  {% render_snippets 'head_start' %}
   {% include "includes/meta.html" %}
   {% include "includes/styles.html" %}
+  {% render_snippets 'head_end' %}
   <style>
     .loader-tim{position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a1a;z-index:99999}
     .loader-tim-wrap{position:relative;width:100%;height:100%}
@@ -21,12 +23,37 @@
   {% block extra_head %}{% endblock %}
 </head>
 <body class="is-loading">
+{% render_snippets 'body_start' %}
 
 <!-- Loader -->
 <div class="loader-tim" id="loader">
   <div class="loader-tim-wrap">
     <div class="loader-imgs">
 <img src="{% static 'images/loader/Untitled-1.webp' %}" alt="" class="loader-img is-active">
+<img src="{% static 'images/loader/Untitled-2.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-3.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-4.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-5.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-6.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-7.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-8.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-9.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-10.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-11.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-12.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-13.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-14.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-15.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-16.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-17.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-18.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-19.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-20.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-21.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-22.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-23.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-24.webp' %}" alt="" class="loader-img">
+<img src="{% static 'images/loader/Untitled-25.webp' %}" alt="" class="loader-img">
     </div>
     <div class="loader-counter"><span class="loader-number">0</span></div>
     <div class="loader-text"><p>Welcome to One Agency</p></div>
@@ -46,9 +73,11 @@
   {% block content %}{% endblock %}
 </main>
 
+
 {% include "includes/footer4.html" %}
 {% include "includes/modals.html" %}
 {% include "includes/scripts_footer.html" %}
+{% render_snippets 'body_end' %}
 {% block extra_js %}{% endblock %}
 </body>
 </html>

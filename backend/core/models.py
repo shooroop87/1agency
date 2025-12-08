@@ -279,3 +279,42 @@ class SEOSettings(TranslatableModel):
     def __str__(self):
         return self.get_page_display()
     
+
+class CodeSnippet(models.Model):
+    """Custom code snippets (analytics, pixels, verification)"""
+    LOCATION_CHOICES = [
+        ('head_start', _('Head - Start (before styles)')),
+        ('head_end', _('Head - End (after styles)')),
+        ('body_start', _('Body - Start (after <body>)')),
+        ('body_end', _('Body - End (before </body>)')),
+    ]
+    
+    LOAD_CHOICES = [
+        ('sync', _('Sync (blocking)')),
+        ('async', _('Async (non-blocking)')),
+        ('defer', _('Defer (after DOM ready)')),
+    ]
+    
+    name = models.CharField(_('Name'), max_length=100, help_text=_('e.g. Google Analytics, Yandex Metrika'))
+    code = models.TextField(_('Code'), help_text=_('Full script/meta tag with <script> or <meta>'))
+    location = models.CharField(_('Location'), max_length=20, choices=LOCATION_CHOICES, default='head_end')
+    load_type = models.CharField(_('Load type'), max_length=10, choices=LOAD_CHOICES, default='async',
+                                  help_text=_('For scripts only. Async recommended for analytics.'))
+    priority = models.PositiveIntegerField(_('Priority'), default=10, help_text=_('Lower = loads first'))
+    is_active = models.BooleanField(_('Active'), default=True)
+    
+    # Условия показа
+    show_on_all = models.BooleanField(_('Show on all pages'), default=True)
+    pages = models.TextField(_('Specific pages'), blank=True, 
+                             help_text=_('URL paths, one per line. e.g. /about/'))
+    
+    created_at = models.DateTimeField(_('Created'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Updated'), auto_now=True)
+
+    class Meta:
+        ordering = ['location', 'priority']
+        verbose_name = _('Code Snippet')
+        verbose_name_plural = _('Code Snippets')
+
+    def __str__(self):
+        return f"{self.name} ({self.get_location_display()})"

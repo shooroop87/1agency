@@ -1,21 +1,25 @@
-{% load static i18n %}
+{% load static i18n snippets %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
+  {% render_snippets 'head_start' %}
   {% include "includes/meta.html" %}
   {% include "includes/styles.html" %}
+  {% render_snippets 'head_end' %}
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  {% include "includes/menu-mobile.html" %}
-  
-  <main id="content">
-    {% block content %}{% endblock %}
-  </main>
-  
-  {% include "includes/footer4.html" %}
-  {% include "includes/modals.html" %}
-  {% include "includes/scripts_footer.html" %}
-  {% block extra_js %}{% endblock %}
+{% render_snippets 'body_start' %}
+{% include "includes/menu-mobile.html" %}
+
+<main id="content">
+  {% block content %}{% endblock %}
+</main>
+
+{% include "includes/footer4.html" %}
+{% include "includes/modals.html" %}
+{% include "includes/scripts_footer.html" %}
+{% render_snippets 'body_end' %}
+{% block extra_js %}{% endblock %}
 </body>
 </html>

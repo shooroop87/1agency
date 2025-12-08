@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from .models import CodeSnippet
 from parler.admin import TranslatableAdmin
 from .models import (
     SiteSettings, Service, Review, Partner, FAQ,
@@ -302,6 +303,26 @@ class SEOSettingsAdmin(TranslatableAdmin):
     def get_meta_title(self, obj):
         return obj.safe_translation_getter('meta_title', default='-')
     get_meta_title.short_description = _('Meta title')
+
+
+@admin.register(CodeSnippet)
+class CodeSnippetAdmin(admin.ModelAdmin):
+    list_display = ['name', 'location', 'load_type', 'priority', 'is_active']
+    list_editable = ['is_active', 'priority']
+    list_filter = ['location', 'is_active', 'load_type']
+    search_fields = ['name', 'code']
+    
+    fieldsets = (
+        (_('Snippet'), {
+            'fields': ('name', 'code'),
+        }),
+        (_('Placement'), {
+            'fields': ('location', 'load_type', 'priority'),
+        }),
+        (_('Visibility'), {
+            'fields': ('is_active', 'show_on_all', 'pages'),
+        }),
+    )
 
 
 # Admin site customization

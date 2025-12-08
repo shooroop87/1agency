@@ -2,18 +2,21 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+  {% render_snippets 'head_start' %}
   {% include "includes/meta.html" %}
   {% include "includes/styles.html" %}
   {% include "includes/header.html" %}
-  {% block extra_head %}{% endblock %}
+  {% render_snippets 'head_end' %}
 </head>
 <body>
+  {% render_snippets 'body_start' %}
   {% include "includes/menu-desktop-any.html" %}
   {% include "includes/menu-mobile-bali.html" %}
   
   <main id="content2">
     {% block content %}{% endblock %}
   </main>
+  {% render_snippets 'body_end' %}
   {% include "includes/contact-form2.html" %}
   {% include "includes/footer4.html" %}
   {% include "includes/scripts_projects.html" %}
