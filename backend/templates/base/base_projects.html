@@ -1,6 +1,6 @@
-{% load static %}
+{% load static i18n snippets %}
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   {% render_snippets 'head_start' %}
   {% include "includes/meta.html" %}
