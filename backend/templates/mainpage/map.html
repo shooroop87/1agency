@@ -1,57 +1,38 @@
-{% load static %}
+{% load static i18n %}
+{% if show_map_section %}
 <section class="map-section" id="map-section">
   <div class="container">
-    <p class="section-kicker">Map</p>
-    <h2 class="section-title">Expanding across all the islands</h2>
+    <p class="section-kicker">{% trans "Map" %}</p>
+    <h2 class="section-title">{% trans "Expanding across all the islands" %}</h2>
   </div>
 
   <div class="map-wrapper">
     <div id="gmap-bali" class="map-canvas"></div>
     
-    <!-- Zoom buttons -->
     <div class="map-zoom">
       <button type="button" class="map-zoom__btn" data-zoom="in">+</button>
       <button type="button" class="map-zoom__btn" data-zoom="out">−</button>
     </div>
 
-    <!-- Popup card -->
     <div id="map-popup" class="map-popup" style="display:none;">
       <div class="map-popup__inner">
-        <div class="map-popup__header">
-          <span class="map-popup__dot"></span>
-          <div class="map-popup__headings">
-            <h3 class="map-popup__title"></h3>
-            <p class="map-popup__place"></p>
-          </div>
-          <button class="map-popup__menu" type="button">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+        <button class="map-popup__close" type="button">&times;</button>
+        <figure class="map-popup__thumb">
+          <img src="" alt="">
+        </figure>
         <div class="map-popup__body">
-          <figure class="map-popup__thumb">
-            <img src="" alt="">
-          </figure>
+          <span class="map-popup__type"></span>
+          <h3 class="map-popup__title"></h3>
+          <p class="map-popup__location"></p>
           <div class="map-popup__meta">
-            <div class="meta-row">
-              <span class="lbl">Construction:</span>
-              <span class="val map-popup__status"></span>
-            </div>
-            <div class="meta-row">
-              <span class="lbl">Completion date:</span>
-              <span class="val map-popup__compl"></span>
-            </div>
-            <div class="meta-row">
-              <span class="lbl">ROI:</span>
-              <span class="val map-popup__roi"></span>
-            </div>
-            <div class="meta-row price-row">
-              <span class="lbl">From</span>
-              <span class="val map-popup__price"></span>
-            </div>
-            <div class="meta-row muted">
-              <span class="map-popup__units"></span>
-            </div>
+            <div class="meta-row"><span class="lbl">{% trans "Status" %}:</span><span class="val map-popup__status"></span></div>
+            <div class="meta-row"><span class="lbl">{% trans "Completion" %}:</span><span class="val map-popup__compl"></span></div>
+            <div class="meta-row"><span class="lbl">{% trans "ROI" %}:</span><span class="val map-popup__roi"></span></div>
+            <div class="meta-row"><span class="lbl">{% trans "Area" %}:</span><span class="val map-popup__area"></span></div>
+            <div class="meta-row"><span class="lbl">{% trans "Bedrooms" %}:</span><span class="val map-popup__bedrooms"></span></div>
           </div>
+          <div class="map-popup__price"></div>
+          <a href="#" class="map-popup__link btn-view">{% trans "View details" %}</a>
         </div>
       </div>
     </div>
@@ -59,6 +40,7 @@
 </section>
 
 <script>
-  window.MAP_PROPERTIES = {{ map_properties_json|safe }};
+window.MAP_PROPERTIES = {{ map_properties_json|safe }};
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUvfhW4zGD9sUWWtRvo-QHReeRVUcfb18&callback=initBaliMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDclz9k9pFeNkKZqxr-ifah6RxAv6pOx98&callback=initBaliMap"></script>
+{% endif %}

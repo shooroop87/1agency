@@ -104,6 +104,12 @@ class Property(TranslatableModel):
     video_url = models.URLField(_('Video URL'), blank=True)
     presentation_ru = models.URLField(_('Presentation RU'), blank=True)
     presentation_en = models.URLField(_('Presentation EN'), blank=True)
+
+    # Geo
+    latitude = models.DecimalField(_('Latitude'), max_digits=10, decimal_places=7, null=True, blank=True)
+    longitude = models.DecimalField(_('Longitude'), max_digits=10, decimal_places=7, null=True, blank=True)
+    address = models.CharField(_('Address'), max_length=500, blank=True, help_text=_('For Google Maps autocomplete'))
+    show_on_map = models.BooleanField(_('Show on homepage map'), default=False)
     
     # Meta
     is_active = models.BooleanField(_('Active'), default=True)

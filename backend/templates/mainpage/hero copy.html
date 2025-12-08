@@ -6,6 +6,13 @@
     <div class="hero-section-desktop is-fixed">
       <div class="hero-contain u-container">
         
+        <div class="hero-video-bg">
+          <video class="hero-full-video" muted loop playsinline preload="none">
+            <source data-src="{% static 'videos/hero-full.mp4' %}" type="video/mp4">
+          </video>
+        </div>
+
+
         <!-- Grid with images (3 columns) -->
         <div class="hero-grid u-grid-custom">
           
@@ -250,6 +257,32 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s;
+  z-index: 0;
+}
+
+.hero-video-bg.is-playing {
+  opacity: 1;
+}
+
+.hero-full-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
 }
 
 /* Hero wrapper - будет pinned GSAP */

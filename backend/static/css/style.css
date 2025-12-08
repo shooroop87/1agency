@@ -225,7 +225,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   font-weight:300;
   font-size:15px;
   line-height:1.2;
-  padding: 12px 20px 18px 38px; /* согласовано с левым отступом заголовка */
+  padding: 12px 20px 18px 38px;
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 {% include "includes/contact-form2.html" %}
 <section class="footer-style1 pt60 pb-0 footer-skin">
   <div class="footer-pin">
@@ -19,40 +19,40 @@
             <div class="link-style1">
               <h6 class="text-white mb25">Our projects</h6>
               <ul class="ps-0 footer-menu">
-                <li><a href="#">Apartments</a></li>
-                <li><a href="#">Villas</a></li>
-                <li><a href="#">Townhouses</a></li>
-                <li><a href="#">Land plots</a></li>
+                <li><a href="{% url 'projects' %}?type=apartment">{% trans "Apartments" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=villa">{% trans "Villas" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=townhouse">{% trans "Townhouses" %}</a></li>
+                <li><a href="{% url 'projects' %}?type=land">{% trans "Land plots" %}</a></li>
               </ul>
             </div>
           </div>
 
-          <div class="col-6 col-md-3">
-            <div class="link-style1">
-              <h6 class="text-white mb25">Concierge service</h6>
-              <ul class="ps-0 footer-menu">
-                <li><a href="#">Accommodation</a></li>
-                <li><a href="#">Transportation</a></li>
-                <li><a href="#">Legal support</a></li>
-                <li><a href="#">Travel</a></li>
-              </ul>
-            </div>
-          </div>
+<div class="col-6 col-md-3">
+  <div class="link-style1">
+    <h6 class="text-white mb25">Concierge service</h6>
+    <ul class="ps-0 footer-menu">
+      <li><a href="#" class="open-service-modal" data-service="Housing assistance">Accommodation</a></li>
+      <li><a href="#" class="open-service-modal" data-service="Transfers & Transportation">Transportation</a></li>
+      <li><a href="#" class="open-service-modal" data-service="Legal support">Legal support</a></li>
+      <li><a href="#" class="open-service-modal" data-service="Bespoke travel experiences">Travel</a></li>
+    </ul>
+  </div>
+</div>
 
           <div class="col-6 col-md-3">
-            <div class="link-style1">
-              <h6 class="text-white mb25">Navigation</h6>
-              <ul class="ps-0 footer-menu">
-                <li><a href="#">About us</a></li>
-                <li><a href="{% url 'about' %}">About Bali</a></li>
-                <li><a href="#">Map</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Reviews</a></li>
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">Contacts</a></li>
-              </ul>
-            </div>
-          </div>
+  <div class="link-style1">
+    <h6 class="text-white mb25">Navigation</h6>
+    <ul class="ps-0 footer-menu">
+      <li><a href="{% url 'home' %}#aboutus">About us</a></li>
+      <li><a href="{% url 'about' %}">About Bali</a></li>
+      <li><a href="{% url 'home' %}#map">Map</a></li>
+      <li><a href="{% url 'home' %}#faq">FAQ</a></li>
+      <li><a href="{% url 'home' %}#reviews">Reviews</a></li>
+      <li><a href="{% url 'home' %}#partners">Partners</a></li>
+      <li><a href="{% url 'home' %}#contactus">Contacts</a></li>
+    </ul>
+  </div>
+</div>
 
           <div class="col-6 col-md-3">
             <div class="link-style1">
@@ -95,7 +95,7 @@
       </div>
       <div class="col-lg-6 text-lg-end">
         <p class="ff-heading text-gray mb-0">
-          <a class="text-gray" href="#">Built with passion by dw.studio & yaushevaweb.com</a>
+          <a class="text-gray" href="https://dw.studio/">Built with passion by dw.studio & yaushevaweb.com</a>
         </p>
       </div>
     </div>

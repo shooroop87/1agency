@@ -207,7 +207,7 @@ async function openPropertyModal(id) {
     // Total area
     const areaEl = modal.querySelector('.pm-info-col--right .pm-info-item:nth-child(1) .pm-info__value');
     if (areaEl) {
-      areaEl.textContent = prop.total_area ? `${prop.total_area} m²` : '-';
+      areaEl.textContent = prop.total_area ? `${prop.total_area}` : '-';
     }
     
     // Views/Features

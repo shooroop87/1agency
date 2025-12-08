@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#")
 
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS
 if DEBUG:
@@ -106,7 +106,8 @@ DATABASES = {
     }
 }
 
-if 'runserver' in sys.argv:
+# Локальная разработка - любая команда вне Docker
+if any(cmd in sys.argv for cmd in ['runserver', 'migrate', 'makemigrations', 'shell', 'createsuperuser']):
     DATABASES['default']['HOST'] = 'localhost'
 
 # Cache (Redis)

@@ -30,9 +30,9 @@ class DeveloperAdmin(admin.ModelAdmin):
 @admin.register(Property)
 class PropertyAdmin(TranslatableAdmin):
     list_display = ['get_title', 'get_image_preview', 'developer', 'location', 
-                    'property_type', 'get_price', 'status', 'is_active', 'is_featured']
-    list_editable = ['is_active', 'is_featured']
-    list_filter = ['status', 'is_active', 'is_featured', 'location', 'property_type', 'developer']
+                    'property_type', 'get_price', 'status', 'is_active', 'is_featured', 'show_on_map']
+    list_editable = ['is_active', 'is_featured', 'show_on_map']
+    list_filter = ['status', 'is_active', 'is_featured', 'show_on_map', 'location', 'property_type', 'developer']
     search_fields = ['translations__title', 'developer__name']
     autocomplete_fields = ['developer', 'location', 'property_type']
     
@@ -72,10 +72,20 @@ class PropertyAdmin(TranslatableAdmin):
         (_('Media'), {
             'fields': ('image', 'video_url', 'presentation_ru', 'presentation_en'),
         }),
+        (_('Map'), {
+            'fields': ('address', ('latitude', 'longitude'), 'show_on_map'),
+            'description': _('Start typing address - coordinates will be filled automatically')
+        }),
         (_('Settings'), {
             'fields': ('is_active', 'is_featured', 'order'),
         }),
     )
+
+    class Media:
+        js = (
+            'https://maps.googleapis.com/maps/api/js?key=AIzaSyDclz9k9pFeNkKZqxr-ifah6RxAv6pOx98&libraries=places',
+            'admin/js/address_autocomplete.js',
+        )
 
     def get_title(self, obj):
         return obj.safe_translation_getter('title', default='-')[:50]

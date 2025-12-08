@@ -23,6 +23,9 @@
     initModal();
     initCardClicks();
     
+    // Применить фильтр из URL при загрузке
+    applyUrlFilters();
+    
     // Кнопка поиска
     document.getElementById('applyFilters')?.addEventListener('click', function(e) {
       e.preventDefault();
@@ -30,6 +33,43 @@
       loadProperties();
     });
   });
+
+  // ========== ФИЛЬТРЫ ИЗ URL ==========
+  function applyUrlFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let hasFilters = false;
+    
+    // Проверяем все возможные фильтры из URL
+    ['type', 'area', 'rooms', 'price', 'status'].forEach(filterType => {
+      const value = urlParams.get(filterType);
+      if (value) {
+        hasFilters = true;
+        
+        // Снять "All"
+        const allCheckbox = document.querySelector(`[data-filter="${filterType}"] input[value="all"]`);
+        if (allCheckbox) allCheckbox.checked = false;
+        
+        // Выбрать нужный чекбокс
+        const checkbox = document.querySelector(`[data-filter="${filterType}"] input[value="${value}"]`);
+        if (checkbox) {
+          checkbox.checked = true;
+          currentFilters[filterType].push(value);
+        }
+        
+        // Обновить мобильный селект
+        const mobileSelect = document.querySelector(`.mobile-filter-item[data-filter="${filterType}"] .mobile-filter-select span`);
+        if (mobileSelect && checkbox) {
+          const label = checkbox.closest('.filter-checkbox')?.querySelector('.label-text')?.textContent;
+          if (label) mobileSelect.textContent = label;
+        }
+      }
+    });
+    
+    // Если были фильтры в URL — применить
+    if (hasFilters) {
+      loadProperties();
+    }
+  }
 
   // ========== ЗАГРУЗКА ОБЪЕКТОВ ==========
   async function loadProperties(append = false) {
@@ -189,12 +229,10 @@
           
           if (value === 'all') {
             if (this.checked) {
-              // Снять все остальные
               column.querySelectorAll('input:not([value="all"])').forEach(c => c.checked = false);
               currentFilters[filterType] = [];
             }
           } else {
-            // Снять "All"
             const allCb = column.querySelector('input[value="all"]');
             if (allCb) allCb.checked = false;
             
@@ -206,7 +244,6 @@
               currentFilters[filterType] = currentFilters[filterType].filter(v => v !== value);
             }
             
-            // Если ничего не выбрано - включить "All"
             if (currentFilters[filterType].length === 0 && allCb) {
               allCb.checked = true;
             }
@@ -233,7 +270,6 @@
     const filterType = filterItem.dataset.filter;
     const filterName = filterItem.querySelector('h6')?.textContent || filterType;
     
-    // Получить опции из desktop версии
     const desktopColumn = document.querySelector(`.filters-desktop .filter-column[data-filter="${filterType}"]`);
     const options = [];
     
@@ -245,13 +281,14 @@
           options.push({
             value: input.value,
             label: text,
-            checked: currentFilters[filterType].includes(input.value)
+            checked: input.value === 'all' 
+              ? currentFilters[filterType].length === 0 
+              : currentFilters[filterType].includes(input.value)
           });
         }
       });
     }
     
-    // Модалка
     let modal = document.getElementById('filterModal');
     if (!modal) {
       modal = document.createElement('div');
@@ -283,7 +320,6 @@
     modal.classList.add('is-active');
     document.body.style.overflow = 'hidden';
     
-    // Events
     modal.querySelector('.filter-modal__close').addEventListener('click', closeMobileFilter);
     modal.querySelector('.filter-modal__overlay').addEventListener('click', closeMobileFilter);
     
@@ -292,7 +328,17 @@
       const values = Array.from(checked).map(c => c.value).filter(v => v !== 'all');
       currentFilters[filterType] = values;
       
-      // Update select text
+      // Синхронизировать с desktop чекбоксами
+      if (desktopColumn) {
+        desktopColumn.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          if (cb.value === 'all') {
+            cb.checked = values.length === 0;
+          } else {
+            cb.checked = values.includes(cb.value);
+          }
+        });
+      }
+      
       const selectSpan = filterItem.querySelector('.mobile-filter-select span');
       if (selectSpan) {
         selectSpan.textContent = values.length 
@@ -318,22 +364,23 @@
     currentFilters = { type: [], area: [], rooms: [], price: [], status: [] };
     currentPage = 1;
     
-    // Reset checkboxes
     document.querySelectorAll('.filter-checkbox input').forEach(cb => {
       cb.checked = cb.value === 'all';
     });
     
-    // Reset mobile selects
     document.querySelectorAll('.mobile-filter-select span').forEach(span => {
       const item = span.closest('.mobile-filter-item');
       const name = item?.querySelector('h6')?.textContent || '';
       span.textContent = `All ${name.toLowerCase()}`;
     });
     
+    // Очистить URL параметры
+    window.history.replaceState({}, '', window.location.pathname);
+    
     loadProperties();
   }
 
-// ========== МОДАЛКА ==========
+  // ========== МОДАЛКА ==========
   function initModal() {
     const modal = document.getElementById('propertyModal');
     if (!modal) return;
@@ -349,7 +396,6 @@
   }
 
   function initCardClicks() {
-    // Для SSR карточек
     document.querySelectorAll('.project-card[data-id]').forEach(card => {
       card.addEventListener('click', function(e) {
         e.preventDefault();
@@ -372,38 +418,28 @@
         return;
       }
       
-      // Заполняем
       modal.querySelector('.pm-title').textContent = prop.title || '';
       modal.querySelector('.pm-type').textContent = prop.type || '';
       modal.querySelector('.pm-developer').textContent = prop.developer ? `by ${prop.developer}` : '';
       modal.querySelector('.pm-image img').src = prop.image || '';
-      
-      // Location
       modal.querySelector('.pm-location').innerHTML = prop.location || 'Bali';
       
-      // Construction
       const construction = [];
       if (prop.completion) construction.push(`Completion: ${prop.completion}`);
       if (prop.status_display) construction.push(`Status: ${prop.status_display}`);
       modal.querySelector('.pm-construction').innerHTML = construction.join('<br>') || '-';
       
-      // ROI
-      modal.querySelector('.pm-roi').textContent = prop.roi ? `${prop.roi}% projected` : 'Contact for details';
+      modal.querySelector('.pm-roi').textContent = prop.roi ? `${prop.roi}` : 'Contact for details';
       
-      // Area
       const areas = [];
       if (prop.total_area) areas.push(`Total: ${prop.total_area} m²`);
       if (prop.living_area) areas.push(`Living: ${prop.living_area} m²`);
       if (prop.plot_area) areas.push(`Plot: ${prop.plot_area} m²`);
       modal.querySelector('.pm-area').innerHTML = areas.join('<br>') || '-';
       
-      // Leasehold
       modal.querySelector('.pm-leasehold').textContent = prop.leasehold ? `${prop.leasehold} years` : '-';
-      
-      // View
       modal.querySelector('.pm-view').textContent = prop.view || '-';
       
-      // Price section
       const priceSection = modal.querySelector('.pm-price-section');
       if (prop.price) {
         priceSection.style.display = 'block';
@@ -414,7 +450,6 @@
         priceSection.style.display = 'none';
       }
       
-      // Show
       modal.classList.add('is-active');
       document.body.classList.add('modal-open');
       document.body.style.overflow = 'hidden';

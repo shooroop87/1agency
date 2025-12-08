@@ -1,10 +1,8 @@
 # backend/core/views.py
 import json
-import random
 
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from django.http import HttpResponse
+from django.http import JsonResponse, HttpResponse
 from django.utils import translation
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -23,42 +21,38 @@ def ping(request):
 def home(request):
     from properties.models import Property
 
-    # Координаты локаций Бали
-    location_coords = {
-        'canggu': {'lat': -8.6478, 'lng': 115.1385},
-        'ubud': {'lat': -8.5069, 'lng': 115.2625},
-        'seminyak': {'lat': -8.6893, 'lng': 115.1685},
-        'uluwatu': {'lat': -8.8291, 'lng': 115.0849},
-        'sanur': {'lat': -8.7089, 'lng': 115.2551},
-        'nusa-dua': {'lat': -8.8005, 'lng': 115.2317},
-        'bukit': {'lat': -8.8095, 'lng': 115.1550},
-        'gianyar': {'lat': -8.5406, 'lng': 115.3227},
-        'denpasar': {'lat': -8.6500, 'lng': 115.2167},
-    }
-    
-    # Данные для карты
+    # Данные для карты - только объекты с координатами и галочкой show_on_map
     map_properties = []
-    for prop in Property.objects.filter(is_active=True).select_related('location', 'image'):
-        loc_slug = prop.location.slug if prop.location else ''
-        coords = location_coords.get(loc_slug, {'lat': -8.4095, 'lng': 115.1889})
-        
-        # Смещение чтобы маркеры не накладывались
-        lat = coords['lat'] + random.uniform(-0.02, 0.02)
-        lng = coords['lng'] + random.uniform(-0.02, 0.02)
-        
+    map_qs = Property.objects.filter(
+        is_active=True, 
+        show_on_map=True,
+        latitude__isnull=False,
+        longitude__isnull=False
+    ).select_related('location', 'property_type', 'image')
+
+    for prop in map_qs:
         map_properties.append({
             'id': prop.id,
             'title': prop.safe_translation_getter('title', default=''),
-            'location': f"{prop.location.name}, Bali" if prop.location else 'Bali',
-            'lat': lat,
-            'lng': lng,
+            'location': prop.location.name if prop.location else 'Bali',
+            'lat': float(prop.latitude),
+            'lng': float(prop.longitude),
             'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
+            'type': prop.property_type.name if prop.property_type else '',
             'status': prop.get_status_display(),
             'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
             'roi': prop.get_roi_display(),
             'price': prop.get_price_display(),
-            'units': prop.get_bedrooms_display(),
+            'bedrooms': prop.get_bedrooms_display(),
+            'area': prop.get_total_area_display(),
         })
+    
+    # 4 featured проекта для главной
+    featured_properties = Property.objects.filter(
+        is_active=True
+    ).select_related(
+        'property_type', 'location', 'image'
+    ).order_by('-is_featured', 'order', '-created_at')[:4]
     
     context = {
         'services': Service.objects.filter(is_active=True),
@@ -71,90 +65,101 @@ def home(request):
         'popup_service': PopupSettings.objects.filter(popup_type='service', is_active=True).first(),
         'popup_faq': PopupSettings.objects.filter(popup_type='faq', is_active=True).first(),
         'contact_form': ContactForm(),
+        # Map
+        'map_properties': map_properties,
+        'map_properties_json': json.dumps(map_properties),
+        'show_map_section': len(map_properties) > 0,
+        # Featured properties
+        'featured_properties': featured_properties,
     }
+    
     return render(request, 'pages/index.html', context)
 
 
 def set_language(request):
     """Переключение языка"""
     lang = request.POST.get('language', request.GET.get('language', 'en'))
-    
     if lang in dict(settings.LANGUAGES):
         translation.activate(lang)
         response = redirect(request.META.get('HTTP_REFERER', '/'))
         response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang)
         return response
-    
     return redirect('/')
-
-
-def _save_and_notify(form, request_type):
-    """Сохранить заявку и отправить email"""
-    contact = form.save(commit=False)
-    contact.request_type = request_type
-    contact.save()
-    
-    # Отправляем email асинхронно (в продакшене лучше через Celery)
-    send_contact_notification(contact)
-    
-    return contact
 
 
 @require_POST
 def submit_contact(request):
-    """AJAX отправка контактной формы"""
     form = ContactForm(request.POST)
     if form.is_valid():
-        _save_and_notify(form, 'contact')
+        contact = ContactRequest.objects.create(
+            request_type='contact',
+            name=form.cleaned_data['name'],
+            email=form.cleaned_data.get('email', ''),
+            phone=form.cleaned_data.get('phone', ''),
+            message=form.cleaned_data.get('message', ''),
+            property_type=form.cleaned_data.get('property_type', ''),
+        )
+        send_contact_notification(contact)
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors}, status=400)
 
 
 @require_POST
 def submit_callback(request):
-    """AJAX отправка формы обратного звонка"""
     form = CallbackForm(request.POST)
     if form.is_valid():
-        _save_and_notify(form, 'callback')
+        contact = ContactRequest.objects.create(
+            request_type='callback',
+            name=form.cleaned_data['name'],
+            phone=form.cleaned_data['phone'],
+        )
+        send_contact_notification(contact)
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors}, status=400)
 
 
 @require_POST
 def submit_service(request):
-    """AJAX отправка запроса на услугу"""
     form = ServiceRequestForm(request.POST)
     if form.is_valid():
-        _save_and_notify(form, 'service')
+        contact = ContactRequest.objects.create(
+            request_type='service',
+            name=form.cleaned_data['name'],
+            phone=form.cleaned_data['phone'],
+            email=form.cleaned_data.get('email', ''),
+            message=form.cleaned_data.get('message', ''),
+        )
+        send_contact_notification(contact)
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors}, status=400)
 
 
 @require_POST
 def submit_faq_question(request):
-    """AJAX отправка вопроса из FAQ"""
     form = FAQQuestionForm(request.POST)
     if form.is_valid():
-        _save_and_notify(form, 'faq')
+        contact = ContactRequest.objects.create(
+            request_type='faq',
+            name=form.cleaned_data['name'],
+            phone=form.cleaned_data['phone'],
+            email=form.cleaned_data.get('email', ''),
+            message=form.cleaned_data['message'],
+        )
+        send_contact_notification(contact)
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'errors': form.errors}, status=400)
 
-# views.py
+
 def about(request):
     bali_images = [f'{i:02}' for i in range(1, 17)]
-    return render(request, 'pages/about-bali.html', {
-        'bali_images': bali_images,
-    })
+    return render(request, 'pages/about-bali.html', {'bali_images': bali_images})
+
 
 def projects(request):
     from properties.models import Property, PropertyType, Location
-    
-    # Получаем все активные объекты для начальной загрузки
     properties = Property.objects.filter(is_active=True).select_related(
         'developer', 'property_type', 'location', 'image'
-    )[:12]  # Первые 12 для SSR
-    
-    # Опции фильтров из БД
+    )[:12]
     context = {
         'properties': properties,
         'property_types': PropertyType.objects.all(),
@@ -162,6 +167,7 @@ def projects(request):
         'total_count': Property.objects.filter(is_active=True).count(),
     }
     return render(request, "pages/projects.html", context)
+
 
 def error(request):
     return render(request, "pages/page-error.html")
@@ -171,21 +177,17 @@ def privacy(request):
     return render(request, "pages/privacy-policy.html")
 
 
-# --- Кастомные страницы ошибок ---
 def custom_404(request, exception):
-    # ваш шаблон 404 лежит тут: templates/404/page-error.html
     return render(request, "pages/page-error.html", status=404)
 
+
 def custom_500(request):
-    # можно использовать тот же шаблон или сделать отдельный 500
     return render(request, "pages/page-error.html", status=500)
 
 
 def oauth2callback(request):
     code = request.GET.get("code")
     error = request.GET.get("error")
-
     if error:
         return HttpResponse(f"Error: {error}")
-
     return HttpResponse(f"Your auth code: {code}")
