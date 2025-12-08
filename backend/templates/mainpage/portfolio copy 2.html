@@ -5,11 +5,7 @@
       {% for prop in featured_properties %}
       <a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
          data-id="{{ prop.id }}">
-        <div class="pc-img">
-          <img src="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}" 
-               alt="{{ prop.title }}" 
-               loading="lazy" 
-               decoding="async">
+        <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
           <div class="pc-tags">
             <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
             {% if prop.price_min %}
@@ -30,6 +26,7 @@
       <p class="text-center text-white">No properties available</p>
       {% endfor %}
     </div>
+
     <div class="projects-cta mt70">
       <a href="{% url 'projects' %}" class="wdt-button button-cta is-nm concierge-cta">
         View full catalog <i class="wdt-button__icon" aria-hidden="true"></i>
