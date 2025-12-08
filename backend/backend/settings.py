@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#
 
 DEBUG = False
 
-# ALLOWED_HOSTS
+# ALLOWED HOSTS
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
