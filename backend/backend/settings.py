@@ -108,7 +108,7 @@ DATABASES = {
 }
 
 # Локальная разработка - любая команда вне Docker
-if any(cmd in sys.argv for cmd in ['runserver', 'migrate', 'makemigrations', 'shell', 'createsuperuser']):
+if not os.environ.get('DOCKER_ENV') and any(cmd in sys.argv for cmd in ['runserver', 'migrate', 'makemigrations', 'shell', 'createsuperuser']):
     DATABASES['default']['HOST'] = 'localhost'
 
 # Cache (Redis)
