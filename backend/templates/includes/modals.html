@@ -26,7 +26,7 @@
           <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
         </div>
         <div class="callback-form__field">
-          <input type="tel" name="phone" placeholder="{% trans 'Your WhatsApp or phone number' %}" required>
+          <input type="tel" name="phone" placeholder="{% trans 'Your WhatsApp or phone number' %}" required checked>
         </div>
         <div class="callback-form__checkbox">
           <label>
@@ -162,7 +162,7 @@
         </div>
         <div class="question-form__checkbox">
           <label>
-            <input type="checkbox" name="privacy" required>
+            <input type="checkbox" name="privacy" required checked>
             <span class="checkbox-custom"></span>
             <span class="checkbox-text">{% trans "I agree to the terms of the Privacy Policy" %}</span>
           </label>
@@ -205,9 +205,7 @@
       <h2 class="sdm-title"></h2>
       <a href="#" class="wdt-button button-cta is-nm concierge-cta open-service-modal-from-details">
         {% trans "Request service" %}
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <span class="wdt-button__icon" aria-hidden="true"></span>
       </a>
     </div>
 

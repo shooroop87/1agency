@@ -22,7 +22,6 @@ span[class*=" flaticon-"]:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;}
-
 .flaticon-filter:before{content: "\f101";}
 .flaticon-settings:before{content: "\f102";}
 .flaticon-search:before{content: "\f103";}

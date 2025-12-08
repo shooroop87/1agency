@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.querySelector('.pm-developer').textContent = data.developer ? `by ${data.developer}` : '';
     modal.querySelector('.pm-location').textContent = data.location || '';
     modal.querySelector('.pm-construction').textContent = data.completion_date ? `Completion: ${data.completion_date}` : '—';
-    modal.querySelector('.pm-roi').textContent = data.roi ? `Projected ROI: ${data.roi}%` : '—';
+    modal.querySelector('.pm-roi').textContent = data.roi ? `${data.roi}` : '—';
     modal.querySelector('.pm-area').textContent = data.total_area ? `${data.total_area} m²` : '—';
     modal.querySelector('.pm-leasehold').textContent = data.leasehold || '—';
     modal.querySelector('.pm-price').textContent = data.price ? `From $${Number(data.price).toLocaleString()}` : '—';

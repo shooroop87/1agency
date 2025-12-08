@@ -1,6 +1,6 @@
 {% load static i18n %}
 <section class="section-content-footer" id="contactus">
-  <div class="container contact-form-section">
+  <div class="container contact-form-section wow fadeInUp">
     <div class="row g-4 align-items-start contact-form-row">
       
       <!-- LEFT SIDE -->
@@ -13,7 +13,7 @@
 
         <div class="contact-form-left-bottom">
           <h4 class="mb20 cf-left-subtitle mt300">
-            {% trans "Reach out in the way that's most convenient for you — we're always here to help" %}
+            {% trans "Reach out in the way that's<br> most convenient for you — we're always here to help" %}
           </h4>
 
           <div class="d-flex align-items-center mb20 mt40">
@@ -71,9 +71,9 @@
               </div>
 
               <div class="col-12 d-flex align-items-center cf-policy">
-                <input type="checkbox" id="policy" name="privacy" class="cf-checkbox me-2" required>
+                <input type="checkbox" id="policy" name="privacy" class="cf-checkbox me-2" required checked>
                 <label for="policy" class="mb-0">
-                  {% trans "I agree to the terms of the" %} <a href="#">{% trans "Privacy Policy" %}</a>
+                  {% trans "I agree to the terms of the" %} <a href="{% url 'privacy' %}">{% trans "Privacy Policy" %}</a>
                 </label>
               </div>
 

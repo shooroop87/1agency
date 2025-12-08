@@ -1,7 +1,7 @@
-{% load static %}
+{% load static i18n %}
 
 <section class="section-content-footer" id="contactus">
-  <div class="container contact-form-section">
+  <div class="container contact-form-section wow fadeInUp">
     <div class="row g-4 align-items-start contact-form-row">
       <!-- ЛЕВАЯ ЧАСТЬ -->
       <div class="col-lg-6 contact-form-left">
@@ -14,9 +14,7 @@
         <!-- нижний левый блок контактов -->
         <div class="contact-form-left-bottom">
           <h4 class="mb20 cf-left-subtitle mt300">
-            Reach out in the way that's<br>
-            most convenient for you — we're<br>
-            always here to help
+            {% trans "Reach out in the way that's<br> most convenient for you — we're always here to help" %}
           </h4>
 
           <div class="d-flex align-items-center mb20 mt40">
