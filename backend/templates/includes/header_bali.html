@@ -1,50 +1,4 @@
 {% load static %}
-<!-- =================================================================== -->
-<!--  ПРОСТОЕ РЕШЕНИЕ: 2 критических файла сразу + остальные через preload  -->
-<!-- =================================================================== -->
-<style>
-/* Критические стили лоадера — сразу в head */
-.loader-tim {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1a1a1a;
-  z-index: 99999;
-}
-.loader-tim-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.loader-imgs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.loader-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-}
-.loader-img.is-active { opacity: 1; }
-.loader-counter { position: absolute; bottom: 40px; left: 40px; }
-.loader-number { font-size: 48px; font-weight: 300; color: #fff; }
-.loader-text { position: absolute; bottom: 40px; right: 40px; }
-.loader-text p { font-size: 15px; font-weight: 600; color: #fff; }
-.loader-tim.is-hidden { opacity: 0; pointer-events: none; transition: opacity 0.5s; }
-body.is-loading { overflow: hidden; }
-/* Прячем контент пока лоадер активен */
-body.is-loading #content,
-body.is-loading .menu-mobile { visibility: hidden; }
-</style>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/Favicon16x16.png' %}">
@@ -53,7 +7,6 @@ body.is-loading .menu-mobile { visibility: hidden; }
 <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/Favicon180x180.png' %}">
 <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon/Favicon512x512.svg' %}">
 
-<script>document.body.classList.add('is-loading');</script>
 
 <!-- 1. Критические стили — грузятся сразу, без хаков (чтобы не было FOUC) -->
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
