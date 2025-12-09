@@ -334,13 +334,17 @@ Desa/Kelurahan Benoa, Kec. Kuta Selatan, Kab. Badung, Provinsi, Bali, Kode Pos: 
   background: var(--color-dark, #1a1a1a);
 }
 
-/* Отступ снизу = высота футера (подбери под реальную) */
-main#content {
-  margin-bottom: 500px; /* высота футера */
+body.home-page main#content {
+  margin-bottom: 500px;
+}
+
+/* Отступ снизу только для страниц БЕЗ contact-form2 */
+main#content:not(:has(.section-content-footer)) {
+  margin-bottom: 500px;
 }
 
 @media (max-width: 991.98px) {
-  main#content {
+  main#content:not(:has(.section-content-footer)) {
     margin-bottom: 700px;
   }
 }
@@ -348,9 +352,6 @@ main#content {
 @media (max-width: 767.98px) {
   .footer-style1 {
     position: relative; /* на мобильных отключаем */
-  }
-  main#content {
-    margin-bottom: 0;
   }
 }
 </style>

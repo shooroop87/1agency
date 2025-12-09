@@ -1654,7 +1654,7 @@ h2 {
 #content::before {
     content: "";
     position: absolute;
-    background-image: url(https://andreyegorov.com/wp-content/uploads/2025/11/one.svg);
+    background-image: url(/static/images/one.svg);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
@@ -5401,14 +5401,12 @@ h2 {
   background-size: cover;
   background-position: center;
   min-height: 1204px;
-  background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/property.png')
+  background-image: url('../images/property.webp');
 }
-
-
 
 /*Home 1 Banner Content*/
 .home-banner-style8 {
-  background-image: url('static/images/about-bali.webp');
+  background-image: url('../images/about-bali.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6146,7 +6144,6 @@ section {
 /* Custom Search Sugguestions Code End */
 .preloader {
   background-color: #eaeaea;
-  /*background-image: url("{% static 'images/preloader.gif' %}");*/
   background-position: center center;
   background-repeat: no-repeat;
   height: 100%;
@@ -12115,13 +12112,6 @@ input:focus-visible {
   .hero-404__subtitle{ font-size:16px; }
 }
 
-.home-banner-style8 {
-    background-image: url('../images/about-bali.webp');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
 
 .about-cards .container {
   max-width: 1440px;
