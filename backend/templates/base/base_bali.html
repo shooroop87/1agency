@@ -10,15 +10,15 @@
 </head>
 <body>
   {% render_snippets 'body_start' %}
-  {% include "includes/menu-desktop-any.html" %}
+  {% include "includes/menu-desktop.html" %}
   {% include "includes/menu-mobile-bali.html" %}
   
   <main id="content2">
     {% block content %}{% endblock %}
   </main>
   {% render_snippets 'body_end' %}
-  {% include "includes/contact-form2.html" %}
   {% include "includes/footer4.html" %}
+  {% include "includes/scripts_footer.html" %}
   {% block extra_js %}{% endblock %}
 </body>
 </html>

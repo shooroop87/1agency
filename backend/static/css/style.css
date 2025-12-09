@@ -12112,6 +12112,11 @@ input:focus-visible {
   .hero-404__subtitle{ font-size:16px; }
 }
 
+main#content,
+main#content2 {
+  margin-bottom: 600px;
+}
+
 
 .about-cards .container {
   max-width: 1440px;
