@@ -767,6 +767,20 @@ background-clip: text;
 }
 
 /* ===== Concierge (What we do for you) ===== */
+.concierge .row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 20px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#partners .row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 20px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .concierge-head{ margin-bottom:24px; }
 .concierge-eyebrow{
   display:block; font:600 15px/1.2 var(--title-font-family);
@@ -1049,8 +1063,10 @@ a.favorites-btn:hover {
 /* ===== About Cards Section ===== */
 
 .about-cards .row {
-  --bs-gutter-x: 20px;
+  --bs-gutter-x: 0px;
   --bs-gutter-y: 20px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 /* Base card — 325x340 */
@@ -5388,17 +5404,7 @@ h2 {
   background-image: url('https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/property.png')
 }
 
-#economy::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url(https://andreyegorov.com/wp-content/uploads/2025/11/one.svg);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
-    z-index: -1;
-    opacity: 1;
-}
+
 
 /*Home 1 Banner Content*/
 .home-banner-style8 {
@@ -12110,7 +12116,7 @@ input:focus-visible {
 }
 
 .home-banner-style8 {
-    background-image: url('images/about-bali.webp');
+    background-image: url('../images/about-bali.webp');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
