@@ -11983,7 +11983,18 @@ input:focus-visible {
   opacity: 1;
   transition: opacity .25s ease, color .25s ease;
 }
-.oa-menu > li:first-child .title{ color: var(--color-light-grey); } /* Our projects — серый */
+
+
+/* Active menu item */
+.oa-menu .list-item {
+  position: relative;
+}
+.oa-menu .list-item.is-active .title {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* Ховер/актив */
 .oa-menu .title:hover{ color: var(--color-accent); }

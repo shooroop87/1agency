@@ -128,7 +128,7 @@
       
       const card = document.createElement('a');
       card.href = '#';
-      card.className = `project-card project-card--${isLarge ? 'lg' : 'sm'}${alignEnd ? ' project-card--align-end' : ''}`;
+      card.className = `project-card project-card--${isLarge ? 'lg' : 'lg'}${alignEnd ? ' project-card--align-end' : ''}`;
       card.dataset.id = prop.id;
       
       const priceDisplay = prop.price_display ? `<span class="tag">From ${prop.price_display}</span>` : '';

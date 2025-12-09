@@ -5,7 +5,7 @@
 
     <div class="projects-grid" id="propertiesGrid">
       {% for prop in properties %}
-      <a href="#" class="project-card project-card--{{ forloop.counter|divisibleby:4|yesno:'lg,sm' }}{% if forloop.counter|add:0 in '2,6,10'|make_list %} project-card--align-end{% endif %}"
+      <a href="#" class="project-card project-card--{{ forloop.counter|divisibleby:4|yesno:'lg,lg' }}{% if forloop.counter|add:0 in '2,6,10'|make_list %} project-card--align-end{% endif %}"
          data-id="{{ prop.id }}">
         <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
           <div class="pc-tags">

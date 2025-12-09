@@ -270,26 +270,23 @@
   padding: 10px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+/* Active menu item */
+.oa-menu .list-item.is-active .title {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.oa-menu .list-item {
+  position: relative;
+}
 </style>
 
 <script>
   // Ждём загрузки DOM и GSAP
   document.addEventListener('DOMContentLoaded', function() {
 
-  // === Active menu item ===
-  const currentPath = window.location.pathname;
-  document.querySelectorAll('.oa-menu .list-item').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && !href.includes('#')) {
-      try {
-        const linkPath = new URL(href, window.location.origin).pathname;
-        if (currentPath === linkPath || currentPath === linkPath + '/') {
-          link.classList.add('is-active');
-        }
-      } catch(e) {}
-    }
-  });
-  
     // Sticky Header on Scroll
 const header = document.querySelector('.header-nav');
 if (header) {
@@ -435,4 +432,16 @@ if (header) {
       form.reset();
     });
   });
+
+  // Active menu item
+const currentPath = window.location.pathname;
+document.querySelectorAll('.oa-menu .list-item').forEach(link => {
+  const href = link.getAttribute('href');
+  if (href && !href.includes('#')) {
+    const linkPath = new URL(href, window.location.origin).pathname;
+    if (currentPath === linkPath) {
+      link.classList.add('is-active');
+    }
+  }
+});
 </script>

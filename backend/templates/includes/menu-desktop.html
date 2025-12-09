@@ -2,7 +2,7 @@
 <header class="header-nav nav-homepage-style at-home5 stricky main-menu slideIn animated">
   <nav class="posr">
     <div class="container posr menu_bdrt1">
-      <div class="row align-items-center justify-content-between oa-h-row"><!-- new scope -->
+      <div class="row align-items-center justify-content-between oa-h-row">
         <div class="col-auto">
             <div class="logos mr40 mr10-lg">
               <a class="header-logo" href="{% url 'home' %}">
@@ -11,7 +11,6 @@
             </div>
         </div>
         <div class="col-auto">
-          <!-- меню — твой ace-responsive-menu -->
             <ul id="respMenu" class="ace-responsive-menu oa-menu" data-menu-style="horizontal">
               <li><a class="list-item" href="{% url 'projects' %}"><span class="title">Our projects</span></a></li>
               <li><a class="list-item" href="{% url 'home' %}#aboutus"><span class="title">About us</span></a></li>
@@ -21,7 +20,6 @@
               <li><a class="list-item" href="{% url 'home' %}#contactus"><span class="title">Contacts</span></a></li>
             </ul>
         </div>
-        <!-- правый блок: избранное + кнопка (используем твой .wdt-button) -->
         <div class="col-auto oa-cta">
           <a href="#" class="favorites-btn" aria-label="Favorites">
             <span class="flaticon-like"></span>
@@ -31,11 +29,11 @@
                 <span class="arrow-icon">→</span>
               </a>
         </div>
-        
       </div>
     </div>
   </nav>
 </header>
+
 <!-- Callback Modal -->
 <div id="callbackModal" class="callback-modal">
   <div class="callback-modal__overlay"></div>
@@ -45,18 +43,14 @@
         <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
       </svg>
     </button>
-
     <h2 class="callback-modal__title">Request a callback using this form</h2>
-
     <form class="callback-form" id="callbackForm">
       <div class="callback-form__field">
         <input type="text" name="name" placeholder="Your name" required>
       </div>
-
       <div class="callback-form__field">
         <input type="tel" name="phone" placeholder="Your WhatsApp or phone number" required>
       </div>
-
       <div class="callback-form__checkbox">
         <label>
           <input type="checkbox" name="privacy" required checked>
@@ -64,7 +58,6 @@
           <span class="checkbox-text">I agree to the terms of the Privacy Policy</span>
         </label>
       </div>
-
       <button type="submit" class="callback-form__submit">
         Send
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -74,37 +67,31 @@
     </form>
   </div>
 </div>
+
 <style>
 /* Callback Modal */
 .callback-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 9999;
   display: none;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .callback-modal.is-active {
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1;
 }
-
 .callback-modal__overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
 }
-
 .callback-modal__content {
   position: relative;
   width: 442px;
@@ -114,13 +101,10 @@
   padding: 50px 40px 40px;
   z-index: 1;
 }
-
 .callback-modal__close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 21px;
-  height: 21px;
+  top: 20px; right: 20px;
+  width: 21px; height: 21px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -128,9 +112,6 @@
   padding: 0;
   transition: transform 0.2s;
 }
-
-
-
 .callback-modal__title {
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
@@ -140,11 +121,7 @@
   margin: 0 0 30px;
   text-align: center;
 }
-
-.callback-form__field {
-  margin-bottom: 15px;
-}
-
+.callback-form__field { margin-bottom: 15px; }
 .callback-form__field input {
   width: 100%;
   height: 50px;
@@ -157,15 +134,8 @@
   font-size: 14px;
   color: #000;
 }
-
-.callback-form__field input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.callback-form__checkbox {
-  margin: 20px 0 25px;
-}
-
+.callback-form__field input::placeholder { color: rgba(0, 0, 0, 0.5); }
+.callback-form__checkbox { margin: 20px 0 25px; }
 .callback-form__checkbox label {
   display: flex;
   align-items: center;
@@ -176,41 +146,29 @@
   font-size: 13px;
   color: #FFFFFF;
 }
-
-.callback-form__checkbox input[type="checkbox"] {
-  display: none;
-}
-
+.callback-form__checkbox input[type="checkbox"] { display: none; }
 .checkbox-custom {
   position: relative;
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
   border: 1.5px solid rgba(255, 255, 255, 0.6);
   border-radius: 4px;
   flex-shrink: 0;
   transition: all 0.3s;
 }
-
 .callback-form__checkbox input[type="checkbox"]:checked + .checkbox-custom {
   background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
   border-color: transparent;
 }
-
 .callback-form__checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
   content: '✓';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 12px;
   font-weight: bold;
 }
-
-.checkbox-text {
-  line-height: 1.4;
-}
-
+.checkbox-text { line-height: 1.4; }
 .callback-form__submit {
   width: 100%;
   height: 50px;
@@ -228,18 +186,12 @@
   gap: 10px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .callback-form__submit:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(240, 152, 125, 0.4);
 }
+.callback-form__submit svg { width: 16px; height: 16px; }
 
-.callback-form__submit svg {
-  width: 16px;
-  height: 16px;
-}
-
-/* Mobile */
 @media (max-width: 767px) {
   .callback-modal__content {
     width: 100%;
@@ -247,7 +199,6 @@
     border-radius: 20px;
     padding: 40px 25px 30px;
   }
-
   .callback-modal__title {
     font-size: 18px;
     margin-bottom: 25px;
@@ -258,11 +209,9 @@
 .header-nav {
   transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
-
 .header-nav.is-sticky {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   z-index: 9999;
   background: rgba(39, 39, 39, 0.95);
@@ -270,155 +219,147 @@
   padding: 10px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-</style>
 
-<script>
-  // Ждём загрузки DOM и GSAP
-  document.addEventListener('DOMContentLoaded', function() {
-
-    // Sticky Header on Scroll
-const header = document.querySelector('.header-nav');
-if (header) {
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-      header.classList.add('is-sticky');
-    } else {
-      header.classList.remove('is-sticky');
-    }
-  });
+/* Active menu item */
+.oa-menu .list-item {
+  position: relative;
 }
-
-    // Проверяем загрузку GSAP
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-
-      const heroSection = document.querySelector('.hero-section-desktop');
-      const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
-      const spacer      = document.querySelector('.hero-spacer');
-      const navWrap     = document.querySelector('.nav-wrap');
-      
-      if (heroSection && spacer && navWrap) {
-        // Pin hero block
-        ScrollTrigger.create({
-          trigger: heroSection,
-          start: "top top",
-          end: () => spacer.offsetHeight,
-          pin: heroSection,
-          pinSpacing: false
-        });
-
-        // Image reveal on scroll
-        bottomItems.forEach(item => {
-          gsap.fromTo(
-            item,
-            { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
-            {
-              clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
-              ease: "none",
-              scrollTrigger: {
-                trigger: heroSection,
-                start: "top top",
-                end: () => spacer.offsetHeight * 0.5,
-                scrub: true
-              }
-            }
-          );
-        });
-
-        // Sticky nav
-        ScrollTrigger.create({
-          trigger: spacer,
-          start: "top top+=520",
-          end: "bottom top",
-          onEnter() {
-            navWrap.classList.add('is-sticky');
-            gsap.to(navWrap, {
-              position: 'fixed',
-              top: 0,
-              duration: 0.3
-            });
-          },
-          onEnterBack() {
-            navWrap.classList.add('is-sticky');
-            gsap.to(navWrap, {
-              position: 'fixed',
-              top: 0,
-              duration: 0.3
-            });
-          },
-          onLeaveBack() {
-            navWrap.classList.remove('is-sticky');
-            gsap.to(navWrap, {
-              position: 'absolute',
-              top: 520,
-              duration: 0.3
-            });
-          }
-        });
-      }
-    } else {
-      console.warn('GSAP or ScrollTrigger not loaded');
+.oa-menu .list-item.is-active .title {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.oa-menu .list-item.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  opacity: 0.7;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // === Active menu item ===
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.oa-menu .list-item').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.includes('#')) {
+      try {
+        const linkPath = new URL(href, window.location.origin).pathname;
+        if (currentPath === linkPath || currentPath === linkPath + '/') {
+          link.classList.add('is-active');
+        }
+      } catch(e) {}
     }
+  });
 
-    // Callback Modal
-    const modal = document.getElementById('callbackModal');
+  // === Sticky Header ===
+  const header = document.querySelector('.header-nav');
+  if (header) {
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('is-sticky', window.scrollY > 50);
+    });
+  }
+
+  // === GSAP ScrollTrigger ===
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    const heroSection = document.querySelector('.hero-section-desktop');
+    const bottomItems = document.querySelectorAll('.hero-grid-item-bottom');
+    const spacer = document.querySelector('.hero-spacer');
+    const navWrap = document.querySelector('.nav-wrap');
     
-    if (!modal) {
-      console.warn('Callback modal not found');
-      return;
-    }
-
-    const openBtns = document.querySelectorAll('.open-callback-modal');
-    const closeBtn = modal.querySelector('.callback-modal__close');
-    const overlay = modal.querySelector('.callback-modal__overlay');
-    const form = document.getElementById('callbackForm');
-
-    if (!closeBtn || !overlay || !form) {
-      console.warn('Modal elements not found');
-      return;
-    }
-
-    // Открытие модалки
-    openBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.classList.add('is-active');
-        document.body.style.overflow = 'hidden';
+    if (heroSection && spacer && navWrap) {
+      ScrollTrigger.create({
+        trigger: heroSection,
+        start: "top top",
+        end: () => spacer.offsetHeight,
+        pin: heroSection,
+        pinSpacing: false
       });
-    });
 
-    // Закрытие модалки
-    function closeModal() {
-      modal.classList.remove('is-active');
-      document.body.style.overflow = '';
+      bottomItems.forEach(item => {
+        gsap.fromTo(item,
+          { clipPath: 'polygon(-5% 100%, 105% 100%, 105% 100%, -5% 100%)' },
+          {
+            clipPath: 'polygon(-5% 0%, 105% 0%, 105% 0%, -5% 0%)',
+            ease: "none",
+            scrollTrigger: {
+              trigger: heroSection,
+              start: "top top",
+              end: () => spacer.offsetHeight * 0.5,
+              scrub: true
+            }
+          }
+        );
+      });
+
+      ScrollTrigger.create({
+        trigger: spacer,
+        start: "top top+=520",
+        end: "bottom top",
+        onEnter() {
+          navWrap.classList.add('is-sticky');
+          gsap.to(navWrap, { position: 'fixed', top: 0, duration: 0.3 });
+        },
+        onEnterBack() {
+          navWrap.classList.add('is-sticky');
+          gsap.to(navWrap, { position: 'fixed', top: 0, duration: 0.3 });
+        },
+        onLeaveBack() {
+          navWrap.classList.remove('is-sticky');
+          gsap.to(navWrap, { position: 'absolute', top: 520, duration: 0.3 });
+        }
+      });
     }
+  }
 
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
+  // === Callback Modal ===
+  const modal = document.getElementById('callbackModal');
+  if (!modal) return;
 
-    // Закрытие по ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-        closeModal();
-      }
-    });
+  const openBtns = document.querySelectorAll('.open-callback-modal');
+  const closeBtn = modal.querySelector('.callback-modal__close');
+  const overlay = modal.querySelector('.callback-modal__overlay');
+  const form = document.getElementById('callbackForm');
 
-    // Отправка формы
-    form.addEventListener('submit', function(e) {
+  if (!closeBtn || !overlay || !form) return;
+
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
       e.preventDefault();
-      
-      const formData = new FormData(form);
-      const data = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        privacy: formData.get('privacy')
-      };
-
-      console.log('Form data:', data);
-      alert('Thank you! We will contact you soon.');
-      
-      closeModal();
-      form.reset();
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
     });
   });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-active')) closeModal();
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    console.log('Form data:', {
+      name: formData.get('name'),
+      phone: formData.get('phone')
+    });
+    alert('Thank you! We will contact you soon.');
+    closeModal();
+    form.reset();
+  });
+});
 </script>
