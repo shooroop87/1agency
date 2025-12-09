@@ -1377,7 +1377,7 @@ a.favorites-btn:hover {
   /* --- Фон по слоям --- */
 
   /* 1️⃣ Верхний слой — диагональный градиент справа налево */
-  background-image: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/pre_footer.png");
+  background-image: url("../images/pre_footer.webp");
 
   /* положение фонового изображения */
   background-position: center;
@@ -8806,6 +8806,8 @@ header.nav-homepage-style.stricky.stricky-fixed .menu-btn:hover {
 }
 header.nav-homepage-style.at-home2, header.nav-homepage-style.at-home5 {
   border-bottom: none;
+  position: fixed;
+  z-index: 9999;
 }
 header.nav-homepage-style.at-home3 .ace-responsive-menu a {
   color: var(--headings-color);
@@ -12063,7 +12065,7 @@ input:focus-visible {
   background:
     linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(35,35,35,.5) 100%),
     linear-gradient(0deg, rgba(35,35,35,.45), rgba(35,35,35,.45)),
-    url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/11/Rectangle-3470.png") center/cover no-repeat;
+    url("../static/images/error404.webp") center/cover no-repeat;
 }
 
 .hero-404__inner{
