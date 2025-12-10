@@ -180,9 +180,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Продолжение backend/oneagency/settings.py
-
-# TinyMCE
 # TinyMCE
 TINYMCE_DEFAULT_CONFIG = {
     "height": 800,
