@@ -11,58 +11,100 @@ def property_list(request):
         'developer', 'property_type', 'location', 'image'
     )
     
-    # Фильтры
-    if types := request.GET.getlist('type'):
-        qs = qs.filter(property_type__slug__in=types)
+    # Type filter (comma-separated)
+    if types := request.GET.get('type'):
+        type_list = [t.strip() for t in types.split(',') if t.strip() and t != 'all']
+        if type_list:
+            qs = qs.filter(property_type__slug__in=type_list)
     
-    if locations := request.GET.getlist('area'):
-        qs = qs.filter(location__slug__in=locations)
+    # Location/Area filter
+    if areas := request.GET.get('area'):
+        area_list = [a.strip() for a in areas.split(',') if a.strip() and a != 'all']
+        if area_list:
+            qs = qs.filter(location__slug__in=area_list)
     
-    if bedrooms := request.GET.getlist('rooms'):
-        q = Q()
-        for b in bedrooms:
-            if b == 'studio':
-                # Studio = 0 bedrooms, check if range includes 0
-                q |= Q(bedrooms_min=0) | Q(bedrooms_max=0) | Q(bedrooms_min__isnull=True, bedrooms_max=0)
-            elif b.isdigit():
-                num = int(b)
-                # Check if number falls within the range [bedrooms_min, bedrooms_max]
-                q |= (
-                    Q(bedrooms_min__lte=num, bedrooms_max__gte=num) |
-                    Q(bedrooms_min=num, bedrooms_max__isnull=True) |
-                    Q(bedrooms_min__isnull=True, bedrooms_max=num) |
-                    Q(bedrooms_min=num, bedrooms_max=num)
-                )
-        if q:
-            qs = qs.filter(q)
+    # Bedrooms filter
+    if bedrooms := request.GET.get('bedrooms'):
+        bed_list = [b.strip() for b in bedrooms.split(',') if b.strip() and b != 'all']
+        if bed_list:
+            q = Q()
+            for b in bed_list:
+                if b == '5+':
+                    q |= Q(bedrooms_min__gte=5) | Q(bedrooms_max__gte=5)
+                elif b.isdigit():
+                    num = int(b)
+                    q |= (
+                        Q(bedrooms_min__lte=num, bedrooms_max__gte=num) |
+                        Q(bedrooms_min=num, bedrooms_max__isnull=True) |
+                        Q(bedrooms_min__isnull=True, bedrooms_max=num)
+                    )
+            if q:
+                qs = qs.filter(q)
     
-    if statuses := request.GET.getlist('status'):
-        qs = qs.filter(status__in=statuses)
+    # Price range filter (select dropdown)
+    if price := request.GET.get('price'):
+        if '-' in price:
+            p_min, p_max = price.split('-')
+            qs = qs.filter(
+                Q(price_min__gte=int(p_min), price_min__lte=int(p_max)) |
+                Q(price_max__gte=int(p_min), price_max__lte=int(p_max))
+            )
+        elif price.endswith('+'):
+            p_min = int(price[:-1])
+            qs = qs.filter(Q(price_min__gte=p_min) | Q(price_max__gte=p_min))
     
-    # Price ranges - check if property price range overlaps with filter range
-    if prices := request.GET.getlist('price'):
-        q = Q()
-        ranges = {
-            'up_to_100k': (0, 100000),
-            '100k_150k': (100000, 150000),
-            '150k_200k': (150000, 200000),
-            '200k_300k': (200000, 300000),
-            '300k_500k': (300000, 500000),
-            '500k_700k': (500000, 700000),
-            '700k_1m': (700000, 1000000),
-            'over_1m': (1000000, 999999999),
+    # Area size filter (select dropdown)
+    if area_size := request.GET.get('area_size'):
+        if '-' in area_size:
+            a_min, a_max = area_size.split('-')
+            qs = qs.filter(
+                Q(total_area_min__gte=int(a_min), total_area_min__lte=int(a_max)) |
+                Q(total_area_max__gte=int(a_min), total_area_max__lte=int(a_max))
+            )
+        elif area_size.endswith('+'):
+            a_min = int(area_size[:-1])
+            qs = qs.filter(Q(total_area_min__gte=a_min) | Q(total_area_max__gte=a_min))
+    
+    # Status filter
+    if status := request.GET.get('status'):
+        status_list = [s.strip() for s in status.split(',') if s.strip() and s != 'all']
+        if status_list:
+            qs = qs.filter(status__in=status_list)
+    
+    # Ownership filter (leasehold/freehold)
+    if ownership := request.GET.get('ownership'):
+        own_list = [o.strip() for o in ownership.split(',') if o.strip()]
+        if 'leasehold' in own_list and 'freehold' not in own_list:
+            qs = qs.filter(leasehold_years__isnull=False)
+        elif 'freehold' in own_list and 'leasehold' not in own_list:
+            qs = qs.filter(leasehold_years__isnull=True)
+    
+    # Features filter (view, etc)
+    if features := request.GET.get('features'):
+        feat_list = [f.strip() for f in features.split(',') if f.strip()]
+        for feat in feat_list:
+            if feat == 'ocean-view':
+                qs = qs.filter(view__icontains='ocean')
+            elif feat == 'mountain-view':
+                qs = qs.filter(view__icontains='mountain')
+            elif feat == 'pool':
+                qs = qs.filter(Q(facilities__icontains='pool') | Q(view__icontains='pool'))
+            elif feat == 'balcony':
+                qs = qs.filter(facilities__icontains='balcony')
+            elif feat == 'rooftop':
+                qs = qs.filter(facilities__icontains='rooftop')
+    
+    # Construction filter
+    if construction := request.GET.get('construction'):
+        const_list = [c.strip() for c in construction.split(',') if c.strip()]
+        status_map = {
+            'not-started': 'off_plan',
+            'in-progress': 'construction', 
+            'completed': 'ready',
         }
-        for p in prices:
-            if p in ranges:
-                f_min, f_max = ranges[p]
-                # Property overlaps with filter if: prop_min <= filter_max AND prop_max >= filter_min
-                q |= (
-                    Q(price_min__lte=f_max, price_max__gte=f_min) |
-                    Q(price_min__lte=f_max, price_max__isnull=True, price_min__gte=f_min) |
-                    Q(price_min__isnull=True, price_max__lte=f_max, price_max__gte=f_min)
-                )
-        if q:
-            qs = qs.filter(q)
+        mapped = [status_map.get(c) for c in const_list if c in status_map]
+        if mapped:
+            qs = qs.filter(status__in=mapped)
     
     # Сортировка
     sort = request.GET.get('sort', 'order')
@@ -86,41 +128,26 @@ def property_list(request):
         properties.append({
             'id': prop.id,
             'title': prop.safe_translation_getter('title', default=''),
-            'type': prop.property_type.name if prop.property_type else '',
-            'type_slug': prop.property_type.slug if prop.property_type else '',
+            'property_type': prop.property_type.name if prop.property_type else '',
             'location': prop.location.name if prop.location else '',
-            'location_slug': prop.location.slug if prop.location else '',
-            # Price ranges
-            'price_min': float(prop.price_min) if prop.price_min else None,
-            'price_max': float(prop.price_max) if prop.price_max else None,
+            'price': float(prop.price_min) if prop.price_min else None,
             'price_display': prop.get_price_display(),
-            'price_per_sqm_display': prop.get_price_per_sqm_display(),
-            # Size ranges
             'bedrooms': prop.get_bedrooms_display(),
-            'bedrooms_min': prop.bedrooms_min,
-            'bedrooms_max': prop.bedrooms_max,
             'total_area': prop.get_total_area_display(),
-            'living_area': prop.get_living_area_display(),
-            'plot_area': prop.get_plot_area_display(),
-            # Status
             'status': prop.status,
             'status_display': prop.get_status_display(),
-            # Investment
             'roi': prop.get_roi_display(),
             'leasehold': prop.leasehold_years,
-            # Other
             'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
-            'view': prop.view,
             'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
         })
     
     return JsonResponse({
+        'results': properties,  # для совместимости с JS
         'properties': properties,
         'total': paginator.count,
         'pages': paginator.num_pages,
         'current_page': page_obj.number,
-        'has_next': page_obj.has_next(),
-        'has_prev': page_obj.has_previous(),
     })
 
 

@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 .partners-swiper {
   overflow: visible;
+  position: relative;
+  padding-bottom: 100px;
 }
 
 .partners-swiper .swiper-slide {
@@ -78,17 +80,21 @@ document.addEventListener('DOMContentLoaded', function() {
   height: 290px;
 }
 
-.swiper-scrollbar {
-  background: rgba(255, 255, 255, 0.1);
+.partners-swiper .swiper-scrollbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
   height: 2px;
-  margin-top: 70px;
-  position: relative;
-  scrollbar-color: var(--color-accent) rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
-.swiper-scrollbar-drag {
+.partners-swiper .swiper-scrollbar-drag {
   background: var(--color-accent);
   height: 100%;
+  border-radius: 4px;
 }
 
 /* Мобильная версия */

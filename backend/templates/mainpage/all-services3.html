@@ -129,11 +129,11 @@
 
 
 <style>
-/* Services Swiper - независимые стили */
 .services-swiper {
   overflow: visible;
+  position: relative;
+  padding-bottom: 100px;
 }
-
 
 .services-swiper .swiper-slide {
   width: 325px !important;
@@ -141,15 +141,20 @@
 }
 
 .services-swiper .swiper-scrollbar {
-  background: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
   height: 2px;
-  margin-top: 70px;
-  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
 .services-swiper .swiper-scrollbar-drag {
   background: var(--color-accent);
   height: 100%;
+  border-radius: 4px;
 }
 
 /* Стили карточек - НЕ ТРОГАТЬ */

@@ -92,8 +92,8 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   --blur-1: blur(1.25919px);
 
   /* Переменные для стрелок */
-  --arrow-default: url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_default.svg");
-  --arrow-hover:   url("https://andreyegorov.com/luxreal/wp-content/uploads/2025/10/arrow_hover.svg");
+  --arrow-default: url("../static/images/arrow_default.svg");
+  --arrow-hover:   url("../static/images/arrow_hover.svg");
 
   /* Локальные для кнопок (чтобы не тянуть ворох wdt-переменных) */
   --btn-radius: 25px;
@@ -5447,7 +5447,7 @@ h2 {
 
 /*Home 2 Banner Content*/
 .home-banner-style9 {
-  background-image: url('https://andreyegorov.com/wp-content/uploads/2025/11/bg_error.png');
+  background-image: url('../static/images/error404.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11983,7 +11983,9 @@ input:focus-visible {
   opacity: 1;
   transition: opacity .25s ease, color .25s ease;
 }
-
+html, body {
+  overscroll-behavior: none;
+}
 
 /* Active menu item */
 .oa-menu .list-item {

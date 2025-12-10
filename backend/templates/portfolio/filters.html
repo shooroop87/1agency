@@ -1,467 +1,478 @@
 {% load static %}
 <section class="concierge section-projects">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="projects-heads">
-          <h2 class="projects-title h2 mt60 mt40-xs">All projects</h2>
-        </div>
-      </div>
+    <div class="filters-header d-flex justify-content-between align-items-start mb30">
+      <h2 class="filters-title">All projects</h2>
+      <button type="button" class="filters-clear" id="clearAllFilters">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear all
+      </button>
     </div>
-  </div>
-</section>
 
-<section class="pt50 pb90 filters-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-lg-9">
-
-        <!-- Desktop version -->
-        <div class="filters-desktop">
-          <div class="filters-wrapper2">
-            <div class="filter-column col-2 mb10" data-filter="type">
-              <div class="filter-header">
-                <span class="cf-dot"></span>
-                <h6>Type</h6>
-              </div>
-            </div>
-            <div class="filter-column col-2 mb10" data-filter="area">
-              <div class="filter-header">
-                <span class="cf-dot"></span>
-                <h6>Area</h6>
-              </div>
-            </div>
-            <div class="filter-column col-2 mb10" data-filter="rooms">
-              <div class="filter-header">
-                <span class="cf-dot"></span>
-                <h6>Rooms</h6>
-              </div>
-            </div>
-            <div class="filter-column col-3 mb10" data-filter="price">
-              <div class="filter-header">
-                <span class="cf-dot"></span>
-                <h6>Price</h6>
-              </div>
-            </div>
-            <div class="filter-column col-2 mb10" data-filter="status">
-              <div class="filter-header">
-                <span class="cf-dot"></span>
-                <h6>Status</h6>
-              </div>
-            </div>
-          </div>
-          <div class="filter-divider mb20"></div>
-
-          <div class="filters-wrapper">
-            
-            <!-- Type - из БД -->
-            <div class="filter-column col-2" data-filter="type">
-              <div class="filter-options">
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="all" checked>
-                  <span class="checkmark"></span>
-                  <span class="label-text">All types</span>
-                </label>
-                {% for pt in property_types %}
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="{{ pt.slug }}">
-                  <span class="checkmark"></span>
-                  <span class="label-text">{{ pt.name }}</span>
-                </label>
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Area - из БД -->
-            <div class="filter-column col-2" data-filter="area">
-              <div class="filter-options">
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="all" checked>
-                  <span class="checkmark"></span>
-                  <span class="label-text">All areas</span>
-                </label>
-                {% for loc in locations %}
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="{{ loc.slug }}">
-                  <span class="checkmark"></span>
-                  <span class="label-text">{{ loc.name }}</span>
-                </label>
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Rooms - статичный -->
-            <div class="filter-column col-2" data-filter="rooms">
-              <div class="filter-options">
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="all" checked>
-                  <span class="checkmark"></span>
-                  <span class="label-text">Any sizes</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="studio">
-                  <span class="checkmark"></span>
-                  <span class="label-text">Studio</span>
-                </label>
-                {% for i in "1234567" %}
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="{{ i }}">
-                  <span class="checkmark"></span>
-                  <span class="label-text">{{ i }}BD</span>
-                </label>
-                {% endfor %}
-              </div>
-            </div>
-
-            <!-- Price -->
-            <div class="filter-column col-3" data-filter="price">
-              <div class="filter-options">
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="all" checked>
-                  <span class="checkmark"></span>
-                  <span class="label-text">Any price</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="up_to_100k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">Up to $100,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="100k_150k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$100,000-$150,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="150k_200k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$150,000-$200,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="200k_300k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$200,000-$300,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="300k_500k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$300,000-$500,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="500k_700k">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$500,000-$700,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="700k_1m">
-                  <span class="checkmark"></span>
-                  <span class="label-text">$700,000-$1,000,000</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="over_1m">
-                  <span class="checkmark"></span>
-                  <span class="label-text">From $1,000,000</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Status -->
-            <div class="filter-column col-2" data-filter="status">
-              <div class="filter-options">
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="all" checked>
-                  <span class="checkmark"></span>
-                  <span class="label-text">All statuses</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="off_plan">
-                  <span class="checkmark"></span>
-                  <span class="label-text">Off-plan</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="construction">
-                  <span class="checkmark"></span>
-                  <span class="label-text">Under Construction</span>
-                </label>
-                <label class="filter-checkbox">
-                  <input type="checkbox" value="ready">
-                  <span class="checkmark"></span>
-                  <span class="label-text">Ready</span>
-                </label>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Mobile version -->
-        <div class="filters-mobile">
-          {% with filters="type:Type:All types,area:Area:All areas,rooms:Rooms:Any sizes,price:Price:Any price,status:Status:All statuses" %}
-          {% for f in filters|make_list %}
-          <!-- Рендерится через JS -->
-          {% endfor %}
-          {% endwith %}
-          
-          <div class="mobile-filter-item" data-filter="type">
-            <div class="mobile-filter-header">
-              <span class="cf-dot"></span>
-              <h6>Type</h6>
-            </div>
-            <div class="mobile-filter-select">
-              <span>All types</span>
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
-                <path d="M1 1L6.5 6.5L12 1" stroke="#232323" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="mobile-filter-item" data-filter="area">
-            <div class="mobile-filter-header">
-              <span class="cf-dot"></span>
-              <h6>Area</h6>
-            </div>
-            <div class="mobile-filter-select">
-              <span>All areas</span>
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
-                <path d="M1 1L6.5 6.5L12 1" stroke="#232323" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="mobile-filter-item" data-filter="rooms">
-            <div class="mobile-filter-header">
-              <span class="cf-dot"></span>
-              <h6>Rooms</h6>
-            </div>
-            <div class="mobile-filter-select">
-              <span>Any sizes</span>
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
-                <path d="M1 1L6.5 6.5L12 1" stroke="#232323" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="mobile-filter-item" data-filter="price">
-            <div class="mobile-filter-header">
-              <span class="cf-dot"></span>
-              <h6>Price</h6>
-            </div>
-            <div class="mobile-filter-select">
-              <span>Any price</span>
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
-                <path d="M1 1L6.5 6.5L12 1" stroke="#232323" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="mobile-filter-item" data-filter="status">
-            <div class="mobile-filter-header">
-              <span class="cf-dot"></span>
-              <h6>Status</h6>
-            </div>
-            <div class="mobile-filter-select">
-              <span>All statuses</span>
-              <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
-                <path d="M1 1L6.5 6.5L12 1" stroke="#232323" stroke-width="1.5"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-12 col-lg-3">
-        <div class="filter-button-wrapper mt10 mt30-xs">
-          <button type="button" id="applyFilters" class="wdt-button button-cta is-nm concierge-cta">
-            Find property
-            <i class="wdt-button__icon" aria-hidden="true"></i>
+    <!-- Row 1: Unit Type + Bedrooms + Price + Area -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">UNIT TYPE</div>
+        <div class="filter-tags" data-filter="type">
+          <button class="filter-tag active" data-value="apartment">
+            <span class="tag-icon">🏢</span> Apartment
+          </button>
+          <button class="filter-tag" data-value="villa">
+            <span class="tag-icon">🏠</span> Villa
+          </button>
+          <button class="filter-tag" data-value="smart-villa">
+            <span class="tag-icon">🏡</span> Smart Villa
+          </button>
+          <button class="filter-tag" data-value="townhouse">
+            <span class="tag-icon">🏘️</span> Townhouse
+          </button>
+          <button class="filter-tag" data-value="penthouse">
+            <span class="tag-icon">🌆</span> Penthouse
+          </button>
+          <button class="filter-tag" data-value="studio">
+            <span class="tag-icon">📦</span> Studio
+          </button>
+          <button class="filter-tag" data-value="commercial">
+            <span class="tag-icon">🏬</span> Commercial
           </button>
         </div>
       </div>
+
+      <div class="filter-group filter-group--bedrooms">
+        <div class="filter-label">BEDROOMS</div>
+        <div class="filter-tags filter-tags--circles" data-filter="bedrooms">
+          <button class="filter-tag filter-tag--circle active" data-value="1">1</button>
+          <button class="filter-tag filter-tag--circle" data-value="2">2</button>
+          <button class="filter-tag filter-tag--circle" data-value="3">3</button>
+          <button class="filter-tag filter-tag--circle" data-value="4">4</button>
+          <button class="filter-tag filter-tag--circle" data-value="5+">5+</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">PRICE RANGE</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="price">
+            <option value="">Any Price</option>
+            <option value="0-100000">Up to $100,000</option>
+            <option value="100000-200000">$100,000 - $200,000</option>
+            <option value="200000-500000">$200,000 - $500,000</option>
+            <option value="500000+">$500,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">AREA (M²)</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="area">
+            <option value="">Any Size</option>
+            <option value="0-50">Up to 50 m²</option>
+            <option value="50-100">50 - 100 m²</option>
+            <option value="100-200">100 - 200 m²</option>
+            <option value="200+">200+ m²</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Sale Status + Land Ownership + Features + Construction -->
+    <div class="filter-row">
+      <div class="filter-group">
+        <div class="filter-label">SALE STATUS</div>
+        <div class="filter-tags" data-filter="status">
+          <button class="filter-tag" data-value="presale">Pre-sale</button>
+          <button class="filter-tag" data-value="selling">Selling</button>
+          <button class="filter-tag" data-value="soldout">Sold Out</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">LAND OWNERSHIP</div>
+        <div class="filter-tags" data-filter="ownership">
+          <button class="filter-tag" data-value="freehold">Freehold</button>
+          <button class="filter-tag active" data-value="leasehold">Leasehold</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">FEATURES</div>
+        <div class="filter-tags" data-filter="features">
+          <button class="filter-tag" data-value="ocean-view">
+            <span class="tag-icon">🌊</span> Ocean View
+          </button>
+          <button class="filter-tag" data-value="mountain-view">
+            <span class="tag-icon">⛰️</span> Mountain View
+          </button>
+          <button class="filter-tag" data-value="pool">
+            <span class="tag-icon">🏊</span> Private Pool
+          </button>
+          <button class="filter-tag" data-value="balcony">
+            <span class="tag-icon">🌅</span> Balcony
+          </button>
+          <button class="filter-tag" data-value="rooftop">
+            <span class="tag-icon">🏠</span> Rooftop
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">CONSTRUCTION</div>
+        <div class="filter-tags" data-filter="construction">
+          <button class="filter-tag" data-value="not-started">Not Started</button>
+          <button class="filter-tag active" data-value="in-progress">In Progress</button>
+          <button class="filter-tag" data-value="completed">Completed</button>
+          <button class="filter-tag" data-value="on-hold">On Hold</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
 <style>
-/* Desktop styles */
-.filters-desktop {
-  display: block;
+/* Filters Section */
+.filters-section {
+  background: #1a1a1a;
 }
 
-.filters-mobile {
-  display: none;
+.filters-header {
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.filters-wrapper {
-  display: flex;
-  margin-bottom: 27px;
-}
-
-.filters-wrapper2 {
-  display: flex;
-}
-
-.filter-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.filter-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cf-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
-  flex-shrink: 0;
-}
-
-.filter-header h6 {
+.filters-title {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 120%;
-  color: #FFFFFF;
+  font-size: 32px;
+  color: #fff;
   margin: 0;
 }
 
-.filter-options {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.filter-checkbox {
+.filters-clear {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
   cursor: pointer;
-  position: relative;
+  transition: color 0.2s;
+}
+.filters-clear:hover {
+  color: #EA9278;
 }
 
-.filter-checkbox input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
+/* Filter Row */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.filter-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.filter-checkbox .checkmark {
-  width: 20px;
-  height: 20px;
-  background: rgba(39, 39, 39, 0.2);
-  border: 0.3px solid #E6E6E6;
-  border-radius: 2px;
-  flex-shrink: 0;
-  position: relative;
+/* Filter Group */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filter-group--bedrooms {
+  min-width: 180px;
 }
 
-.filter-checkbox input[type="checkbox"]:checked ~ .checkmark {
-  border-color: #EA9278;
-}
-
-.filter-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
-  content: "";
-  position: absolute;
-  left: 20%;
-  top: 20%;
-  width: 60%;
-  height: 60%;
-  background: #FFFFFF;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
-}
-
-.filter-checkbox .label-text {
+.filter-label {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
-  font-size: 15px;
-  line-height: 120%;
-  color: #A0A0A0;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
 }
 
-.filter-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.filter-button-wrapper {
+/* Filter Tags */
+.filter-tags {
   display: flex;
-  justify-content: end;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* Mobile styles */
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.filter-tag:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.filter-tag.active {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+.tag-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Circle Tags (Bedrooms) */
+.filter-tags--circles {
+  gap: 6px;
+}
+.filter-tag--circle {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+/* Select Dropdowns */
+.filter-select-wrap {
+  position: relative;
+}
+.filter-select {
+  appearance: none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 10px 40px 10px 16px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 160px;
+  transition: all 0.2s;
+}
+.filter-select:hover,
+.filter-select:focus {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  outline: none;
+}
+.filter-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+.filter-select option {
+  background: #272727;
+  color: #fff;
+}
+
+/* Mobile Responsive */
 @media (max-width: 991px) {
-  .filters-desktop {
+  .filters-title {
+    font-size: 24px;
+  }
+  .filter-row {
+    gap: 20px;
+  }
+  .filter-group {
+    width: 100%;
+  }
+  .filter-tags {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-tags::-webkit-scrollbar {
     display: none;
   }
-
-  .filters-mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0;
-  }
-
-  .mobile-filter-item {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .mobile-filter-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .mobile-filter-header h6 {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 120%;
-    color: #FFFFFF;
-    margin: 0;
-  }
-
-  .mobile-filter-select {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    background: #E6E6E6;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .mobile-filter-select:hover {
-    background: #d9d9d9;
-  }
-
-  .mobile-filter-select span {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 120%;
-    color: #A0A0A0;
-  }
-
-  .mobile-filter-select svg {
-    flex-shrink: 0;
-  }
-
-  .filter-button-wrapper {
-    margin-top: 20px;
-  }
-
-  .wdt-button.button-cta {
+  .filter-select {
     width: 100%;
-    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .filters-section {
+    padding: 30px 0;
+  }
+  .filter-tag {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .filter-tag--circle {
+    width: 34px;
+    height: 34px;
   }
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterState = {
+    type: ['apartment'],
+    bedrooms: ['1'],
+    price: '',
+    area: '',
+    status: [],
+    ownership: ['leasehold'],
+    features: [],
+    construction: ['in-progress']
+  };
+
+  // Toggle tag buttons
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', function() {
+      const group = this.closest('[data-filter]');
+      const filterName = group.dataset.filter;
+      const value = this.dataset.value;
+      const isCircle = this.classList.contains('filter-tag--circle');
+      
+      // Bedrooms: single select
+      if (isCircle || filterName === 'bedrooms') {
+        group.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        filterState[filterName] = [value];
+      } else {
+        // Multi-select toggle
+        this.classList.toggle('active');
+        if (this.classList.contains('active')) {
+          if (!filterState[filterName].includes(value)) {
+            filterState[filterName].push(value);
+          }
+        } else {
+          filterState[filterName] = filterState[filterName].filter(v => v !== value);
+        }
+      }
+      
+      applyFilters();
+    });
+  });
+
+  // Select dropdowns
+  document.querySelectorAll('.filter-select').forEach(select => {
+    select.addEventListener('change', function() {
+      const filterName = this.dataset.filter;
+      filterState[filterName] = this.value;
+      applyFilters();
+    });
+  });
+
+  // Clear all
+  document.getElementById('clearAllFilters')?.addEventListener('click', function() {
+    // Reset tags
+    document.querySelectorAll('.filter-tag').forEach(tag => {
+      tag.classList.remove('active');
+    });
+    // Reset selects
+    document.querySelectorAll('.filter-select').forEach(select => {
+      select.value = '';
+    });
+    // Reset state
+    Object.keys(filterState).forEach(key => {
+      filterState[key] = Array.isArray(filterState[key]) ? [] : '';
+    });
+    
+    applyFilters();
+  });
+
+  // Apply filters - AJAX call
+  function applyFilters() {
+    const params = new URLSearchParams();
+    
+    Object.entries(filterState).forEach(([key, val]) => {
+      if (Array.isArray(val) && val.length) {
+        params.set(key, val.join(','));
+      } else if (val) {
+        params.set(key, val);
+      }
+    });
+
+    const grid = document.getElementById('propertiesGrid');
+    if (!grid) return;
+
+    // Loading state
+    grid.style.opacity = '0.5';
+
+    fetch(`/api/properties/?${params.toString()}`)
+      .then(r => r.json())
+      .then(data => {
+        renderProperties(data.results || data);
+        grid.style.opacity = '1';
+      })
+      .catch(err => {
+        console.error('Filter error:', err);
+        grid.style.opacity = '1';
+      });
+  }
+
+  // Render properties
+  function renderProperties(properties) {
+    const grid = document.getElementById('propertiesGrid');
+    if (!grid) return;
+
+    if (!properties.length) {
+      grid.innerHTML = '<div class="no-results"><p>No properties found</p></div>';
+      return;
+    }
+
+    grid.innerHTML = properties.map((prop, i) => `
+      <a href="#" class="project-card project-card--lg${i % 4 === 1 ? ' project-card--align-end' : ''}" data-id="${prop.id}">
+        <div class="pc-img" style="--img:url('${prop.image || '/static/images/placeholder.jpg'}')">
+          <div class="pc-tags">
+            <span class="tag">${prop.property_type || 'Property'}</span>
+            ${prop.price ? `<span class="tag">From $${Number(prop.price).toLocaleString()}</span>` : ''}
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            ${prop.title}
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">${prop.location || 'Bali'}</div>
+        </div>
+      </a>
+    `).join('');
+
+    // Re-attach modal handlers
+    initPropertyModals();
+  }
+
+  // Init modals for new cards
+  function initPropertyModals() {
+    document.querySelectorAll('.project-card[data-id]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.dataset.id;
+        if (id && window.loadPropertyData) {
+          window.loadPropertyData(id);
+        }
+      });
+    });
+  }
+});
+</script>
