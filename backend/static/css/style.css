@@ -92,8 +92,8 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   --blur-1: blur(1.25919px);
 
   /* Переменные для стрелок */
-  --arrow-default: url("..images/arrow_default.svg");
-  --arrow-hover:   url("../images/arrow_hover.svg");
+  --arrow-default: url("images/arrow_default.svg");
+  --arrow-hover:   url("images/arrow_hover.svg");
 
   /* Локальные для кнопок (чтобы не тянуть ворох wdt-переменных) */
   --btn-radius: 25px;
@@ -5447,7 +5447,7 @@ h2 {
 
 /*Home 2 Banner Content*/
 .home-banner-style9 {
-  background-image: url('../static/images/error404.webp');
+  background-image: url('images/error404.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
