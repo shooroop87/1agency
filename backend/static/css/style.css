@@ -92,8 +92,8 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   --blur-1: blur(1.25919px);
 
   /* Переменные для стрелок */
-  --arrow-default: url("../static/images/arrow_default.svg");
-  --arrow-hover:   url("../static/images/arrow_hover.svg");
+  --arrow-default: url("..images/arrow_default.svg");
+  --arrow-hover:   url("../images/arrow_hover.svg");
 
   /* Локальные для кнопок (чтобы не тянуть ворох wdt-переменных) */
   --btn-radius: 25px;
