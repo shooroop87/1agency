@@ -1,3 +1,137 @@
+{% load static %}
+<section class="filters-section pt50 pb30">
+  <div class="container">
+    <div class="filters-header d-flex justify-content-between align-items-start mb30">
+      <h2 class="filters-title">All projects</h2>
+      <button type="button" class="filters-clear" id="clearAllFilters">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear all
+      </button>
+    </div>
+
+    <!-- Row 1: Unit Type + Bedrooms + Price + Area -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">UNIT TYPE</div>
+        <div class="filter-tags" data-filter="type">
+          {% for pt in property_types %}
+          <button class="filter-tag" data-value="{{ pt.slug }}">
+            {% if pt.icon %}<span class="tag-icon">{{ pt.icon }}</span>{% endif %}
+            {{ pt.name }}
+          </button>
+          {% empty %}
+          <button class="filter-tag" data-value="apartment">Apartment</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group filter-group--bedrooms">
+        <div class="filter-label">BEDROOMS</div>
+        <div class="filter-tags filter-tags--circles" data-filter="bedrooms">
+          <button class="filter-tag filter-tag--circle" data-value="1">1</button>
+          <button class="filter-tag filter-tag--circle" data-value="2">2</button>
+          <button class="filter-tag filter-tag--circle" data-value="3">3</button>
+          <button class="filter-tag filter-tag--circle" data-value="4">4</button>
+          <button class="filter-tag filter-tag--circle" data-value="5+">5+</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">PRICE RANGE</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="price">
+            <option value="">Any Price</option>
+            <option value="0-100000">Up to $100,000</option>
+            <option value="100000-200000">$100,000 - $200,000</option>
+            <option value="200000-300000">$200,000 - $300,000</option>
+            <option value="300000-500000">$300,000 - $500,000</option>
+            <option value="500000-1000000">$500,000 - $1,000,000</option>
+            <option value="1000000+">$1,000,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">AREA (M²)</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="area">
+            <option value="">Any Size</option>
+            <option value="0-50">Up to 50 m²</option>
+            <option value="50-100">50 - 100 m²</option>
+            <option value="100-200">100 - 200 m²</option>
+            <option value="200-500">200 - 500 m²</option>
+            <option value="500+">500+ m²</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Location + Sale Status + Ownership -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">LOCATION</div>
+        <div class="filter-tags" data-filter="location">
+          {% for loc in locations %}
+          <button class="filter-tag" data-value="{{ loc.slug }}">{{ loc.name }}</button>
+          {% empty %}
+          <button class="filter-tag" data-value="canggu">Canggu</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">SALE STATUS</div>
+        <div class="filter-tags" data-filter="status">
+          <button class="filter-tag" data-value="presale">Pre-sale</button>
+          <button class="filter-tag" data-value="selling">Selling</button>
+          <button class="filter-tag" data-value="soldout">Sold Out</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">LAND OWNERSHIP</div>
+        <div class="filter-tags" data-filter="ownership">
+          <button class="filter-tag" data-value="freehold">Freehold</button>
+          <button class="filter-tag" data-value="leasehold">Leasehold</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Features + Construction -->
+    <div class="filter-row">
+      <div class="filter-group">
+        <div class="filter-label">FEATURES</div>
+        <div class="filter-tags" data-filter="features">
+          {% for feat in features %}
+          <button class="filter-tag" data-value="{{ feat.slug }}">
+            {% if feat.icon %}<span class="tag-icon">{{ feat.icon }}</span>{% endif %}
+            {{ feat.name }}
+          </button>
+          {% empty %}
+          <button class="filter-tag" data-value="pool"><span class="tag-icon">🏊</span> Pool</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">CONSTRUCTION</div>
+        <div class="filter-tags" data-filter="construction">
+          <button class="filter-tag" data-value="not_started">Not Started</button>
+          <button class="filter-tag" data-value="in_progress">In Progress</button>
+          <button class="filter-tag" data-value="completed">Completed</button>
+          <button class="filter-tag" data-value="on_hold">On Hold</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <div class="filter-results mt20">
+      <span id="resultsCount">{{ total_count }}</span> properties found
+    </div>
+  </div>
+</section>
 <style>
 /* Filters Section */
 .filters-section {

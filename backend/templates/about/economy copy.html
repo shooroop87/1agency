@@ -91,27 +91,35 @@
   transform: scaleX(-1);           /* как в фигме */
 }
 
-.economy__curve {
-  position: absolute;
-  right: 0;           /* от правого края контейнера */
-  top: 50%;           /* или конкретное значение в % */
-  transform: translateY(-50%);
-  max-width: 40%;     /* ограничиваем размер в % от контейнера */
-  width: auto;
-  pointer-events: none;
+/* Кривая линия */
+.economy__curve{
+  position:absolute;
+  left:310px;
+  top: 1527px;          /* базовая позиция для 1440 */
+  width: 1253px; height:auto; 
+  opacity:.75; pointer-events:none;
+  transform: translateY(calc(-1527px + 420px)); /* опускаем в секцию */
+  z-index: 3;
 }
 
 /* Вилла + затемняющий градиент снизу */
-.economy__house-wrap {
-  position: absolute;
-  right: 5%;          /* % от ширины контейнера */
-  bottom: 10%;        /* % от высоты контейнера */
-  width: 30%;         /* размер в % */
-  max-width: 400px;   /* но не больше максимума */
+.economy__house-wrap{
+  position:absolute;
+  top:130px;
+  right:0;
+  width:758px;
+  height:676px;
+  pointer-events:none;
 }
-.economy__house {
-  width: 100%;
-  height: auto;
+.economy__house{
+  position:absolute;
+  left:130px;              /* 811.02 - 681.08 ≈ 130 */
+  top:22px;                /* 1321.82 - 1300 ≈ 22 */
+  width:629px;
+  height:654px;
+  object-fit:cover;
+  transform: scaleX(-1);   /* matrix(-1,0,0,1,0,0) из фигмы */
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,.45));
 }
 .economy__house-grad{
   position:absolute;
