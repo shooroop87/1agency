@@ -1,3 +1,135 @@
+{% load static %}
+<section class="concierge section-projects">
+  <div class="container">
+    <div class="filters-header d-flex justify-content-between align-items-start mb30">
+      <h2 class="filters-title">All projects</h2>
+      <button type="button" class="filters-clear" id="clearAllFilters">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear all
+      </button>
+    </div>
+
+    <!-- Row 1: Unit Type + Bedrooms + Price + Area -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">UNIT TYPE</div>
+        <div class="filter-tags" data-filter="type">
+          <button class="filter-tag active" data-value="apartment">
+            <span class="tag-icon">🏢</span> Apartment
+          </button>
+          <button class="filter-tag" data-value="villa">
+            <span class="tag-icon">🏠</span> Villa
+          </button>
+          <button class="filter-tag" data-value="smart-villa">
+            <span class="tag-icon">🏡</span> Smart Villa
+          </button>
+          <button class="filter-tag" data-value="townhouse">
+            <span class="tag-icon">🏘️</span> Townhouse
+          </button>
+          <button class="filter-tag" data-value="penthouse">
+            <span class="tag-icon">🌆</span> Penthouse
+          </button>
+          <button class="filter-tag" data-value="studio">
+            <span class="tag-icon">📦</span> Studio
+          </button>
+          <button class="filter-tag" data-value="commercial">
+            <span class="tag-icon">🏬</span> Commercial
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-group filter-group--bedrooms">
+        <div class="filter-label">BEDROOMS</div>
+        <div class="filter-tags filter-tags--circles" data-filter="bedrooms">
+          <button class="filter-tag filter-tag--circle active" data-value="1">1</button>
+          <button class="filter-tag filter-tag--circle" data-value="2">2</button>
+          <button class="filter-tag filter-tag--circle" data-value="3">3</button>
+          <button class="filter-tag filter-tag--circle" data-value="4">4</button>
+          <button class="filter-tag filter-tag--circle" data-value="5+">5+</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">PRICE RANGE</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="price">
+            <option value="">Any Price</option>
+            <option value="0-100000">Up to $100,000</option>
+            <option value="100000-200000">$100,000 - $200,000</option>
+            <option value="200000-500000">$200,000 - $500,000</option>
+            <option value="500000+">$500,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">AREA (M²)</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="area">
+            <option value="">Any Size</option>
+            <option value="0-50">Up to 50 m²</option>
+            <option value="50-100">50 - 100 m²</option>
+            <option value="100-200">100 - 200 m²</option>
+            <option value="200+">200+ m²</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Sale Status + Land Ownership + Features + Construction -->
+    <div class="filter-row">
+      <div class="filter-group">
+        <div class="filter-label">SALE STATUS</div>
+        <div class="filter-tags" data-filter="status">
+          <button class="filter-tag" data-value="presale">Pre-sale</button>
+          <button class="filter-tag" data-value="selling">Selling</button>
+          <button class="filter-tag" data-value="soldout">Sold Out</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">LAND OWNERSHIP</div>
+        <div class="filter-tags" data-filter="ownership">
+          <button class="filter-tag" data-value="freehold">Freehold</button>
+          <button class="filter-tag active" data-value="leasehold">Leasehold</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">FEATURES</div>
+        <div class="filter-tags" data-filter="features">
+          <button class="filter-tag" data-value="ocean-view">
+            <span class="tag-icon">🌊</span> Ocean View
+          </button>
+          <button class="filter-tag" data-value="mountain-view">
+            <span class="tag-icon">⛰️</span> Mountain View
+          </button>
+          <button class="filter-tag" data-value="pool">
+            <span class="tag-icon">🏊</span> Private Pool
+          </button>
+          <button class="filter-tag" data-value="balcony">
+            <span class="tag-icon">🌅</span> Balcony
+          </button>
+          <button class="filter-tag" data-value="rooftop">
+            <span class="tag-icon">🏠</span> Rooftop
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">CONSTRUCTION</div>
+        <div class="filter-tags" data-filter="construction">
+          <button class="filter-tag" data-value="not-started">Not Started</button>
+          <button class="filter-tag active" data-value="in-progress">In Progress</button>
+          <button class="filter-tag" data-value="completed">Completed</button>
+          <button class="filter-tag" data-value="on-hold">On Hold</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <style>
 /* Filters Section */
 .filters-section {
@@ -122,11 +254,12 @@
   position: relative;
 }
 .filter-select {
+  padding: 7px 16px;
   appearance: none;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 100px;
-  padding: 7px 40px 7px 16px;
+  padding: 10px 40px 10px 16px;
   color: rgba(255,255,255,0.7);
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
@@ -159,17 +292,6 @@
   color: #fff;
 }
 
-/* Results count */
-.filter-results {
-  font-family: 'Manrope', sans-serif;
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
-}
-.filter-results span {
-  color: #EA9278;
-  font-weight: 600;
-}
-
 /* Mobile Responsive */
 @media (max-width: 991px) {
   .filters-title {
@@ -186,7 +308,6 @@
     flex-wrap: nowrap;
     padding-bottom: 5px;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
   }
   .filter-tags::-webkit-scrollbar {
     display: none;
@@ -210,43 +331,32 @@
   }
 }
 </style>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Filter state - all empty by default
   const filterState = {
-    type: [],
-    bedrooms: [],
+    type: ['apartment'],
+    bedrooms: ['1'],
     price: '',
     area: '',
-    location: [],
     status: [],
-    ownership: [],
+    ownership: ['leasehold'],
     features: [],
-    construction: []
+    construction: ['in-progress']
   };
 
   // Toggle tag buttons
   document.querySelectorAll('.filter-tag').forEach(tag => {
     tag.addEventListener('click', function() {
       const group = this.closest('[data-filter]');
-      if (!group) return;
-      
       const filterName = group.dataset.filter;
       const value = this.dataset.value;
       const isCircle = this.classList.contains('filter-tag--circle');
       
-      // Bedrooms: single select (toggle off if same clicked)
+      // Bedrooms: single select
       if (isCircle || filterName === 'bedrooms') {
-        const wasActive = this.classList.contains('active');
         group.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-        
-        if (wasActive) {
-          filterState[filterName] = [];
-        } else {
-          this.classList.add('active');
-          filterState[filterName] = [value];
-        }
+        this.classList.add('active');
+        filterState[filterName] = [value];
       } else {
         // Multi-select toggle
         this.classList.toggle('active');
@@ -297,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     Object.entries(filterState).forEach(([key, val]) => {
       if (Array.isArray(val) && val.length) {
         params.set(key, val.join(','));
-      } else if (val && typeof val === 'string') {
+      } else if (val) {
         params.set(key, val);
       }
     });
@@ -307,29 +417,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Loading state
     grid.style.opacity = '0.5';
-    grid.style.pointerEvents = 'none';
 
     fetch(`/api/properties/?${params.toString()}`)
       .then(r => r.json())
       .then(data => {
-        renderProperties(data.results || []);
-        updateResultsCount(data.total || 0);
+        renderProperties(data.results || data);
         grid.style.opacity = '1';
-        grid.style.pointerEvents = '';
       })
       .catch(err => {
         console.error('Filter error:', err);
         grid.style.opacity = '1';
-        grid.style.pointerEvents = '';
       });
-  }
-
-  // Update results count
-  function updateResultsCount(count) {
-    const counter = document.getElementById('resultsCount');
-    if (counter) {
-      counter.textContent = count;
-    }
   }
 
   // Render properties
@@ -338,13 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
 
     if (!properties.length) {
-      grid.innerHTML = `
-        <div class="no-results">
-          <p>No properties found matching your criteria</p>
-          <button class="filters-clear" onclick="document.getElementById('clearAllFilters').click()">
-            Clear filters
-          </button>
-        </div>`;
+      grid.innerHTML = '<div class="no-results"><p>No properties found</p></div>';
       return;
     }
 
@@ -353,7 +445,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pc-img" style="--img:url('${prop.image || '/static/images/placeholder.jpg'}')">
           <div class="pc-tags">
             <span class="tag">${prop.property_type || 'Property'}</span>
-            ${prop.price_display ? `<span class="tag">${prop.price_display}</span>` : ''}
+            ${prop.price ? `<span class="tag">From $${Number(prop.price).toLocaleString()}</span>` : ''}
           </div>
         </div>
         <div class="pc-meta">
@@ -377,14 +469,11 @@ document.addEventListener('DOMContentLoaded', function() {
       card.addEventListener('click', function(e) {
         e.preventDefault();
         const id = this.dataset.id;
-        if (id && typeof window.loadPropertyData === 'function') {
+        if (id && window.loadPropertyData) {
           window.loadPropertyData(id);
         }
       });
     });
   }
-
-  // Initial load
-  applyFilters();
 });
 </script>

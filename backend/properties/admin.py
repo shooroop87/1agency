@@ -3,12 +3,12 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from parler.admin import TranslatableAdmin
-from .models import Property, PropertyType, Location, Developer
+from .models import Property, PropertyType, Location, Developer, Feature
 
 
 @admin.register(PropertyType)
 class PropertyTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
+    list_display = ['name', 'icon', 'slug']
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
 
@@ -27,14 +27,23 @@ class DeveloperAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+@admin.register(Feature)
+class FeatureAdmin(admin.ModelAdmin):
+    list_display = ['name', 'icon', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ['name']
+
+
 @admin.register(Property)
 class PropertyAdmin(TranslatableAdmin):
-    list_display = ['get_title', 'get_image_preview', 'developer', 'location', 
-                    'property_type', 'get_price', 'status', 'is_active', 'is_featured', 'show_on_map']
-    list_editable = ['is_active', 'is_featured', 'show_on_map']
-    list_filter = ['status', 'is_active', 'is_featured', 'show_on_map', 'location', 'property_type', 'developer']
+    list_display = ['get_title', 'get_image_preview', 'property_type', 'location', 
+                    'get_price', 'sale_status', 'construction_status', 'is_active', 'is_featured']
+    list_editable = ['is_active', 'is_featured']
+    list_filter = ['sale_status', 'construction_status', 'ownership_type', 'is_active', 
+                   'is_featured', 'show_on_map', 'location', 'property_type', 'developer']
     search_fields = ['translations__title', 'developer__name']
     autocomplete_fields = ['developer', 'location', 'property_type']
+    filter_horizontal = ['features']
     
     fieldsets = (
         (_('Basic'), {
@@ -45,7 +54,6 @@ class PropertyAdmin(TranslatableAdmin):
                 ('price_min', 'price_max'),
                 ('price_per_sqm_min', 'price_per_sqm_max'),
             ),
-            'description': _('Enter price range. If single value, fill only "from" field.')
         }),
         (_('Size'), {
             'fields': (
@@ -54,10 +62,13 @@ class PropertyAdmin(TranslatableAdmin):
                 ('living_area_min', 'living_area_max'),
                 ('plot_area_min', 'plot_area_max'),
             ),
-            'description': _('Enter size ranges. 0 bedrooms = Studio.')
         }),
         (_('Status'), {
-            'fields': ('status', 'completion_year', 'completion_quarter'),
+            'fields': (
+                ('sale_status', 'construction_status'),
+                'ownership_type',
+                ('completion_year', 'completion_quarter'),
+            ),
         }),
         (_('Investment'), {
             'fields': (
@@ -66,15 +77,13 @@ class PropertyAdmin(TranslatableAdmin):
             ),
         }),
         (_('Features'), {
-            'fields': ('view', 'facilities'),
-            'description': _('View examples: Ocean / Sunset / Pool. Facilities: Pool, Sauna, Restaurant')
+            'fields': ('features', 'view', 'facilities'),
         }),
         (_('Media'), {
             'fields': ('image', 'video_url', 'presentation_ru', 'presentation_en'),
         }),
         (_('Map'), {
             'fields': ('address', ('latitude', 'longitude'), 'show_on_map'),
-            'description': _('Start typing address - coordinates will be filled automatically')
         }),
         (_('Settings'), {
             'fields': ('is_active', 'is_featured', 'order'),

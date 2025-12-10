@@ -156,14 +156,17 @@ def about(request):
 
 
 def projects(request):
-    from properties.models import Property, PropertyType, Location
+    from properties.models import Property, PropertyType, Location, Feature
+    
     properties = Property.objects.filter(is_active=True).select_related(
         'developer', 'property_type', 'location', 'image'
-    )[:12]
+    ).prefetch_related('features')[:12]
+    
     context = {
         'properties': properties,
         'property_types': PropertyType.objects.all(),
         'locations': Location.objects.all(),
+        'features': Feature.objects.all(),
         'total_count': Property.objects.filter(is_active=True).count(),
     }
     return render(request, "pages/projects.html", context)

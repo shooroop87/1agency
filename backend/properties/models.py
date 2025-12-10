@@ -6,9 +6,10 @@ from filer.fields.image import FilerImageField
 
 
 class PropertyType(models.Model):
-    """Apartment 1bd, Villa 3bd, etc."""
+    """Apartment, Villa, Townhouse, etc."""
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True)
+    icon = models.CharField(_('Icon emoji'), max_length=10, blank=True, help_text='e.g. 🏢')
     
     class Meta:
         ordering = ['name']
@@ -48,13 +49,43 @@ class Developer(models.Model):
         return self.name
 
 
+class Feature(models.Model):
+    """Features: Ocean View, Pool, etc."""
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(unique=True)
+    icon = models.CharField(_('Icon emoji'), max_length=10, blank=True, help_text='e.g. 🌊')
+    
+    class Meta:
+        ordering = ['name']
+        verbose_name = _('Feature')
+        verbose_name_plural = _('Features')
+    
+    def __str__(self):
+        return f"{self.icon} {self.name}" if self.icon else self.name
+    
+
 class Property(TranslatableModel):
     """Основная модель объекта недвижимости"""
     
-    STATUS_CHOICES = [
-        ('off_plan', _('Off-plan')),
-        ('construction', _('Under Construction')),
-        ('ready', _('Ready')),
+    # Construction Status
+    CONSTRUCTION_CHOICES = [
+        ('not_started', _('Not Started')),
+        ('in_progress', _('In Progress')),
+        ('completed', _('Completed')),
+        ('on_hold', _('On Hold')),
+    ]
+    
+    # Sale Status
+    SALE_STATUS_CHOICES = [
+        ('presale', _('Pre-sale')),
+        ('selling', _('Selling')),
+        ('soldout', _('Sold Out')),
+    ]
+    
+    # Land Ownership
+    OWNERSHIP_CHOICES = [
+        ('freehold', _('Freehold')),
+        ('leasehold', _('Leasehold')),
     ]
     
     translations = TranslatedFields(
@@ -66,6 +97,7 @@ class Property(TranslatableModel):
     developer = models.ForeignKey(Developer, on_delete=models.SET_NULL, null=True, blank=True)
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
+    features = models.ManyToManyField(Feature, blank=True, verbose_name=_('Features'))
     
     # Pricing (ranges)
     price_min = models.DecimalField(_('Price $ from'), max_digits=12, decimal_places=2, null=True, blank=True)
@@ -74,8 +106,7 @@ class Property(TranslatableModel):
     price_per_sqm_max = models.DecimalField(_('Price per m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
     
     # Size (ranges)
-    bedrooms_min = models.PositiveIntegerField(_('Bedrooms from'), null=True, blank=True, 
-                                                help_text=_('0 = Studio'))
+    bedrooms_min = models.PositiveIntegerField(_('Bedrooms from'), null=True, blank=True, help_text=_('0 = Studio'))
     bedrooms_max = models.PositiveIntegerField(_('Bedrooms to'), null=True, blank=True)
     total_area_min = models.DecimalField(_('Total area m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
     total_area_max = models.DecimalField(_('Total area m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
@@ -84,17 +115,21 @@ class Property(TranslatableModel):
     plot_area_min = models.DecimalField(_('Plot area m² from'), max_digits=10, decimal_places=2, null=True, blank=True)
     plot_area_max = models.DecimalField(_('Plot area m² to'), max_digits=10, decimal_places=2, null=True, blank=True)
     
-    # Status & Dates
-    status = models.CharField(_('Status'), max_length=20, choices=STATUS_CHOICES, default='off_plan')
+    # Statuses
+    construction_status = models.CharField(_('Construction'), max_length=20, choices=CONSTRUCTION_CHOICES, default='in_progress')
+    sale_status = models.CharField(_('Sale Status'), max_length=20, choices=SALE_STATUS_CHOICES, default='selling')
+    ownership_type = models.CharField(_('Land Ownership'), max_length=20, choices=OWNERSHIP_CHOICES, default='leasehold')
+    
+    # Completion
     completion_year = models.PositiveIntegerField(_('Completion Year'), null=True, blank=True)
     completion_quarter = models.CharField(_('Quarter'), max_length=10, blank=True)
     
-    # Investment (ranges)
+    # Investment
     roi_min = models.DecimalField(_('ROI % from'), max_digits=5, decimal_places=2, null=True, blank=True)
     roi_max = models.DecimalField(_('ROI % to'), max_digits=5, decimal_places=2, null=True, blank=True)
     leasehold_years = models.PositiveIntegerField(_('Leasehold Years'), null=True, blank=True)
     
-    # Features
+    # Legacy fields (kept for compatibility, can use features instead)
     view = models.CharField(_('View'), max_length=200, blank=True)
     facilities = models.TextField(_('Facilities'), blank=True)
     
@@ -126,7 +161,8 @@ class Property(TranslatableModel):
     def __str__(self):
         return self.safe_translation_getter('title', default=f'Property #{self.pk}')
     
-    # === Helper methods for display ===
+
+# === Helper methods for display ===
     
     def get_price_display(self):
         """Returns formatted price range: $155,000 – $220,000"""
@@ -203,17 +239,15 @@ class Property(TranslatableModel):
             return f"{self.roi_max}%"
         return ''
     
-    def get_price_range(self):
-        """For filter matching - uses price_min"""
-        price = self.price_min
-        if not price:
-            return None
-        p = int(price)
-        if p < 100000: return 'up_to_100k'
-        if p < 150000: return '100k_150k'
-        if p < 200000: return '150k_200k'
-        if p < 300000: return '200k_300k'
-        if p < 500000: return '300k_500k'
-        if p < 700000: return '500k_700k'
-        if p < 1000000: return '700k_1m'
-        return 'over_1m'
+    def get_completion_display(self):
+        """Returns Q1 2025 format"""
+        if self.completion_year:
+            if self.completion_quarter:
+                return f"Q{self.completion_quarter} {self.completion_year}"
+            return str(self.completion_year)
+        return ''
+    
+    def get_features_list(self):
+        """Returns list of feature names with icons"""
+        return [f"{f.icon} {f.name}" if f.icon else f.name for f in self.features.all()]
+
