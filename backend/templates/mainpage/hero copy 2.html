@@ -6,18 +6,35 @@
       <div class="hero-contain u-container">
         
         <!-- Видео показывается СРАЗУ -->
-        <div class="hero-video-bg is-playing desktop-only">
-          <video class="hero-full-video" muted loop playsinline autoplay preload="auto">
+        <div class="hero-video-bg is-playing">
+          <video class="hero-full-video" muted loop playsinline autoplay>
             <source src="{% static 'videos/output.mp4' %}" type="video/mp4">
           </video>
         </div>
 
+        <!-- Grid скрыт по умолчанию -->
+        <div class="hero-grid u-grid-custom is-hidden">
+          <div class="hero-col"><div class="hero-content-wrap"></div></div>
+          <div class="hero-col">
+            <div class="hero-content-wrap">
+              <div class="hero-grid-item-top"><div class="g-visual-wrap"><img src="{% static 'images/hero/hero1.png' %}" alt="Bali real estate 1" class="g-visual-img" loading="lazy"></div></div>
+              <div class="hero-grid-item-bottom"><div class="g-visual-wrap"><img src="{% static 'images/hero/hero3.png' %}" alt="Bali real estate 3" class="g-visual-img" loading="lazy"></div></div>
+            </div>
+          </div>
+          <div class="hero-col">
+            <div class="hero-content-wrap">
+              <div class="hero-grid-item-top"><div class="g-visual-wrap"><img src="{% static 'images/hero/hero2.png' %}" alt="Bali real estate 2" class="g-visual-img" loading="lazy"></div></div>
+              <div class="hero-grid-item-bottom"><div class="g-visual-wrap"><img src="{% static 'images/hero/hero4.png' %}" alt="Bali real estate 4" class="g-visual-img" loading="lazy"></div></div>
+            </div>
+          </div>
+        </div>
+
         <!-- Mobile Grid -->
         <div class="hero-grid-mobile">
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero1.png' %}" alt="Bali 1" loading="eager" fetchpriority="high"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero2.png' %}" alt="Bali 2" loading="eager" fetchpriority="high"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero3.png' %}" alt="Bali 3" loading="eager" fetchpriority="high"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero4.png' %}" alt="Bali 4" loading="eager" fetchpriority="high"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero1.png' %}" alt="Bali 1" loading="lazy"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero2.png' %}" alt="Bali 2" loading="lazy"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero3.png' %}" alt="Bali 3" loading="lazy"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero4.png' %}" alt="Bali 4" loading="lazy"></div>
         </div>
 
         <!-- Navigation -->
@@ -116,12 +133,6 @@
 <style>
 :root { --grid-12: repeat(12, 1fr); }
 .u-container { max-width: 1440px; margin: 0 auto; padding: 0; }
-
-@media (max-width: 1024px) {
-  .desktop-only {
-    display: none;
-  }
-}
 
 /* Видео — показываем СРАЗУ */
 .hero-video-bg {
@@ -264,16 +275,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (window.innerWidth < 768) return;
 
-  // Убрали задержку 100ms
   function waitForReady(callback) {
     const checkInterval = setInterval(() => {
       const loaderGone = !document.getElementById('loader') || document.getElementById('loader').classList.contains('is-hidden');
       const gsapReady = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-      if (loaderGone && gsapReady) { 
-        clearInterval(checkInterval); 
-        callback();  // Без setTimeout
-      }
-    }, 30);  // Быстрее проверяем
+      if (loaderGone && gsapReady) { clearInterval(checkInterval); setTimeout(callback, 100); }
+    }, 50);
   }
   
   waitForReady(initHeroAnimation);
@@ -292,9 +299,11 @@ function initHeroAnimation() {
     scrollTrigger: {
       trigger: heroWrapper,
       start: 'top top',
-      end: 'bottom top',
-      scrub: true
-      // Без pin — страница скроллится сразу
+      end: '+=100%',
+      pin: true,
+      pinSpacing: true,
+      scrub: 0.5,
+      anticipatePin: 1
     }
   });
 

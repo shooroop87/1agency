@@ -157,11 +157,14 @@
   }
 }
 </style>
+
 <script>
 let partnersSwiper;
 
 function initPartnersSwiper() {
+  // Проверяем загрузку Swiper
   if (typeof Swiper === 'undefined') {
+    console.warn('Swiper not loaded yet, retrying...');
     setTimeout(initPartnersSwiper, 100);
     return;
   }
@@ -172,7 +175,7 @@ function initPartnersSwiper() {
         slidesPerView: 'auto',
         spaceBetween: 20,
         scrollbar: {
-          el: '.partners-swiper .swiper-scrollbar',
+          el: '.swiper-scrollbar',
           draggable: true,
         }
       });
@@ -185,10 +188,12 @@ function initPartnersSwiper() {
   }
 }
 
+// Инициализация при загрузке
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPartnersSwiper);
 } else {
   initPartnersSwiper();
 }
+
 window.addEventListener('resize', initPartnersSwiper);
 </script>
