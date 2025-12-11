@@ -40,7 +40,7 @@ def home(request):
             'lng': float(prop.longitude),
             'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
             'type': prop.property_type.name if prop.property_type else '',
-            'status': prop.get_status_display(),
+            'status': prop.get_sale_status_display(),
             'completion': f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_year else '',
             'roi': prop.get_roi_display(),
             'price': prop.get_price_display(),
@@ -72,6 +72,8 @@ def home(request):
         'show_map_section': len(map_properties) > 0,
         # Featured properties
         'featured_properties': featured_properties,
+        'property_types': PropertyType.objects.all(),
+        'locations': Location.objects.all(),
     }
     
     return render(request, 'pages/index.html', context)

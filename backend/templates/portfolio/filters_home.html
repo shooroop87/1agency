@@ -1,0 +1,304 @@
+{% load static %}
+<section class="filters-home-section pb30">
+  <div class="container">
+    <!-- Row 1: Unit Type + Bedrooms + Price -->
+    <div class="filter-row-home mb20">
+      <div class="filter-group-home">
+        <div class="filter-label-home">UNIT TYPE</div>
+        <div class="filter-tags-home" data-filter="type">
+          {% for pt in property_types %}
+          <button class="filter-tag-home" data-value="{{ pt.slug }}">
+            {% if pt.icon %}<span class="tag-icon">{{ pt.icon }}</span>{% endif %}
+            {{ pt.name }}
+          </button>
+          {% empty %}
+          <button class="filter-tag-home" data-value="apartment">Apartment</button>
+          <button class="filter-tag-home" data-value="villa">Villa</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group-home filter-group-home--bedrooms">
+        <div class="filter-label-home">BEDROOMS</div>
+        <div class="filter-tags-home filter-tags-home--circles" data-filter="bedrooms">
+          <button class="filter-tag-home filter-tag-home--circle" data-value="1">1</button>
+          <button class="filter-tag-home filter-tag-home--circle" data-value="2">2</button>
+          <button class="filter-tag-home filter-tag-home--circle" data-value="3">3</button>
+          <button class="filter-tag-home filter-tag-home--circle" data-value="4">4</button>
+          <button class="filter-tag-home filter-tag-home--circle" data-value="5+">5+</button>
+        </div>
+      </div>
+
+      <div class="filter-group-home">
+        <div class="filter-label-home">PRICE RANGE</div>
+        <div class="filter-select-wrap-home">
+          <select class="filter-select-home" data-filter="price">
+            <option value="">Any Price</option>
+            <option value="0-100000">Up to $100,000</option>
+            <option value="100000-200000">$100,000 - $200,000</option>
+            <option value="200000-300000">$200,000 - $300,000</option>
+            <option value="300000-500000">$300,000 - $500,000</option>
+            <option value="500000-1000000">$500,000 - $1,000,000</option>
+            <option value="1000000+">$1,000,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-group-home">
+        <div class="filter-label-home">LOCATION</div>
+        <div class="filter-select-wrap-home">
+          <select class="filter-select-home" data-filter="location">
+            <option value="">All Locations</option>
+            {% for loc in locations %}
+            <option value="{{ loc.slug }}">{{ loc.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <div class="filter-results-home">
+      <span id="homeResultsCount">{{ featured_properties|length }}</span> properties found
+      <button type="button" class="filters-clear-home" id="clearHomeFilters">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear
+      </button>
+    </div>
+  </div>
+</section>
+<style>
+.filters-home-section { background: transparent; }
+
+.filter-row-home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.filter-group-home {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filter-group-home--bedrooms { min-width: 160px; }
+
+.filter-label-home {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+.filter-tags-home { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.filter-tag-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.filter-tag-home:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.filter-tag-home.active {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+.filter-tags-home--circles { gap: 5px; }
+.filter-tag-home--circle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+.filter-select-wrap-home { position: relative; }
+.filter-select-home {
+  appearance: none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 6px 35px 6px 14px;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  min-width: 140px;
+  transition: all 0.2s;
+}
+.filter-select-home:hover, .filter-select-home:focus {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  outline: none;
+}
+.filter-select-wrap-home::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+.filter-select-home option { background: #272727; color: #fff; }
+
+.filter-results-home {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.filter-results-home span { color: #EA9278; font-weight: 600; }
+
+.filters-clear-home {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.filters-clear-home:hover { color: #EA9278; }
+
+@media (max-width: 991px) {
+  .filter-row-home { gap: 15px; }
+  .filter-group-home { width: 100%; }
+  .filter-tags-home {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+  }
+  .filter-tags-home::-webkit-scrollbar { display: none; }
+  .filter-select-home { width: 100%; }
+}
+</style>
+<script>
+(function() {
+  const homeFilterState = { type: [], bedrooms: [], price: '', location: '' };
+
+  // Tags
+  document.querySelectorAll('.filters-home-section .filter-tag-home').forEach(tag => {
+    tag.addEventListener('click', function() {
+      const group = this.closest('[data-filter]');
+      if (!group) return;
+      const filterName = group.dataset.filter;
+      const value = this.dataset.value;
+      const isCircle = this.classList.contains('filter-tag-home--circle');
+
+      if (isCircle || filterName === 'bedrooms') {
+        const wasActive = this.classList.contains('active');
+        group.querySelectorAll('.filter-tag-home').forEach(t => t.classList.remove('active'));
+        homeFilterState[filterName] = wasActive ? [] : (this.classList.add('active'), [value]);
+      } else {
+        this.classList.toggle('active');
+        if (this.classList.contains('active')) {
+          if (!homeFilterState[filterName].includes(value)) homeFilterState[filterName].push(value);
+        } else {
+          homeFilterState[filterName] = homeFilterState[filterName].filter(v => v !== value);
+        }
+      }
+      applyHomeFilters();
+    });
+  });
+
+  // Selects
+  document.querySelectorAll('.filters-home-section .filter-select-home').forEach(sel => {
+    sel.addEventListener('change', function() {
+      homeFilterState[this.dataset.filter] = this.value;
+      applyHomeFilters();
+    });
+  });
+
+  // Clear
+  document.getElementById('clearHomeFilters')?.addEventListener('click', function() {
+    document.querySelectorAll('.filters-home-section .filter-tag-home').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.filters-home-section .filter-select-home').forEach(s => s.value = '');
+    Object.keys(homeFilterState).forEach(k => homeFilterState[k] = Array.isArray(homeFilterState[k]) ? [] : '');
+    applyHomeFilters();
+  });
+
+  function applyHomeFilters() {
+    const params = new URLSearchParams();
+    Object.entries(homeFilterState).forEach(([k, v]) => {
+      if (Array.isArray(v) && v.length) params.set(k, v.join(','));
+      else if (v) params.set(k, v);
+    });
+    params.set('per_page', '8');
+
+    const grid = document.querySelector('.projects .projects-grid');
+    if (!grid) return;
+    grid.style.opacity = '0.5';
+
+    fetch(`/api/properties/?${params.toString()}`)
+      .then(r => r.json())
+      .then(data => {
+        renderHomeProperties(data.results || [], grid);
+        document.getElementById('homeResultsCount').textContent = data.total || 0;
+        grid.style.opacity = '1';
+      })
+      .catch(() => grid.style.opacity = '1');
+  }
+
+  function renderHomeProperties(props, grid) {
+    if (!props.length) {
+      grid.innerHTML = '<p class="text-center text-white w-100">No properties found</p>';
+      return;
+    }
+    grid.innerHTML = props.map((p, i) => `
+      <a href="#" class="project-card ${i % 4 < 2 ? 'project-card--lg' : 'project-card--lg'}${i % 4 === 1 ? ' project-card--align-end' : ''}${i === 0 ? ' mb50' : ''}" data-id="${p.id}">
+        <div class="pc-img">
+          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <div class="pc-tags">
+            <span class="tag">${p.property_type || 'Property'}</span>
+            ${p.price_display ? `<span class="tag">${p.price_display}</span>` : ''}
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title"><span class="dot"></span>${p.title}<i class="wdt-button__icon"></i></h3>
+          <div class="pc-loc">${p.location || 'Bali'}</div>
+        </div>
+      </a>`).join('');
+    
+    // Re-init modals
+    grid.querySelectorAll('[data-id]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (typeof loadPropertyData === 'function') loadPropertyData(this.dataset.id);
+      });
+    });
+  }
+})();
+</script>
