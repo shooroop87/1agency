@@ -12,6 +12,7 @@ from .models import (
 )
 from .forms import ContactForm, CallbackForm, ServiceRequestForm, FAQQuestionForm
 from .email import send_contact_notification
+from properties.models import PropertyType, Location
 
 
 def ping(request):

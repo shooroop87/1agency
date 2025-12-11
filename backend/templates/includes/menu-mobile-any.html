@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <div id="page2" class="mobilie_header_nav stylehome1">
   <div class="mobile-menu">
@@ -89,7 +89,7 @@
           <span>Request details</span>
         </div>
         <div class="oa-mobile-menu__contacts-text">Call us: +62 822 663 61 606</div>
-        <div class="oa-mobile-menu__contacts-text">Email us: one.agency.bali@gmail.com</div>
+        <div class="oa-mobile-menu__contacts-text">Email us: {{ site_settings.email }}</div>
         <a href="#" class="oa-mobile-menu__contacts-link">Instagram RU</a>
         <a href="#" class="oa-mobile-menu__contacts-link">Instagram ENG</a>
       </div>

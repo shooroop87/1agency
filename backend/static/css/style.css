@@ -1653,21 +1653,39 @@ h2 {
   box-shadow: 0 -10px 40px rgba(0,0,0,.25); /* лёгкая тень при выезде */
 }
 
-#content::before {
-    content: "";
-    position: absolute;
-    background-image: url(/static/images/one.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
-    opacity: 1;
-    height: calc(3000px + 100vh);
-    max-height: 4000px;
-    inset: 0px;
-    background-position: center top;
-    background-attachment: fixed;
+.body_content {
+  position: relative;
+  z-index: 10;
+  background: transparent; /* убираем фон */
 }
 
+.body_content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(3000px + 100vh);
+  max-height: 4000px;
+  background-image: url('../images/one.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.body_content > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 10;
+  background: var(--color-dark, #1a1a1a);
+}
 
 .footer-style1.at-home2 {
   padding-top: 230px;
@@ -3735,7 +3753,6 @@ section {
 
 /* Custom Search Sugguestions Code End */
 .preloader {
-  background-color: #eaeaea;
   background-position: center center;
   background-repeat: no-repeat;
   height: 100%;

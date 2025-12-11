@@ -1,5 +1,5 @@
 {% extends "base/base_projects.html" %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
 <div class="wrapper ovh">
@@ -34,7 +34,7 @@
             <p class="text mb5">Nomor Induk Berusaha (NIB): 2808240112275</p>
             <p class="text mb5">Alamat Kantor: Benoa, Desa/Kelurahan Benoa, Kec. Kuta Selatan, Kab. Badung, Provinsi Bali, 80362</p>
             <p class="text mb5">Tel.: +62 822 663 61 606</p>
-            <p class="text mb25">E-mail: one.agency.bali@gmail.com</p>
+            <p class="text mb25">E-mail: {{ site_settings.email }}</p>
 
             <!-- 2. Data We Collect -->
             <h4 class="mb20">2. Data We Collect</h4>
@@ -150,7 +150,7 @@
               <li class="text">Request a copy of your data (data portability)</li>
             </ul>
             <p class="text mb40">
-              To exercise your rights, contact us at: <strong>one.agency.bali@gmail.com</strong>
+              To exercise your rights, contact us at: <strong>{{ site_settings.email }}</strong>
             </p>
 
             <!-- 11. Third-Party Links -->
@@ -181,7 +181,7 @@
               If you have questions, requests, or concerns regarding this Privacy Policy, please contact us:
             </p>
             <p class="text mb5">📞 +62 822 663 61 606</p>
-            <p class="text mb25">📧 one.agency.bali@gmail.com</p>
+            <p class="text mb25">📧 {{ site_settings.email }}</p>
 
           </div>
         </div>

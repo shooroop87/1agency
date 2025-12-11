@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <section class="section-content-footer" id="contactus">
   <div class="container contact-form-section">
@@ -30,7 +30,7 @@
             Call us: <a href="tel:+6282266361606" class="text-gray">+62 822 663 61 606</a>
           </p>
           <p class="mb0 cf-contact-line">
-            Email us: <a href="mailto:one.agency.bali@gmail.com" class="text-gray">one.agency.bali@gmail.com</a>
+            Email us: <a href="mailto:{{ site_settings.email }}" class="text-gray">{{ site_settings.email }}</a>
           </p>
         </div>
       </div>
