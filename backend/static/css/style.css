@@ -1251,8 +1251,9 @@ a.favorites-btn:hover {
 
 
 
-/* ===== Projects (Portfolio) ===== */
+/* ===== Projects (Portfolio) ===== 
 .projects .container{max-width: var(--container-width);}
+*/
 .projects-grid{
   display:grid;
   grid-template-columns: 1fr 1fr;

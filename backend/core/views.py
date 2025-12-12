@@ -12,7 +12,7 @@ from .models import (
 )
 from .forms import ContactForm, CallbackForm, ServiceRequestForm, FAQQuestionForm
 from .email import send_contact_notification
-from properties.models import PropertyType, Location
+from properties.models import PropertyType, Location, Feature
 
 
 def ping(request):
@@ -74,6 +74,7 @@ def home(request):
         'featured_properties': featured_properties,
         'property_types': PropertyType.objects.all(),
         'locations': Location.objects.all(),
+        'features': Feature.objects.all(),
     }
     
     return render(request, 'pages/index.html', context)

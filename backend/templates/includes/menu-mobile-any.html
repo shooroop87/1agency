@@ -56,29 +56,27 @@
       <!-- Три колонки меню -->
       <div class="oa-mobile-menu__columns mt50">
         <div class="oa-mobile-menu__col">
-          <a href="#" class="oa-mobile-menu__link">About us</a>
-          <a href="{% url 'about' %}" class="oa-mobile-menu__link">About Bali</a>
-          <a href="#" class="oa-mobile-menu__link">Map</a>
-          <a href="#" class="oa-mobile-menu__link">FAQ</a>
-          <a href="#" class="oa-mobile-menu__link">Reviews</a>
-          <a href="#" class="oa-mobile-menu__link">Partners</a>
-          <a href="#" class="oa-mobile-menu__link">Contacts</a>
+          <a href="{% url 'home' %}#aboutus" class="oa-mobile-menu__link">{% trans "About us" %}</a>
+          <a href="{% url 'projects' %}" class="oa-mobile-menu__link">{% trans "Our Projects" %}</a>
+          <a href="{% url 'about' %}" class="oa-mobile-menu__link">{% trans "About Bali" %}</a>
+          <a href="{% url 'home' %}#faq" class="oa-mobile-menu__link">{% trans "FAQ" %}</a>
+          <a href="{% url 'home' %}#contactus" class="oa-mobile-menu__link">{% trans "Contacts" %}</a>
         </div>
 
         <div class="oa-mobile-menu__col">
-          <div class="oa-mobile-menu__col-title">Our projects</div>
-          <a href="#" class="oa-mobile-menu__link">Apartments</a>
-          <a href="#" class="oa-mobile-menu__link">Villas</a>
-          <a href="#" class="oa-mobile-menu__link">Townhouses</a>
-          <a href="#" class="oa-mobile-menu__link">Land plots</a>
+          <div class="oa-mobile-menu__col-title">{% trans "Our projects" %}</div>
+          <a href="{% url 'projects' %}?type=apartment" class="oa-mobile-menu__link">{% trans "Apartments" %}</a>
+          <a href="{% url 'projects' %}?type=villa" class="oa-mobile-menu__link">{% trans "Villas" %}</a>
+          <a href="{% url 'projects' %}?type=townhouse" class="oa-mobile-menu__link">{% trans "Townhouses" %}</a>
+          <a href="{% url 'projects' %}?type=land" class="oa-mobile-menu__link">{% trans "Land plots" %}</a>
         </div>
 
         <div class="oa-mobile-menu__col">
-          <div class="oa-mobile-menu__col-title">Concierge service</div>
-          <a href="#" class="oa-mobile-menu__link">Accommodation</a>
-          <a href="#" class="oa-mobile-menu__link">Transportation</a>
-          <a href="#" class="oa-mobile-menu__link">Legal support</a>
-          <a href="#" class="oa-mobile-menu__link">Travel</a>
+          <div class="oa-mobile-menu__col-title">{% trans "Concierge service" %}</div>
+          <a href="{% url 'home' %}#concierge" class="oa-mobile-menu__link">{% trans "Accommodation" %}</a>
+          <a href="{% url 'home' %}#concierge" class="oa-mobile-menu__link">{% trans "Transportation" %}</a>
+          <a href="{% url 'home' %}#concierge" class="oa-mobile-menu__link">{% trans "Legal support" %}</a>
+          <a href="{% url 'home' %}#concierge" class="oa-mobile-menu__link">{% trans "Travel" %}</a>
         </div>
       </div>
 

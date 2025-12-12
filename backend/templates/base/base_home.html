@@ -29,7 +29,7 @@
 <div class="loader-tim" id="loader">
   <div class="loader-tim-wrap">
     <div class="loader-imgs">
-<img src="{% static 'images/loader/Untitled-1.webp' %}" alt="" class="loader-img is-active">
+<img src="{% static 'images/loader/Untitled-1.webp' %}" alt="" class="loader-img is-active" fetchpriority="high" decoding="async">
 <img src="{% static 'images/loader/Untitled-2.webp' %}" alt="" class="loader-img">
 <img src="{% static 'images/loader/Untitled-3.webp' %}" alt="" class="loader-img">
 <img src="{% static 'images/loader/Untitled-4.webp' %}" alt="" class="loader-img">
@@ -61,9 +61,44 @@
 </div>
 <script>
 (function(){
-  var imgs=document.querySelectorAll('.loader-img'),counter=document.querySelector('.loader-number'),loader=document.getElementById('loader'),idx=0,total=imgs.length;
-  function run(){var iv=setInterval(function(){imgs[idx].classList.remove('is-active');idx++;if(counter)counter.textContent=Math.round((idx/total)*100);if(idx>=total){clearInterval(iv);setTimeout(function(){loader.classList.add('is-hidden');document.body.classList.remove('is-loading');setTimeout(function(){loader.remove()},500)},200);return}imgs[idx].classList.add('is-active')},180)}
-  setTimeout(run,100);
+  var COOLDOWN = 5 * 60 * 1000; // 5 минут
+  var lastShown = sessionStorage.getItem('loaderShown');
+  var now = Date.now();
+  var loader = document.getElementById('loader');
+  
+  if (lastShown && (now - parseInt(lastShown)) < COOLDOWN) {
+    // Не показываем лоадер
+    document.body.classList.remove('is-loading');
+    loader.remove();
+    return;
+  }
+  
+  // Показываем лоадер
+  loader.style.display = '';
+  sessionStorage.setItem('loaderShown', now);
+  
+  var imgs = document.querySelectorAll('.loader-img');
+  var counter = document.querySelector('.loader-number');
+  var idx = 0, total = imgs.length;
+  
+  function run() {
+    var iv = setInterval(function(){
+      imgs[idx].classList.remove('is-active');
+      idx++;
+      if (counter) counter.textContent = Math.round((idx/total)*100);
+      if (idx >= total) {
+        clearInterval(iv);
+        setTimeout(function(){
+          loader.classList.add('is-hidden');
+          document.body.classList.remove('is-loading');
+          setTimeout(function(){ loader.remove() }, 500);
+        }, 200);
+        return;
+      }
+      imgs[idx].classList.add('is-active');
+    }, 180);
+  }
+  setTimeout(run, 100);
 })();
 </script>
 

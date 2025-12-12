@@ -1,7 +1,8 @@
 {% load static humanize %}
+{% include "portfolio/filters_home.html" %}
 <section class="projects pb120 section-content mt40-xs" style="z-index: auto;">
   <div class="container">
-    <div class="projects-grid">
+    <div class="projects-grid" id="propertiesGrid">
       {% for prop in featured_properties %}
       <a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
          data-id="{{ prop.id }}">

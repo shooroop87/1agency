@@ -1,38 +1,47 @@
-{% load static %}
-<section class="filters-home-section pb30">
+{% load static i18n %}
+<section class="filters-section pt150 pt50-xs pb30">
   <div class="container">
-    <!-- Row 1: Unit Type + Bedrooms + Price -->
-    <div class="filter-row-home mb20">
-      <div class="filter-group-home">
-        <div class="filter-label-home">UNIT TYPE</div>
-        <div class="filter-tags-home" data-filter="type">
+    <div class="filters-header d-flex justify-content-between align-items-start mb30">
+      <h2 class="filters-title">All projects</h2>
+      <button type="button" class="filters-clear" id="clearAllFilters">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear all
+      </button>
+    </div>
+
+    <!-- Row 1: Unit Type + Bedrooms + Price + Area -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">UNIT TYPE</div>
+        <div class="filter-tags" data-filter="type">
           {% for pt in property_types %}
-          <button class="filter-tag-home" data-value="{{ pt.slug }}">
+          <button class="filter-tag" data-value="{{ pt.slug }}">
             {% if pt.icon %}<span class="tag-icon">{{ pt.icon }}</span>{% endif %}
             {{ pt.name }}
           </button>
           {% empty %}
-          <button class="filter-tag-home" data-value="apartment">Apartment</button>
-          <button class="filter-tag-home" data-value="villa">Villa</button>
+          <button class="filter-tag" data-value="apartment">Apartment</button>
           {% endfor %}
         </div>
       </div>
 
-      <div class="filter-group-home filter-group-home--bedrooms">
-        <div class="filter-label-home">BEDROOMS</div>
-        <div class="filter-tags-home filter-tags-home--circles" data-filter="bedrooms">
-          <button class="filter-tag-home filter-tag-home--circle" data-value="1">1</button>
-          <button class="filter-tag-home filter-tag-home--circle" data-value="2">2</button>
-          <button class="filter-tag-home filter-tag-home--circle" data-value="3">3</button>
-          <button class="filter-tag-home filter-tag-home--circle" data-value="4">4</button>
-          <button class="filter-tag-home filter-tag-home--circle" data-value="5+">5+</button>
+      <div class="filter-group filter-group--bedrooms">
+        <div class="filter-label">BEDROOMS</div>
+        <div class="filter-tags filter-tags--circles" data-filter="bedrooms">
+          <button class="filter-tag filter-tag--circle" data-value="1">1</button>
+          <button class="filter-tag filter-tag--circle" data-value="2">2</button>
+          <button class="filter-tag filter-tag--circle" data-value="3">3</button>
+          <button class="filter-tag filter-tag--circle" data-value="4">4</button>
+          <button class="filter-tag filter-tag--circle" data-value="5+">5+</button>
         </div>
       </div>
 
-      <div class="filter-group-home">
-        <div class="filter-label-home">PRICE RANGE</div>
-        <div class="filter-select-wrap-home">
-          <select class="filter-select-home" data-filter="price">
+      <div class="filter-group">
+        <div class="filter-label">PRICE RANGE</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="price">
             <option value="">Any Price</option>
             <option value="0-100000">Up to $100,000</option>
             <option value="100000-200000">$100,000 - $200,000</option>
@@ -44,50 +53,144 @@
         </div>
       </div>
 
-      <div class="filter-group-home">
-        <div class="filter-label-home">LOCATION</div>
-        <div class="filter-select-wrap-home">
-          <select class="filter-select-home" data-filter="location">
-            <option value="">All Locations</option>
-            {% for loc in locations %}
-            <option value="{{ loc.slug }}">{{ loc.name }}</option>
-            {% endfor %}
+      <div class="filter-group">
+        <div class="filter-label">AREA (M²)</div>
+        <div class="filter-select-wrap">
+          <select class="filter-select" data-filter="area">
+            <option value="">Any Size</option>
+            <option value="0-50">Up to 50 m²</option>
+            <option value="50-100">50 - 100 m²</option>
+            <option value="100-200">100 - 200 m²</option>
+            <option value="200-500">200 - 500 m²</option>
+            <option value="500+">500+ m²</option>
           </select>
         </div>
       </div>
     </div>
 
+    <!-- Row 2: Location + Sale Status + Ownership -->
+    <div class="filter-row mb20">
+      <div class="filter-group">
+        <div class="filter-label">LOCATION</div>
+        <div class="filter-tags" data-filter="location">
+          {% for loc in locations %}
+          <button class="filter-tag" data-value="{{ loc.slug }}">{{ loc.name }}</button>
+          {% empty %}
+          <button class="filter-tag" data-value="canggu">Canggu</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">SALE STATUS</div>
+        <div class="filter-tags" data-filter="status">
+          <button class="filter-tag" data-value="presale">Pre-sale</button>
+          <button class="filter-tag" data-value="selling">Selling</button>
+          <button class="filter-tag" data-value="soldout">Sold Out</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">LAND OWNERSHIP</div>
+        <div class="filter-tags" data-filter="ownership">
+          <button class="filter-tag" data-value="freehold">Freehold</button>
+          <button class="filter-tag" data-value="leasehold">Leasehold</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Features + Construction -->
+    <div class="filter-row">
+      <div class="filter-group">
+        <div class="filter-label">FEATURES</div>
+        <div class="filter-tags" data-filter="features">
+          {% for feat in features %}
+          <button class="filter-tag" data-value="{{ feat.slug }}">
+            {% if feat.icon %}<span class="tag-icon">{{ feat.icon }}</span>{% endif %}
+            {{ feat.name }}
+          </button>
+          {% empty %}
+          <button class="filter-tag" data-value="pool"><span class="tag-icon">🏊</span> Pool</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">CONSTRUCTION</div>
+        <div class="filter-tags" data-filter="construction">
+          <button class="filter-tag" data-value="not_started">Not Started</button>
+          <button class="filter-tag" data-value="in_progress">In Progress</button>
+          <button class="filter-tag" data-value="completed">Completed</button>
+          <button class="filter-tag" data-value="on_hold">On Hold</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Results count -->
-    <div class="filter-results-home">
-      <span id="homeResultsCount">{{ featured_properties|length }}</span> properties found
-      <button type="button" class="filters-clear-home" id="clearHomeFilters">
-        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
-        </svg>
-        Clear
-      </button>
+    <div class="filter-results mt20">
+      <span id="resultsCount">{{ total_count }}</span> properties found
     </div>
   </div>
 </section>
 <style>
-.filters-home-section { background: transparent; }
+/* Filters Section */
+.filters-section {
+  background: #1a1a1a;
+}
 
-.filter-row-home {
+.filters-header {
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filters-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: #fff;
+  margin: 0;
+}
+
+.filters-clear {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.filters-clear:hover {
+  color: #EA9278;
+}
+
+/* Filter Row */
+.filter-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
-  padding-bottom: 20px;
+  gap: 30px;
+  padding-bottom: 25px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
+.filter-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
-.filter-group-home {
+/* Filter Group */
+.filter-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
-.filter-group-home--bedrooms { min-width: 160px; }
+.filter-group--bedrooms {
+  min-width: 180px;
+}
 
-.filter-label-home {
+.filter-label {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
   font-size: 11px;
@@ -96,209 +199,326 @@
   text-transform: uppercase;
 }
 
-.filter-tags-home { display: flex; flex-wrap: wrap; gap: 6px; }
+/* Filter Tags */
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-.filter-tag-home {
+.filter-tag {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 14px;
+  gap: 6px;
+  padding: 7px 16px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 100px;
   color: rgba(255,255,255,0.7);
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
 }
-.filter-tag-home:hover {
+.filter-tag:hover {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.3);
   color: #fff;
 }
-.filter-tag-home.active {
+.filter-tag.active {
   background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
   border-color: transparent;
   color: #fff;
 }
 
-.filter-tags-home--circles { gap: 5px; }
-.filter-tag-home--circle {
-  width: 34px;
-  height: 34px;
+.tag-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Circle Tags (Bedrooms) */
+.filter-tags--circles {
+  gap: 6px;
+}
+.filter-tag--circle {
+  width: 38px;
+  height: 38px;
   padding: 0;
   justify-content: center;
   border-radius: 50%;
   font-weight: 600;
 }
 
-.filter-select-wrap-home { position: relative; }
-.filter-select-home {
+/* Select Dropdowns */
+.filter-select-wrap {
+  position: relative;
+}
+.filter-select {
   appearance: none;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 100px;
-  padding: 6px 35px 6px 14px;
+  padding: 7px 40px 7px 16px;
   color: rgba(255,255,255,0.7);
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
-  min-width: 140px;
+  min-width: 160px;
   transition: all 0.2s;
 }
-.filter-select-home:hover, .filter-select-home:focus {
+.filter-select:hover,
+.filter-select:focus {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.3);
   outline: none;
 }
-.filter-select-wrap-home::after {
+.filter-select-wrap::after {
   content: '';
   position: absolute;
-  right: 14px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid rgba(255,255,255,0.5);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(255,255,255,0.5);
   pointer-events: none;
 }
-.filter-select-home option { background: #272727; color: #fff; }
+.filter-select option {
+  background: #272727;
+  color: #fff;
+}
 
-.filter-results-home {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 15px;
+/* Results count */
+.filter-results {
   font-family: 'Manrope', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255,255,255,0.5);
 }
-.filter-results-home span { color: #EA9278; font-weight: 600; }
-
-.filters-clear-home {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: transparent;
-  border: none;
-  color: rgba(255,255,255,0.4);
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 0.2s;
+.filter-results span {
+  color: #EA9278;
+  font-weight: 600;
 }
-.filters-clear-home:hover { color: #EA9278; }
 
+/* Mobile Responsive */
 @media (max-width: 991px) {
-  .filter-row-home { gap: 15px; }
-  .filter-group-home { width: 100%; }
-  .filter-tags-home {
+  .filters-title {
+    font-size: 24px;
+  }
+  .filter-row {
+    gap: 20px;
+  }
+  .filter-group {
+    width: 100%;
+  }
+  .filter-tags {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
-  .filter-tags-home::-webkit-scrollbar { display: none; }
-  .filter-select-home { width: 100%; }
+  .filter-tags::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .filters-section {
+    padding: 30px 0;
+  }
+  .filter-tag {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .filter-tag--circle {
+    width: 34px;
+    height: 34px;
+  }
 }
 </style>
-<script>
-(function() {
-  const homeFilterState = { type: [], bedrooms: [], price: '', location: '' };
 
-  // Tags
-  document.querySelectorAll('.filters-home-section .filter-tag-home').forEach(tag => {
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Filter state - all empty by default
+  const filterState = {
+    type: [],
+    bedrooms: [],
+    price: '',
+    area: '',
+    location: [],
+    status: [],
+    ownership: [],
+    features: [],
+    construction: []
+  };
+
+  // Toggle tag buttons
+  document.querySelectorAll('.filter-tag').forEach(tag => {
     tag.addEventListener('click', function() {
       const group = this.closest('[data-filter]');
       if (!group) return;
+      
       const filterName = group.dataset.filter;
       const value = this.dataset.value;
-      const isCircle = this.classList.contains('filter-tag-home--circle');
-
+      const isCircle = this.classList.contains('filter-tag--circle');
+      
+      // Bedrooms: single select (toggle off if same clicked)
       if (isCircle || filterName === 'bedrooms') {
         const wasActive = this.classList.contains('active');
-        group.querySelectorAll('.filter-tag-home').forEach(t => t.classList.remove('active'));
-        homeFilterState[filterName] = wasActive ? [] : (this.classList.add('active'), [value]);
+        group.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        
+        if (wasActive) {
+          filterState[filterName] = [];
+        } else {
+          this.classList.add('active');
+          filterState[filterName] = [value];
+        }
       } else {
+        // Multi-select toggle
         this.classList.toggle('active');
         if (this.classList.contains('active')) {
-          if (!homeFilterState[filterName].includes(value)) homeFilterState[filterName].push(value);
+          if (!filterState[filterName].includes(value)) {
+            filterState[filterName].push(value);
+          }
         } else {
-          homeFilterState[filterName] = homeFilterState[filterName].filter(v => v !== value);
+          filterState[filterName] = filterState[filterName].filter(v => v !== value);
         }
       }
-      applyHomeFilters();
+      
+      applyFilters();
     });
   });
 
-  // Selects
-  document.querySelectorAll('.filters-home-section .filter-select-home').forEach(sel => {
-    sel.addEventListener('change', function() {
-      homeFilterState[this.dataset.filter] = this.value;
-      applyHomeFilters();
+  // Select dropdowns
+  document.querySelectorAll('.filter-select').forEach(select => {
+    select.addEventListener('change', function() {
+      const filterName = this.dataset.filter;
+      filterState[filterName] = this.value;
+      applyFilters();
     });
   });
 
-  // Clear
-  document.getElementById('clearHomeFilters')?.addEventListener('click', function() {
-    document.querySelectorAll('.filters-home-section .filter-tag-home').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.filters-home-section .filter-select-home').forEach(s => s.value = '');
-    Object.keys(homeFilterState).forEach(k => homeFilterState[k] = Array.isArray(homeFilterState[k]) ? [] : '');
-    applyHomeFilters();
+  // Clear all
+  document.getElementById('clearAllFilters') || document.getElementById('clearHomeFilters')?.addEventListener('click', function() {
+    // Reset tags
+    document.querySelectorAll('.filter-tag').forEach(tag => {
+      tag.classList.remove('active');
+    });
+    // Reset selects
+    document.querySelectorAll('.filter-select').forEach(select => {
+      select.value = '';
+    });
+    // Reset state
+    Object.keys(filterState).forEach(key => {
+      filterState[key] = Array.isArray(filterState[key]) ? [] : '';
+    });
+    
+    applyFilters();
   });
 
-  function applyHomeFilters() {
+  // Apply filters - AJAX call
+  function applyFilters() {
     const params = new URLSearchParams();
-    Object.entries(homeFilterState).forEach(([k, v]) => {
-      if (Array.isArray(v) && v.length) params.set(k, v.join(','));
-      else if (v) params.set(k, v);
+    
+    Object.entries(filterState).forEach(([key, val]) => {
+      if (Array.isArray(val) && val.length) {
+        params.set(key, val.join(','));
+      } else if (val && typeof val === 'string') {
+        params.set(key, val);
+      }
     });
-    params.set('per_page', '8');
 
-    const grid = document.querySelector('.projects .projects-grid');
+    const grid = document.getElementById('propertiesGrid');
     if (!grid) return;
+
+    // Loading state
     grid.style.opacity = '0.5';
+    grid.style.pointerEvents = 'none';
 
     fetch(`/api/properties/?${params.toString()}`)
       .then(r => r.json())
       .then(data => {
-        renderHomeProperties(data.results || [], grid);
-        document.getElementById('homeResultsCount').textContent = data.total || 0;
+        renderProperties(data.results || []);
+        updateResultsCount(data.total || 0);
         grid.style.opacity = '1';
+        grid.style.pointerEvents = '';
       })
-      .catch(() => grid.style.opacity = '1');
+      .catch(err => {
+        console.error('Filter error:', err);
+        grid.style.opacity = '1';
+        grid.style.pointerEvents = '';
+      });
   }
 
-  function renderHomeProperties(props, grid) {
-    if (!props.length) {
-      grid.innerHTML = '<p class="text-center text-white w-100">No properties found</p>';
+  // Update results count
+  function updateResultsCount(count) {
+    const counter = document.getElementById('resultsCount');
+    if (counter) {
+      counter.textContent = count;
+    }
+  }
+
+  // Render properties
+  function renderProperties(properties) {
+    const grid = document.getElementById('propertiesGrid') || document.querySelector('.projects .projects-grid');
+    if (!grid) return;
+
+    if (!properties.length) {
+      grid.innerHTML = `
+        <div class="no-results">
+          <p>No properties found matching your criteria</p>
+          <button class="filters-clear" onclick="document.getElementById('clearAllFilters') || document.getElementById('clearHomeFilters').click()">
+            Clear filters
+          </button>
+        </div>`;
       return;
     }
-    grid.innerHTML = props.map((p, i) => `
-      <a href="#" class="project-card ${i % 4 < 2 ? 'project-card--lg' : 'project-card--lg'}${i % 4 === 1 ? ' project-card--align-end' : ''}${i === 0 ? ' mb50' : ''}" data-id="${p.id}">
-        <div class="pc-img">
-          <img src="${p.image}" alt="${p.title}" loading="lazy">
+
+    grid.innerHTML = properties.map((prop, i) => `
+      <a href="#" class="project-card project-card--lg${i % 4 === 1 ? ' project-card--align-end' : ''}" data-id="${prop.id}">
+        <div class="pc-img" style="--img:url('${prop.image || '/static/images/placeholder.jpg'}')">
           <div class="pc-tags">
-            <span class="tag">${p.property_type || 'Property'}</span>
-            ${p.price_display ? `<span class="tag">${p.price_display}</span>` : ''}
+            <span class="tag">${prop.property_type || 'Property'}</span>
+            ${prop.price_display ? `<span class="tag">${prop.price_display}</span>` : ''}
           </div>
         </div>
         <div class="pc-meta">
-          <h3 class="pc-title"><span class="dot"></span>${p.title}<i class="wdt-button__icon"></i></h3>
-          <div class="pc-loc">${p.location || 'Bali'}</div>
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            ${prop.title}
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">${prop.location || 'Bali'}</div>
         </div>
-      </a>`).join('');
-    
-    // Re-init modals
-    grid.querySelectorAll('[data-id]').forEach(card => {
+      </a>
+    `).join('');
+
+    // Re-attach modal handlers
+    initPropertyModals();
+  }
+
+  // Init modals for new cards
+  function initPropertyModals() {
+    document.querySelectorAll('.project-card[data-id]').forEach(card => {
       card.addEventListener('click', function(e) {
         e.preventDefault();
-        if (typeof loadPropertyData === 'function') loadPropertyData(this.dataset.id);
+        const id = this.dataset.id;
+        if (id && typeof window.loadPropertyData === 'function') {
+          window.loadPropertyData(id);
+        }
       });
     });
   }
-})();
+
+  // Initial load
+  applyFilters();
+});
 </script>
