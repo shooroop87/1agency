@@ -11,7 +11,7 @@ body {
                 url('{% static "images/bg_404.png" %}') center/cover no-repeat;
     min-height: 100vh;
     color: #fff;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .error-page {

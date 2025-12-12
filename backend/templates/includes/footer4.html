@@ -371,6 +371,16 @@ main#content:not(:has(.section-content-footer)) {
     position: relative; /* на мобильных отключаем */
   }
 }
+/* Safari scroll fix */
+@supports (-webkit-touch-callout: none) {
+  .footer-style1 {
+    position: relative;
+  }
+  
+  main#content {
+    margin-bottom: 0;
+  }
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {

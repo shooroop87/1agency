@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Clear all
-  document.getElementById('clearAllFilters') || document.getElementById('clearHomeFilters')?.addEventListener('click', function() {
+  document.getElementById('clearAllFilters')?.addEventListener('click', function() {
     // Reset tags
     document.querySelectorAll('.filter-tag').forEach(tag => {
       tag.classList.remove('active');

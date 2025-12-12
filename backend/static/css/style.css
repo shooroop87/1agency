@@ -1437,7 +1437,8 @@ body {
   font:400 14px/1.85 var(--body-font-family);
   color: var(--headings-color);
   line-height: 26px;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
 }
 

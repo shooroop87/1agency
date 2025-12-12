@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "1ins#Zvdsecure1-1default1asdsdasdasd1$5%!#")
 
 # Debug
-DEBUG = False
+DEBUG = True
 
 # ALLOWED HOSTS
 if DEBUG:

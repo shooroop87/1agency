@@ -10,7 +10,7 @@ body {
   font-weight: $body-font-weight;
   color: $body-color;
   line-height: $body-line-Height;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 a,
