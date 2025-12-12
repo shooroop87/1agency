@@ -10,7 +10,7 @@
         <div class="col-lg-12">
           <p class="reviews-kicker mb25">{% trans "Reviews about One Agency" %}</p>
           <h2 class="title mb30">{% trans "What our clients say" %}</h2>
-          <a href="#" class="wdt-button button-cta3 is-nm mb50">
+          <a href="#" class="wdt-button button-cta3 is-nm mb50 open-leave-review">
             {% trans "Leave a review" %}
             <span class="wdt-button__icon" aria-hidden="true"></span>
           </a>
@@ -52,7 +52,8 @@
     </div>
   </div>
 </section>
-<!-- Review Modal -->
+
+<!-- Read Review Modal -->
 <div id="reviewModal" class="review-modal">
   <div class="review-modal__overlay"></div>
   <div class="review-modal__content">
@@ -70,6 +71,61 @@
   </div>
 </div>
 
+<!-- Leave Review Modal -->
+<div id="leaveReviewModal" class="question-modal">
+  <div class="question-modal__overlay"></div>
+  <div class="question-modal__content">
+    <button class="question-modal__close">
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
+      </svg>
+    </button>
+
+    <div id="leaveReviewBody">
+      <div class="question-modal__header">
+        <h3 class="question-modal__title">{% trans "Leave a review" %}</h3>
+      </div>
+
+      <form id="leaveReviewForm" class="question-form">
+        <div class="question-form__field">
+          <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
+        </div>
+        <div class="question-form__field">
+          <input type="email" name="email" placeholder="{% trans 'Email' %}" required>
+        </div>
+        <div class="question-form__field">
+          <textarea name="review" placeholder="{% trans 'Your review...' %}" required></textarea>
+        </div>
+        <div class="question-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required checked>
+            <span class="checkbox-custom"></span>
+            <span>{% trans "I agree to the processing of personal data" %}</span>
+          </label>
+        </div>
+        <button type="submit" class="question-form__submit">
+          {% trans "Submit review" %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="leaveReviewSuccess" class="question-modal__success">
+      <div class="question-modal__success-inner">
+        <h4 class="question-modal__success-title">{% trans "Thank you!" %}</h4>
+        <p class="question-modal__success-text">{% trans "Your review has been submitted" %}</p>
+        <button class="question-modal__success-btn close-leave-review">
+          {% trans "Close" %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 let reviewsSwiper;
 
@@ -105,116 +161,102 @@ if (document.readyState === 'loading') {
 }
 window.addEventListener('resize', initReviewsSwiper);
 
-// Modal logic
 document.addEventListener('DOMContentLoaded', function() {
+  // === Read Review Modal ===
   const reviewModal = document.getElementById('reviewModal');
-  if (!reviewModal) return;
-
-  const openBtns = document.querySelectorAll('.open-review-modal');
-  const closeBtn = reviewModal.querySelector('.review-modal__close');
-  const overlay = reviewModal.querySelector('.review-modal__overlay');
-
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      reviewModal.querySelector('.review-modal__name').textContent = this.dataset.reviewName;
-      reviewModal.querySelector('.review-modal__title').textContent = this.dataset.reviewTitle;
-      reviewModal.querySelector('.review-modal__text').textContent = this.dataset.reviewText;
-      reviewModal.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
+  if (reviewModal) {
+    document.querySelectorAll('.open-review-modal').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        reviewModal.querySelector('.review-modal__name').textContent = this.dataset.reviewName;
+        reviewModal.querySelector('.review-modal__title').textContent = this.dataset.reviewTitle;
+        reviewModal.querySelector('.review-modal__text').textContent = this.dataset.reviewText;
+        reviewModal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      });
     });
-  });
 
-  function close() {
-    reviewModal.classList.remove('is-active');
-    document.body.style.overflow = '';
+    function closeReviewModal() {
+      reviewModal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    reviewModal.querySelector('.review-modal__close')?.addEventListener('click', closeReviewModal);
+    reviewModal.querySelector('.review-modal__overlay')?.addEventListener('click', closeReviewModal);
   }
 
-  closeBtn?.addEventListener('click', close);
-  overlay?.addEventListener('click', close);
-  document.addEventListener('keydown', e => e.key === 'Escape' && close());
+  // === Leave Review Modal ===
+  const leaveModal = document.getElementById('leaveReviewModal');
+  if (leaveModal) {
+    const form = document.getElementById('leaveReviewForm');
+    const body = document.getElementById('leaveReviewBody');
+    const success = document.getElementById('leaveReviewSuccess');
+
+    function openLeaveModal(e) {
+      e.preventDefault();
+      if (form) form.reset();
+      if (body) body.style.display = 'block';
+      if (success) success.style.display = 'none';
+      leaveModal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeaveModal() {
+      leaveModal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.open-leave-review').forEach(btn => {
+      btn.addEventListener('click', openLeaveModal);
+    });
+
+    leaveModal.querySelector('.question-modal__close')?.addEventListener('click', closeLeaveModal);
+    leaveModal.querySelector('.question-modal__overlay')?.addEventListener('click', closeLeaveModal);
+    leaveModal.querySelector('.close-leave-review')?.addEventListener('click', closeLeaveModal);
+
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('Review submitted:', Object.fromEntries(new FormData(form)));
+        if (body) body.style.display = 'none';
+        if (success) success.style.display = 'block';
+      });
+    }
+  }
+
+  // === Escape key для обоих модалов ===
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.review-modal.is-active, .question-modal.is-active').forEach(modal => {
+        modal.classList.remove('is-active');
+      });
+      document.body.style.overflow = '';
+    }
+  });
 });
 </script>
 <style>
 /* Reviews Swiper */
-.reviews-swiper {
-  overflow: visible;
-  position: relative;
-  padding-bottom: 100px;
-}
+.reviews-swiper { overflow: visible; position: relative; padding-bottom: 100px; }
+.reviews-swiper .swiper-slide { width: 325px !important; height: auto; }
+.reviews-swiper .swiper-scrollbar { position: relative; width: 100%; height: 2px; background: rgba(255,255,255,0.2); border-radius: 4px; margin-top: 70px; }
+.reviews-swiper .swiper-scrollbar-drag { height: 100%; background: var(--color-accent); border-radius: 4px; cursor: grab; }
+.reviews-swiper .swiper-scrollbar-drag:active { cursor: grabbing; }
 
-.reviews-swiper .swiper-slide {
-  width: 325px !important;
-  height: auto;
-}
-
-/* Unified Swiper Scrollbar */
-.reviews-swiper .swiper-scrollbar {
-  position: relative;
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  margin-top: 70px;
-}
-
-.reviews-swiper .swiper-scrollbar-drag {
-  height: 100%;
-  background: var(--color-accent);
-  border-radius: 4px;
-  cursor: grab;
-}
-
-.reviews-swiper .swiper-scrollbar-drag:active {
-  cursor: grabbing;
-}
-
-/* Mobile */
 @media (max-width: 575px) {
-  .reviews-swiper .swiper-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    gap: 20px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .reviews-swiper .swiper-slide {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
-  
-  .reviews-swiper .swiper-scrollbar {
-    display: none;
-  }
+  .reviews-swiper .swiper-wrapper { display: flex; flex-wrap: nowrap; overflow-x: scroll; gap: 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .reviews-swiper .swiper-slide { scroll-snap-align: start; flex-shrink: 0; }
+  .reviews-swiper .swiper-scrollbar { display: none; }
 }
 
 /* Review Modal */
-.review-modal {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 9997; display: none; opacity: 0; transition: opacity 0.3s ease;
-}
-.review-modal.is-active {
-  display: flex; align-items: center; justify-content: center; opacity: 1;
-}
-.review-modal__overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-}
-.review-modal__content {
-  position: relative; width: 850px; max-width: 95%; max-height: 90vh;
-  background: #272727; border-radius: 30px; padding: 60px 50px 50px;
-  z-index: 1; overflow-y: auto;
-}
-.review-modal__close {
-  position: absolute; top: 25px; right: 25px; width: 21px; height: 21px;
-  background: transparent; border: none; cursor: pointer; padding: 0;
-}
+.review-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9997; display: none; opacity: 0; transition: opacity 0.3s ease; }
+.review-modal.is-active { display: flex; align-items: center; justify-content: center; opacity: 1; }
+.review-modal__overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+.review-modal__content { position: relative; width: 850px; max-width: 95%; max-height: 90vh; background: #272727; border-radius: 30px; padding: 60px 50px 50px; z-index: 1; overflow-y: auto; }
+.review-modal__close { position: absolute; top: 25px; right: 25px; width: 21px; height: 21px; background: transparent; border: none; cursor: pointer; padding: 0; transition: transform 0.2s; }
 .review-modal__close:hover { transform: rotate(90deg); }
-.review-modal__header {
-  display: grid; grid-template-columns: 100px 1fr; gap: 40px; margin-bottom: 30px;
-}
+.review-modal__header { display: grid; grid-template-columns: 100px 1fr; gap: 40px; margin-bottom: 30px; }
 .review-modal__name { font: 400 16px/1.5 'Manrope'; color: rgba(255,255,255,0.6); }
 .review-modal__title { font: 600 20px/1.3 'Manrope'; color: #fff; margin: 0; }
 .review-modal__separator { width: 100%; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 30px; }
