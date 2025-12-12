@@ -387,7 +387,7 @@ META_USE_TWITTER_PROPERTIES = True
 # SendPulse API
 SENDPULSE_API_ID = '65b93af1f38d59489ca664514590071e'
 SENDPULSE_API_SECRET = '7b12c26e7d2d3cdd9e61d6dd3e977f5f'
-SENDPULSE_FROM_EMAIL = 'astarta7776@gmail.com'
+SENDPULSE_FROM_EMAIL = 'info@oneagency.group'
 SENDPULSE_FROM_NAME = 'One Agency'
 ADMIN_EMAIL = ['one.agency.bali@gmail.com', 'egorov87@gmail.com']
 

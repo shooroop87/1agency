@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static %}
 <section class="about-hero" id="aboutus">
   <div class="ah-bg"></div>
   <div class="ah-side ah-side--left"></div>
@@ -128,6 +128,12 @@
 
 .ah-cta {
   display: inline-flex;
+}
+
+/* 1440-1600px */
+@media (max-width: 1600px) {
+  .ah-side--left { left: -230px; }
+  .ah-side--right { right: -220px; }
 }
 
 @media (max-width: 1400px) {

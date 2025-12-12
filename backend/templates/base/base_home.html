@@ -113,6 +113,18 @@
 {% include "includes/modals.html" %}
 {% include "includes/scripts_footer.html" %}
 {% render_snippets 'body_end' %}
-{% block extra_js %}{% endblock %}
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Перемещаем все модалки в body
+  ['callbackModal', 'serviceModal', 'serviceDetailsModal', 'reviewModal'].forEach(id => {
+    const modal = document.getElementById(id);
+    if (modal && modal.parentNode !== document.body) {
+      document.body.appendChild(modal);
+    }
+  });
+});
+</script>
+{% endblock %}
 </body>
 </html>

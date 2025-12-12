@@ -331,7 +331,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 }
 
 .partners-section {
-  padding: 240px 0 120px 0;
+  padding: 150px 0 120px 0;
 }
 
 @media (max-width: 768px) {
@@ -9072,6 +9072,13 @@ html, body {
   overscroll-behavior-x: none;
 }
 
+#reviews {
+  padding: 70px 0;
+}
+#concierge {
+  padding: 70px 0;
+}
+
 /* Active menu item */
 .oa-menu .list-item {
   position: relative;
@@ -9498,4 +9505,79 @@ main#content2 {
   main#content2 {
     padding-bottom: 0;
   }
+}
+/* Модалки максимально высоко */
+.callback-modal,
+.service-modal,
+.service-details-modal,
+.review-modal,
+#callbackModal,
+#serviceModal,
+#serviceDetailsModal,
+#reviewModal {
+  z-index: 99999 !important;
+}
+
+.callback-modal__overlay,
+.service-modal__overlay,
+.service-details-modal__overlay,
+.review-modal__overlay {
+  z-index: 99998 !important;
+}
+
+.callback-modal__content,
+.service-modal__content,
+.service-details-modal__content,
+.review-modal__content {
+  z-index: 99999 !important;
+}
+@media (max-width: 1366px) {
+  .ah-side--left {
+    left: -200px;
+  }
+  
+  .ah-side--right {
+    right: -190px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .ah-side--left {
+    left: -150px;
+  }
+  
+  .ah-side--right {
+    right: -140px;
+  }
+}
+/* Базовые стили (экран > 1600px) */
+.ah-side--left {
+  left: -270px;
+}
+.ah-side--right {
+  right: -256px;
+}
+
+/* 1440-1600px */
+@media (max-width: 1600px) {
+  .ah-side--left { left: -230px; }
+  .ah-side--right { right: -220px; }
+}
+
+/* 1367-1440px */
+@media (max-width: 1440px) {
+  .ah-side--left { left: -200px; }
+  .ah-side--right { right: -190px; }
+}
+
+/* 1281-1366px */
+@media (max-width: 1366px) {
+  .ah-side--left { left: -170px; }
+  .ah-side--right { right: -160px; }
+}
+
+/* < 1280px */
+@media (max-width: 1280px) {
+  .ah-side--left { left: -150px; }
+  .ah-side--right { right: -140px; }
 }
