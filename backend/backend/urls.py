@@ -10,7 +10,6 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('tinymce/', include('tinymce.urls')),
     path('filer/', include('filer.urls')),
-    path('__reload__/', include('django_browser_reload.urls')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -20,6 +19,7 @@ urlpatterns += i18n_patterns(
 
 # Media и Static файлы в режиме DEBUG
 if settings.DEBUG:
+    urlpatterns += [path('__reload__/', include('django_browser_reload.urls'))]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
