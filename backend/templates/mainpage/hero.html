@@ -7,17 +7,17 @@
         
         <!-- Видео показывается СРАЗУ -->
         <div class="hero-video-bg is-playing desktop-only">
-          <video class="hero-full-video" muted loop playsinline autoplay preload="auto">
+          <video class="hero-full-video" muted loop playsinline autoplay>
             <source src="{% static 'videos/output.mp4' %}" type="video/mp4">
           </video>
         </div>
 
         <!-- Mobile Grid -->
         <div class="hero-grid-mobile">
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero1.png' %}" alt="Bali 1" loading="eager" fetchpriority="high"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero2.png' %}" alt="Bali 2"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero3.png' %}" alt="Bali 3"></div>
-          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero4.png' %}" alt="Bali 4"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero1m.webp' %}" alt="Bali 1"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero2m.webp' %}" alt="Bali 2"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero3m.webp' %}" alt="Bali 3"></div>
+          <div class="hero-grid-mobile__item"><img src="{% static 'images/hero/hero4m.webp' %}" alt="Bali 4"></div>
         </div>
 
         <!-- Navigation -->
@@ -88,7 +88,7 @@
         </div>
 
         <!-- Labels -->
-        <div class="hero-label-left is-desktop"><div class="hero-scroll"><span>Scroll down</span><span class="partners-dot"></span></div></div>
+        <div class="hero-label-left is-desktop"><div class="hero-scroll"><span>Scroll down</span><span class="partners-dot2"></span></div></div>
         <div class="hero-label-right is-desktop"><h2 class="hero-kicker">Sale of real estate<br>and land plots in Bali</h2></div>
         
       </div>
@@ -236,7 +236,7 @@
   .nav-wrap .hero-name { font-size: 24px !important; }
   .hero-label-left.is-desktop, .hero-label-right.is-desktop { position: relative !important; left: auto !important; bottom: auto !important; margin-bottom: 20px; }
   .hero-scroll { flex-direction: row; gap: 10px; }
-  .partners-dot { margin-left: 35px; }
+  .partners-dot2 { margin-left: 35px; }
   .hero-spacer { display: none !important; }
   .home-banner-style1 { position: relative !important; height: auto !important; }
   .pin-spacer { display: contents !important; }

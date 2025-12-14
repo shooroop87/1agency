@@ -61,42 +61,26 @@
 </div>
 <script>
 (function(){
-  var COOLDOWN = 5 * 60 * 1000;
+  var COOLDOWN = 5 * 60 * 1000; // 5 минут
   var lastShown = sessionStorage.getItem('loaderShown');
   var now = Date.now();
   var loader = document.getElementById('loader');
   
   if (lastShown && (now - parseInt(lastShown)) < COOLDOWN) {
+    // Не показываем лоадер
     document.body.classList.remove('is-loading');
     loader.remove();
     return;
   }
   
+  // Показываем лоадер
   loader.style.display = '';
   sessionStorage.setItem('loaderShown', now);
   
   var imgs = document.querySelectorAll('.loader-img');
   var counter = document.querySelector('.loader-number');
-  var total = imgs.length;
-  var loaded = 0;
-  var idx = 0;
+  var idx = 0, total = imgs.length;
   
-  // Предзагрузка всех картинок
-  function preload(callback) {
-    imgs.forEach(function(img) {
-      if (img.complete) {
-        loaded++;
-        if (loaded >= total) callback();
-      } else {
-        img.onload = img.onerror = function() {
-          loaded++;
-          if (loaded >= total) callback();
-        };
-      }
-    });
-  }
-  
-  // Анимация после загрузки
   function run() {
     var iv = setInterval(function(){
       imgs[idx].classList.remove('is-active');
@@ -114,15 +98,7 @@
       imgs[idx].classList.add('is-active');
     }, 180);
   }
-  
-  // Ждём загрузки, но не дольше 3 сек
-  var started = false;
-  preload(function() {
-    if (!started) { started = true; run(); }
-  });
-  setTimeout(function() {
-    if (!started) { started = true; run(); }
-  }, 3000);
+  setTimeout(run, 100);
 })();
 </script>
 

@@ -3,7 +3,7 @@
   <div class="reviews-bg" style="
     background-image:
       linear-gradient(0deg, rgba(39,39,39,.40), rgba(39,39,39,.40)),
-      url('{% static 'images/bg_reviews.png' %}');">
+      url('{% static 'images/bg_reviews.webp' %}');">
     <div class="container">
 
       <div class="row align-items-center mb30 mb10-xs pt150 pt80-xs">
@@ -52,21 +52,59 @@
     </div>
   </div>
 </section>
-<!-- Review Modal -->
-<div id="reviewModal" class="review-modal">
-  <div class="review-modal__overlay"></div>
-  <div class="review-modal__content">
-    <button class="review-modal__close">
+<!-- Leave Review Modal -->
+<div id="leaveReviewModal" class="question-modal">
+  <div class="question-modal__overlay"></div>
+  <div class="question-modal__content">
+    <button class="question-modal__close">
       <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
         <path d="M5.5 5.5L15.5 15.5M15.5 5.5L5.5 15.5" stroke="white" stroke-width="1"/>
       </svg>
     </button>
-    <div class="review-modal__header">
-      <span class="review-modal__name"></span>
-      <h3 class="review-modal__title"></h3>
+
+    <div id="leaveReviewBody">
+      <div class="question-modal__header">
+        <h3 class="question-modal__title">{% trans "Leave a review" %}</h3>
+      </div>
+
+      <form id="leaveReviewForm" class="question-form">
+        <div class="question-form__field">
+          <input type="text" name="name" placeholder="{% trans 'Your name' %}" required>
+        </div>
+        <div class="question-form__field">
+          <input type="email" name="email" placeholder="{% trans 'Email' %}" required>
+        </div>
+        <div class="question-form__field">
+          <textarea name="review" placeholder="{% trans 'Your review...' %}" required></textarea>
+        </div>
+        <div class="question-form__checkbox">
+          <label>
+            <input type="checkbox" name="privacy" required checked>
+            <span class="checkbox-custom"></span>
+            <span>{% trans "I agree to the processing of personal data" %}</span>
+          </label>
+        </div>
+        <button type="submit" class="question-form__submit">
+          {% trans "Submit review" %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </form>
     </div>
-    <div class="review-modal__separator"></div>
-    <div class="review-modal__text"></div>
+
+    <div id="leaveReviewSuccess" class="question-modal__success">
+      <div class="question-modal__success-inner">
+        <h4 class="question-modal__success-title">{% trans "Thank you!" %}</h4>
+        <p class="question-modal__success-text">{% trans "Your review has been submitted" %}</p>
+        <button class="question-modal__success-btn close-leave-review">
+          {% trans "Close" %}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
