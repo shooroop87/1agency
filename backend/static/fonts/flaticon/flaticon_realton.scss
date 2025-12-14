@@ -2,7 +2,6 @@ $flaticon_realton-font: "flaticon_realton";
 
 @font-face {
     font-family: $flaticon_realton-font;
-    font-display: swap;
     src: url("./flaticon_realton.ttf?d9e4c439f7365ec085cf949765d4ea07") format("truetype"),
 url("./flaticon_realton.woff?d9e4c439f7365ec085cf949765d4ea07") format("woff"),
 url("./flaticon_realton.woff2?d9e4c439f7365ec085cf949765d4ea07") format("woff2"),
@@ -17,7 +16,6 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    font-display: swap;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

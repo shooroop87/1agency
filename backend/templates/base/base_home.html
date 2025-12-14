@@ -79,29 +79,38 @@
   var counter = document.querySelector('.loader-number');
   var total = imgs.length;
   var loaded = 0;
-  var idx = 0;
   
-  // Предзагрузка всех картинок
+  // Фаза 1: Загрузка с прогрессом
+  function updateLoadProgress() {
+    var percent = Math.round((loaded / total) * 50); // До 50% на загрузку
+    if (counter) counter.textContent = percent;
+  }
+  
   function preload(callback) {
     imgs.forEach(function(img) {
-      if (img.complete) {
+      function done() {
         loaded++;
+        updateLoadProgress();
         if (loaded >= total) callback();
+      }
+      if (img.complete && img.naturalHeight !== 0) {
+        done();
       } else {
-        img.onload = img.onerror = function() {
-          loaded++;
-          if (loaded >= total) callback();
-        };
+        img.onload = done;
+        img.onerror = done;
       }
     });
   }
   
-  // Анимация после загрузки
-  function run() {
+  // Фаза 2: Анимация слайдов (50-100%)
+  function runSlides() {
+    var idx = 0;
     var iv = setInterval(function(){
       imgs[idx].classList.remove('is-active');
       idx++;
-      if (counter) counter.textContent = Math.round((idx/total)*100);
+      var percent = 50 + Math.round((idx / total) * 50);
+      if (counter) counter.textContent = percent;
+      
       if (idx >= total) {
         clearInterval(iv);
         setTimeout(function(){
@@ -112,17 +121,17 @@
         return;
       }
       imgs[idx].classList.add('is-active');
-    }, 180);
+    }, 120);
   }
   
-  // Ждём загрузки, но не дольше 3 сек
+  // Старт
   var started = false;
   preload(function() {
-    if (!started) { started = true; run(); }
+    if (!started) { started = true; runSlides(); }
   });
   setTimeout(function() {
-    if (!started) { started = true; run(); }
-  }, 3000);
+    if (!started) { started = true; runSlides(); }
+  }, 4000);
 })();
 </script>
 
