@@ -10,15 +10,8 @@
     .loader-tim{position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a1a;z-index:99999}
     .loader-tim-wrap{position:relative;width:100%;height:100%}
     .loader-imgs{position:absolute;top:0;left:0;width:100%;height:100%}
-    .loader-img{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition: opacity .35s linear;
-  will-change: opacity, transform;
-  transform: translateZ(0);
-}
-    .loader-img.is-active{opacity:1}
+    .loader-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;visibility:hidden}
+    .loader-img.is-active{visibility:visible}
     .loader-counter{position:absolute;bottom:40px;left:40px}
     .loader-number{font-size:48px;font-weight:300;color:#fff}
     .loader-text{position:absolute;bottom:40px;right:40px}
@@ -36,7 +29,7 @@
 <div class="loader-tim" id="loader">
   <div class="loader-tim-wrap">
     <div class="loader-imgs">
-<img src="{% static 'images/loader/Untitled-1.webp' %}" alt="" class="loader-img is-active">
+      <img src="{% static 'images/loader/Untitled-1.webp' %}" alt="" class="loader-img is-active">
 <img src="{% static 'images/loader/Untitled-2.webp' %}" alt="" class="loader-img">
 <img src="{% static 'images/loader/Untitled-3.webp' %}" alt="" class="loader-img">
 <img src="{% static 'images/loader/Untitled-4.webp' %}" alt="" class="loader-img">
@@ -70,94 +63,37 @@
 (function(){
   var COOLDOWN = 5 * 60 * 1000;
   var lastShown = sessionStorage.getItem('loaderShown');
-  var now = Date.now();
   var loader = document.getElementById('loader');
   
-  if (lastShown && (now - parseInt(lastShown)) < COOLDOWN) {
+  if (lastShown && (Date.now() - parseInt(lastShown)) < COOLDOWN) {
     document.body.classList.remove('is-loading');
-    if (loader) loader.remove();
+    loader.remove();
     return;
   }
   
-  sessionStorage.setItem('loaderShown', now);
+  sessionStorage.setItem('loaderShown', Date.now());
   
   var imgs = document.querySelectorAll('.loader-img');
   var counter = document.querySelector('.loader-number');
   var total = imgs.length;
-  var currentIdx = 0;
-  var loadedMap = {}; // какие загружены
-  var animationStarted = false;
+  var idx = 0;
   
-  // Отмечаем загруженные
-  imgs.forEach(function(img, i) {
-    function markLoaded() {
-      loadedMap[i] = true;
-      tryStart();
-    }
-    if (img.complete && img.naturalHeight !== 0) {
-      markLoaded();
-    } else {
-      img.onload = markLoaded;
-      img.onerror = markLoaded;
-    }
-  });
-  
-  // Начинаем как только первые 3 готовы
-  function tryStart() {
-    if (animationStarted) return;
-    if (loadedMap[0] && loadedMap[1] && loadedMap[2]) {
-      animationStarted = true;
-      runSlides();
-    }
-  }
-  
-  // Запуск через 800ms в любом случае
   setTimeout(function() {
-    if (!animationStarted) {
-      animationStarted = true;
-      runSlides();
-    }
-  }, 800);
-  
-  function runSlides() {
     var iv = setInterval(function(){
-      if (imgs[currentIdx]) {
-        imgs[currentIdx].classList.remove('is-active');
-      }
-      currentIdx++;
+      imgs[idx].classList.remove('is-active');
+      idx++;
+      counter.textContent = Math.round((idx / total) * 100);
       
-      var percent = Math.round((currentIdx / total) * 100);
-      if (counter) counter.textContent = percent;
-      
-      if (currentIdx >= total) {
+      if (idx >= total) {
         clearInterval(iv);
-        finish();
+        loader.classList.add('is-hidden');
+        document.body.classList.remove('is-loading');
+        setTimeout(function(){ loader.remove(); }, 500);
         return;
       }
-      
-      // Ждём пока текущий кадр загрузится (но не дольше 50ms)
-      if (loadedMap[currentIdx]) {
-        imgs[currentIdx].classList.add('is-active');
-      } else {
-        var waited = 0;
-        var check = setInterval(function() {
-          waited += 10;
-          if (loadedMap[currentIdx] || waited > 50) {
-            clearInterval(check);
-            imgs[currentIdx].classList.add('is-active');
-          }
-        }, 10);
-      }
-    }, 100);
-  }
-  
-  function finish() {
-    setTimeout(function(){
-      loader.classList.add('is-hidden');
-      document.body.classList.remove('is-loading');
-      setTimeout(function(){ loader.remove(); }, 500);
-    }, 150);
-  }
+      imgs[idx].classList.add('is-active');
+    }, 80);
+  }, 300);
 })();
 </script>
 {% include "includes/menu-mobile.html" %}
@@ -166,23 +102,10 @@
   {% block content %}{% endblock %}
 </main>
 
-
 {% include "includes/footer4.html" %}
 {% include "includes/modals.html" %}
 {% include "includes/scripts_footer.html" %}
 {% render_snippets 'body_end' %}
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Перемещаем все модалки в body
-  ['callbackModal', 'serviceModal', 'serviceDetailsModal', 'reviewModal'].forEach(id => {
-    const modal = document.getElementById(id);
-    if (modal && modal.parentNode !== document.body) {
-      document.body.appendChild(modal);
-    }
-  });
-});
-</script>
-{% endblock %}
+{% block extra_js %}{% endblock %}
 </body>
 </html>
