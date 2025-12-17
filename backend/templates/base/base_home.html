@@ -10,7 +10,14 @@
     .loader-tim{position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a1a;z-index:99999}
     .loader-tim-wrap{position:relative;width:100%;height:100%}
     .loader-imgs{position:absolute;top:0;left:0;width:100%;height:100%}
-    .loader-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0}
+    .loader-img{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition: opacity .35s linear;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
     .loader-img.is-active{opacity:1}
     .loader-counter{position:absolute;bottom:40px;left:40px}
     .loader-number{font-size:48px;font-weight:300;color:#fff}
@@ -72,69 +79,177 @@
     return;
   }
   
-  loader.style.display = '';
   sessionStorage.setItem('loaderShown', now);
   
   var imgs = document.querySelectorAll('.loader-img');
   var counter = document.querySelector('.loader-number');
   var total = imgs.length;
-  var loaded = 0;
+  var currentIdx = 0;
+  var loadedMap = {}; // какие загружены
+  var animationStarted = false;
   
-  // Фаза 1: Загрузка с прогрессом
-  function updateLoadProgress() {
-    var percent = Math.round((loaded / total) * 50); // До 50% на загрузку
-    if (counter) counter.textContent = percent;
+  // Отмечаем загруженные
+  imgs.forEach(function(img, i) {
+    function markLoaded() {
+      loadedMap[i] = true;
+      tryStart();
+    }
+    if (img.complete && img.naturalHeight !== 0) {
+      markLoaded();
+    } else {
+      img.onload = markLoaded;
+      img.onerror = markLoaded;
+    }
+  });
+  
+  // Начинаем как только первые 3 готовы
+  function tryStart() {
+    if (animationStarted) return;
+    if (loadedMap[0] && loadedMap[1] && loadedMap[2]) {
+      animationStarted = true;
+      runSlides();
+    }
   }
   
-  function preload(callback) {
-    imgs.forEach(function(img) {
-      function done() {
-        loaded++;
-        updateLoadProgress();
-        if (loaded >= total) callback();
-      }
-      if (img.complete && img.naturalHeight !== 0) {
-        done();
-      } else {
-        img.onload = done;
-        img.onerror = done;
-      }
-    });
-  }
+  // Запуск через 800ms в любом случае
+  setTimeout(function() {
+    if (!animationStarted) {
+      animationStarted = true;
+      runSlides();
+    }
+  }, 800);
   
-  // Фаза 2: Анимация слайдов (50-100%)
   function runSlides() {
-    var idx = 0;
     var iv = setInterval(function(){
-      imgs[idx].classList.remove('is-active');
-      idx++;
-      var percent = 50 + Math.round((idx / total) * 50);
+      imgs[currentIdx].classList.remove('is-active');
+      currentIdx++;
+      
+      var percent = Math.round((currentIdx / total) * 100);
       if (counter) counter.textContent = percent;
       
-      if (idx >= total) {
+      if (currentIdx >= total) {
         clearInterval(iv);
-        setTimeout(function(){
-          loader.classList.add('is-hidden');
-          document.body.classList.remove('is-loading');
-          setTimeout(function(){ loader.remove() }, 500);
-        }, 200);
+        finish();
         return;
       }
-      imgs[idx].classList.add('is-active');
-    }, 120);
+      
+      // Ждём пока текущий кадр загрузится (но не дольше 50ms)
+      if (loadedMap[currentIdx]) {
+        imgs[currentIdx].classList.add('is-active');
+      } else {
+        var waited = 0;
+        var check = setInterval(function() {
+          waited += 10;
+          if (loadedMap[currentIdx] || waited > 50) {
+            clearInterval(check);
+            imgs[currentIdx].classList.add('is-active');
+          }
+        }, 10);
+      }
+    }, 100);
   }
   
-  // Старт
-  var started = false;
-  preload(function() {
-    if (!started) { started = true; runSlides(); }
-  });
-  setTimeout(function() {
-    if (!started) { started = true; runSlides(); }
-  }, 4000);
+  function finish() {
+    setTimeout(function(){
+      loader.classList.add('is-hidden');
+      document.body.classList.remove('is-loading');
+      setTimeout(function(){ loader.remove(); }, 500);
+    }, 150);
+  }
 })();
 </script>
-
+<script>
+(function(){
+  var COOLDOWN = 5 * 60 * 1000;
+  var lastShown = sessionStorage.getItem('loaderShown');
+  var now = Date.now();
+  var loader = document.getElementById('loader');
+  
+  if (lastShown && (now - parseInt(lastShown)) < COOLDOWN) {
+    document.body.classList.remove('is-loading');
+    loader.remove();
+    return;
+  }
+  
+  sessionStorage.setItem('loaderShown', now);
+  
+  var imgs = document.querySelectorAll('.loader-img');
+  var counter = document.querySelector('.loader-number');
+  var total = imgs.length;
+  var currentIdx = 0;
+  var loadedMap = {}; // какие загружены
+  var animationStarted = false;
+  
+  // Отмечаем загруженные
+  imgs.forEach(function(img, i) {
+    function markLoaded() {
+      loadedMap[i] = true;
+      tryStart();
+    }
+    if (img.complete && img.naturalHeight !== 0) {
+      markLoaded();
+    } else {
+      img.onload = markLoaded;
+      img.onerror = markLoaded;
+    }
+  });
+  
+  // Начинаем как только первые 3 готовы
+  function tryStart() {
+    if (animationStarted) return;
+    if (loadedMap[0] && loadedMap[1] && loadedMap[2]) {
+      animationStarted = true;
+      runSlides();
+    }
+  }
+  
+  // Запуск через 800ms в любом случае
+  setTimeout(function() {
+    if (!animationStarted) {
+      animationStarted = true;
+      runSlides();
+    }
+  }, 800);
+  
+  function runSlides() {
+    var iv = setInterval(function(){
+      imgs[currentIdx].classList.remove('is-active');
+      currentIdx++;
+      
+      var percent = Math.round((currentIdx / total) * 100);
+      if (counter) counter.textContent = percent;
+      
+      if (currentIdx >= total) {
+        clearInterval(iv);
+        finish();
+        return;
+      }
+      
+      // Ждём пока текущий кадр загрузится (но не дольше 50ms)
+      if (loadedMap[currentIdx]) {
+        imgs[currentIdx].classList.add('is-active');
+      } else {
+        var waited = 0;
+        var check = setInterval(function() {
+          waited += 10;
+          if (loadedMap[currentIdx] || waited > 50) {
+            clearInterval(check);
+            imgs[currentIdx].classList.add('is-active');
+          }
+        }, 10);
+      }
+    }, 100);
+  }
+  
+  function finish() {
+    setTimeout(function(){
+      loader.classList.add('is-hidden');
+      document.body.classList.remove('is-loading');
+      setTimeout(function(){ loader.remove(); }, 500);
+    }, 150);
+  }
+})();
+</script>
 {% include "includes/menu-mobile.html" %}
 
 <main id="content">

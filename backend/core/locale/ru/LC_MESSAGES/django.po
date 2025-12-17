@@ -1,7 +1,7 @@
 # locale/ru/LC_MESSAGES/django.po
 
 #: templates/includes/menu-mobile.html:25
-msgid "About us"
+msgid "About Us"
 msgstr "О нас"
 
 #: templates/includes/menu-mobile.html:26

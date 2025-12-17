@@ -599,7 +599,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 
 /* ===== Services slider (скоуп) ===== */
-.services-section { position: relative; }
+.services-section { position: relative; background-color: #232323;}
 .services-section .main-title .title{ color:var(--headings-color); }
 
 /* ширина карточек как в макете */
@@ -767,6 +767,10 @@ background-clip: text;
 }
 
 /* ===== Concierge (What we do for you) ===== */
+.concierge {
+  background-color: #232323;
+}
+
 .concierge .row {
   --bs-gutter-x: 0;
   --bs-gutter-y: 20px;
@@ -936,13 +940,24 @@ background-clip: text;
   padding: 120px 0 0 0;
 }
 
+
+
 .section-content-footer {
   width: 100%;
   position: relative;
   z-index: 3;
-  background: radial-gradient(120% 100% at 50% 0%, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 60%), linear-gradient(180deg, #2a2a2a 0%, #232323 100%);
+  background: #272727;
   border-radius: 0 0 20px 20px;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, .25);
+  padding: 0px;
+}
+
+/* Пустой блок только для тени */
+.section-footer-shadow {
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  background: transparent;
+  padding: 0;
 }
 
 /* === Favorites Button (из Figma) === */
@@ -1002,13 +1017,20 @@ a.favorites-btn:hover {
   color:var(--color-light-grey);
   margin-bottom:8px;
 }
-.areas-heading{ margin:0 0 18px; }
+.areas-heading {
+  margin: 0 0 18px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 100%;
+}
 
 /* ===== Tabs (слева) ===== */
 .areas-tabs {
-    max-width: 590px;
-    top: 200px;
-    position: relative;
+  max-width: 492px;
+  top: 111px;
+  position: relative;
 }
 
 .areas-nav{
@@ -9074,10 +9096,10 @@ html, body {
 }
 
 #reviews {
-  padding: 70px 0;
+  padding: 0px;
 }
 #concierge {
-  padding: 70px 0;
+  padding: 70px 0 150px 0;
 }
 
 /* Active menu item */

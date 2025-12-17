@@ -95,7 +95,27 @@
     </div>
   </div>
 </section>
+<section class="prefooter-bottom" aria-hidden="true"></section>
 <style>
+.section-content-footer{
+  position: relative;
+  overflow: visible;
+}
+.prefooter-bottom {
+  width: 100%;
+  height: 150px;
+  margin: 0 auto;
+  background: #272727;
+  border-radius: 0 0 55px 55px;
+  position: relative;
+  padding: 0px;
+  clip-path: inset(0 -100px -165px -100px);
+  box-shadow: 0 100px 65px rgba(0,0,0,.25);
+}
+.section-content-footer > *{
+  position: relative;
+  z-index: 1;
+}
 /* секция с фоном */
 .contact-form-section {
   position: relative;
@@ -106,7 +126,7 @@
   background-image:
     linear-gradient(250.75deg, rgba(0,0,0,0) 62.91%, rgba(39,39,39,0.8) 100.18%),
     linear-gradient(0deg, rgba(35,35,35,0.2), rgba(35,35,35,0.2)),
-    url({% static 'images/pre_footer.webp' %});
+    url('static/images/pre_footer.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

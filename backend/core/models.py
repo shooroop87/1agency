@@ -145,7 +145,7 @@ class FAQ(TranslatableModel):
 # Продолжение backend/core/models.py
 
 class InvestmentCard(TranslatableModel):
-    """Investment strategies cards (About us section)"""
+    """Investment strategies cards (About Us section)"""
     translations = TranslatedFields(
         title=models.CharField(_('Title'), max_length=200),
         description=models.TextField(_('Description')),
