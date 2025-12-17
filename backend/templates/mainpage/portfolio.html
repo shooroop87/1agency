@@ -172,6 +172,13 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
   .pm-wrapper { padding: 0 25px 30px; }
   .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
 }
+.pc-img-inner {
+  transform: scale(1) rotate(0);
+}
+
+.pc-img:hover .pc-img-inner {
+  transform: scale(1.1) rotate(-1deg);
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
