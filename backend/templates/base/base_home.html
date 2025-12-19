@@ -45,7 +45,7 @@
 <script>
 (function(){
   var imgs=document.querySelectorAll('.loader-img'),counter=document.querySelector('.loader-number'),loader=document.getElementById('loader'),idx=0,total=imgs.length;
-  function run(){var iv=setInterval(function(){imgs[idx].classList.remove('is-active');idx++;if(counter)counter.textContent=Math.round((idx/total)*100);if(idx>=total){clearInterval(iv);setTimeout(function(){loader.classList.add('is-hidden');document.body.classList.remove('is-loading');setTimeout(function(){loader.remove()},500)},200);return}imgs[idx].classList.add('is-active')},250)}
+  function run(){var iv=setInterval(function(){imgs[idx].classList.remove('is-active');idx++;if(counter)counter.textContent=Math.round((idx/total)*100);if(idx>=total){clearInterval(iv);setTimeout(function(){loader.classList.add('is-hidden');document.body.classList.remove('is-loading');setTimeout(function(){loader.remove()},500)},200);return}imgs[idx].classList.add('is-active')},200)}
   setTimeout(run,100);
 })();
 </script>
