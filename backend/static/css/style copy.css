@@ -13,13 +13,9 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 /* Header Styles */
 /* All Type Of Footer Styles */
 /* All styles about breadcumb */
-/* Dashboard Style Code Here */
-/* Messages Styles */
-/* Listings Styles */
 /* About Pages Design Content Styles  */
 /* Hero Styles All Type Of */
 /* ALl Blogs Styles Here  */
-/* Brands */
 /* Commons Styles of Template */
 /* Contact Styles */
 /* All CTA Styles Here */
@@ -38,8 +34,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 /* Funfact Styles */
 /* Menu Style */
 /* Nav & Tabs Styles */
-/* Paginations Styles */
-/* ProgressBar Styles */
 /* Social Styles */
 /* Sliders Styles */
 /* Sidebar Styles */
@@ -373,7 +367,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   gap: 8px;
 }
 
-.partners-dot {
+.partners-dot, .partners-dot2  {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -599,7 +593,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 
 /* ===== Services slider (скоуп) ===== */
-.services-section { position: relative; }
+.services-section { position: relative; background-color: #232323;}
 .services-section .main-title .title{ color:var(--headings-color); }
 
 /* ширина карточек как в макете */
@@ -767,6 +761,10 @@ background-clip: text;
 }
 
 /* ===== Concierge (What we do for you) ===== */
+.concierge {
+  background-color: #232323;
+}
+
 .concierge .row {
   --bs-gutter-x: 0;
   --bs-gutter-y: 20px;
@@ -936,13 +934,24 @@ background-clip: text;
   padding: 120px 0 0 0;
 }
 
+
+
 .section-content-footer {
   width: 100%;
   position: relative;
   z-index: 3;
-  background: radial-gradient(120% 100% at 50% 0%, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 60%), linear-gradient(180deg, #2a2a2a 0%, #232323 100%);
+  background: #272727;
   border-radius: 0 0 20px 20px;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, .25);
+  padding: 0px;
+}
+
+/* Пустой блок только для тени */
+.section-footer-shadow {
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  background: transparent;
+  padding: 0;
 }
 
 /* === Favorites Button (из Figma) === */
@@ -1002,13 +1011,20 @@ a.favorites-btn:hover {
   color:var(--color-light-grey);
   margin-bottom:8px;
 }
-.areas-heading{ margin:0 0 18px; }
+.areas-heading {
+  margin: 0 0 18px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 100%;
+}
 
 /* ===== Tabs (слева) ===== */
 .areas-tabs {
-    max-width: 590px;
-    top: 200px;
-    position: relative;
+  max-width: 492px;
+  top: 111px;
+  position: relative;
 }
 
 .areas-nav{
@@ -1151,7 +1167,8 @@ a.favorites-btn:hover {
   isolation:isolate;
   /* размеры как в фигме */
   min-block-size:660px;
-  margin-block:0 120px; /* даём место для вылета нижних картинок на мобильных можно убрать */
+  margin-block:0 120px;
+  z-index: 2;
 }
 
 /* фон с оверлеем */
@@ -1235,7 +1252,7 @@ a.favorites-btn:hover {
   .ah-side--right{ right:-120px; }
 }
 @media (max-width: 991.98px){
-  .about-hero{ margin-block:0 60px; }
+  .about-hero{ margin-block:0 60px; z-index: 2;}
   .ah-content{ padding-block:80px 30px; inline-size:90%; text-align:left; }
   .ah-title{ font-size:22px; }
   .ah-text{ font-size:16px; }
@@ -1245,7 +1262,7 @@ a.favorites-btn:hover {
 }
 @media (max-width: 575.98px){
   .ah-side{ display:none; } /* на маленьких — фокус на тексте */
-  .about-hero{ margin:0; }
+  .about-hero{ margin:0; z-index: 2;}
   .ah-content{ inline-size:100%; padding:60px 16px 30px; }
 }
 
@@ -1650,13 +1667,13 @@ h2 {
 .footer-style1 {
   background: var(--color-black-2);
   color: var(--headings-color);
-  box-shadow: 0 -10px 40px rgba(0,0,0,.25); /* лёгкая тень при выезде */
+  box-shadow: 0 -10px 40px rgba(0,0,0,.25);
 }
 
 .body_content {
   position: relative;
   z-index: 10;
-  background: transparent; /* убираем фон */
+  background: transparent;
 }
 
 .body_content::before {
@@ -1666,12 +1683,11 @@ h2 {
   left: 0;
   right: 0;
   height: calc(3000px + 100vh);
-  max-height: 4000px;
+  max-height: 2000px;
   background-image: url('../images/one.svg');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
-  opacity: 0.15;
   pointer-events: none;
   z-index: 0;
 }
@@ -3176,6 +3192,7 @@ h2 {
   background-position: center;
   min-height: 1204px;
   background-image: url('../images/property.webp');
+  background-attachment: fixed; /* parallax */
 }
 
 /*Home 1 Banner Content*/
@@ -3586,8 +3603,6 @@ h2 {
   left: -100px;
   position: absolute;
 }
-
-/* Brands */
 /* Commons Styles of Template */
 section {
   padding: 120px 0;
@@ -9073,10 +9088,10 @@ html, body {
 }
 
 #reviews {
-  padding: 70px 0;
+  padding: 0px;
 }
 #concierge {
-  padding: 70px 0;
+  padding: 70px 0 150px 0;
 }
 
 /* Active menu item */
