@@ -1,31 +1,35 @@
 {% load static humanize %}
 {% include "portfolio/filters_home.html" %}
-<section class="projects pb120 section-content mt40-xs" style="z-index: auto;">
+<section class="projects section-projects2 pt50 pb100" style="z-index: auto;">
   <div class="container">
     <div class="projects-grid" id="propertiesGrid">
-{% for prop in featured_properties %}
-<a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
-   data-id="{{ prop.id }}">
-  <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
-    <div class="pc-tags">
-      <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
-      {% if prop.price_min %}
-      <span class="tag">From ${{ prop.price_min|floatformat:0|intcomma }}</span>
-      {% endif %}
-    </div>
-  </div>
-  <div class="pc-meta">
-    <h3 class="pc-title">
-      <span class="dot" aria-hidden="true"></span>
-      {{ prop.title }}
-      <i class="wdt-button__icon" aria-hidden="true"></i>
-    </h3>
-    <div class="pc-loc">{{ prop.location.name|default:"Bali" }}</div>
-  </div>
-</a>
-{% empty %}
-<p class="text-center text-white">No properties available</p>
-{% endfor %}
+      {% for prop in featured_properties|slice:":4" %}
+      <a href="#" class="project-card project-card--lg{% if forloop.counter == 2 %} project-card--align-end{% endif %}"
+         data-id="{{ prop.id }}"
+         data-title="{{ prop.title }}"
+         data-type="{{ prop.property_type.name|default:'Property' }}"
+         data-location="{{ prop.location.name|default:'Bali' }}"
+         data-image="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}">
+        <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
+          <div class="pc-tags">
+            <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
+            {% if prop.price_min %}
+            <span class="tag">From ${{ prop.price_min|floatformat:0|intcomma }}</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            {{ prop.title }}
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">{{ prop.location.name|default:"Bali" }}</div>
+        </div>
+      </a>
+      {% empty %}
+      <p class="text-center text-white">No properties available</p>
+      {% endfor %}
     </div>
     <div class="projects-cta mt70">
       <a href="{% url 'projects' %}" class="wdt-button button-cta is-nm concierge-cta">
@@ -35,7 +39,7 @@
   </div>
 </section>
 
-<!-- Property Modal for Homepage -->
+<!-- Property Modal -->
 <div id="propertyModal" class="property-modal">
   <div class="property-modal__overlay"></div>
   <div class="property-modal__content">
@@ -57,7 +61,7 @@
             <div class="pm-header__actions mt20">
               <a class="wdt-button button-cta is-nm concierge-cta" href="#contactus">
                 <span>Contact us</span>
-                <span class="arrow-icon">→</span>
+                <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -99,75 +103,23 @@
   </div>
 </div>
 <style>
-/* Property Modal */
-.property-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* Projects Grid */
+.section-projects2 .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
 }
-.property-modal.is-active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: #fff;
 }
-body.modal-open { overflow: hidden; }
-body.modal-open header.nav-homepage-style { z-index: 1 !important; }
-.property-modal__overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
+
+.project-card--align-end {
+  align-self: end;
 }
-.property-modal__content {
-  position: relative;
-  width: 900px;
-  max-width: 95%;
-  max-height: 90vh;
-  background: #272727;
-  border-radius: 30px;
-  overflow-y: auto;
-  z-index: 1;
-}
-.property-modal__close {
-  position: absolute;
-  top: 30px; right: 15px;
-  width: 21px; height: 21px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
-.pm-image { padding: 40px 50px 30px; }
-.pm-image img { width: 100%; height: 280px; object-fit: cover; border-radius: 30px; }
-.pm-wrapper { padding: 0 50px 40px; }
-.pm-title {
-  font-weight: 600; font-size: 18px; line-height: 1.2;
-  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 17%, #FFBEA4 29%, #CF795F 60%, #FFAC93 70%, #D7785B 84%, #EA9278 97%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin: 0 0 5px;
-}
-.pm-type { font-weight: 500; font-size: 14px; color: rgba(255,255,255,0.6); }
-.pm-developer { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 5px; }
-.pm-header__actions { display: flex; gap: 11px; }
-.pm-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.pm-info-col { display: flex; flex-direction: column; gap: 20px; }
-.pm-info__label { font-weight: 600; font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
-.pm-info__value { font-weight: 500; font-size: 12px; line-height: 1.4; color: #fff; }
-@media (max-width: 767px) {
-  .property-modal__content { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; }
-  .pm-image { padding: 20px; }
-  .pm-image img { height: 200px; }
-  .pm-wrapper { padding: 0 25px 30px; }
-  .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
-}
+
 .pc-img {
   position: relative;
   width: 100%;
@@ -202,6 +154,119 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
   font-weight: 500;
   color: #fff;
 }
+
+.pc-meta {
+  padding: 15px 0 0;
+}
+
+.pc-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 5px;
+}
+
+.pc-title .dot {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pc-title .wdt-button__icon {
+  margin-left: auto;
+}
+
+.pc-loc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  padding-left: 16px;
+}
+
+/* Property Modal */
+.property-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.property-modal.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+body.modal-open { overflow: hidden; }
+body.modal-open header.nav-homepage-style { z-index: 1 !important; }
+
+.property-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.property-modal__content {
+  position: relative;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  background: #272727;
+  border-radius: 30px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.property-modal__close {
+  position: absolute;
+  top: 30px; right: 15px;
+  width: 21px; height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.pm-image { padding: 40px 50px 30px; }
+.pm-image img { width: 100%; height: 280px; object-fit: cover; border-radius: 30px; }
+.pm-wrapper { padding: 0 50px 40px; }
+
+.pm-title {
+  font-weight: 600; font-size: 18px; line-height: 1.2;
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 17%, #FFBEA4 29%, #CF795F 60%, #FFAC93 70%, #D7785B 84%, #EA9278 97%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 5px;
+}
+.pm-type { font-weight: 500; font-size: 14px; color: rgba(255,255,255,0.6); }
+.pm-developer { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 5px; }
+.pm-header__actions { display: flex; gap: 11px; }
+
+.pm-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.pm-info-col { display: flex; flex-direction: column; gap: 20px; }
+.pm-info__label { font-weight: 600; font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.pm-info__value { font-weight: 500; font-size: 12px; line-height: 1.4; color: #fff; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section-projects2 .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .pc-img { height: 250px; }
+  .property-modal__content { width: 100%; max-width: 100%; max-height: 100vh; border-radius: 0; }
+  .pm-image { padding: 20px; }
+  .pm-image img { height: 200px; }
+  .pm-wrapper { padding: 0 25px 30px; }
+  .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -211,55 +276,61 @@ document.addEventListener('DOMContentLoaded', function() {
   const overlay = modal.querySelector('.property-modal__overlay');
   const closeBtn = modal.querySelector('.property-modal__close');
   
-  // Открытие модалки по клику на карточку
-  document.querySelectorAll('.projects .project-card[data-id]').forEach(card => {
+  // Клик по карточке
+  document.querySelectorAll('.project-card[data-id]').forEach(card => {
     card.addEventListener('click', function(e) {
       e.preventDefault();
-      const propertyId = this.dataset.id;
-      if (propertyId) {
-        loadPropertyData(propertyId);
+      const id = this.dataset.id;
+      
+      // Сразу показываем из data-атрибутов
+      modal.querySelector('.pm-title').textContent = this.dataset.title || '';
+      modal.querySelector('.pm-type').textContent = this.dataset.type || '';
+      modal.querySelector('.pm-location').textContent = this.dataset.location || '';
+      modal.querySelector('.pm-image img').src = this.dataset.image || '';
+      modal.querySelector('.pm-developer').textContent = '';
+      modal.querySelector('.pm-construction').textContent = '—';
+      modal.querySelector('.pm-roi').textContent = '—';
+      modal.querySelector('.pm-area').textContent = '—';
+      modal.querySelector('.pm-leasehold').textContent = '—';
+      modal.querySelector('.pm-price').textContent = '—';
+      
+      openModal();
+      
+      // Загружаем полные данные
+      if (id) {
+        fetch(`/api/properties/${id}/`)
+          .then(r => r.json())
+          .then(data => {
+            if (data.title) modal.querySelector('.pm-title').textContent = data.title;
+            if (data.property_type) modal.querySelector('.pm-type').textContent = data.property_type;
+            if (data.developer) modal.querySelector('.pm-developer').textContent = `by ${data.developer}`;
+            if (data.location) modal.querySelector('.pm-location').textContent = data.location;
+            if (data.image) modal.querySelector('.pm-image img').src = data.image;
+            modal.querySelector('.pm-construction').textContent = data.completion_date || '—';
+            modal.querySelector('.pm-roi').textContent = data.roi || '—';
+            modal.querySelector('.pm-area').textContent = data.total_area ? `${data.total_area} m²` : '—';
+            modal.querySelector('.pm-leasehold').textContent = data.leasehold || '—';
+            modal.querySelector('.pm-price').textContent = data.price ? `From $${Number(data.price).toLocaleString()}` : '—';
+          })
+          .catch(err => console.error('Error:', err));
       }
     });
   });
   
-  // Загрузка данных через API
-  function loadPropertyData(id) {
-    fetch(`/api/properties/${id}/`)
-      .then(r => r.json())
-      .then(data => {
-        fillModal(data);
-        openModal();
-      })
-      .catch(err => console.error('Error loading property:', err));
-  }
-  
-  // Заполнение модалки
-  function fillModal(data) {
-    modal.querySelector('.pm-image img').src = data.image || '';
-    modal.querySelector('.pm-title').textContent = data.title || '';
-    modal.querySelector('.pm-type').textContent = data.property_type || '';
-    modal.querySelector('.pm-developer').textContent = data.developer ? `by ${data.developer}` : '';
-    modal.querySelector('.pm-location').textContent = data.location || '';
-    modal.querySelector('.pm-construction').textContent = data.completion_date ? `Completion: ${data.completion_date}` : '—';
-    modal.querySelector('.pm-roi').textContent = data.roi ? `${data.roi}` : '—';
-    modal.querySelector('.pm-area').textContent = data.total_area ? `${data.total_area} m²` : '—';
-    modal.querySelector('.pm-leasehold').textContent = data.leasehold || '—';
-    modal.querySelector('.pm-price').textContent = data.price ? `From $${Number(data.price).toLocaleString()}` : '—';
-  }
-  
   function openModal() {
     modal.classList.add('is-active');
     document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
   }
   
   function closeModal() {
     modal.classList.remove('is-active');
     document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
   }
   
-  // Закрытие
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
 </script>
