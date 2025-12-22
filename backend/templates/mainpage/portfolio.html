@@ -4,32 +4,32 @@
   <div class="container">
     <div class="projects-grid" id="propertiesGrid">
       {% for prop in featured_properties %}
-      <a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
-         data-id="{{ prop.id }}">
-        <div class="pc-img">
-          <img src="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}" 
-               alt="{{ prop.title }}" 
-               loading="lazy" 
-               decoding="async">
-          <div class="pc-tags">
-            <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
-            {% if prop.price_min %}
-            <span class="tag">From ${{ prop.price_min|floatformat:0|intcomma }}</span>
-            {% endif %}
-          </div>
-        </div>
-        <div class="pc-meta">
-          <h3 class="pc-title">
-            <span class="dot" aria-hidden="true"></span>
-            {{ prop.title }}
-            <i class="wdt-button__icon" aria-hidden="true"></i>
-          </h3>
-          <div class="pc-loc">{{ prop.location.name|default:"Bali" }}</div>
-        </div>
-      </a>
-      {% empty %}
-      <p class="text-center text-white">No properties available</p>
-      {% endfor %}
+<a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
+   data-id="{{ prop.id }}"
+   data-title="{{ prop.title }}"
+   data-type="{{ prop.property_type.name|default:'Property' }}"
+   data-location="{{ prop.location.name|default:'Bali' }}"
+   data-image="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}">
+  <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
+    <div class="pc-tags">
+      <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
+      {% if prop.price_min %}
+      <span class="tag">From ${{ prop.price_min|floatformat:0|intcomma }}</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="pc-meta">
+    <h3 class="pc-title">
+      <span class="dot" aria-hidden="true"></span>
+      {{ prop.title }}
+      <i class="wdt-button__icon" aria-hidden="true"></i>
+    </h3>
+    <div class="pc-loc">{{ prop.location.name|default:"Bali" }}</div>
+  </div>
+</a>
+{% empty %}
+<p class="text-center text-white">No properties available</p>
+{% endfor %}
     </div>
     <div class="projects-cta mt70">
       <a href="{% url 'projects' %}" class="wdt-button button-cta is-nm concierge-cta">
@@ -103,6 +103,7 @@
   </div>
 </div>
 <style>
+/* Property Modal */
 .property-modal {
   position: fixed;
   top: 0;
@@ -151,7 +152,6 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
 .pm-image { padding: 40px 50px 30px; }
 .pm-image img { width: 100%; height: 280px; object-fit: cover; border-radius: 30px; }
 .pm-wrapper { padding: 0 50px 40px; }
-.pm-header { padding: 0; }
 .pm-title {
   font-weight: 600; font-size: 18px; line-height: 1.2;
   background: linear-gradient(90deg, #F0987D 0%, #CE7F63 17%, #FFBEA4 29%, #CF795F 60%, #FFAC93 70%, #D7785B 84%, #EA9278 97%);
@@ -171,13 +171,6 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
   .pm-image img { height: 200px; }
   .pm-wrapper { padding: 0 25px 30px; }
   .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
-}
-.pc-img-inner {
-  transform: scale(1) rotate(0);
-}
-
-.pc-img:hover .pc-img-inner {
-  transform: scale(1.1) rotate(-1deg);
 }
 </style>
 <script>
