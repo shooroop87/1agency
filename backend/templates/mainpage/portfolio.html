@@ -3,13 +3,9 @@
 <section class="projects pb120 section-content mt40-xs" style="z-index: auto;">
   <div class="container">
     <div class="projects-grid" id="propertiesGrid">
-      {% for prop in featured_properties %}
+{% for prop in featured_properties %}
 <a href="#" class="project-card {% cycle 'project-card--lg mb50' 'project-card--sm project-card--align-end' 'project-card--sm' 'project-card--lg' %}"
-   data-id="{{ prop.id }}"
-   data-title="{{ prop.title }}"
-   data-type="{{ prop.property_type.name|default:'Property' }}"
-   data-location="{{ prop.location.name|default:'Bali' }}"
-   data-image="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}">
+   data-id="{{ prop.id }}">
   <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
     <div class="pc-tags">
       <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
@@ -171,6 +167,40 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
   .pm-image img { height: 200px; }
   .pm-wrapper { padding: 0 25px 30px; }
   .pm-info-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+.pc-img {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .pc-img {
+  transform: scale(1.02);
+}
+
+.pc-tags {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pc-tags .tag {
+  padding: 8px 16px;
+  background: rgba(50, 50, 50, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
 }
 </style>
 <script>

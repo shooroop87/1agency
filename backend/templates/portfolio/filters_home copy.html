@@ -1,5 +1,6 @@
 {% load static i18n %}
 <section class="filters-section pt60 pb30">
+  <div class="filter-overlay" id="filterOverlay"></div>
   <div class="container">
     <div class="filters-header d-flex justify-content-between align-items-center mb24">
       <h2 class="filters-title">All projects</h2>
@@ -15,7 +16,7 @@
     <div class="filters-row">
       <!-- Unit Type -->
       <div class="filter-dropdown" data-filter="type">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Unit Type</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -30,24 +31,24 @@
 
       <!-- Bedrooms -->
       <div class="filter-dropdown" data-filter="bedrooms">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Bedrooms</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
         <div class="filter-dropdown-menu filter-dropdown-menu--circles">
           <div class="bedrooms-row">
-            <button class="bed-circle" type="button" data-value="1">1</button>
-            <button class="bed-circle" type="button" data-value="2">2</button>
-            <button class="bed-circle" type="button" data-value="3">3</button>
-            <button class="bed-circle" type="button" data-value="4">4</button>
-            <button class="bed-circle" type="button" data-value="5+">5+</button>
+            <button class="bed-circle" data-value="1">1</button>
+            <button class="bed-circle" data-value="2">2</button>
+            <button class="bed-circle" data-value="3">3</button>
+            <button class="bed-circle" data-value="4">4</button>
+            <button class="bed-circle" data-value="5+">5+</button>
           </div>
         </div>
       </div>
 
       <!-- Price -->
       <div class="filter-dropdown" data-filter="price">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Price</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -63,7 +64,7 @@
 
       <!-- Area -->
       <div class="filter-dropdown" data-filter="area">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Area</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -78,7 +79,7 @@
 
       <!-- Price per m² -->
       <div class="filter-dropdown" data-filter="price_m2">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Price $/M²</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -93,7 +94,7 @@
 
       <!-- Features -->
       <div class="filter-dropdown" data-filter="features">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Features</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -107,7 +108,7 @@
 
       <!-- Construction -->
       <div class="filter-dropdown" data-filter="construction">
-        <button class="filter-pill" type="button">
+        <button class="filter-pill">
           <span class="pill-text">Construction</span>
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
@@ -122,8 +123,8 @@
       <div class="filter-dropdown filter-dropdown--ownership" data-filter="ownership">
         <div class="filter-label-inline">OWNERSHIP</div>
         <div class="ownership-pills">
-          <button class="ownership-pill" type="button" data-value="freehold">Freehold</button>
-          <button class="ownership-pill" type="button" data-value="leasehold">Leasehold</button>
+          <button class="ownership-pill" data-value="freehold">Freehold</button>
+          <button class="ownership-pill" data-value="leasehold">Leasehold</button>
         </div>
       </div>
     </div>
@@ -134,19 +135,10 @@
     </div>
   </div>
 </section>
-
-<!-- Mobile Bottom Sheet Container (в конце body) -->
-<div id="mobileFilterOverlay" class="mobile-filter-overlay"></div>
-<div id="mobileFilterSheet" class="mobile-filter-sheet"></div>
 <style>
 /* Filters Section */
 .filters-section {
   position: relative;
-  z-index: 10;
-}
-
-.filters-section .container {
-  overflow: visible;
 }
 
 .filters-header {
@@ -177,13 +169,26 @@
   color: #EA9278;
 }
 
+/* Overlay */
+.filter-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.filter-overlay.is-active {
+  display: block;
+}
+
 /* Filters Row */
 .filters-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  position: relative;
 }
 
 /* Dropdown Container */
@@ -228,7 +233,7 @@
   transform: rotate(180deg);
 }
 
-/* Dropdown Menu - Desktop */
+/* Dropdown Menu */
 .filter-dropdown-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -239,11 +244,11 @@
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   padding: 12px;
-  z-index: 1001;
+  z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 .filter-dropdown.is-open .filter-dropdown-menu {
   opacity: 1;
@@ -291,7 +296,7 @@
   font-size: 16px;
 }
 
-/* Chip-style options */
+/* Chip-style options (Price per m²) */
 .filter-option--chip {
   display: inline-flex;
   padding: 8px 14px;
@@ -343,7 +348,7 @@
   color: #fff;
 }
 
-/* Ownership Pills */
+/* Ownership Pills (inline) */
 .filter-dropdown--ownership {
   display: flex;
   align-items: center;
@@ -395,80 +400,6 @@
   font-weight: 600;
 }
 
-/* ========== MOBILE BOTTOM SHEET ========== */
-.mobile-filter-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 99998;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.mobile-filter-overlay.is-active {
-  display: block;
-}
-
-.mobile-filter-sheet {
-  display: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #323232;
-  border-radius: 20px 20px 0 0;
-  padding: 16px 20px 40px;
-  max-height: 70vh;
-  overflow-y: auto;
-  z-index: 99999;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-}
-.mobile-filter-sheet.is-active {
-  display: block;
-  transform: translateY(0);
-}
-
-/* Ручка */
-.mobile-filter-sheet::before {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 4px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 2px;
-  margin: 0 auto 20px;
-}
-
-/* Стили для контента внутри bottom sheet */
-.mobile-filter-sheet .filter-option {
-  padding: 14px 12px;
-  font-size: 15px;
-}
-.mobile-filter-sheet .filter-option input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
-}
-.mobile-filter-sheet .bedrooms-row {
-  justify-content: center;
-  gap: 12px;
-}
-.mobile-filter-sheet .bed-circle {
-  width: 48px;
-  height: 48px;
-  font-size: 16px;
-}
-.mobile-filter-sheet .filter-option--chip {
-  padding: 12px 16px;
-  font-size: 14px;
-}
-.mobile-filter-sheet .filter-dropdown-menu--circles {
-  padding: 10px 0;
-}
-
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .filters-section {
@@ -483,6 +414,7 @@
     font-size: 22px;
   }
   
+  /* Горизонтальный скролл */
   .filters-row {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -498,6 +430,7 @@
     display: none;
   }
   
+  /* Пиллы */
   .filter-pill {
     padding: 8px 14px;
     font-size: 13px;
@@ -512,9 +445,66 @@
     font-size: 12px;
   }
   
-  /* Скрываем desktop dropdown на мобильном */
+  /* Bottom Sheet */
   .filter-dropdown-menu {
-    display: none !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 16px 30px;
+    transform: translateY(100%);
+    min-width: auto;
+    width: 100%;
+    border: none;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+  }
+  .filter-dropdown.is-open .filter-dropdown-menu {
+    transform: translateY(0);
+  }
+  
+  /* Ручка */
+  .filter-dropdown-menu::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  
+  /* Опции крупнее */
+  .filter-option {
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+  .filter-option input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Кружки */
+  .filter-dropdown-menu--circles {
+    padding: 20px 16px;
+  }
+  .bedrooms-row {
+    justify-content: center;
+    gap: 12px;
+  }
+  .bed-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+  
+  /* Чипы */
+  .filter-option--chip {
+    padding: 12px 16px;
+    font-size: 14px;
   }
   
   .filter-results {
@@ -540,25 +530,7 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const isMobile = () => window.innerWidth <= 768;
-  
-  // Создаём overlay и sheet если их нет
-  let overlay = document.getElementById('mobileFilterOverlay');
-  let sheet = document.getElementById('mobileFilterSheet');
-  
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'mobileFilterOverlay';
-    overlay.className = 'mobile-filter-overlay';
-    document.body.appendChild(overlay);
-  }
-  
-  if (!sheet) {
-    sheet = document.createElement('div');
-    sheet.id = 'mobileFilterSheet';
-    sheet.className = 'mobile-filter-sheet';
-    document.body.appendChild(sheet);
-  }
+  const overlay = document.getElementById('filterOverlay');
   
   // Filter state
   const filterState = {
@@ -572,187 +544,105 @@ document.addEventListener('DOMContentLoaded', function() {
     ownership: []
   };
 
-  let currentOpenFilter = null;
-
-  // Закрытие
+  // Функция закрытия всех dropdown
   function closeAllDropdowns() {
     document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('is-open'));
-    
-    if (isMobile()) {
-      overlay.classList.remove('is-active');
-      sheet.classList.remove('is-active');
-      sheet.innerHTML = '';
+    if (window.innerWidth <= 768) {
+      overlay?.classList.remove('is-active');
       document.body.style.overflow = '';
     }
-    
-    currentOpenFilter = null;
   }
 
-  // Открытие dropdown
-  function openDropdown(dropdown) {
-    const filterName = dropdown.dataset.filter;
-    const menu = dropdown.querySelector('.filter-dropdown-menu');
-    
-    closeAllDropdowns();
-    dropdown.classList.add('is-open');
-    currentOpenFilter = filterName;
-    
-    if (isMobile() && menu) {
-      // Копируем содержимое в bottom sheet
-      sheet.innerHTML = menu.innerHTML;
-      
-      // Восстанавливаем состояние чекбоксов
-      restoreCheckboxState(sheet, filterName);
-      
-      // Привязываем события к элементам в sheet
-      bindSheetEvents(sheet, filterName, dropdown);
-      
-      // Показываем
-      overlay.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
-      
-      // Анимация появления
-      requestAnimationFrame(() => {
-        sheet.classList.add('is-active');
-      });
-    }
-  }
-
-  // Восстановление состояния чекбоксов
-  function restoreCheckboxState(container, filterName) {
-    const state = filterState[filterName] || [];
-    
-    // Обычные чекбоксы
-    container.querySelectorAll('.filter-option:not(.filter-option--chip) input[type="checkbox"]').forEach(cb => {
-      cb.checked = state.includes(cb.value);
-    });
-    
-    // Чипы
-    container.querySelectorAll('.filter-option--chip').forEach(chip => {
-      const cb = chip.querySelector('input');
-      if (state.includes(cb.value)) {
-        chip.classList.add('is-selected');
-      }
-    });
-    
-    // Кружки bedrooms
-    container.querySelectorAll('.bed-circle').forEach(circle => {
-      if (state.includes(circle.dataset.value)) {
-        circle.classList.add('is-selected');
-      }
-    });
-  }
-
-  // Привязка событий к элементам в sheet
-  function bindSheetEvents(container, filterName, dropdown) {
-    // Чекбоксы
-    container.querySelectorAll('.filter-option:not(.filter-option--chip) input[type="checkbox"]').forEach(cb => {
-      cb.addEventListener('change', function() {
-        handleCheckboxChange(this.value, this.checked, filterName, dropdown);
-      });
-    });
-    
-    // Чипы
-    container.querySelectorAll('.filter-option--chip').forEach(chip => {
-      chip.addEventListener('click', function(e) {
-        e.preventDefault();
-        const cb = this.querySelector('input');
-        const isSelected = this.classList.toggle('is-selected');
-        handleCheckboxChange(cb.value, isSelected, filterName, dropdown);
-      });
-    });
-    
-    // Кружки bedrooms
-    container.querySelectorAll('.bed-circle').forEach(circle => {
-      circle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const value = this.dataset.value;
-        const wasSelected = this.classList.contains('is-selected');
-        
-        container.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
-        
-        if (!wasSelected) {
-          this.classList.add('is-selected');
-          filterState.bedrooms = [value];
-        } else {
-          filterState.bedrooms = [];
-        }
-        
-        updatePillState(dropdown);
-        applyFilters();
-      });
-    });
-  }
-
-  // Обработка изменения чекбокса
-  function handleCheckboxChange(value, isChecked, filterName, dropdown) {
-    if (isChecked) {
-      if (!filterState[filterName].includes(value)) {
-        filterState[filterName].push(value);
-      }
-    } else {
-      filterState[filterName] = filterState[filterName].filter(v => v !== value);
-    }
-    
-    updatePillState(dropdown);
-    applyFilters();
-  }
-
-  // Toggle dropdown по клику на pill
+  // Toggle dropdown
   document.querySelectorAll('.filter-pill').forEach(pill => {
     pill.addEventListener('click', function(e) {
-      e.preventDefault();
       e.stopPropagation();
-      
       const dropdown = this.closest('.filter-dropdown');
       const wasOpen = dropdown.classList.contains('is-open');
       
-      if (wasOpen) {
-        closeAllDropdowns();
-      } else {
-        openDropdown(dropdown);
+      // Закрыть все
+      closeAllDropdowns();
+      
+      // Открыть текущий
+      if (!wasOpen) {
+        dropdown.classList.add('is-open');
+        if (window.innerWidth <= 768) {
+          overlay?.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+        }
       }
     });
   });
 
-  // Desktop: чекбоксы в dropdown меню
-  document.querySelectorAll('.filter-dropdown-menu .filter-option:not(.filter-option--chip) input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', function() {
-      if (isMobile()) return;
-      
+  // Клик по оверлею
+  overlay?.addEventListener('click', closeAllDropdowns);
+
+  // Закрытие по клику вне
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.filter-dropdown')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Не закрывать при клике внутри меню
+  document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
+    menu.addEventListener('click', e => e.stopPropagation());
+  });
+
+  // Checkbox options
+  document.querySelectorAll('.filter-option:not(.filter-option--chip) input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
       const dropdown = this.closest('.filter-dropdown');
       const filterName = dropdown.dataset.filter;
-      handleCheckboxChange(this.value, this.checked, filterName, dropdown);
+      const value = this.value;
+      
+      if (this.checked) {
+        if (!filterState[filterName].includes(value)) {
+          filterState[filterName].push(value);
+        }
+      } else {
+        filterState[filterName] = filterState[filterName].filter(v => v !== value);
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
     });
   });
 
-  // Desktop: чипы
-  document.querySelectorAll('.filter-dropdown-menu .filter-option--chip').forEach(chip => {
+  // Chip options (Price per m²)
+  document.querySelectorAll('.filter-option--chip').forEach(chip => {
     chip.addEventListener('click', function(e) {
-      if (isMobile()) return;
-      
       e.preventDefault();
+      const checkbox = this.querySelector('input');
       const dropdown = this.closest('.filter-dropdown');
       const filterName = dropdown.dataset.filter;
-      const cb = this.querySelector('input');
-      const isSelected = this.classList.toggle('is-selected');
+      const value = checkbox.value;
       
-      handleCheckboxChange(cb.value, isSelected, filterName, dropdown);
+      this.classList.toggle('is-selected');
+      
+      if (this.classList.contains('is-selected')) {
+        if (!filterState[filterName].includes(value)) {
+          filterState[filterName].push(value);
+        }
+      } else {
+        filterState[filterName] = filterState[filterName].filter(v => v !== value);
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
     });
   });
 
-  // Desktop: кружки bedrooms
-  document.querySelectorAll('.filter-dropdown-menu .bed-circle').forEach(circle => {
+  // Bedroom circles
+  document.querySelectorAll('.bed-circle').forEach(circle => {
     circle.addEventListener('click', function(e) {
-      if (isMobile()) return;
-      
       e.preventDefault();
       const dropdown = this.closest('.filter-dropdown');
-      const menu = dropdown.querySelector('.filter-dropdown-menu');
       const value = this.dataset.value;
       const wasSelected = this.classList.contains('is-selected');
       
-      menu.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+      // Single select
+      dropdown.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
       
       if (!wasSelected) {
         this.classList.add('is-selected');
@@ -766,13 +656,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Ownership pills (всегда видны)
+  // Ownership pills
   document.querySelectorAll('.ownership-pill').forEach(pill => {
     pill.addEventListener('click', function(e) {
       e.preventDefault();
-      e.stopPropagation();
-      
       const value = this.dataset.value;
+      
       this.classList.toggle('is-selected');
       
       if (this.classList.contains('is-selected')) {
@@ -787,23 +676,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Клик по overlay закрывает
-  overlay.addEventListener('click', closeAllDropdowns);
-
-  // Клик вне dropdown (desktop)
-  document.addEventListener('click', function(e) {
-    if (!isMobile() && !e.target.closest('.filter-dropdown')) {
-      closeAllDropdowns();
-    }
-  });
-
-  // ESC закрывает
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeAllDropdowns();
-    }
-  });
-
   // Update pill state
   function updatePillState(dropdown) {
     const filterName = dropdown.dataset.filter;
@@ -812,6 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hasValue = Array.isArray(state) && state.length > 0;
     dropdown.classList.toggle('has-value', hasValue);
     
+    // Update pill text
     const pillText = dropdown.querySelector('.pill-text');
     if (pillText) {
       const baseName = pillText.textContent.split(' (')[0];
@@ -820,27 +693,40 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Clear all
-  document.getElementById('clearAllFilters')?.addEventListener('click', function(e) {
-    e.preventDefault();
+  document.getElementById('clearAllFilters')?.addEventListener('click', function() {
+    // Reset checkboxes
+    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+    });
     
-    // Reset UI
-    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => cb.checked = false);
-    document.querySelectorAll('.filter-option--chip').forEach(chip => chip.classList.remove('is-selected'));
+    // Reset chips
+    document.querySelectorAll('.filter-option--chip').forEach(chip => {
+      chip.classList.remove('is-selected');
+    });
+    
+    // Reset circles
     document.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+    
+    // Reset ownership
     document.querySelectorAll('.ownership-pill').forEach(p => p.classList.remove('is-selected'));
+    
+    // Reset dropdown states
     document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('has-value'));
+    
+    // Reset pill texts
     document.querySelectorAll('.pill-text').forEach(pt => {
       pt.textContent = pt.textContent.split(' (')[0];
     });
     
     // Reset state
-    Object.keys(filterState).forEach(key => filterState[key] = []);
+    Object.keys(filterState).forEach(key => {
+      filterState[key] = [];
+    });
     
-    closeAllDropdowns();
     applyFilters();
   });
 
-  // Apply filters
+  // Apply filters - AJAX
   function applyFilters() {
     const params = new URLSearchParams();
     
@@ -882,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
     
     if (!properties.length) {
-      grid.innerHTML = '<div class="no-results"><p>No properties found</p></div>';
+      grid.innerHTML = '';
       return;
     }
     
