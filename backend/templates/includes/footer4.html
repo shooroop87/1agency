@@ -57,10 +57,14 @@
             <div class="link-style1">
               <h6 class="text-white mb25">Contacts</h6>
               <ul class="ps-0 footer-menu">
-                <li><a href="#" target="_blank" rel="noopener">Instagram RU</a></li>
-                <li><a href="#" target="_blank" rel="noopener">Instagram ENG</a></li>
-                <li>Tel.: <a href="tel:+6281339488437">+62 813 39 48 8437</a></li>
-                <li>E-mail: <a href="mailto:info@oneagency.group">info@oneagency.group</a></li>
+                {% if site_settings.instagram_ru %}
+                <li><a href="{{ site_settings.instagram_ru }}" target="_blank">Instagram RU</a></li>
+                {% endif %}
+                {% if site_settings.instagram_en %}
+                <li><a href="{{ site_settings.instagram_en }}" target="_blank">Instagram ENG</a></li>
+                {% endif %}
+                <li>Tel.: <a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a></li>
+                <li>E-mail: <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></li>
               </ul>
             </div>
           </div>
