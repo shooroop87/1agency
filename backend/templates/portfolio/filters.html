@@ -1,7 +1,8 @@
 {% load static i18n %}
 <section class="filters-section pt150 pt50-xs pb30">
+  <div class="filter-overlay" id="filterOverlay"></div>
   <div class="container">
-    <div class="filters-header d-flex justify-content-between align-items-start mb30">
+    <div class="filters-header d-flex justify-content-between align-items-center mb30">
       <h2 class="filters-title">All projects</h2>
       <button type="button" class="filters-clear" id="clearAllFilters">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -11,124 +12,159 @@
       </button>
     </div>
 
-    <!-- Row 1: Unit Type + Bedrooms + Price + Area -->
-    <div class="filter-row mb20">
-      <div class="filter-group">
-        <div class="filter-label">UNIT TYPE</div>
-        <div class="filter-tags" data-filter="type">
+    <!-- Filters Row -->
+    <div class="filters-row">
+      <!-- Unit Type -->
+      <div class="filter-dropdown" data-filter="type">
+        <button class="filter-pill">
+          <span class="pill-text">Unit Type</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
           {% for pt in property_types %}
-          <button class="filter-tag" data-value="{{ pt.slug }}">
-            {% if pt.icon %}<span class="tag-icon">{{ pt.icon }}</span>{% endif %}
+          <label class="filter-option">
+            <input type="checkbox" value="{{ pt.slug }}">
+            {% if pt.icon %}<span class="option-icon">{{ pt.icon }}</span>{% endif %}
             {{ pt.name }}
-          </button>
+          </label>
           {% empty %}
-          <button class="filter-tag" data-value="apartment">Apartment</button>
+          <label class="filter-option"><input type="checkbox" value="apartment"><span class="option-icon">🏢</span>Apartment</label>
+          <label class="filter-option"><input type="checkbox" value="villa"><span class="option-icon">🏠</span>Villa</label>
+          <label class="filter-option"><input type="checkbox" value="townhouse"><span class="option-icon">🏘️</span>Townhouse</label>
+          <label class="filter-option"><input type="checkbox" value="penthouse"><span class="option-icon">🏙️</span>Penthouse</label>
+          <label class="filter-option"><input type="checkbox" value="studio"><span class="option-icon">🛏️</span>Studio</label>
           {% endfor %}
         </div>
       </div>
 
-      <div class="filter-group filter-group--bedrooms">
-        <div class="filter-label">BEDROOMS</div>
-        <div class="filter-tags filter-tags--circles" data-filter="bedrooms">
-          <button class="filter-tag filter-tag--circle" data-value="1">1</button>
-          <button class="filter-tag filter-tag--circle" data-value="2">2</button>
-          <button class="filter-tag filter-tag--circle" data-value="3">3</button>
-          <button class="filter-tag filter-tag--circle" data-value="4">4</button>
-          <button class="filter-tag filter-tag--circle" data-value="5+">5+</button>
+      <!-- Bedrooms -->
+      <div class="filter-dropdown" data-filter="bedrooms">
+        <button class="filter-pill">
+          <span class="pill-text">Bedrooms</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu filter-dropdown-menu--circles">
+          <div class="bedrooms-row">
+            <button class="bed-circle" data-value="1">1</button>
+            <button class="bed-circle" data-value="2">2</button>
+            <button class="bed-circle" data-value="3">3</button>
+            <button class="bed-circle" data-value="4">4</button>
+            <button class="bed-circle" data-value="5+">5+</button>
+          </div>
         </div>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">PRICE RANGE</div>
-        <div class="filter-select-wrap">
-          <select class="filter-select" data-filter="price">
-            <option value="">Any Price</option>
-            <option value="0-100000">Up to $100,000</option>
-            <option value="100000-200000">$100,000 - $200,000</option>
-            <option value="200000-300000">$200,000 - $300,000</option>
-            <option value="300000-500000">$300,000 - $500,000</option>
-            <option value="500000-1000000">$500,000 - $1,000,000</option>
-            <option value="1000000+">$1,000,000+</option>
-          </select>
+      <!-- Price -->
+      <div class="filter-dropdown" data-filter="price">
+        <button class="filter-pill">
+          <span class="pill-text">Price</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="0-100000">Up to $100,000</label>
+          <label class="filter-option"><input type="checkbox" value="100000-200000">$100,000 - $200,000</label>
+          <label class="filter-option"><input type="checkbox" value="200000-300000">$200,000 - $300,000</label>
+          <label class="filter-option"><input type="checkbox" value="300000-500000">$300,000 - $500,000</label>
+          <label class="filter-option"><input type="checkbox" value="500000-1000000">$500,000 - $1,000,000</label>
+          <label class="filter-option"><input type="checkbox" value="1000000+">$1,000,000+</label>
         </div>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">AREA (M²)</div>
-        <div class="filter-select-wrap">
-          <select class="filter-select" data-filter="area">
-            <option value="">Any Size</option>
-            <option value="0-50">Up to 50 m²</option>
-            <option value="50-100">50 - 100 m²</option>
-            <option value="100-200">100 - 200 m²</option>
-            <option value="200-500">200 - 500 m²</option>
-            <option value="500+">500+ m²</option>
-          </select>
+      <!-- Area -->
+      <div class="filter-dropdown" data-filter="area">
+        <button class="filter-pill">
+          <span class="pill-text">Area</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="0-50">Up to 50 m²</label>
+          <label class="filter-option"><input type="checkbox" value="50-100">50 - 100 m²</label>
+          <label class="filter-option"><input type="checkbox" value="100-200">100 - 200 m²</label>
+          <label class="filter-option"><input type="checkbox" value="200-500">200 - 500 m²</label>
+          <label class="filter-option"><input type="checkbox" value="500+">500+ m²</label>
         </div>
       </div>
-    </div>
 
-    <!-- Row 2: Location + Sale Status + Ownership -->
-    <div class="filter-row mb20">
-      <div class="filter-group">
-        <div class="filter-label">LOCATION</div>
-        <div class="filter-tags" data-filter="location">
+      <!-- Location -->
+      <div class="filter-dropdown" data-filter="location">
+        <button class="filter-pill">
+          <span class="pill-text">Location</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
           {% for loc in locations %}
-          <button class="filter-tag" data-value="{{ loc.slug }}">{{ loc.name }}</button>
+          <label class="filter-option"><input type="checkbox" value="{{ loc.slug }}">{{ loc.name }}</label>
           {% empty %}
-          <button class="filter-tag" data-value="canggu">Canggu</button>
+          <label class="filter-option"><input type="checkbox" value="canggu">Canggu</label>
+          <label class="filter-option"><input type="checkbox" value="seminyak">Seminyak</label>
+          <label class="filter-option"><input type="checkbox" value="ubud">Ubud</label>
+          <label class="filter-option"><input type="checkbox" value="bukit">Bukit</label>
           {% endfor %}
         </div>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">SALE STATUS</div>
-        <div class="filter-tags" data-filter="status">
-          <button class="filter-tag" data-value="presale">Pre-sale</button>
-          <button class="filter-tag" data-value="selling">Selling</button>
-          <button class="filter-tag" data-value="soldout">Sold Out</button>
+      <!-- Sale Status -->
+      <div class="filter-dropdown" data-filter="status">
+        <button class="filter-pill">
+          <span class="pill-text">Sale Status</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="presale">Pre-sale</label>
+          <label class="filter-option"><input type="checkbox" value="selling">Selling</label>
+          <label class="filter-option"><input type="checkbox" value="soldout">Sold Out</label>
         </div>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">LAND OWNERSHIP</div>
-        <div class="filter-tags" data-filter="ownership">
-          <button class="filter-tag" data-value="freehold">Freehold</button>
-          <button class="filter-tag" data-value="leasehold">Leasehold</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Row 3: Features + Construction -->
-    <div class="filter-row">
-      <div class="filter-group">
-        <div class="filter-label">FEATURES</div>
-        <div class="filter-tags" data-filter="features">
+      <!-- Features -->
+      <div class="filter-dropdown" data-filter="features">
+        <button class="filter-pill">
+          <span class="pill-text">Features</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
           {% for feat in features %}
-          <button class="filter-tag" data-value="{{ feat.slug }}">
-            {% if feat.icon %}<span class="tag-icon">{{ feat.icon }}</span>{% endif %}
+          <label class="filter-option">
+            <input type="checkbox" value="{{ feat.slug }}">
+            {% if feat.icon %}<span class="option-icon">{{ feat.icon }}</span>{% endif %}
             {{ feat.name }}
-          </button>
+          </label>
           {% empty %}
-          <button class="filter-tag" data-value="pool"><span class="tag-icon">🏊</span> Pool</button>
+          <label class="filter-option"><input type="checkbox" value="pool"><span class="option-icon">🏊</span>Pool</label>
+          <label class="filter-option"><input type="checkbox" value="ocean_view"><span class="option-icon">🌊</span>Ocean View</label>
+          <label class="filter-option"><input type="checkbox" value="gym"><span class="option-icon">🏋️</span>Gym</label>
+          <label class="filter-option"><input type="checkbox" value="parking"><span class="option-icon">🚗</span>Parking</label>
           {% endfor %}
         </div>
       </div>
 
-      <div class="filter-group">
-        <div class="filter-label">CONSTRUCTION</div>
-        <div class="filter-tags" data-filter="construction">
-          <button class="filter-tag" data-value="not_started">Not Started</button>
-          <button class="filter-tag" data-value="in_progress">In Progress</button>
-          <button class="filter-tag" data-value="completed">Completed</button>
-          <button class="filter-tag" data-value="on_hold">On Hold</button>
+      <!-- Construction -->
+      <div class="filter-dropdown" data-filter="construction">
+        <button class="filter-pill">
+          <span class="pill-text">Construction</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="not_started">Not Started</label>
+          <label class="filter-option"><input type="checkbox" value="in_progress">In Progress</label>
+          <label class="filter-option"><input type="checkbox" value="completed">Completed</label>
+          <label class="filter-option"><input type="checkbox" value="on_hold">On Hold</label>
+        </div>
+      </div>
+
+      <!-- Ownership -->
+      <div class="filter-dropdown filter-dropdown--ownership" data-filter="ownership">
+        <div class="filter-label-inline">OWNERSHIP</div>
+        <div class="ownership-pills">
+          <button class="ownership-pill" data-value="freehold">Freehold</button>
+          <button class="ownership-pill" data-value="leasehold">Leasehold</button>
         </div>
       </div>
     </div>
 
-    <!-- Results count -->
+    <!-- Results -->
     <div class="filter-results mt20">
-      <span id="resultsCount">{{ total_count }}</span> properties found
+      <span id="resultsCount">{{ total_count|default:0 }}</span> properties found
     </div>
   </div>
 </section>
@@ -136,11 +172,12 @@
 /* Filters Section */
 .filters-section {
   background: #272727;
+  position: relative;
+  z-index: 10;
 }
 
 .filters-header {
-  flex-wrap: wrap;
-  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .filters-title {
@@ -167,303 +204,558 @@
   color: #EA9278;
 }
 
-/* Filter Row */
-.filter-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* Overlay */
+.filter-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
-.filter-row:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.filter-overlay.is-active {
+  display: block;
 }
 
-/* Filter Group */
-.filter-group {
+/* Filters Row */
+.filters-row {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
 }
-.filter-group--bedrooms {
-  min-width: 180px;
+
+/* Dropdown Container */
+.filter-dropdown {
+  position: relative;
 }
 
-.filter-label {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-}
-
-/* Filter Tags */
-.filter-tags {
+/* Pill Button */
+.filter-pill {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter-tag {
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
+  gap: 8px;
+  padding: 10px 16px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 100px;
-  color: rgba(255,255,255,0.7);
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
   white-space: nowrap;
 }
-.filter-tag:hover {
+.filter-pill:hover {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.3);
   color: #fff;
 }
-.filter-tag.active {
+.filter-dropdown.is-open .filter-pill,
+.filter-dropdown.has-value .filter-pill {
   background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
   border-color: transparent;
   color: #fff;
 }
 
-.tag-icon {
-  font-size: 14px;
-  line-height: 1;
+.pill-arrow {
+  transition: transform 0.2s;
+  stroke: currentColor;
+}
+.filter-dropdown.is-open .pill-arrow {
+  transform: rotate(180deg);
 }
 
-/* Circle Tags (Bedrooms) */
-.filter-tags--circles {
-  gap: 6px;
+/* Dropdown Menu */
+.filter-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: #323232;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  padding: 12px;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
 }
-.filter-tag--circle {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: 600;
+.filter-dropdown.is-open .filter-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* Select Dropdowns */
-.filter-select-wrap {
-  position: relative;
-}
-.filter-select {
-  appearance: none;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 100px;
-  padding: 7px 40px 7px 16px;
-  color: rgba(255,255,255,0.7);
-  font-family: 'Manrope', sans-serif;
-  font-weight: 500;
-  font-size: 13px;
+/* Filter Options */
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
   cursor: pointer;
-  min-width: 160px;
-  transition: all 0.2s;
+  transition: background 0.15s;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
 }
-.filter-select:hover,
-.filter-select:focus {
+.filter-option:hover {
+  background: rgba(255,255,255,0.08);
+}
+.filter-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.filter-option input[type="checkbox"]:checked {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: #EA9278;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 4L5.5 9.5L3 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.option-icon {
+  font-size: 16px;
+}
+
+/* Bedrooms Circles */
+.filter-dropdown-menu--circles {
+  padding: 16px;
+}
+.bedrooms-row {
+  display: flex;
+  gap: 8px;
+}
+.bed-circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.bed-circle:hover {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,255,255,0.3);
-  outline: none;
+  color: #fff;
 }
-.filter-select-wrap::after {
-  content: '';
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid rgba(255,255,255,0.5);
-  pointer-events: none;
-}
-.filter-select option {
-  background: #272727;
+.bed-circle.is-selected {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: transparent;
   color: #fff;
 }
 
-/* Results count */
+/* Ownership Pills */
+.filter-dropdown--ownership {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.filter-label-inline {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.ownership-pills {
+  display: flex;
+  gap: 6px;
+}
+.ownership-pill {
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ownership-pill:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.ownership-pill.is-selected {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Results */
 .filter-results {
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   color: rgba(255,255,255,0.5);
+  margin-top: 20px;
 }
 .filter-results span {
   color: #EA9278;
   font-weight: 600;
 }
 
-/* Mobile Responsive */
-@media (max-width: 991px) {
+/* No Results */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.6);
+}
+.no-results p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.no-results .btn-outline {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 100px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.no-results .btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .filters-section.pt150 {
+    padding-top: 100px;
+  }
+  
+  .filters-header {
+    margin-bottom: 20px;
+  }
+  
   .filters-title {
     font-size: 24px;
   }
-  .filter-row {
-    gap: 20px;
-  }
-  .filter-group {
-    width: 100%;
-  }
-  .filter-tags {
-    overflow-x: auto;
+  
+  /* Горизонтальный скролл */
+  .filters-row {
     flex-wrap: nowrap;
-    padding-bottom: 5px;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin: 0 -15px;
+    padding-left: 15px;
+    padding-right: 15px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    z-index: 101;
   }
-  .filter-tags::-webkit-scrollbar {
+  .filters-row::-webkit-scrollbar {
     display: none;
   }
-  .filter-select {
+  /* Container должен позволять overflow */
+.filters-section .container {
+  overflow: visible;
+}
+  
+  /* Пиллы */
+  .filter-pill {
+    padding: 8px 14px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  
+  .filter-dropdown--ownership {
+    flex-shrink: 0;
+  }
+  .ownership-pill {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  /* Bottom Sheet */
+  .filter-dropdown-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 16px 30px;
+    transform: translateY(100%);
+    min-width: auto;
     width: 100%;
+    border: none;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+  }
+  .filter-dropdown.is-open .filter-dropdown-menu {
+    transform: translateY(0);
+  }
+  
+  /* Ручка */
+  .filter-dropdown-menu::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  
+  /* Опции крупнее */
+  .filter-option {
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+  .filter-option input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Кружки */
+  .filter-dropdown-menu--circles {
+    padding: 20px 16px;
+  }
+  .bedrooms-row {
+    justify-content: center;
+    gap: 12px;
+  }
+  .bed-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+  
+  .filter-results {
+    margin-top: 16px;
+    font-size: 13px;
   }
 }
 
-@media (max-width: 576px) {
-  .filters-section {
-    padding: 30px 0;
-  }
-  .filter-tag {
-    padding: 8px 14px;
+@media (max-width: 375px) {
+  .filter-pill {
+    padding: 7px 10px;
     font-size: 12px;
+    gap: 5px;
   }
-  .filter-tag--circle {
-    width: 34px;
-    height: 34px;
+  .pill-arrow {
+    width: 8px;
+    height: 5px;
+  }
+  .filter-label-inline {
+    display: none;
   }
 }
 </style>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Filter state - all empty by default
+  const overlay = document.getElementById('filterOverlay');
+  
+  // Filter state
   const filterState = {
     type: [],
     bedrooms: [],
-    price: '',
-    area: '',
+    price: [],
+    area: [],
     location: [],
     status: [],
-    ownership: [],
     features: [],
-    construction: []
+    construction: [],
+    ownership: []
   };
 
-  // Toggle tag buttons
-  document.querySelectorAll('.filter-tag').forEach(tag => {
-    tag.addEventListener('click', function() {
-      const group = this.closest('[data-filter]');
-      if (!group) return;
+  // Закрытие всех dropdown
+  function closeAllDropdowns() {
+    document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('is-open'));
+    if (window.innerWidth <= 768) {
+      overlay?.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Toggle dropdown
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const dropdown = this.closest('.filter-dropdown');
+      const wasOpen = dropdown.classList.contains('is-open');
       
-      const filterName = group.dataset.filter;
-      const value = this.dataset.value;
-      const isCircle = this.classList.contains('filter-tag--circle');
+      closeAllDropdowns();
       
-      // Bedrooms: single select (toggle off if same clicked)
-      if (isCircle || filterName === 'bedrooms') {
-        const wasActive = this.classList.contains('active');
-        group.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-        
-        if (wasActive) {
-          filterState[filterName] = [];
-        } else {
-          this.classList.add('active');
-          filterState[filterName] = [value];
+      if (!wasOpen) {
+        dropdown.classList.add('is-open');
+        if (window.innerWidth <= 768) {
+          overlay?.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
+
+  // Клик по оверлею
+  overlay?.addEventListener('click', closeAllDropdowns);
+
+  // Закрытие по клику вне
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.filter-dropdown')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Не закрывать при клике внутри меню
+  document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
+    menu.addEventListener('click', e => e.stopPropagation());
+  });
+
+  // Checkbox options
+  document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const dropdown = this.closest('.filter-dropdown');
+      const filterName = dropdown.dataset.filter;
+      const value = this.value;
+      
+      if (this.checked) {
+        if (!filterState[filterName].includes(value)) {
+          filterState[filterName].push(value);
         }
       } else {
-        // Multi-select toggle
-        this.classList.toggle('active');
-        if (this.classList.contains('active')) {
-          if (!filterState[filterName].includes(value)) {
-            filterState[filterName].push(value);
-          }
-        } else {
-          filterState[filterName] = filterState[filterName].filter(v => v !== value);
+        filterState[filterName] = filterState[filterName].filter(v => v !== value);
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
+    });
+  });
+
+  // Bedroom circles
+  document.querySelectorAll('.bed-circle').forEach(circle => {
+    circle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const dropdown = this.closest('.filter-dropdown');
+      const value = this.dataset.value;
+      const wasSelected = this.classList.contains('is-selected');
+      
+      dropdown.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+      
+      if (!wasSelected) {
+        this.classList.add('is-selected');
+        filterState.bedrooms = [value];
+      } else {
+        filterState.bedrooms = [];
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
+    });
+  });
+
+  // Ownership pills
+  document.querySelectorAll('.ownership-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.preventDefault();
+      const value = this.dataset.value;
+      
+      this.classList.toggle('is-selected');
+      
+      if (this.classList.contains('is-selected')) {
+        if (!filterState.ownership.includes(value)) {
+          filterState.ownership.push(value);
         }
+      } else {
+        filterState.ownership = filterState.ownership.filter(v => v !== value);
       }
       
       applyFilters();
     });
   });
 
-  // Select dropdowns
-  document.querySelectorAll('.filter-select').forEach(select => {
-    select.addEventListener('change', function() {
-      const filterName = this.dataset.filter;
-      filterState[filterName] = this.value;
-      applyFilters();
-    });
-  });
+  // Update pill state
+  function updatePillState(dropdown) {
+    const filterName = dropdown.dataset.filter;
+    const state = filterState[filterName];
+    
+    const hasValue = Array.isArray(state) && state.length > 0;
+    dropdown.classList.toggle('has-value', hasValue);
+    
+    const pillText = dropdown.querySelector('.pill-text');
+    if (pillText) {
+      const baseName = pillText.textContent.split(' (')[0];
+      pillText.textContent = hasValue ? `${baseName} (${state.length})` : baseName;
+    }
+  }
 
   // Clear all
   document.getElementById('clearAllFilters')?.addEventListener('click', function() {
-    // Reset tags
-    document.querySelectorAll('.filter-tag').forEach(tag => {
-      tag.classList.remove('active');
+    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
     });
-    // Reset selects
-    document.querySelectorAll('.filter-select').forEach(select => {
-      select.value = '';
+    document.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+    document.querySelectorAll('.ownership-pill').forEach(p => p.classList.remove('is-selected'));
+    document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('has-value'));
+    document.querySelectorAll('.pill-text').forEach(pt => {
+      pt.textContent = pt.textContent.split(' (')[0];
     });
-    // Reset state
+    
     Object.keys(filterState).forEach(key => {
-      filterState[key] = Array.isArray(filterState[key]) ? [] : '';
+      filterState[key] = [];
     });
     
     applyFilters();
   });
 
-  // Apply filters - AJAX call
+  // Apply filters - AJAX
   function applyFilters() {
     const params = new URLSearchParams();
     
     Object.entries(filterState).forEach(([key, val]) => {
       if (Array.isArray(val) && val.length) {
         params.set(key, val.join(','));
-      } else if (val && typeof val === 'string') {
-        params.set(key, val);
       }
     });
 
     const grid = document.getElementById('propertiesGrid');
-    if (!grid) return;
-
-    // Loading state
-    grid.style.opacity = '0.5';
-    grid.style.pointerEvents = 'none';
+    if (grid) {
+      grid.style.opacity = '0.5';
+      grid.style.pointerEvents = 'none';
+    }
 
     fetch(`/api/properties/?${params.toString()}`)
       .then(r => r.json())
       .then(data => {
-        renderProperties(data.results || []);
-        updateResultsCount(data.total || 0);
-        grid.style.opacity = '1';
-        grid.style.pointerEvents = '';
+        const count = data.total || data.count || 0;
+        document.getElementById('resultsCount').textContent = count;
+        if (grid) {
+          grid.style.opacity = '1';
+          grid.style.pointerEvents = '';
+          renderProperties(data.results || []);
+        }
       })
       .catch(err => {
         console.error('Filter error:', err);
-        grid.style.opacity = '1';
-        grid.style.pointerEvents = '';
+        if (grid) {
+          grid.style.opacity = '1';
+          grid.style.pointerEvents = '';
+        }
       });
-  }
-
-  // Update results count
-  function updateResultsCount(count) {
-    const counter = document.getElementById('resultsCount');
-    if (counter) {
-      counter.textContent = count;
-    }
   }
 
   // Render properties
@@ -472,13 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
 
     if (!properties.length) {
-      grid.innerHTML = `
-        <div class="no-results">
-          <p>No properties found matching your criteria</p>
-          <button class="filters-clear" onclick="document.getElementById('clearAllFilters').click()">
-            Clear filters
-          </button>
-        </div>`;
+      grid.innerHTML = ``;
       return;
     }
 
@@ -505,7 +791,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPropertyModals();
   }
 
-  // Init modals for new cards
+  // Init modals for property cards
   function initPropertyModals() {
     document.querySelectorAll('.project-card[data-id]').forEach(card => {
       card.addEventListener('click', function(e) {

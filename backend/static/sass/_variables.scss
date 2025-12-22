@@ -1,6 +1,6 @@
 /* Variables */
 :root{
-  --title-font-family    : 'Poppins', sans-serif;
+  --body-font-family    : 'Poppins', sans-serif;
   --body-font-family     : 'DM Sans', sans-serif;
   --icon-font-family     : 'Font Awesome 6 Pro';
   --icon-font-family2    : 'Flaticon';
@@ -37,7 +37,7 @@ $body-color              : var(--headings-color);
 $body-font-size          : 14px;
 $body-font-weight        : 400;
 $body-line-Height        : 26px;
-$title-font              : var(--title-font-family);
+$title-font              : var(--body-font-family);
 $title-color             : var(--headings-color);
 $title-font-weight       : 600;
 $paragraph-line-Height   : 1.85;       

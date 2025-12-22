@@ -158,7 +158,7 @@
 .nav-wrap { position: absolute; left: 0; top: 520px; width: 100%; z-index: 100; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
 .nav-wrap.is-sticky { position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; background: rgba(39, 39, 39, 0.95); backdrop-filter: blur(10px); padding: 15px 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
 .nav-wrap.is-sticky .hero-mark { width: 22px; height: 44px; }
-.nav-wrap.is-sticky .hero-name, .nav-wrap.is-sticky, nav-wrap.is-sticky .favorites-btn, .nav-wrap.is-sticky .concierge-cta { display: none; }
+.nav-wrap.is-sticky .hero-name { font-size: 22px; }
 .sticky-burger { display: none; }
 .nav-wrap.is-sticky .sticky-burger { display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; padding: 0; }
 .sticky-burger img { width: 40px; height: 40px; }
@@ -168,7 +168,22 @@
 .hero-name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 50px; line-height: 1.3; letter-spacing: -0.04em; background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .hero-nav { display: flex; align-items: center; gap: 25px; }
 .hero-nav a { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 15px; color: #FFFFFF; text-decoration: none; transition: opacity 0.3s; white-space: nowrap; }
-.hero-nav a:hover { opacity: 0.7; }
+.hero-nav a {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.hero-nav a:hover {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .hero-cta { display: flex; align-items: center; gap: 10px; }
 .favorites-btn { display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background: rgba(255, 255, 255, 0.08); border: 0.25px solid #656565; border-radius: 25px; }
 
@@ -304,7 +319,7 @@ function initHeroAnimation() {
 
   function handleStickyNav() {
     const scrollY = window.scrollY;
-    const stickyPoint = pinDuration + 520;
+    const stickyPoint = 520; // Когда nav-wrap достигает верха
     
     if (scrollY >= stickyPoint && !isSticky) {
       isSticky = true;

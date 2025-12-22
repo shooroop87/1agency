@@ -54,7 +54,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   --headings-color: #181A20 ;
 
   /* Типографика */
-  --title-font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --body-font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --body-font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   /* Контейнер */
@@ -259,7 +259,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 .partners-meta{ display:flex; align-items:center; gap:8px; margin-top:6px; }
 .partners-dot{ inline-size:8px; block-size:8px; border-radius:50%; background: var(--gradient-accent); }
-.partners-name{ font:600 16px/1.2 var(--title-font-family); color:#fff; }
+.partners-name{ font:600 16px/1.2 var(--body-font-family); color:#fff; }
 
 .partners-desc{
   margin:14px 0 18px;
@@ -480,14 +480,14 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 /* Name — 15/120%, белый, 70% непрозрачности */
 .review-card__name{
-  font: 600 15px/1.2 var(--title-font-family);
+  font: 600 15px/1.2 var(--body-font-family);
   color: #fff;
   opacity: .7;
 }
 
 /* Заголовок — 16/120%, ровно одна строка (~19px) */
 .review-card__title{
-  font: 700 16px/1.2 var(--title-font-family);
+  font: 700 16px/1.2 var(--body-font-family);
   color: #fff;
   margin: 20px 0 12px;
   display: -webkit-box;
@@ -631,7 +631,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 }
 .services-section .apartment-style1 .title{
   margin:0;
-  font:600 16px/1.2 var(--title-font-family);
+  font:600 16px/1.2 var(--body-font-family);
   color:#fff;
 }
 
@@ -781,7 +781,7 @@ background-clip: text;
 
 .concierge-head{ margin-bottom:24px; }
 .concierge-eyebrow{
-  display:block; font:600 15px/1.2 var(--title-font-family);
+  display:block; font:600 15px/1.2 var(--body-font-family);
   color:var(--color-light-grey); margin-bottom:25px;
 }
 .concierge-title{ margin:0 0 10px; }
@@ -843,7 +843,7 @@ background-clip: text;
   .ci-dot{ transition:none; }
 }
 .ci-title{
-  margin:0; color:#fff; font:600 16px/1.2 var(--title-font-family);
+  margin:0; color:#fff; font:600 16px/1.2 var(--body-font-family);
   white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
 }
 
@@ -1007,7 +1007,7 @@ a.favorites-btn:hover {
 
 .areas-eyebrow{
   display:block;
-  font:600 15px/1.2 var(--title-font-family);
+  font:600 15px/1.2 var(--body-font-family);
   color:var(--color-light-grey);
   margin-bottom:8px;
 }
@@ -1123,7 +1123,7 @@ a.favorites-btn:hover {
 /* Title */
 .about-card__title {
   margin: 0;
-  font-family: var(--title-font-family, "Manrope", sans-serif);
+  font-family: var(--body-font-family, "Manrope", sans-serif);
   font-weight: 600;
   font-size: 16px;
   line-height: 1.2; /* 120% */
@@ -1208,7 +1208,7 @@ a.favorites-btn:hover {
 .ah-eyebrow{
   display:block;
   text-align:center;
-  font:600 15px/1.2 var(--title-font-family);
+  font:600 15px/1.2 var(--body-font-family);
   color:#fff;
   opacity:.5;
 }
@@ -1216,7 +1216,7 @@ a.favorites-btn:hover {
 /* заголовок 26/100% по фигме */
 .ah-title{
   margin:0 0 18px;
-  font:600 26px/1 var(--title-font-family); /* 100% */
+  font:600 26px/1 var(--body-font-family); /* 100% */
   color:#fff;
   text-align: left;
 }
@@ -1344,7 +1344,7 @@ a.favorites-btn:hover {
 .pc-meta{ position:absolute; left:0; right:0; bottom:0; padding:0 0 0 25px; }
 .pc-title{
   display:inline-flex; align-items:center; gap:4px;
-  font:600 20px/1 var(--title-font-family);
+  font:600 20px/1 var(--body-font-family);
   margin:0 0 6px 0;
 }
 .pc-title .wdt-button__icon{ inline-size:16px; block-size:16px; }
@@ -1503,12 +1503,12 @@ h4,
 h5,
 .h6,
 h6 {
-  font-family:var(--title-font-family);
+  font-family:var(--body-font-family);
   color:var(--headings-color);
   font-weight:700;
   line-height:1.2;
   margin:0 0 .5em;
-  /*font-family: var(--title-font-family); color: var(--headings-color); font-weight: 600; line-height: 1.5;*/
+  /*font-family: var(--body-font-family); color: var(--headings-color); font-weight: 600; line-height: 1.5;*/
 }
 
 h1{font-size:36px;} h2{font-size:30px;} h3{font-size:24px;}
@@ -1659,7 +1659,7 @@ h2 {
 .login-info {
   font-size: 14px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 
@@ -1721,7 +1721,7 @@ h2 {
 }
 .footer-widget .info-title {
   color: #BEBDBD;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   margin-bottom: 5px;
 }
 .footer-widget .info-phone a,
@@ -1732,7 +1732,7 @@ h2 {
 .footer-widget.light-style .info-phone a,
 .footer-widget.light-style .info-mail a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 
@@ -1810,7 +1810,7 @@ h2 {
   background-color: transparent;
   border: none;
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-size: 15px;
   font-weight: 600;
   position: absolute;
@@ -1828,7 +1828,7 @@ h2 {
 .mailchimp-style1.white-version button {
   font-size: 15px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .mailchimp-style1.at-home4 {
@@ -1908,7 +1908,7 @@ h2 {
 .link-style1 a {
   color: #BEBDBD;
   display: block;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   line-height: 40px;
   position: relative;
   -webkit-transition: all 0.3s ease;
@@ -1925,7 +1925,7 @@ h2 {
 }
 .link-style1.light-style a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .link-style1.at-home9 a:hover {
@@ -1985,7 +1985,7 @@ h2 {
 .breadcumb-style1 .breadcumb-list a {
   display: inline-block;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   position: relative;
 }
@@ -2029,7 +2029,7 @@ h2 {
 
 .pagination_page_count {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -2060,7 +2060,7 @@ h2 {
 }
 .page_control_shorting a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
@@ -2270,7 +2270,7 @@ h2 {
   border-radius: 6px;
   bottom: 20px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   display: block;
   padding: 7px 20px;
@@ -2534,13 +2534,13 @@ h2 {
 
 .inner-banner-style1 .hero-sub-title {
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inner-banner-style1 .hero-title {
   color: #ffffff;
   font-size: 52px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 @media (max-width: 767.98px) {
@@ -2550,7 +2550,7 @@ h2 {
 }
 .inner-banner-style1 .hero-text {
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -2561,7 +2561,7 @@ h2 {
   background-color: transparent;
   border: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-content-style1 .advance-search-btn span {
@@ -2613,7 +2613,7 @@ h2 {
 .inner-banner-style2 .hero-title {
   color: #ffffff;
   font-size: 46px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 @media (max-width: 767.98px) {
@@ -2623,7 +2623,7 @@ h2 {
 }
 .inner-banner-style2 .hero-text {
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -2657,7 +2657,7 @@ h2 {
   background-color: transparent;
   border: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-size: 14px;
 }
 .advance-content-style2 .bootselect-multiselect .btn:hover, .advance-content-style2 .bootselect-multiselect .btn:focus {
@@ -2674,7 +2674,7 @@ h2 {
   background-color: transparent;
   border: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-content-style2 .advance-search-btn span {
@@ -2754,7 +2754,7 @@ h2 {
   background-color: transparent;
   border: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-content-style3 .advance-search-btn span {
@@ -2802,7 +2802,7 @@ h2 {
 .inner-banner-style3 .hero-title {
   color: var(--headings-color);
   font-size: 40px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   max-width: 493px;
 }
@@ -2813,7 +2813,7 @@ h2 {
 }
 .inner-banner-style3 .hero-text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -2871,13 +2871,13 @@ h2 {
 
 .inner-banner-style4 .hero-sub-title {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inner-banner-style4 .hero-title {
   color: var(--headings-color);
   font-size: 40px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 @media (max-width: 991.98px) {
@@ -2887,7 +2887,7 @@ h2 {
 }
 .inner-banner-style4 .hero-text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -2962,7 +2962,7 @@ h2 {
 }
 
 .thumbimg-countnumber-carousel .slider-subtitle {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   margin: 0 0 10px;
   -webkit-animation-duration: 2s;
@@ -2978,7 +2978,7 @@ h2 {
   }
 }
 .thumbimg-countnumber-carousel .slider-title {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 52px;
   margin: 0;
@@ -2995,7 +2995,7 @@ h2 {
   }
 }
 .thumbimg-countnumber-carousel .slider-text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 15px;
   -webkit-animation-duration: 2s;
@@ -3058,12 +3058,12 @@ h2 {
 }
 
 .inner-banner-style6 .hero-sub-title {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inner-banner-style6 .hero-title {
   font-size: 46px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 @media (max-width: 991.98px) {
@@ -3072,7 +3072,7 @@ h2 {
   }
 }
 .inner-banner-style6 .hero-text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -3116,7 +3116,7 @@ h2 {
 .inner-banner-style7 .hero-title {
   color: var(--headings-color);
   font-size: 40px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 @media (max-width: 991.98px) {
@@ -3154,7 +3154,7 @@ h2 {
 .home7-main-slider .swpr_paginations .slideactive,
 .home7-main-slider .swpr_paginations .slidetotal {
   bottom: 0;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   color: #ffffff;
   position: absolute;
 }
@@ -3215,12 +3215,12 @@ h2 {
 }
 
 .inner-banner-style8 .hero-sub-title {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inner-banner-style8 .hero-title {
   font-size: 52px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 
@@ -3231,7 +3231,7 @@ h2 {
   }
 }
 .inner-banner-style8 .hero-text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -3260,12 +3260,12 @@ h2 {
 
 
 .inner-banner-style9 .hero-sub-title {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inner-banner-style9 .hero-title {
   font-size: 52px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 
@@ -3276,7 +3276,7 @@ h2 {
   }
 }
 .inner-banner-style8 .hero-text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -3321,7 +3321,7 @@ h2 {
 }
 .about-box-1 .list-style1 li {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 15px;
   padding-left: 5px;
@@ -3373,7 +3373,7 @@ h2 {
   position: relative;
 }
 .exclusive-agent-widget .title {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 
@@ -3634,7 +3634,7 @@ section {
 .main-title .paragraph,
 .main-title2 .paragraph {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 
 @media (max-width: 991.98px) {
@@ -3709,7 +3709,7 @@ section {
   border: transparent;
   border-radius: 12px;
   font-size: 14px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   padding-left: 50px;
 }
 .advance-search-field .box-search input::placeholder {
@@ -3761,7 +3761,7 @@ section {
   align-items: center;
   display: flex;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -3927,7 +3927,7 @@ section {
 .cta-style1 .cta-text {
   font-size: 15px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 @media (max-width: 991.98px) {
@@ -3983,7 +3983,7 @@ section {
 }
 .cta-style2 .cta-text {
   font-size: 15px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .cta-style2 img {
@@ -3998,7 +3998,7 @@ section {
 }
 .cta-style3 .cta-text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -4047,7 +4047,7 @@ section {
   background-color: #ffffff;
   border-radius: 60px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   display: block;
   height: 34px;
@@ -4061,7 +4061,7 @@ section {
 }
 .cta-style5 .cta-text {
   color: #0D1C39;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -4100,7 +4100,7 @@ section {
 
 .error_page_content .erro_code {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   line-height: 289px;
   font-size: 200px;
@@ -4242,7 +4242,7 @@ section {
 }
 .iconbox-style2 .text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   margin-bottom: 25px;
 }
@@ -4281,7 +4281,7 @@ section {
 }
 .iconbox-style3 .text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   margin-bottom: 25px;
 }
@@ -4411,7 +4411,7 @@ section {
   top: 17px;
 }
 .iconbox-style6 .iconbox-text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 13px;
 }
@@ -4507,7 +4507,7 @@ section {
 }
 .iconbox-style8 .text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   margin-bottom: 25px;
 }
@@ -4673,7 +4673,7 @@ section {
 .feature-style2 .title,
 .feature-style2 .text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .feature-style2:hover img {
   transform: scale(1.1) rotate(-1deg);
@@ -4775,7 +4775,7 @@ section {
 }
 .form-style1 .form-control::placeholder {
   color: #A0A0A0;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .form-style1 .form-control.active, .form-style1 .form-control:focus {
   border: 1px solid transparent;
@@ -4783,7 +4783,7 @@ section {
   color: #717171;
 }
 .form-style1 .form-label {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .form-style1 .custom_checkbox {
   line-height: 26px;
@@ -4797,7 +4797,7 @@ section {
 .form-style1 .form-select option {
   font-size: 14px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   height: 50px;
   border-bottom: 1px solid #DDDDDD;
@@ -4827,20 +4827,20 @@ section {
 }
 .form-style2 .form-control:placeholder {
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .form-style2 .form-control.active, .form-style2 .form-control:focus {
   border: 1px solid transparent;
   outline: 2px solid var(--headings-color);
 }
 .form-style2 .form-label {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 
 textarea {
   border: 1px solid #DDDDDD;
   border-radius: 8px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   height: auto;
   width: 100%;
   padding: 25px 20px;
@@ -4856,14 +4856,14 @@ textarea:focus {
   border: 1px solid #DDDDDD;
   box-shadow: none;
   font-size: 14px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   height: 55px;
   outline: none;
   padding-left: 15px;
 }
 .form-control:placeholder {
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .form-control:focus {
   border: 1px solid transparent;
@@ -4928,7 +4928,7 @@ textarea:focus {
 
 .inquiry-form .form-control {
   font-size: 14px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .inquiry-form .dropdown-menu {
@@ -4959,7 +4959,7 @@ textarea:focus {
   border: 1px solid #DDDDDD;
   border-radius: 8px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   height: 50px;
   line-height: 35px;
@@ -4994,14 +4994,14 @@ textarea:focus {
 .sideborder-dropdown .form-style2 .bootstrap-select .dropdown-item {
   line-height: 35px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 14px;
 }
 .advance-feature-modal.psp-review button.dropdown-toggle,
 .sideborder-dropdown.psp-review button.dropdown-toggle {
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 .advance-feature-modal.psp-review .dropdown-menu li:first-child,
 .sideborder-dropdown.psp-review .dropdown-menu li:first-child {
@@ -5034,12 +5034,12 @@ textarea:focus {
 .testimonial-style1 .title {
   font-size: 16px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   margin-bottom: 25px;
 }
 .testimonial-style1 .text {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 8px;
@@ -5057,7 +5057,7 @@ textarea:focus {
 }
 .testimonial-style2 .testi-text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 22px;
   line-height: 45px;
@@ -5070,7 +5070,7 @@ textarea:focus {
 }
 .testimonial-style2 .design {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 13px;
 }
@@ -5171,7 +5171,7 @@ textarea:focus {
 }
 .testimonial-style4 .desig {
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
@@ -5292,7 +5292,7 @@ textarea:focus {
   background-color: transparent;
   box-shadow: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 14px;
   padding-left: 20px;
@@ -5311,7 +5311,7 @@ textarea:focus {
 }
 .accordion-style1 .accordion-body {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   padding: 20px 0 35px;
   max-width: 410px;
@@ -5342,7 +5342,7 @@ textarea:focus {
   background-color: transparent;
   box-shadow: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   outline: none;
 }
@@ -5351,7 +5351,7 @@ textarea:focus {
   background-color: transparent;
   box-shadow: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 14px;
   text-decoration-line: underline;
@@ -5377,7 +5377,7 @@ textarea:focus {
   background-color: transparent;
   box-shadow: none;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 17px;
   padding-left: 0;
@@ -5398,7 +5398,7 @@ textarea:focus {
 }
 .accordion-style2 .accordion-body {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   padding: 20px 0 0;
 }
@@ -5409,7 +5409,7 @@ textarea:focus {
 }
 .message-alart-style1 .alert {
   border-radius: 4px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   padding: 23px 30px;
   position: relative;
@@ -5491,7 +5491,7 @@ textarea:focus {
 .log-reg-form .hr_top_text {
   background-color: #ffffff;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-size: 16px;
   height: 40px;
   left: 0;
@@ -5513,7 +5513,7 @@ textarea:focus {
 .ud-btn {
   border-radius: 12px;
   display: inline-block;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 15px;
   font-style: normal;
@@ -5545,7 +5545,7 @@ textarea:focus {
 }
 
 .ud-btn2 {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 15px;
   position: relative;
@@ -5993,7 +5993,7 @@ header.nav-innerpage-style .ace-responsive-menu .visible_list a.list-item {
 }
 header.nav-innerpage-style .ace-responsive-menu a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 header.nav-innerpage-style.menu-home4 {
@@ -6077,7 +6077,7 @@ header.nav-homepage-style .ace-responsive-menu .sub-menu li:hover {
 }
 header.nav-homepage-style .ace-responsive-menu .sub-menu a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   line-height: 40px;
 }
@@ -6134,7 +6134,7 @@ header.nav-homepage-style .ace-responsive-menu .visible_list a.list-item {
 }
 header.nav-homepage-style .ace-responsive-menu a {
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 header.nav-homepage-style .header-logo.logo2 {
@@ -6158,7 +6158,7 @@ header.nav-homepage-style.stricky.stricky-fixed {
 }
 header.nav-homepage-style.stricky.stricky-fixed .ace-responsive-menu a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 header.nav-homepage-style.stricky.stricky-fixed .sidemenu-btn,
@@ -6283,7 +6283,7 @@ header.nav-homepage-style.at-home5.stricky.stricky-fixed .ace-responsive-menu .v
 
 .mm-panel ul.mm-listview li.mm-listitem.cl_btn a.btn {
   color: #ffffff;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -6410,7 +6410,7 @@ li.mm-listitem:focus {
 }
 .rightside-hidden-bar .hsidebar-header .title {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .rightside-hidden-bar .hsidebar-header .sidebar-close-icon {
@@ -6555,7 +6555,7 @@ li.mm-listitem:focus {
   position: relative;
   padding: 0 30px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -6700,7 +6700,7 @@ li.mm-listitem:focus {
   color: #717171;
   padding: 15px 13px;
   margin-right: 10px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-search-tab .nav-link:hover, .advance-search-tab .nav-link:focus, .advance-search-tab .nav-link:active {
@@ -6747,7 +6747,7 @@ li.mm-listitem:focus {
   color: #ffffff;
   padding: 15px 13px;
   margin-right: 10px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-style2 .nav-link:hover, .advance-style2 .nav-link:focus, .advance-style2 .nav-link:active {
@@ -6801,7 +6801,7 @@ li.mm-listitem:focus {
   color: #717171;
   padding: 15px 13px;
   margin-right: 10px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-style3 .nav-link:hover, .advance-style3 .nav-link:focus, .advance-style3 .nav-link:active {
@@ -6865,7 +6865,7 @@ li.mm-listitem:focus {
   color: #717171;
   padding: 15px 13px;
   margin-right: 10px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
 }
 .advance-style4 .nav-link:hover, .advance-style4 .nav-link:focus, .advance-style4 .nav-link:active {
@@ -6884,7 +6884,7 @@ li.mm-listitem:focus {
 }
 .advance-style4 .tab-content label {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   display: block;
 }
@@ -6969,7 +6969,7 @@ li.mm-listitem:focus {
   border-color: transparent;
   border: 2px solid transparent;
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
@@ -7064,7 +7064,7 @@ li.mm-listitem:focus {
   border: 1px solid #DDDDDD;
   border-radius: 12px;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 13px;
   line-height: 20px;
@@ -7139,7 +7139,7 @@ input.amount, input.amount2, input.amount3, input.amount4 {
   border-radius: 6px;
   box-shadow: none;
   color: #717171;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-size: 14px;
   font-weight: 400;
   height: 50px;
@@ -7356,7 +7356,7 @@ input:focus-visible {
 .home8-sidebar-wrapper .tel,
 .home8-sidebar-wrapper .mail {
   font-size: 13px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   left: 0;
   position: absolute;
@@ -7995,7 +7995,7 @@ input:focus-visible {
 .banner-style-one .sub-title {
   color: #ffffff;
   font-size: 36px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   line-height: 60px;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -8018,7 +8018,7 @@ input:focus-visible {
 .banner-style-one .banner-title {
   color: #ffffff;
   font-size: 52px;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   line-height: 60px;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -8285,7 +8285,7 @@ input:focus-visible {
   background-color: #ffffff;
   border: 1px solid #DDDDDD;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   height: 45px;
   line-height: 45px;
@@ -8321,7 +8321,7 @@ input:focus-visible {
   cursor: pointer;
   display: inline-block;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 13px;
   outline: 1px solid #DDDDDD;
@@ -8363,7 +8363,7 @@ input:focus-visible {
   align-items: center;
   display: flex;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   position: relative;
 }
@@ -8382,7 +8382,7 @@ input:focus-visible {
   align-items: center;
   display: flex;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .reset-button span {
@@ -8408,7 +8408,7 @@ input:focus-visible {
   box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   cursor: pointer;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-weight: 500;
   letter-spacing: 0em;
@@ -8488,17 +8488,17 @@ input:focus-visible {
 }
 .list-news-style .title span {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .list-news-style .list-meta a {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 .list-news-style .new-text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -8521,7 +8521,7 @@ input:focus-visible {
   color: #181A20;
   display: block;
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
   font-size: 14px;
   line-height: 35px;
@@ -8546,7 +8546,7 @@ input:focus-visible {
 
 /* Essential utility classes */
 .ff-heading {
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
 }
 
 .text-white {
@@ -8988,7 +8988,7 @@ input:focus-visible {
 
 .text {
   color: var(--headings-color);
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 400;
 }
 
@@ -9075,7 +9075,7 @@ input:focus-visible {
 
 /* Типографика пунктов */
 .oa-menu .title{
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight: 600;
   font-size: 15px;
   line-height: 1.2;         /* 120% */
@@ -9202,7 +9202,7 @@ html, body {
 
 .hero-404__code{
   margin:0;
-  font-family: var(--title-font-family);
+  font-family: var(--body-font-family);
   font-weight:600;
   line-height:.89;
   letter-spacing:-.04em;
@@ -9223,7 +9223,7 @@ html, body {
 
 .hero-404__subtitle{
   margin:0;
-  font:600 20px/1 var(--title-font-family);
+  font:600 20px/1 var(--body-font-family);
   color: var(--color-white);
   opacity:.95;
 }

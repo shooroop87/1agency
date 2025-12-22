@@ -1,39 +1,262 @@
 {% load static i18n %}
 {% load static humanize %}
-<section class="filters-section pt50 pb50">
-  <div class="container">
 
+<!-- Filters Section -->
+<section class="filters-section pt150 pt50-xs pb30">
+  <div class="filter-overlay" id="filterOverlay"></div>
+  <div class="container">
+    <div class="filters-header d-flex justify-content-between align-items-center mb30">
+      <h2 class="filters-title">All projects</h2>
+      <button type="button" class="filters-clear" id="clearAllFilters">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Clear all
+      </button>
+    </div>
+
+    <!-- Filters Row -->
+    <div class="filters-row">
+      <!-- Unit Type -->
+      <div class="filter-dropdown" data-filter="type">
+        <button class="filter-pill">
+          <span class="pill-text">Unit Type</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="apartment"><span class="option-icon">🏢</span>Apartment</label>
+          <label class="filter-option"><input type="checkbox" value="villa"><span class="option-icon">🏠</span>Villa</label>
+          <label class="filter-option"><input type="checkbox" value="townhouse"><span class="option-icon">🏘️</span>Townhouse</label>
+          <label class="filter-option"><input type="checkbox" value="penthouse"><span class="option-icon">🏙️</span>Penthouse</label>
+          <label class="filter-option"><input type="checkbox" value="studio"><span class="option-icon">🛏️</span>Studio</label>
+          <label class="filter-option"><input type="checkbox" value="commercial"><span class="option-icon">🏪</span>Commercial</label>
+        </div>
+      </div>
+
+      <!-- Bedrooms -->
+      <div class="filter-dropdown" data-filter="bedrooms">
+        <button class="filter-pill">
+          <span class="pill-text">Bedrooms</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu filter-dropdown-menu--circles">
+          <div class="bedrooms-row">
+            <button class="bed-circle" data-value="1">1</button>
+            <button class="bed-circle" data-value="2">2</button>
+            <button class="bed-circle" data-value="3">3</button>
+            <button class="bed-circle" data-value="4">4</button>
+            <button class="bed-circle" data-value="5+">5+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="filter-dropdown" data-filter="price">
+        <button class="filter-pill">
+          <span class="pill-text">Price</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="0-100000">Up to $100,000</label>
+          <label class="filter-option"><input type="checkbox" value="100000-200000">$100,000 - $200,000</label>
+          <label class="filter-option"><input type="checkbox" value="200000-300000">$200,000 - $300,000</label>
+          <label class="filter-option"><input type="checkbox" value="300000-500000">$300,000 - $500,000</label>
+          <label class="filter-option"><input type="checkbox" value="500000-1000000">$500,000 - $1,000,000</label>
+          <label class="filter-option"><input type="checkbox" value="1000000+">$1,000,000+</label>
+        </div>
+      </div>
+
+      <!-- Area -->
+      <div class="filter-dropdown" data-filter="area">
+        <button class="filter-pill">
+          <span class="pill-text">Area</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="0-50">Up to 50 m²</label>
+          <label class="filter-option"><input type="checkbox" value="50-100">50 - 100 m²</label>
+          <label class="filter-option"><input type="checkbox" value="100-200">100 - 200 m²</label>
+          <label class="filter-option"><input type="checkbox" value="200-500">200 - 500 m²</label>
+          <label class="filter-option"><input type="checkbox" value="500+">500+ m²</label>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="filter-dropdown" data-filter="location">
+        <button class="filter-pill">
+          <span class="pill-text">Location</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="canggu">Canggu</label>
+          <label class="filter-option"><input type="checkbox" value="seminyak">Seminyak</label>
+          <label class="filter-option"><input type="checkbox" value="ubud">Ubud</label>
+          <label class="filter-option"><input type="checkbox" value="bukit">Bukit</label>
+          <label class="filter-option"><input type="checkbox" value="uluwatu">Uluwatu</label>
+          <label class="filter-option"><input type="checkbox" value="sanur">Sanur</label>
+          <label class="filter-option"><input type="checkbox" value="nusa-dua">Nusa Dua</label>
+        </div>
+      </div>
+
+      <!-- Sale Status -->
+      <div class="filter-dropdown" data-filter="status">
+        <button class="filter-pill">
+          <span class="pill-text">Sale Status</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="presale">Pre-sale</label>
+          <label class="filter-option"><input type="checkbox" value="selling">Selling</label>
+          <label class="filter-option"><input type="checkbox" value="soldout">Sold Out</label>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="filter-dropdown" data-filter="features">
+        <button class="filter-pill">
+          <span class="pill-text">Features</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="pool"><span class="option-icon">🏊</span>Pool</label>
+          <label class="filter-option"><input type="checkbox" value="ocean_view"><span class="option-icon">🌊</span>Ocean View</label>
+          <label class="filter-option"><input type="checkbox" value="gym"><span class="option-icon">🏋️</span>Gym</label>
+          <label class="filter-option"><input type="checkbox" value="parking"><span class="option-icon">🚗</span>Parking</label>
+          <label class="filter-option"><input type="checkbox" value="security"><span class="option-icon">🔒</span>Security</label>
+          <label class="filter-option"><input type="checkbox" value="garden"><span class="option-icon">🌴</span>Garden</label>
+        </div>
+      </div>
+
+      <!-- Construction -->
+      <div class="filter-dropdown" data-filter="construction">
+        <button class="filter-pill">
+          <span class="pill-text">Construction</span>
+          <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        </button>
+        <div class="filter-dropdown-menu">
+          <label class="filter-option"><input type="checkbox" value="not_started">Not Started</label>
+          <label class="filter-option"><input type="checkbox" value="in_progress">In Progress</label>
+          <label class="filter-option"><input type="checkbox" value="completed">Completed</label>
+          <label class="filter-option"><input type="checkbox" value="on_hold">On Hold</label>
+        </div>
+      </div>
+
+      <!-- Ownership -->
+      <div class="filter-dropdown filter-dropdown--ownership" data-filter="ownership">
+        <div class="filter-label-inline">OWNERSHIP</div>
+        <div class="ownership-pills">
+          <button class="ownership-pill" data-value="freehold">Freehold</button>
+          <button class="ownership-pill" data-value="leasehold">Leasehold</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="filter-results mt20">
+      <span id="resultsCount">4</span> properties found
+    </div>
+  </div>
+</section>
+
+<!-- Properties Grid Section -->
+<section class="projects section-projects2 pt50 pb100">
+  <div class="container">
     <div class="projects-grid" id="propertiesGrid">
-      {% for prop in properties %}
-      <a href="#" class="project-card project-card--{{ forloop.counter|divisibleby:4|yesno:'lg,lg' }}{% if forloop.counter|add:0 in '2,6,10'|make_list %} project-card--align-end{% endif %}"
-         data-id="{{ prop.id }}">
-        <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
+      <!-- 1. Pandawa Hills -->
+      <a href="#" class="project-card project-card--lg"
+         data-id="1"
+         data-title="Pandawa Hills"
+         data-type="Hotel"
+         data-location="Bukit, Bali"
+         data-image="{% static 'images/port1.png' %}">
+        <div class="pc-img" style="--img:url('{% static 'images/port1.png' %}')">
           <div class="pc-tags">
-            <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
-            {% if prop.price %}
-            <span class="tag">From ${{ prop.price|floatformat:0|intcomma }}</span>
-            {% endif %}
+            <span class="tag">Hotel</span>
+            <span class="tag">From $125,000</span>
           </div>
         </div>
         <div class="pc-meta">
           <h3 class="pc-title">
             <span class="dot" aria-hidden="true"></span>
-            {{ prop.title }}
+            Pandawa Hills
             <i class="wdt-button__icon" aria-hidden="true"></i>
           </h3>
-          <div class="pc-loc">{{ prop.location.name|default:"Bali" }}</div>
+          <div class="pc-loc">Bukit, Bali</div>
         </div>
       </a>
-      {% empty %}
-      <div class="no-results">
-        <p>No properties found</p>
-      </div>
-      {% endfor %}
+
+      <!-- 2. Baza Kedungu -->
+      <a href="#" class="project-card project-card--lg project-card--align-end"
+         data-id="2"
+         data-title="Baza Kedungu"
+         data-type="Apartments"
+         data-location="Canggu, Bali"
+         data-image="{% static 'images/port2.png' %}">
+        <div class="pc-img" style="--img:url('{% static 'images/port2.png' %}')">
+          <div class="pc-tags">
+            <span class="tag">Apartments</span>
+            <span class="tag">From $85,500</span>
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            Baza Kedungu
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">Canggu, Bali</div>
+        </div>
+      </a>
+
+      <!-- 3. Moono Villas -->
+      <a href="#" class="project-card project-card--lg"
+         data-id="3"
+         data-title="Moono Villas"
+         data-type="Villas"
+         data-location="Ubud, Bali"
+         data-image="{% static 'images/port3.png' %}">
+        <div class="pc-img" style="--img:url('{% static 'images/port3.png' %}')">
+          <div class="pc-tags">
+            <span class="tag">Villas</span>
+            <span class="tag">From $140,000</span>
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            Moono Villas
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">Ubud, Bali</div>
+        </div>
+      </a>
+
+      <!-- 4. Satu Melasti Village -->
+      <a href="#" class="project-card project-card--lg"
+         data-id="4"
+         data-title="Satu Melasti Village"
+         data-type="Villas"
+         data-location="Bukit, Bali"
+         data-image="{% static 'images/port4.png' %}">
+        <div class="pc-img" style="--img:url('{% static 'images/port4.png' %}')">
+          <div class="pc-tags">
+            <span class="tag">Villas</span>
+            <span class="tag">From $250,000</span>
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            Satu Melasti Village
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">Bukit, Bali</div>
+        </div>
+      </a>
     </div>
 
     <!-- Pagination -->
     <div class="properties-pagination mt50" id="propertiesPagination"></div>
-
   </div>
 </section>
 
@@ -48,7 +271,7 @@
     </button>
 
     <div class="pm-image">
-      <img src="" alt="Property" loading="lazy" decoding="async">
+      <img src="" alt="Property">
     </div>
 
     <div class="pm-wrapper">
@@ -57,10 +280,8 @@
           <div class="pm-header">
             <h2 class="pm-title"></h2>
             <span class="pm-type"></span>
-            <div class="pm-developer"></div>
-            
             <div class="pm-header__actions mt20">
-              <a class="wdt-button button-cta is-nm concierge-cta" href="#contactus">
+              <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
@@ -70,7 +291,6 @@
             </div>
           </div>
         </div>
-
         <div class="col-12 col-lg-8">
           <div class="pm-info-grid">
             <div class="pm-info-col pm-info-col--left">
@@ -87,19 +307,14 @@
                 <div class="pm-info__value pm-roi"></div>
               </div>
             </div>
-
             <div class="pm-info-col pm-info-col--right">
               <div class="pm-info-item">
-                <div class="pm-info__label">Total area</div>
-                <div class="pm-info__value pm-area"></div>
+                <div class="pm-info__label">Total units</div>
+                <div class="pm-info__value pm-units-count"></div>
               </div>
               <div class="pm-info-item">
-                <div class="pm-info__label">Leasehold</div>
-                <div class="pm-info__value pm-leasehold"></div>
-              </div>
-              <div class="pm-info-item">
-                <div class="pm-info__label">View</div>
-                <div class="pm-info__value pm-view"></div>
+                <div class="pm-info__label">Views</div>
+                <div class="pm-info__value pm-views"></div>
               </div>
             </div>
           </div>
@@ -109,34 +324,296 @@
 
     <div class="pm-separator"></div>
 
-    <div class="pm-wrapper pm-price-section">
+    <div class="pm-wrapper">
       <div class="row gx-5">
         <div class="col-12 col-lg-4 mb30">
-          <h3 class="pm-section-title">Price details</h3>
+          <h3 class="pm-section-title">Unit types and prices</h3>
         </div>
         <div class="col-12 col-lg-8">
-          <div class="pm-units">
-            <div class="pm-unit pm-main-unit">
-              <div class="pm-unit__type"></div>
-              <div class="pm-unit__details"></div>
-              <div class="pm-unit__price"></div>
-            </div>
-          </div>
+          <div class="pm-units" id="pmUnitsGrid"></div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
-
 <style>
-/* Property Modal */
-.pm-wrapper {
-  padding: 40px 50px 30px;
+/* ===== FILTERS ===== */
+.filters-section {
+  position: relative;
+  z-index: 10;
 }
-.pm-header {
-  padding: 0;
+
+.filters-section .container {
+  overflow: visible;
 }
+
+.filters-header {
+  margin-bottom: 30px;
+}
+
+.filters-title {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: #fff;
+  margin: 0;
+}
+
+.filters-clear {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.filters-clear:hover {
+  color: #EA9278;
+}
+
+/* Overlay */
+.filter-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.filter-overlay.is-active {
+  display: block;
+}
+
+/* Filters Row */
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 11;
+}
+
+/* Dropdown */
+.filter-dropdown {
+  position: relative;
+}
+
+/* Pill */
+.filter-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.filter-pill:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.filter-dropdown.is-open .filter-pill,
+.filter-dropdown.has-value .filter-pill {
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+.pill-arrow {
+  transition: transform 0.2s;
+  stroke: currentColor;
+}
+.filter-dropdown.is-open .pill-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.filter-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 230px;
+  background: #323232;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  padding: 12px;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+}
+.filter-dropdown.is-open .filter-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Options */
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+}
+.filter-option:hover {
+  background: rgba(255,255,255,0.08);
+}
+.filter-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.filter-option input[type="checkbox"]:checked {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: #EA9278;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 4L5.5 9.5L3 7' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.option-icon {
+  font-size: 16px;
+}
+
+/* Bedrooms */
+.filter-dropdown-menu--circles {
+  padding: 16px;
+}
+.bedrooms-row {
+  display: flex;
+  gap: 8px;
+}
+.bed-circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.bed-circle:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.bed-circle.is-selected {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Ownership */
+.filter-dropdown--ownership {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.filter-label-inline {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.ownership-pills {
+  display: flex;
+  gap: 6px;
+}
+.ownership-pill {
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ownership-pill:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.ownership-pill.is-selected {
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Results */
+.filter-results {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 20px;
+}
+.filter-results span {
+  color: #EA9278;
+  font-weight: 600;
+}
+
+/* No Results */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.6);
+}
+.no-results p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 20px;
+}
+.no-results .btn-outline {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.no-results .btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* ===== MODAL ===== */
 .property-modal {
   position: fixed;
   top: 0;
@@ -148,34 +625,24 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .property-modal.is-active {
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1;
-  z-index: 4;
 }
-
-/* Когда модалка открыта - прячем header за модалкой */
 body.modal-open header.nav-homepage-style {
   z-index: 1 !important;
 }
-
 body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
   z-index: 1 !important;
 }
-
 .property-modal__overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
 }
-
 .property-modal__content {
   position: relative;
   width: 900px;
@@ -185,9 +652,20 @@ body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
   border-radius: 30px;
   overflow-y: auto;
   z-index: 1;
-  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #E08A72 rgba(0, 0, 0, 0.2);
 }
-
+.property-modal__content::-webkit-scrollbar {
+  width: 8px;
+}
+.property-modal__content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 30px 30px 0;
+}
+.property-modal__content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
+  border-radius: 10px;
+}
 .property-modal__close {
   position: absolute;
   top: 30px;
@@ -199,241 +677,552 @@ body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
   cursor: pointer;
   z-index: 10;
   padding: 0;
-  transition: transform 0.2s;
 }
-
-
-
 .pm-image {
-  width: 100%;
-  height: 333px;
-  border-radius: 30px 30px 0 0;
-  overflow: hidden;
+  padding: 40px 50px 30px;
 }
-
 .pm-image img {
   width: 100%;
-  height: 100%;
+  height: 333px;
   object-fit: cover;
+  border-radius: 30px;
 }
-
-css/* Custom Scrollbar */
-.property-modal__content::-webkit-scrollbar {
-  width: 8px;
+.pm-wrapper {
+  padding: 40px 50px 30px;
 }
-
-.property-modal__content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 0 30px 30px 0;
-}
-
-.property-modal__content::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.property-modal__content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FFBEA4 0%, #F0987D 50%, #D7785B 100%);
-}
-
-/* Firefox */
-.property-modal__content {
-  scrollbar-width: thin;
-  scrollbar-color: #E08A72 rgba(0, 0, 0, 0.2);
-}
-
-.pm-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  gap: 20px;
-}
-
-.pm-title-block {
-  flex: 0 0 auto;
-}
-
 .pm-title {
   font-weight: 600;
   font-size: 18px;
-  line-height: 1.2;
-  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 50%, #EA9278 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0 0 5px;
 }
-
 .pm-type {
   font-weight: 500;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
 }
-
 .pm-header__actions {
   display: flex;
   gap: 11px;
-  flex-shrink: 0;
 }
-
-/* Info Grid */
 .pm-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
-
 .pm-info-col {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
-
-.pm-info-item {
-  position: relative;
-}
-
 .pm-info__label {
   font-weight: 600;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 10px;
 }
-
 .pm-info__value {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.4;
   color: #fff;
 }
-
-.pm-info__icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/* Separator */
 .pm-separator {
   width: calc(100% - 100px);
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
   margin: 0 50px 20px;
 }
-
-/* Section Title */
 .pm-section-title {
   font-weight: 600;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
 }
-
-/* Units Grid */
 .pm-units {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-
 .pm-unit {
   background: #232323;
   border-radius: 25px;
   padding: 20px;
-  box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 7.5px rgba(0, 0, 0, 0.5);
 }
-
 .pm-unit__type {
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.2;
-  background: linear-gradient(90deg, #F0987D 0%, #CE7F63 16.83%, #FFBEA4 28.85%, #CF795F 60.1%, #FFAC93 69.71%, #D7785B 83.65%, #EA9278 97.12%);
+  background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin-bottom: 8px;
 }
-
 .pm-unit__details {
   font-weight: 600;
   font-size: 12px;
-  line-height: 1.4;
   color: #fff;
   margin-bottom: 8px;
 }
-
 .pm-unit__price {
   font-weight: 500;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
 }
-.pm-image {
-  padding: 40px 50px 30px;
-}
-.pm-image img {
-  border-radius: 30px;
-}
 
-/* Mobile */
-@media (max-width: 767px) {
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .filters-section.pt150 {
+    padding-top: 100px;
+  }
+  .filters-title {
+    font-size: 24px;
+  }
+  .filters-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin: 0 -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters-row::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-pill {
+    padding: 8px 14px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .filter-dropdown--ownership {
+    flex-shrink: 0;
+  }
+  .ownership-pill {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .filter-dropdown-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 16px 30px;
+    transform: translateY(100%);
+    min-width: auto;
+    width: 100%;
+    border: none;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+  }
+  .filter-dropdown.is-open .filter-dropdown-menu {
+    transform: translateY(0);
+  }
+  .filter-dropdown-menu::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+  .filter-option {
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+  .filter-option input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+  }
+  .bedrooms-row {
+    justify-content: center;
+    gap: 12px;
+  }
+  .bed-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
   .property-modal__content {
     width: 100%;
     max-width: 100%;
     max-height: 100vh;
     border-radius: 0;
   }
-  
   .pm-image {
+    padding: 0;
+  }
+  .pm-image img {
     height: 250px;
     border-radius: 0;
-    padding: 0px;
   }
-  
   .pm-wrapper {
     padding: 30px 25px 25px;
   }
-  
-  .pm-header-row {
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  .pm-info-col {
-    gap: 10px;
-  }
-  
-  .pm-header__actions {
-    width: 100%;
-  }
-  
-  .pm-header__actions .wdt-button {
-    flex: 1;
-  }
-  
-  .property-modal__close {
-    top: 20px;
-    right: 20px;
-  }
-  
   .pm-info-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+  .pm-info-col {
+    gap: 10px;
+  }
   .pm-separator {
     width: calc(100% - 40px);
     margin: 0 20px 15px;
   }
-
-
-  .pm-header__actions {
-    flex-direction: row-reverse;
-  }
-  
   .pm-units {
     grid-template-columns: 1fr;
   }
+  .pm-header__actions {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 375px) {
+  .filter-pill {
+    padding: 7px 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+  .filter-label-inline {
+    display: none;
+  }
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const overlay = document.getElementById('filterOverlay');
+  const modal = document.getElementById('propertyModal');
+  
+  // Filter state
+  const filterState = {
+    type: [],
+    bedrooms: [],
+    price: [],
+    area: [],
+    location: [],
+    status: [],
+    features: [],
+    construction: [],
+    ownership: []
+  };
+
+  // ===== FILTERS =====
+  
+  // Закрытие всех dropdown
+  function closeAllDropdowns() {
+    document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('is-open'));
+    if (window.innerWidth <= 768) {
+      overlay?.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Toggle dropdown
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const dropdown = this.closest('.filter-dropdown');
+      const wasOpen = dropdown.classList.contains('is-open');
+      
+      closeAllDropdowns();
+      
+      if (!wasOpen) {
+        dropdown.classList.add('is-open');
+        if (window.innerWidth <= 768) {
+          overlay?.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+  });
+
+  // Клик по оверлею фильтров
+  overlay?.addEventListener('click', closeAllDropdowns);
+
+  // Закрытие по клику вне
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.filter-dropdown')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Не закрывать при клике внутри меню
+  document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
+    menu.addEventListener('click', e => e.stopPropagation());
+  });
+
+  // Checkbox options
+  document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const dropdown = this.closest('.filter-dropdown');
+      const filterName = dropdown.dataset.filter;
+      const value = this.value;
+      
+      if (this.checked) {
+        if (!filterState[filterName].includes(value)) {
+          filterState[filterName].push(value);
+        }
+      } else {
+        filterState[filterName] = filterState[filterName].filter(v => v !== value);
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
+    });
+  });
+
+  // Bedroom circles
+  document.querySelectorAll('.bed-circle').forEach(circle => {
+    circle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const dropdown = this.closest('.filter-dropdown');
+      const value = this.dataset.value;
+      const wasSelected = this.classList.contains('is-selected');
+      
+      dropdown.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+      
+      if (!wasSelected) {
+        this.classList.add('is-selected');
+        filterState.bedrooms = [value];
+      } else {
+        filterState.bedrooms = [];
+      }
+      
+      updatePillState(dropdown);
+      applyFilters();
+    });
+  });
+
+  // Ownership pills
+  document.querySelectorAll('.ownership-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.preventDefault();
+      const value = this.dataset.value;
+      
+      this.classList.toggle('is-selected');
+      
+      if (this.classList.contains('is-selected')) {
+        if (!filterState.ownership.includes(value)) {
+          filterState.ownership.push(value);
+        }
+      } else {
+        filterState.ownership = filterState.ownership.filter(v => v !== value);
+      }
+      
+      applyFilters();
+    });
+  });
+
+  // Update pill state
+  function updatePillState(dropdown) {
+    const filterName = dropdown.dataset.filter;
+    const state = filterState[filterName];
+    
+    const hasValue = Array.isArray(state) && state.length > 0;
+    dropdown.classList.toggle('has-value', hasValue);
+    
+    const pillText = dropdown.querySelector('.pill-text');
+    if (pillText) {
+      const baseName = pillText.textContent.split(' (')[0];
+      pillText.textContent = hasValue ? `${baseName} (${state.length})` : baseName;
+    }
+  }
+
+  // Clear all
+  document.getElementById('clearAllFilters')?.addEventListener('click', function() {
+    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+    });
+    document.querySelectorAll('.bed-circle').forEach(c => c.classList.remove('is-selected'));
+    document.querySelectorAll('.ownership-pill').forEach(p => p.classList.remove('is-selected'));
+    document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('has-value'));
+    document.querySelectorAll('.pill-text').forEach(pt => {
+      pt.textContent = pt.textContent.split(' (')[0];
+    });
+    
+    Object.keys(filterState).forEach(key => {
+      filterState[key] = [];
+    });
+    
+    applyFilters();
+  });
+
+  // Apply filters
+  function applyFilters() {
+    const params = new URLSearchParams();
+    
+    Object.entries(filterState).forEach(([key, val]) => {
+      if (Array.isArray(val) && val.length) {
+        params.set(key, val.join(','));
+      }
+    });
+
+    const grid = document.getElementById('propertiesGrid');
+    if (grid) {
+      grid.style.opacity = '0.5';
+      grid.style.pointerEvents = 'none';
+    }
+
+    fetch(`/api/properties/?${params.toString()}`)
+      .then(r => r.json())
+      .then(data => {
+        const count = data.total || data.count || 0;
+        document.getElementById('resultsCount').textContent = count;
+        if (grid) {
+          grid.style.opacity = '1';
+          grid.style.pointerEvents = '';
+          if (data.results) {
+            renderProperties(data.results);
+          }
+        }
+      })
+      .catch(err => {
+        console.error('Filter error:', err);
+        if (grid) {
+          grid.style.opacity = '1';
+          grid.style.pointerEvents = '';
+        }
+      });
+  }
+
+  // Render properties
+  function renderProperties(properties) {
+    const grid = document.getElementById('propertiesGrid');
+    if (!grid) return;
+
+    if (!properties.length) {
+      grid.innerHTML = `
+        <div class="no-results">
+          <p>No properties found matching your criteria</p>
+          <button class="btn-outline" onclick="document.getElementById('clearAllFilters').click()">
+            Clear filters
+          </button>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = properties.map((prop, i) => `
+      <a href="#" class="project-card project-card--lg${i % 4 === 1 ? ' project-card--align-end' : ''}"
+         data-id="${prop.id}"
+         data-title="${prop.title}"
+         data-type="${prop.property_type || 'Property'}"
+         data-location="${prop.location || 'Bali'}"
+         data-image="${prop.image || '/static/images/placeholder.jpg'}">
+        <div class="pc-img" style="--img:url('${prop.image || '/static/images/placeholder.jpg'}')">
+          <div class="pc-tags">
+            <span class="tag">${prop.property_type || 'Property'}</span>
+            ${prop.price_display ? `<span class="tag">${prop.price_display}</span>` : ''}
+          </div>
+        </div>
+        <div class="pc-meta">
+          <h3 class="pc-title">
+            <span class="dot" aria-hidden="true"></span>
+            ${prop.title}
+            <i class="wdt-button__icon" aria-hidden="true"></i>
+          </h3>
+          <div class="pc-loc">${prop.location || 'Bali'}</div>
+        </div>
+      </a>
+    `).join('');
+
+    initPropertyModals();
+  }
+
+  // ===== MODAL =====
+  
+  function openModal(card) {
+    const title = card.dataset.title;
+    const type = card.dataset.type;
+    const location = card.dataset.location;
+    const image = card.dataset.image;
+    const id = card.dataset.id;
+
+    // Заполняем данные
+    modal.querySelector('.pm-title').textContent = title;
+    modal.querySelector('.pm-type').textContent = type;
+    modal.querySelector('.pm-location').innerHTML = location;
+    modal.querySelector('.pm-image img').src = image;
+
+    // Показываем модалку
+    modal.classList.add('is-active');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+
+    // Загрузка данных с сервера если есть id
+    if (id && typeof window.loadPropertyData === 'function') {
+      window.loadPropertyData(id);
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+  }
+
+  // Init modal handlers
+  function initPropertyModals() {
+    document.querySelectorAll('.project-card[data-id], .project-card[data-title]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal(this);
+      });
+    });
+  }
+
+  // Close modal events
+  modal?.querySelector('.property-modal__overlay')?.addEventListener('click', closeModal);
+  modal?.querySelector('.property-modal__close')?.addEventListener('click', closeModal);
+  
+  // ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal?.classList.contains('is-active')) {
+      closeModal();
+    }
+  });
+
+  // Global function for loading property data
+  window.loadPropertyData = function(id) {
+    fetch(`/api/properties/${id}/`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.title) modal.querySelector('.pm-title').textContent = data.title;
+        if (data.property_type) modal.querySelector('.pm-type').textContent = data.property_type;
+        if (data.location) modal.querySelector('.pm-location').innerHTML = data.location;
+        if (data.image) modal.querySelector('.pm-image img').src = data.image;
+        if (data.construction) modal.querySelector('.pm-construction').innerHTML = data.construction;
+        if (data.roi) modal.querySelector('.pm-roi').textContent = data.roi;
+        if (data.units_count) modal.querySelector('.pm-units-count').textContent = data.units_count;
+        if (data.views) modal.querySelector('.pm-views').innerHTML = data.views;
+        
+        // Units
+        if (data.units && data.units.length) {
+          const unitsGrid = document.getElementById('pmUnitsGrid');
+          if (unitsGrid) {
+            unitsGrid.innerHTML = data.units.map(u => `
+              <div class="pm-unit">
+                <div class="pm-unit__type">${u.type}</div>
+                <div class="pm-unit__details">${u.details}</div>
+                <div class="pm-unit__price">${u.price}</div>
+              </div>
+            `).join('');
+          }
+        }
+      })
+      .catch(err => console.error('Error loading property:', err));
+  };
+
+  // Init on load
+  initPropertyModals();
+});
+</script>
