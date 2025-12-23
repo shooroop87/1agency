@@ -150,9 +150,31 @@ def property_detail(request, pk):
     try:
         prop = Property.objects.select_related(
             'developer', 'property_type', 'location', 'image'
-        ).prefetch_related('features').get(pk=pk, is_active=True)
+        ).prefetch_related('features', 'units').get(pk=pk, is_active=True)
     except Property.DoesNotExist:
         return JsonResponse({'error': 'Not found'}, status=404)
+    
+    # Собираем units для комплексов
+    units_data = []
+    if prop.is_complex:
+        for unit in prop.units.all():
+            units_data.append({
+                'type': unit.name,
+                'details': unit.get_details_display(),
+                'price': unit.get_price_display(),
+            })
+    
+    # Construction display
+    construction_parts = []
+    if prop.completion_year:
+        completion = f"Q{prop.completion_quarter} {prop.completion_year}" if prop.completion_quarter else str(prop.completion_year)
+        construction_parts.append(f"Completion date: {completion}")
+    if prop.launch_date:
+        construction_parts.append(f"Launch: {prop.launch_date}")
+    construction_display = '<br>'.join(construction_parts) if construction_parts else ''
+    
+    # Features как views (Pool, Garden, Ocean View...)
+    features_list = [f.name for f in prop.features.all()]
     
     return JsonResponse({
         'id': prop.id,
@@ -161,6 +183,7 @@ def property_detail(request, pk):
         'property_type': prop.property_type.name if prop.property_type else '',
         'developer': prop.developer.name if prop.developer else '',
         'location': prop.location.name if prop.location else '',
+        'location_detail': prop.address or '',
         'price_display': prop.get_price_display(),
         'price_per_sqm_display': prop.get_price_per_sqm_display(),
         'bedrooms': prop.get_bedrooms_display(),
@@ -169,17 +192,19 @@ def property_detail(request, pk):
         'plot_area': prop.get_plot_area_display(),
         'sale_status': prop.get_sale_status_display(),
         'construction_status': prop.get_construction_status_display(),
+        'construction': construction_display,
         'ownership': prop.get_ownership_type_display(),
         'completion': prop.get_completion_display(),
-        'roi': prop.get_roi_display(),
+        'roi': f"Projected ROI: {prop.get_roi_display()}" if prop.get_roi_display() else '',
         'leasehold': prop.leasehold_years,
-        'features': prop.get_features_list(),
-        'view': prop.view,
-        'facilities': prop.facilities,
+        'features': features_list,
         'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
         'video': prop.video_url,
+        # Complex specific
+        'is_complex': prop.is_complex,
+        'total_units': prop.total_units if prop.is_complex else None,
+        'units': units_data,
     })
-
 
 def filter_options(request):
     """Динамические опции фильтров из БД"""

@@ -23,16 +23,12 @@
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
         <div class="filter-dropdown-menu">
-          {% for pt in property_types %}
-          <label class="filter-option">
-            <input type="checkbox" value="{{ pt.slug }}">
-            {% if pt.icon %}<span class="option-icon">{{ pt.icon }}</span>{% endif %}
-            {{ pt.name }}
-          </label>
-          {% empty %}
-          <label class="filter-option"><input type="checkbox" value="villa"><span class="option-icon">🏠</span>Villa</label>
           <label class="filter-option"><input type="checkbox" value="apartment"><span class="option-icon">🏢</span>Apartment</label>
-          {% endfor %}
+          <label class="filter-option"><input type="checkbox" value="villa"><span class="option-icon">🏠</span>Villa</label>
+          <label class="filter-option"><input type="checkbox" value="townhouse"><span class="option-icon">🏘️</span>Townhouse</label>
+          <label class="filter-option"><input type="checkbox" value="penthouse"><span class="option-icon">🏙️</span>Penthouse</label>
+          <label class="filter-option"><input type="checkbox" value="studio"><span class="option-icon">🛏️</span>Studio</label>
+          <label class="filter-option"><input type="checkbox" value="commercial"><span class="option-icon">🏪</span>Commercial</label>
         </div>
       </div>
 
@@ -228,16 +224,15 @@
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
-              <button class="favorites-btn" aria-label="Add to favorites">
+              <a href="#" class="favorites-btn" aria-label="Favorites">
                 <span class="flaticon-like"></span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-8">
-          <!-- Complex layout -->
-          <div class="pm-info-grid pm-info-grid--complex">
-            <div class="pm-info-col">
+          <div class="pm-info-grid">
+            <div class="pm-info-col pm-info-col--left">
               <div class="pm-info-item">
                 <div class="pm-info__label">Location</div>
                 <div class="pm-info__value pm-location"></div>
@@ -251,7 +246,7 @@
                 <div class="pm-info__value pm-roi"></div>
               </div>
             </div>
-            <div class="pm-info-col">
+            <div class="pm-info-col pm-info-col--right">
               <div class="pm-info-item">
                 <div class="pm-info__label">Total units</div>
                 <div class="pm-info__value pm-units-count"></div>
@@ -262,63 +257,19 @@
               </div>
             </div>
           </div>
-          <!-- Single property layout -->
-          <div class="pm-info-grid pm-info-grid--single">
-            <div class="pm-info-col">
-              <div class="pm-info-item">
-                <div class="pm-info__label">Location</div>
-                <div class="pm-info__value pm-location-single"></div>
-              </div>
-              <div class="pm-info-item">
-                <div class="pm-info__label">Construction</div>
-                <div class="pm-info__value pm-construction-single"></div>
-              </div>
-              <div class="pm-info-item">
-                <div class="pm-info__label">ROI</div>
-                <div class="pm-info__value pm-roi-single"></div>
-              </div>
-            </div>
-            <div class="pm-info-col">
-              <div class="pm-info-item">
-                <div class="pm-info__label">Total area</div>
-                <div class="pm-info__value pm-area"></div>
-              </div>
-              <div class="pm-info-item">
-                <div class="pm-info__label">Leasehold</div>
-                <div class="pm-info__value pm-leasehold"></div>
-              </div>
-              <div class="pm-info-item">
-                <div class="pm-info__label">Price</div>
-                <div class="pm-info__value pm-price"></div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
     <div class="pm-separator"></div>
 
-    <!-- Units section (for complex) -->
-    <div class="pm-wrapper pm-units-section">
+    <div class="pm-wrapper">
       <div class="row gx-5">
         <div class="col-12 col-lg-4 mb30">
           <h3 class="pm-section-title">Unit types and prices</h3>
         </div>
         <div class="col-12 col-lg-8">
           <div class="pm-units" id="pmUnitsGrid"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Features section (for single) -->
-    <div class="pm-wrapper pm-features-section">
-      <div class="row gx-5">
-        <div class="col-12 col-lg-4 mb30">
-          <h3 class="pm-section-title">Features</h3>
-        </div>
-        <div class="col-12 col-lg-8">
-          <div class="pm-features" id="pmFeatures"></div>
         </div>
       </div>
     </div>
@@ -907,139 +858,6 @@ body.modal-open header.nav-homepage-style.stricky.stricky-fixed {
     display: none;
   }
 }
-/* Location detail */
-.pm-info__sub {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
-  margin-top: 4px;
-}
-
-/* Views list */
-.pm-views-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.pm-views-list li {
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 4px;
-  font-size: 12px;
-}
-.pm-views-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #EA9278;
-}
-
-/* Unit card updates */
-.pm-unit__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-.pm-unit__fav {
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  padding: 0;
-  font-size: 14px;
-  transition: color 0.2s;
-}
-.pm-unit__fav:hover {
-  color: #EA9278;
-}
-.pm-unit__details {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 10px;
-}
-.pm-unit__details li {
-  position: relative;
-  padding-left: 12px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 4px;
-}
-.pm-unit__details li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: rgba(255, 255, 255, 0.3);
-}
-
-/* Single unit fallback */
-.pm-unit--single {
-  grid-column: 1 / -1;
-}
-.pm-no-units {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  padding: 20px;
-}
-/* Mode switching */
-.pm-info-grid--complex,
-.pm-info-grid--single {
-  display: none;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-.pm-units-section,
-.pm-features-section {
-  display: none;
-}
-
-/* Features list */
-.pm-features-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.pm-features-list li {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.8);
-}
-.pm-no-features {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Views list */
-.pm-views-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.pm-views-list li {
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 4px;
-  font-size: 12px;
-}
-.pm-views-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #EA9278;
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-  .pm-info-grid--complex,
-  .pm-info-grid--single {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1436,78 +1254,27 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/api/properties/${id}/`)
       .then(r => r.json())
       .then(data => {
-        const isComplex = data.is_complex;
+        if (data.title) modal.querySelector('.pm-title').textContent = data.title;
+        if (data.property_type) modal.querySelector('.pm-type').textContent = data.property_type;
+        if (data.location) modal.querySelector('.pm-location').innerHTML = data.location;
+        if (data.image) modal.querySelector('.pm-image img').src = data.image;
+        if (data.construction) modal.querySelector('.pm-construction').innerHTML = data.construction;
+        if (data.roi) modal.querySelector('.pm-roi').textContent = data.roi;
+        if (data.units_count) modal.querySelector('.pm-units-count').textContent = data.units_count;
+        if (data.views) modal.querySelector('.pm-views').innerHTML = data.views;
         
-        // Основные поля
-        modal.querySelector('.pm-title').textContent = data.title || '';
-        modal.querySelector('.pm-type').textContent = data.property_type || '';
-        modal.querySelector('.pm-image img').src = data.image || '';
-        
-        // Переключаем режим отображения
-        modal.querySelector('.pm-info-grid--complex').style.display = isComplex ? 'grid' : 'none';
-        modal.querySelector('.pm-info-grid--single').style.display = isComplex ? 'none' : 'grid';
-        modal.querySelector('.pm-units-section').style.display = isComplex ? 'block' : 'none';
-        modal.querySelector('.pm-features-section').style.display = isComplex ? 'none' : 'block';
-        
-        if (isComplex) {
-          // === COMPLEX MODE ===
-          modal.querySelector('.pm-location').textContent = data.location || '—';
-          modal.querySelector('.pm-construction').innerHTML = data.construction || '—';
-          modal.querySelector('.pm-roi').textContent = data.roi || '—';
-          modal.querySelector('.pm-units-count').textContent = data.total_units || '—';
-          
-          // Views из features
-          const viewsEl = modal.querySelector('.pm-views');
-          if (data.features && data.features.length) {
-            viewsEl.innerHTML = '<ul class="pm-views-list">' + 
-              data.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
-          } else {
-            viewsEl.textContent = '—';
-          }
-          
-          // Units grid
+        if (data.units && data.units.length) {
           const unitsGrid = document.getElementById('pmUnitsGrid');
-          if (data.units && data.units.length) {
+          if (unitsGrid) {
             unitsGrid.innerHTML = data.units.map(u => `
               <div class="pm-unit">
-                <div class="pm-unit__header">
-                  <span class="pm-unit__type">${u.type}</span>
-                  <button class="pm-unit__fav" aria-label="Add to favorites">
-                    <span class="flaticon-like"></span>
-                  </button>
-                </div>
-                <ul class="pm-unit__details">
-                  ${u.details.split(' • ').map(d => `<li>${d}</li>`).join('')}
-                </ul>
+                <div class="pm-unit__type">${u.type}</div>
+                <div class="pm-unit__details">${u.details}</div>
                 <div class="pm-unit__price">${u.price}</div>
               </div>
             `).join('');
-          } else {
-            unitsGrid.innerHTML = '<div class="pm-no-units">Contact us for unit details</div>';
-          }
-        } else {
-          // === SINGLE PROPERTY MODE ===
-          modal.querySelector('.pm-location-single').textContent = data.location || '—';
-          modal.querySelector('.pm-construction-single').innerHTML = data.construction || '—';
-          modal.querySelector('.pm-roi-single').textContent = data.roi || '—';
-          modal.querySelector('.pm-area').textContent = data.total_area || '—';
-          modal.querySelector('.pm-leasehold').textContent = data.leasehold ? `${data.leasehold} years` : '—';
-          modal.querySelector('.pm-price').textContent = data.price_display || '—';
-          
-          // Features
-          const featuresEl = document.getElementById('pmFeatures');
-          if (data.features && data.features.length) {
-            featuresEl.innerHTML = '<ul class="pm-features-list">' + 
-              data.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
-          } else {
-            featuresEl.innerHTML = '<div class="pm-no-features">—</div>';
           }
         }
-        
-        // Открываем модалку
-        modal.classList.add('is-active');
-        document.body.classList.add('modal-open');
-        document.body.style.overflow = 'hidden';
       })
       .catch(err => console.error('Error loading property:', err));
   };

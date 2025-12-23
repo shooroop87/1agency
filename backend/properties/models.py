@@ -146,9 +146,19 @@ class Property(TranslatableModel):
     address = models.CharField(_('Address'), max_length=500, blank=True, help_text=_('For Google Maps autocomplete'))
     show_on_map = models.BooleanField(_('Show on homepage map'), default=False)
     
+    # Complex info (для комплексов с несколькими юнитами)
+    total_units = models.PositiveIntegerField(_('Total Units'), null=True, blank=True, 
+                                               help_text=_('Total number of units in complex'))
+    
+    # Construction dates (более детально)
+    launch_date = models.CharField(_('Launch Date'), max_length=50, blank=True,
+                                   help_text=_('e.g. Q2 2028'))
+
     # Meta
     is_active = models.BooleanField(_('Active'), default=True)
     is_featured = models.BooleanField(_('Featured'), default=False)
+    is_complex = models.BooleanField(_('Complex (multiple units)'), default=False,
+                                     help_text=_('Check if this is a complex with multiple unit types'))
     order = models.PositiveIntegerField(_('Order'), default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -251,3 +261,43 @@ class Property(TranslatableModel):
         """Returns list of feature names with icons"""
         return [f"{f.icon} {f.name}" if f.icon else f.name for f in self.features.all()]
 
+
+class PropertyUnit(models.Model):
+    """Типы юнитов в комплексе (Standard, Superior, Deluxe, Luxury...)"""
+    property = models.ForeignKey(
+        Property, 
+        on_delete=models.CASCADE, 
+        related_name='units',
+        verbose_name=_('Property')
+    )
+    name = models.CharField(_('Unit Type'), max_length=100)  # Standard, Superior, Deluxe
+    total_area = models.DecimalField(_('Total Area m²'), max_digits=8, decimal_places=2, null=True, blank=True)
+    living_area = models.DecimalField(_('Living Area m²'), max_digits=8, decimal_places=2, null=True, blank=True)
+    outdoor_type = models.CharField(_('Outdoor'), max_length=50, blank=True)  # Balcony, Terrace
+    price_from = models.DecimalField(_('Price From $'), max_digits=12, decimal_places=2, null=True, blank=True)
+    order = models.PositiveIntegerField(_('Order'), default=0)
+    
+    class Meta:
+        ordering = ['order', 'price_from']
+        verbose_name = _('Property Unit')
+        verbose_name_plural = _('Property Units')
+    
+    def __str__(self):
+        return f"{self.name} - {self.property}"
+    
+    def get_details_display(self):
+        """Возвращает строку: 28.7 m² • 4.2 m² • Balcony"""
+        parts = []
+        if self.total_area:
+            parts.append(f"{self.total_area} m²")
+        if self.living_area:
+            parts.append(f"{self.living_area} m²")
+        if self.outdoor_type:
+            parts.append(self.outdoor_type)
+        return ' • '.join(parts)
+    
+    def get_price_display(self):
+        """Возвращает: From $108,724"""
+        if self.price_from:
+            return f"From ${int(self.price_from):,}"
+        return ''

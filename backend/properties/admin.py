@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from parler.admin import TranslatableAdmin
-from .models import Property, PropertyType, Location, Developer, Feature
+from .models import Property, PropertyType, Location, Developer, Feature, PropertyUnit
 
 
 @admin.register(PropertyType)
@@ -34,6 +34,13 @@ class FeatureAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class PropertyUnitInline(admin.TabularInline):
+    model = PropertyUnit
+    extra = 1
+    fields = ['name', 'total_area', 'living_area', 'outdoor_type', 'price_from', 'order']
+    ordering = ['order', 'price_from']
+
+
 @admin.register(Property)
 class PropertyAdmin(TranslatableAdmin):
     list_display = ['get_title', 'get_image_preview', 'property_type', 'location', 
@@ -44,6 +51,7 @@ class PropertyAdmin(TranslatableAdmin):
     search_fields = ['translations__title', 'developer__name']
     autocomplete_fields = ['developer', 'location', 'property_type']
     filter_horizontal = ['features']
+    inlines = [PropertyUnitInline]
     
     fieldsets = (
         (_('Basic'), {
@@ -68,6 +76,7 @@ class PropertyAdmin(TranslatableAdmin):
                 ('sale_status', 'construction_status'),
                 'ownership_type',
                 ('completion_year', 'completion_quarter'),
+                'launch_date',
             ),
         }),
         (_('Investment'), {
@@ -77,7 +86,7 @@ class PropertyAdmin(TranslatableAdmin):
             ),
         }),
         (_('Features'), {
-            'fields': ('features', 'view', 'facilities'),
+            'fields': ('features',),
         }),
         (_('Media'), {
             'fields': ('image', 'video_url', 'presentation_ru', 'presentation_en'),
@@ -86,7 +95,7 @@ class PropertyAdmin(TranslatableAdmin):
             'fields': ('address', ('latitude', 'longitude'), 'show_on_map'),
         }),
         (_('Settings'), {
-            'fields': ('is_active', 'is_featured', 'order'),
+            'fields': ('is_active', 'is_featured', 'is_complex', 'total_units', 'order'),
         }),
     )
 

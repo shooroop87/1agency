@@ -23,12 +23,16 @@
           <svg class="pill-arrow" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
         <div class="filter-dropdown-menu">
-          <label class="filter-option"><input type="checkbox" value="apartment"><span class="option-icon">🏢</span>Apartment</label>
+          {% for pt in property_types %}
+          <label class="filter-option">
+            <input type="checkbox" value="{{ pt.slug }}">
+            {% if pt.icon %}<span class="option-icon">{{ pt.icon }}</span>{% endif %}
+            {{ pt.name }}
+          </label>
+          {% empty %}
           <label class="filter-option"><input type="checkbox" value="villa"><span class="option-icon">🏠</span>Villa</label>
-          <label class="filter-option"><input type="checkbox" value="townhouse"><span class="option-icon">🏘️</span>Townhouse</label>
-          <label class="filter-option"><input type="checkbox" value="penthouse"><span class="option-icon">🏙️</span>Penthouse</label>
-          <label class="filter-option"><input type="checkbox" value="studio"><span class="option-icon">🛏️</span>Studio</label>
-          <label class="filter-option"><input type="checkbox" value="commercial"><span class="option-icon">🏪</span>Commercial</label>
+          <label class="filter-option"><input type="checkbox" value="apartment"><span class="option-icon">🏢</span>Apartment</label>
+          {% endfor %}
         </div>
       </div>
 
@@ -163,11 +167,7 @@
     <div class="projects-grid" id="propertiesGrid">
       {% for prop in properties %}
       <a href="#" class="project-card project-card--lg{% if forloop.counter == 2 or forloop.counter == 6 or forloop.counter == 10 %} project-card--align-end{% endif %}"
-         data-id="{{ prop.id }}"
-         data-title="{{ prop.title }}"
-         data-type="{{ prop.property_type.name|default:'Property' }}"
-         data-location="{% if prop.location.name %}{{ prop.location.name }}, Bali{% else %}Bali{% endif %}"
-         data-image="{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}">
+         data-id="{{ prop.id }}">
         <div class="pc-img" style="--img:url('{% if prop.image %}{{ prop.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}')">
           <div class="pc-tags">
             <span class="tag">{{ prop.property_type.name|default:"Property" }}</span>
@@ -186,16 +186,13 @@
         </div>
       </a>
       {% empty %}
-      <div class="no-results">
-        <p>No properties found</p>
-      </div>
+      <div class="no-results"><p>No properties found</p></div>
       {% endfor %}
     </div>
-
-    <!-- Pagination -->
     <div class="properties-pagination mt50" id="propertiesPagination"></div>
   </div>
 </section>
+
 <!-- Property Modal -->
 <div id="propertyModal" class="property-modal">
   <div class="property-modal__overlay"></div>
@@ -206,9 +203,7 @@
       </svg>
     </button>
 
-    <div class="pm-image">
-      <img src="" alt="Property">
-    </div>
+    <div class="pm-image"><img src="" alt="Property"></div>
 
     <div class="pm-wrapper">
       <div class="row gx-5">
@@ -221,12 +216,16 @@
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
+              <button class="favorites-btn" aria-label="Add to favorites">
+                <span class="flaticon-like"></span>
+              </button>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-8">
-          <div class="pm-info-grid">
-            <div class="pm-info-col pm-info-col--left">
+          <!-- Complex layout -->
+          <div class="pm-info-grid pm-info-grid--complex">
+            <div class="pm-info-col">
               <div class="pm-info-item">
                 <div class="pm-info__label">Location</div>
                 <div class="pm-info__value pm-location"></div>
@@ -240,7 +239,34 @@
                 <div class="pm-info__value pm-roi"></div>
               </div>
             </div>
-            <div class="pm-info-col pm-info-col--right">
+            <div class="pm-info-col">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Total units</div>
+                <div class="pm-info__value pm-units-count"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">Views</div>
+                <div class="pm-info__value pm-views"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Single property layout -->
+          <div class="pm-info-grid pm-info-grid--single">
+            <div class="pm-info-col">
+              <div class="pm-info-item">
+                <div class="pm-info__label">Location</div>
+                <div class="pm-info__value pm-location-single"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">Construction</div>
+                <div class="pm-info__value pm-construction-single"></div>
+              </div>
+              <div class="pm-info-item">
+                <div class="pm-info__label">ROI</div>
+                <div class="pm-info__value pm-roi-single"></div>
+              </div>
+            </div>
+            <div class="pm-info-col">
               <div class="pm-info-item">
                 <div class="pm-info__label">Total area</div>
                 <div class="pm-info__value pm-area"></div>
@@ -258,13 +284,38 @@
         </div>
       </div>
     </div>
+
+    <div class="pm-separator"></div>
+
+    <!-- Units section (for complex) -->
+    <div class="pm-wrapper pm-units-section">
+      <div class="row gx-5">
+        <div class="col-12 col-lg-4 mb30">
+          <h3 class="pm-section-title">Unit types and prices</h3>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="pm-units" id="pmUnitsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features section (for single) -->
+    <div class="pm-wrapper pm-features-section">
+      <div class="row gx-5">
+        <div class="col-12 col-lg-4 mb30">
+          <h3 class="pm-section-title">Features</h3>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="pm-features" id="pmFeatures"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- Mobile Bottom Sheet -->
 <div id="mobileFilterOverlay" class="mobile-filter-overlay"></div>
 <div id="mobileFilterSheet" class="mobile-filter-sheet"></div>
-
 <style>
 /* ===== FILTERS ===== */
 .filters-section { position: relative; z-index: 10; }
@@ -301,7 +352,6 @@
 .filter-results { font-family: 'Manrope', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 20px; }
 .filter-results span { color: #EA9278; font-weight: 600; }
 .no-results { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6); }
-.no-results p { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 20px; }
 
 /* ===== MOBILE BOTTOM SHEET ===== */
 .mobile-filter-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 99998; backdrop-filter: blur(4px); }
@@ -328,12 +378,41 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
 .pm-info-col { display: flex; flex-direction: column; gap: 30px; }
 .pm-info__label { font-weight: 600; font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
 .pm-info__value { font-weight: 500; font-size: 12px; line-height: 1.4; color: #fff; }
+.pm-separator { width: calc(100% - 100px); height: 1px; background: rgba(255,255,255,0.2); margin: 0 50px 20px; }
+.pm-section-title { font-weight: 600; font-size: 12px; color: rgba(255,255,255,0.5); margin: 0; }
+
+/* Mode switching */
+.pm-info-grid--complex, .pm-info-grid--single { display: none; grid-template-columns: 1fr 1fr; gap: 30px; }
+.pm-units-section, .pm-features-section { display: none; }
+
+/* Units */
+.pm-units { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.pm-unit { background: #232323; border-radius: 25px; padding: 20px; box-shadow: 0 0 7.5px rgba(0,0,0,0.5); }
+.pm-unit__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.pm-unit__type { font-weight: 500; font-size: 12px; background: linear-gradient(90deg, #F0987D 0%, #EA9278 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.pm-unit__fav { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; padding: 0; font-size: 14px; transition: color 0.2s; }
+.pm-unit__fav:hover { color: #EA9278; }
+.pm-unit__details { list-style: none; padding: 0; margin: 0 0 10px; }
+.pm-unit__details li { position: relative; padding-left: 12px; font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+.pm-unit__details li::before { content: '•'; position: absolute; left: 0; color: rgba(255,255,255,0.3); }
+.pm-unit__price { font-weight: 500; font-size: 12px; color: rgba(255,255,255,0.5); }
+.pm-no-units { grid-column: 1 / -1; text-align: center; color: rgba(255,255,255,0.5); padding: 20px; }
+
+/* Features */
+.pm-features-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.pm-features-list li { background: rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 20px; font-size: 13px; color: rgba(255,255,255,0.8); }
+.pm-no-features { color: rgba(255,255,255,0.5); }
+
+/* Views list */
+.pm-views-list { list-style: none; padding: 0; margin: 0; }
+.pm-views-list li { position: relative; padding-left: 16px; margin-bottom: 4px; font-size: 12px; }
+.pm-views-list li::before { content: '•'; position: absolute; left: 0; color: #EA9278; }
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .filters-section.pt150 { padding-top: 100px; }
   .filters-title { font-size: 24px; }
-  .filters-row { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding-bottom: 12px; margin: 0 -15px; padding-left: 15px; padding-right: 15px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .filters-row { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding-bottom: 12px; margin: 0 -15px; padding-left: 15px; padding-right: 15px; scrollbar-width: none; }
   .filters-row::-webkit-scrollbar { display: none; }
   .filter-pill { padding: 8px 14px; font-size: 13px; flex-shrink: 0; }
   .filter-dropdown-menu { display: none !important; }
@@ -341,25 +420,28 @@ body.modal-open header.nav-homepage-style { z-index: 1 !important; }
   .pm-image { padding: 0; }
   .pm-image img { height: 250px; border-radius: 0; }
   .pm-wrapper { padding: 30px 25px 25px; }
-  .pm-info-grid { grid-template-columns: 1fr; gap: 20px; }
+  .pm-info-grid, .pm-info-grid--complex, .pm-info-grid--single { grid-template-columns: 1fr; gap: 20px; }
+  .pm-separator { width: calc(100% - 50px); margin: 0 25px 15px; }
+  .pm-units { grid-template-columns: 1fr; }
 }
 </style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('propertyModal');
   const isMobile = () => window.innerWidth <= 768;
-  let overlay = document.getElementById('mobileFilterOverlay');
-  let sheet = document.getElementById('mobileFilterSheet');
+  const overlay = document.getElementById('mobileFilterOverlay');
+  const sheet = document.getElementById('mobileFilterSheet');
   
   const filterState = { type: [], bedrooms: [], price: [], area: [], location: [], status: [], features: [], construction: [], ownership: [] };
 
+  // === FILTERS ===
   function closeAllDropdowns() {
     document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('is-open'));
     if (isMobile()) { overlay.classList.remove('is-active'); sheet.classList.remove('is-active'); document.body.style.overflow = ''; }
   }
 
   function openDropdown(dropdown) {
-    const filterName = dropdown.dataset.filter;
     const menu = dropdown.querySelector('.filter-dropdown-menu');
     closeAllDropdowns();
     dropdown.classList.add('is-open');
@@ -453,10 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!properties.length) { grid.innerHTML = '<div class="no-results"><p>No properties found</p></div>'; return; }
 
     grid.innerHTML = properties.map((prop, i) => `
-      <a href="#" class="project-card project-card--lg${i % 4 === 1 ? ' project-card--align-end' : ''}"
-         data-id="${prop.id}" data-title="${prop.title}" data-type="${prop.property_type || 'Property'}"
-         data-location="${prop.location ? prop.location + ', Bali' : 'Bali'}"
-         data-image="${prop.image || '/static/images/placeholder.jpg'}">
+      <a href="#" class="project-card project-card--lg${i % 4 === 1 ? ' project-card--align-end' : ''}" data-id="${prop.id}">
         <div class="pc-img" style="--img:url('${prop.image || '/static/images/placeholder.jpg'}')">
           <div class="pc-tags">
             <span class="tag">${prop.property_type || 'Property'}</span>
@@ -472,47 +551,87 @@ document.addEventListener('DOMContentLoaded', function() {
     initPropertyModals();
   }
 
-  function openModal(card) {
-    modal.querySelector('.pm-title').textContent = card.dataset.title || '';
-    modal.querySelector('.pm-type').textContent = card.dataset.type || '';
-    modal.querySelector('.pm-location').textContent = card.dataset.location || '';
-    modal.querySelector('.pm-image img').src = card.dataset.image || '';
-    modal.querySelector('.pm-construction').textContent = '—';
-    modal.querySelector('.pm-roi').textContent = '—';
-    modal.querySelector('.pm-area').textContent = '—';
-    modal.querySelector('.pm-leasehold').textContent = '—';
-    modal.querySelector('.pm-price').textContent = '—';
-    modal.classList.add('is-active');
-    document.body.classList.add('modal-open');
-
-    if (card.dataset.id) {
-      fetch(`/api/properties/${card.dataset.id}/`)
-        .then(r => r.json())
-        .then(data => {
-          if (data.location) modal.querySelector('.pm-location').textContent = data.location + ', Bali';
-          if (data.construction) modal.querySelector('.pm-construction').textContent = data.construction;
-          if (data.roi) modal.querySelector('.pm-roi').textContent = data.roi;
-          if (data.total_area) modal.querySelector('.pm-area').textContent = data.total_area + '';
-          if (data.leasehold) modal.querySelector('.pm-leasehold').textContent = data.leasehold;
-          if (data.price) modal.querySelector('.pm-price').textContent = 'From $' + Number(data.price).toLocaleString();
-        });
-    }
-  }
-
+  // === MODAL ===
   function closeModal() {
     modal?.classList.remove('is-active');
     document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
   }
 
   function initPropertyModals() {
     document.querySelectorAll('.project-card[data-id]').forEach(card => {
-      card.addEventListener('click', function(e) { e.preventDefault(); openModal(this); });
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.dataset.id;
+        if (id) loadPropertyData(id);
+      });
     });
   }
 
+  window.loadPropertyData = function(id) {
+    fetch(`/api/properties/${id}/`)
+      .then(r => r.json())
+      .then(data => {
+        const isComplex = data.is_complex;
+        
+        modal.querySelector('.pm-title').textContent = data.title || '';
+        modal.querySelector('.pm-type').textContent = data.property_type || '';
+        modal.querySelector('.pm-image img').src = data.image || '';
+        
+        // Toggle mode
+        modal.querySelector('.pm-info-grid--complex').style.display = isComplex ? 'grid' : 'none';
+        modal.querySelector('.pm-info-grid--single').style.display = isComplex ? 'none' : 'grid';
+        modal.querySelector('.pm-units-section').style.display = isComplex ? 'block' : 'none';
+        modal.querySelector('.pm-features-section').style.display = isComplex ? 'none' : 'block';
+        
+        if (isComplex) {
+          modal.querySelector('.pm-location').textContent = data.location || '—';
+          modal.querySelector('.pm-construction').innerHTML = data.construction || '—';
+          modal.querySelector('.pm-roi').textContent = data.roi || '—';
+          modal.querySelector('.pm-units-count').textContent = data.total_units || '—';
+          
+          const viewsEl = modal.querySelector('.pm-views');
+          if (data.features && data.features.length) {
+            viewsEl.innerHTML = '<ul class="pm-views-list">' + data.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
+          } else { viewsEl.textContent = '—'; }
+          
+          const unitsGrid = document.getElementById('pmUnitsGrid');
+          if (data.units && data.units.length) {
+            unitsGrid.innerHTML = data.units.map(u => `
+              <div class="pm-unit">
+                <div class="pm-unit__header">
+                  <span class="pm-unit__type">${u.type}</span>
+                  <button class="pm-unit__fav"><span class="flaticon-like"></span></button>
+                </div>
+                <ul class="pm-unit__details">${u.details.split(' • ').map(d => `<li>${d}</li>`).join('')}</ul>
+                <div class="pm-unit__price">${u.price}</div>
+              </div>
+            `).join('');
+          } else { unitsGrid.innerHTML = '<div class="pm-no-units">Contact us for details</div>'; }
+        } else {
+          modal.querySelector('.pm-location-single').textContent = data.location || '—';
+          modal.querySelector('.pm-construction-single').innerHTML = data.construction || '—';
+          modal.querySelector('.pm-roi-single').textContent = data.roi || '—';
+          modal.querySelector('.pm-area').textContent = data.total_area || '—';
+          modal.querySelector('.pm-leasehold').textContent = data.leasehold ? `${data.leasehold} years` : '—';
+          modal.querySelector('.pm-price').textContent = data.price_display || '—';
+          
+          const featuresEl = document.getElementById('pmFeatures');
+          if (data.features && data.features.length) {
+            featuresEl.innerHTML = '<ul class="pm-features-list">' + data.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
+          } else { featuresEl.innerHTML = '<div class="pm-no-features">—</div>'; }
+        }
+        
+        modal.classList.add('is-active');
+        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+      })
+      .catch(err => console.error('Error:', err));
+  };
+
   modal?.querySelector('.property-modal__overlay')?.addEventListener('click', closeModal);
   modal?.querySelector('.property-modal__close')?.addEventListener('click', closeModal);
-
+  
   initPropertyModals();
 });
 </script>
