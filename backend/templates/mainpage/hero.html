@@ -38,7 +38,10 @@
               <a href="{% url 'home' %}#contactus">Contacts</a>
             </nav>
             <div class="hero-cta">
-              <a href="#" class="favorites-btn" aria-label="Favorites"><span class="flaticon-like"></span></a>
+              <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
+                <span class="flaticon-like"></span>
+                <span class="favorites-count" style="display:none;">0</span>
+              </a>
               <a href="#" class="wdt-button button-cta is-nm concierge-cta open-callback-modal"><span>Order a call</span><i class="wdt-button__icon" aria-hidden="true"></i></a>
               <button type="button" class="mobile-burger sticky-burger" id="openMobileMenu2" aria-label="Menu"><img src="/static/images/mobile_button.svg" alt="Menu"></button>
             </div>

@@ -12,8 +12,9 @@
           </a>
 
           <div class="mobile_menu_actions d-flex align-items-center">
-            <a href="#" class="favorites-btn" aria-label="Favorites">
+            <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
               <span class="flaticon-like"></span>
+              <span class="favorites-count" style="display:none;">0</span>
             </a>
             <button type="button" class="mobile-burger" id="openMobileMenu" aria-label="Menu">
               <img src="{% static 'images/mobile_button.svg' %}" alt="Menu" loading="lazy" decoding="async">
@@ -82,9 +83,10 @@
         <div class="oa-mobile-menu__contacts-text">{% trans "Email us" %}: <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></div>
       </div>
 
-      <div class="oa-mobile-menu__bottom">
-        <a href="#" class="favorites-btn" aria-label="Favorites">
+      <div class="oa-mobile-menu__bottom">  
+        <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
           <span class="flaticon-like"></span>
+          <span class="favorites-count" style="display:none;">0</span>
         </a>
         <a href="#" class="oa-mobile-menu__button open-callback-modal">
           {% trans "Order a call" %}

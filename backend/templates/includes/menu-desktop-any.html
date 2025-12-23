@@ -21,10 +21,10 @@
               <li><a class="list-item" href="{% url 'home' %}#contactus"><span class="title">Contacts</span></a></li>
             </ul>
         </div>
-        <!-- правый блок: избранное + кнопка (используем твой .wdt-button) -->
         <div class="col-auto oa-cta">
-          <a href="#" class="favorites-btn" aria-label="Favorites">
+          <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
             <span class="flaticon-like"></span>
+            <span class="favorites-count" style="display:none;">0</span>
           </a>
           <a href="#" class="wdt-button button-cta is-nm concierge-cta open-callback-modal">
                 <span>Order a call</span>

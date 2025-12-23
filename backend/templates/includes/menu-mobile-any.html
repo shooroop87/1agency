@@ -13,15 +13,11 @@
                  alt="One Agency" loading="lazy" decoding="async">
             <span class="hero-name-mobile">One Agency</span>
           </a>
-
-          <!-- Иконки справа -->
           <div class="mobile_menu_actions d-flex align-items-center">
-            <!-- избранное -->
-            <a href="#" class="favorites-btn" aria-label="Favorites">
-                <span class="flaticon-like"></span>
+            <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
+              <span class="flaticon-like"></span>
+              <span class="favorites-count" style="display:none;">0</span>
             </a>
-
-            <!-- бургер -->
             <button type="button" class="mobile-burger" id="openMobileMenu" aria-label="Menu">
               <img src="{% static 'images/mobile_button.svg' %}" alt="Menu" loading="lazy" decoding="async">
             </button>
@@ -91,14 +87,12 @@
         <a href="#" class="oa-mobile-menu__contacts-link">Instagram RU</a>
         <a href="#" class="oa-mobile-menu__contacts-link">Instagram ENG</a>
       </div>
-
-      <!-- Низ: избранное + Order a call -->
       <div class="oa-mobile-menu__bottom">
-        <a href="#" class="favorites-btn" aria-label="Favorites">
+        <a href="{% url 'compare' %}" class="favorites-btn favorites-btn--header" aria-label="Favorites">
           <span class="flaticon-like"></span>
+          <span class="favorites-count" style="display:none;">0</span>
         </a>
-
-        <a href="#contact" class="oa-mobile-menu__button">
+        <a href="{% url 'home' %}#contactus" class="oa-mobile-menu__button">
           Order a call
           <i class="wdt-button__icon" aria-hidden="true"></i>
         </a>

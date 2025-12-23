@@ -198,3 +198,6 @@ def oauth2callback(request):
     if error:
         return HttpResponse(f"Error: {error}")
     return HttpResponse(f"Your auth code: {code}")
+
+def compare(request):
+    return render(request, 'properties/compare.html')

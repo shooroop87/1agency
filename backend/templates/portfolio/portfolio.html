@@ -212,11 +212,11 @@
             <h2 class="pm-title"></h2>
             <span class="pm-type"></span>
             <div class="pm-header__actions mt20">
-              <a class="wdt-button button-cta is-nm concierge-cta" href="#contact">
+              <a class="wdt-button button-cta is-nm concierge-cta" href="{% url 'home' %}#contactus">
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
-              <button class="favorites-btn" aria-label="Add to favorites">
+              <button class="favorites-btn" data-property-id="{{ prop.id }}" aria-label="Add to favorites">
                 <span class="flaticon-like"></span>
               </button>
             </div>
@@ -601,7 +601,9 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="pm-unit">
                 <div class="pm-unit__header">
                   <span class="pm-unit__type">${u.type}</span>
-                  <button class="pm-unit__fav"><span class="flaticon-like"></span></button>
+                    <button class="favorites-btn" data-property-id="{{ prop.id }}" aria-label="Add to favorites">
+                      <span class="flaticon-like"></span>
+                    </button>
                 </div>
                 <ul class="pm-unit__details">${u.details.split(' • ').map(d => `<li>${d}</li>`).join('')}</ul>
                 <div class="pm-unit__price">${u.price}</div>

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.db.models import Q, Min, Max
 from .models import Property, PropertyType, Location, Feature
+from django.views.generic import TemplateView
 
 
 def property_list(request):
@@ -200,10 +201,13 @@ def property_detail(request, pk):
         'features': features_list,
         'image': prop.image.url if prop.image else '/static/images/placeholder.jpg',
         'video': prop.video_url,
-        # Complex specific
         'is_complex': prop.is_complex,
         'total_units': prop.total_units if prop.is_complex else None,
         'units': units_data,
+        # Для страницы сравнения (чистые значения без HTML)
+        'bedrooms_display': prop.get_bedrooms_display() or '—',
+        'area_display': prop.get_total_area_display() or '—',
+        'roi_display': prop.get_roi_display() or '—',
     })
 
 def filter_options(request):
@@ -247,3 +251,6 @@ def filter_options(request):
             {'value': 'leasehold', 'label': 'Leasehold'},
         ],
     })
+
+class CompareView(TemplateView):
+    template_name = 'properties/compare.html'

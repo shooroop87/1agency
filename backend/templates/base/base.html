@@ -19,6 +19,9 @@
 {% include "includes/modals.html" %}
 {% include "includes/scripts_footer.html" %}
 {% render_snippets 'body_end' %}
-{% block extra_js %}{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/favorites.js' %}"></script>
+<script src="{% static 'js/compare.js' %}"></script>
+{% endblock %}
 </body>
 </html>

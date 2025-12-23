@@ -9610,3 +9610,95 @@ main#content2 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+.favorites-btn {
+  position: relative;
+  cursor: pointer;
+}
+
+.favorites-btn.is-active .flaticon-like:before {
+  color: #EA9278;
+}
+
+.favorites-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  background: linear-gradient(90deg, #F0987D, #EA9278);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compare-empty {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+}
+
+.compare-table__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.compare-table table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+  vertical-align: top;
+  min-width: 200px;
+}
+
+.compare-label {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  text-transform: uppercase;
+  width: 120px;
+  min-width: 120px;
+}
+
+.compare-card {
+  position: relative;
+}
+
+.compare-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.compare-card h4 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.compare-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.compare-remove:hover {
+  background: #EA9278;
+}
