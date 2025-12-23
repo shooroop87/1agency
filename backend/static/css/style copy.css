@@ -926,7 +926,7 @@ background-clip: text;
 .section-projects2 {
   width: 100%;
   position: relative;
-  z-index: 3;
+  z-index: 4!important;
   padding:0px;
 }
 
