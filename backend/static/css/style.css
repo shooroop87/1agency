@@ -997,7 +997,34 @@ a.favorites-btn:hover {
   box-shadow: var(--elev-1);
 }
 
+/* Кнопка favorites */
+button.favorites-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+button.favorites-btn:hover {
+  background: var(--gradient-accent, linear-gradient(135deg, #c9a962, #d4af37));
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+}
+
+button.favorites-btn.is-active {
+  background: var(--gradient-accent);
+  border-color: transparent;
+}
+
+button.favorites-btn.is-active .flaticon-like:before {
+  content: "\f004"; /* filled heart */
+}
 
 /* ===== Areas (общее) ===== */
 .areas-bali{ position:relative; padding-block:40px; }
@@ -6153,7 +6180,6 @@ header.nav-homepage-style.stricky.stricky-fixed {
   -moz-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   -o-box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
   box-shadow: 0px 1px 4px rgba(24, 26, 32, 0.07);
-  z-index: 9;
   background: #272727;
 }
 header.nav-homepage-style.stricky.stricky-fixed .ace-responsive-menu a {

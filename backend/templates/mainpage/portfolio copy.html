@@ -1046,6 +1046,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('propertyModal');
   const isMobile = () => window.innerWidth <= 768;
   
+  // Создаём overlay и sheet если их нет
   let overlay = document.getElementById('mobileFilterOverlay');
   let sheet = document.getElementById('mobileFilterSheet');
   
@@ -1063,6 +1064,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(sheet);
   }
   
+  // Filter state
   const filterState = {
     type: [],
     bedrooms: [],
@@ -1077,6 +1079,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let currentOpenFilter = null;
 
+  // ===== FILTERS =====
+  
   function closeAllDropdowns() {
     document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('is-open'));
     
@@ -1183,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applyFilters();
   }
 
+  // Pill click
   document.querySelectorAll('.filter-pill').forEach(pill => {
     pill.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1199,6 +1204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Desktop: checkboxes
   document.querySelectorAll('.filter-dropdown-menu .filter-option:not(.filter-option--chip) input[type="checkbox"]').forEach(cb => {
     cb.addEventListener('change', function() {
       if (isMobile()) return;
@@ -1209,6 +1215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Desktop: bed circles
   document.querySelectorAll('.filter-dropdown-menu .bed-circle').forEach(circle => {
     circle.addEventListener('click', function(e) {
       if (isMobile()) return;
@@ -1233,6 +1240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Ownership pills
   document.querySelectorAll('.ownership-pill').forEach(pill => {
     pill.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1253,14 +1261,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Overlay click
   overlay.addEventListener('click', closeAllDropdowns);
 
+  // Outside click (desktop)
   document.addEventListener('click', function(e) {
     if (!isMobile() && !e.target.closest('.filter-dropdown')) {
       closeAllDropdowns();
     }
   });
 
+  // ESC
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeAllDropdowns();
@@ -1282,6 +1293,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Clear all
   document.getElementById('clearAllFilters')?.addEventListener('click', function(e) {
     e.preventDefault();
     
@@ -1300,6 +1312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applyFilters();
   });
 
+  // Apply filters
   function applyFilters() {
     const params = new URLSearchParams();
     
@@ -1337,6 +1350,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
+  // Render properties
   function renderProperties(properties) {
     const grid = document.getElementById('propertiesGrid');
     if (!grid) return;
@@ -1376,6 +1390,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initPropertyModals();
   }
 
+  // ===== MODAL =====
+  
   function openModal(card) {
     const title = card.dataset.title;
     const type = card.dataset.type;
@@ -1422,32 +1438,25 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         const isComplex = data.is_complex;
         
+        // Основные поля
         modal.querySelector('.pm-title').textContent = data.title || '';
         modal.querySelector('.pm-type').textContent = data.property_type || '';
         modal.querySelector('.pm-image img').src = data.image || '';
         
-        // === ОБНОВЛЯЕМ КНОПКУ FAVORITES ===
-        const favBtn = modal.querySelector('.favorites-btn');
-        if (favBtn) {
-          favBtn.setAttribute('data-property-id', data.id);
-          // Проверяем, есть ли уже в избранном
-          if (typeof window.Favorites !== 'undefined') {
-            const isFav = window.Favorites.has(data.id);
-            favBtn.classList.toggle('is-active', isFav);
-          }
-        }
-        
+        // Переключаем режим отображения
         modal.querySelector('.pm-info-grid--complex').style.display = isComplex ? 'grid' : 'none';
         modal.querySelector('.pm-info-grid--single').style.display = isComplex ? 'none' : 'grid';
         modal.querySelector('.pm-units-section').style.display = isComplex ? 'block' : 'none';
         modal.querySelector('.pm-features-section').style.display = isComplex ? 'none' : 'block';
         
         if (isComplex) {
+          // === COMPLEX MODE ===
           modal.querySelector('.pm-location').textContent = data.location || '—';
           modal.querySelector('.pm-construction').innerHTML = data.construction || '—';
           modal.querySelector('.pm-roi').textContent = data.roi || '—';
           modal.querySelector('.pm-units-count').textContent = data.total_units || '—';
           
+          // Views из features
           const viewsEl = modal.querySelector('.pm-views');
           if (data.features && data.features.length) {
             viewsEl.innerHTML = '<ul class="pm-views-list">' + 
@@ -1456,6 +1465,7 @@ document.addEventListener('DOMContentLoaded', function() {
             viewsEl.textContent = '—';
           }
           
+          // Units grid
           const unitsGrid = document.getElementById('pmUnitsGrid');
           if (data.units && data.units.length) {
             unitsGrid.innerHTML = data.units.map(u => `
@@ -1476,6 +1486,7 @@ document.addEventListener('DOMContentLoaded', function() {
             unitsGrid.innerHTML = '<div class="pm-no-units">Contact us for unit details</div>';
           }
         } else {
+          // === SINGLE PROPERTY MODE ===
           modal.querySelector('.pm-location-single').textContent = data.location || '—';
           modal.querySelector('.pm-construction-single').innerHTML = data.construction || '—';
           modal.querySelector('.pm-roi-single').textContent = data.roi || '—';
@@ -1483,6 +1494,7 @@ document.addEventListener('DOMContentLoaded', function() {
           modal.querySelector('.pm-leasehold').textContent = data.leasehold ? `${data.leasehold} years` : '—';
           modal.querySelector('.pm-price').textContent = data.price_display || '—';
           
+          // Features
           const featuresEl = document.getElementById('pmFeatures');
           if (data.features && data.features.length) {
             featuresEl.innerHTML = '<ul class="pm-features-list">' + 
@@ -1492,6 +1504,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
         
+        // Открываем модалку
         modal.classList.add('is-active');
         document.body.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
@@ -1499,6 +1512,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(err => console.error('Error loading property:', err));
   };
 
+  // Init
   initPropertyModals();
 });
 </script>

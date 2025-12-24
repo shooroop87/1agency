@@ -12,6 +12,12 @@ def property_list(request):
         'developer', 'property_type', 'location', 'image'
     ).prefetch_related('features')
     
+    # IDs filter (для страницы сравнения)
+    if ids := request.GET.get('ids'):
+        id_list = [int(i.strip()) for i in ids.split(',') if i.strip().isdigit()]
+        if id_list:
+            qs = qs.filter(id__in=id_list)
+            
     # Type filter
     if types := request.GET.get('type'):
         type_list = [t.strip() for t in types.split(',') if t.strip()]

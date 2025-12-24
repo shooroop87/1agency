@@ -6,7 +6,12 @@
   <div class="body_content">
     <section class="compare-section pt150 pb100">
       <div class="container">
-        <h1 class="section-title mb50">{% trans "Compare Properties" %}</h1>
+        <div class="d-flex justify-content-between align-items-center mb50">
+          <h1 class="section-title mb-0">{% trans "Compare Properties" %}</h1>
+          <button id="clearCompare" class="btn-clear-compare" style="display:none;">
+            <span class="flaticon-close"></span> {% trans "Clear All" %}
+          </button>
+        </div>
         
         <div id="compareEmpty" class="compare-empty text-center py100">
           <span class="flaticon-like" style="font-size:48px;opacity:0.3;"></span>
