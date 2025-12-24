@@ -216,9 +216,7 @@
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
-              <button class="favorites-btn" data-property-id="{{ prop.id }}" aria-label="Add to favorites">
-                <span class="flaticon-like"></span>
-              </button>
+              <a href="#" class="favorites-btn" aria-label="Favorites"><span class="flaticon-like"></span></a>
             </div>
           </div>
         </div>
@@ -601,9 +599,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="pm-unit">
                 <div class="pm-unit__header">
                   <span class="pm-unit__type">${u.type}</span>
-                    <button class="favorites-btn" data-property-id="{{ prop.id }}" aria-label="Add to favorites">
-                      <span class="flaticon-like"></span>
-                    </button>
+                    <a href="#" class="favorites-btn" aria-label="Favorites"><span class="flaticon-like"></span></a>
                 </div>
                 <ul class="pm-unit__details">${u.details.split(' • ').map(d => `<li>${d}</li>`).join('')}</ul>
                 <div class="pm-unit__price">${u.price}</div>

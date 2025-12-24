@@ -1,30 +1,33 @@
-<!-- backend/templates/properties/compare.html -->
-{% extends 'base.html' %}
+{% extends 'base/base_projects.html' %}
 {% load static i18n %}
 
 {% block content %}
-<section class="compare-section pt150 pb100">
-  <div class="container">
-    <h1 class="section-title mb50">{% trans "Compare Properties" %}</h1>
-    
-    <div id="compareEmpty" class="compare-empty text-center py100">
-      <span class="flaticon-like" style="font-size:48px;opacity:0.3;"></span>
-      <p class="mt20">{% trans "No properties to compare" %}</p>
-      <a href="{% url 'projects' %}" class="wdt-button button-cta mt30">
-        {% trans "Browse Properties" %}
-      </a>
-    </div>
-    
-    <div id="compareTable" class="compare-table" style="display:none;">
-      <div class="compare-table__scroll">
-        <table>
-          <thead id="compareHead"></thead>
-          <tbody id="compareBody"></tbody>
-        </table>
+<div class="wrapper ovh">
+  <div class="body_content">
+    <section class="compare-section pt150 pb100">
+      <div class="container">
+        <h1 class="section-title mb50">{% trans "Compare Properties" %}</h1>
+        
+        <div id="compareEmpty" class="compare-empty text-center py100">
+          <span class="flaticon-like" style="font-size:48px;opacity:0.3;"></span>
+          <p class="mt20">{% trans "No properties to compare" %}</p>
+          <a href="{% url 'projects' %}" class="wdt-button button-cta mt30">
+            {% trans "Browse Properties" %}
+          </a>
+        </div>
+        
+        <div id="compareTable" class="compare-table" style="display:none;">
+          <div class="compare-table__scroll">
+            <table>
+              <thead id="compareHead"></thead>
+              <tbody id="compareBody"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
-</section>
+</div>
 {% endblock %}
 
 {% block extra_js %}
