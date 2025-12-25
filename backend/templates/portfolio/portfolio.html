@@ -216,7 +216,7 @@
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
-              <button class="favorites-btn" data-property-id="${u.id || data.id}" aria-label="Add to favorites">
+              <button class="favorites-btn" data-property-id="" aria-label="Add to favorites">
                 <span class="flaticon-like"></span>
               </button>
             </div>
@@ -577,6 +577,15 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.querySelector('.pm-title').textContent = data.title || '';
         modal.querySelector('.pm-type').textContent = data.property_type || '';
         modal.querySelector('.pm-image img').src = data.image || '';
+
+        // Обновляем кнопку favorites
+        const favBtn = modal.querySelector('.pm-header__actions .favorites-btn');
+        if (favBtn) {
+          favBtn.setAttribute('data-property-id', data.id);
+          if (window.Favorites) {
+            favBtn.classList.toggle('is-active', window.Favorites.has(data.id));
+          }
+        }
         
         // Toggle mode
         modal.querySelector('.pm-info-grid--complex').style.display = isComplex ? 'grid' : 'none';
@@ -601,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="pm-unit">
                 <div class="pm-unit__header">
                   <span class="pm-unit__type">${u.type}</span>
-                    <button class="favorites-btn" data-property-id="${u.id || data.id}" aria-label="Add to favorites">
+                    <button class="favorites-btn" data-property-id="${data.id}" aria-label="Add to favorites">
                       <span class="flaticon-like"></span>
                     </button>
                 </div>

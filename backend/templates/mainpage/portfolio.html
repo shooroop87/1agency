@@ -228,7 +228,7 @@
                 <span>Contact us</span>
                 <i class="wdt-button__icon" aria-hidden="true"></i>
               </a>
-              <button class="favorites-btn" data-property-id="{{ prop.id }}" aria-label="Add to favorites">
+              <button class="favorites-btn" data-property-id="${data.id}" aria-label="Add to favorites">
                 <span class="flaticon-like"></span>
               </button>
             </div>
@@ -1425,15 +1425,13 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.querySelector('.pm-title').textContent = data.title || '';
         modal.querySelector('.pm-type').textContent = data.property_type || '';
         modal.querySelector('.pm-image img').src = data.image || '';
-        
-        // === ОБНОВЛЯЕМ КНОПКУ FAVORITES ===
-        const favBtn = modal.querySelector('.favorites-btn');
+
+        // Обновляем кнопку favorites
+        const favBtn = modal.querySelector('.pm-header__actions .favorites-btn');
         if (favBtn) {
           favBtn.setAttribute('data-property-id', data.id);
-          // Проверяем, есть ли уже в избранном
-          if (typeof window.Favorites !== 'undefined') {
-            const isFav = window.Favorites.has(data.id);
-            favBtn.classList.toggle('is-active', isFav);
+          if (window.Favorites) {
+            favBtn.classList.toggle('is-active', window.Favorites.has(data.id));
           }
         }
         
