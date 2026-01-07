@@ -346,19 +346,19 @@ body.home-page main#content {
 }
 
 /* Отступ снизу только для страниц БЕЗ contact-form2 */
-main#content:not(:has(.section-content-footer)) {
+main#content:not(:has(.section-content-footer mt80)) {
   margin-bottom: 500px;
 }
 
 @media (max-width: 991.98px) {
-  main#content:not(:has(.section-content-footer)) {
+  main#content:not(:has(.section-content-footer mt80)) {
     margin-bottom: 700px;
   }
 }
 
 @media (max-width: 991.98px) {
-  main#content:not(:has(.section-content-footer)),
-  main#content2:not(:has(.section-content-footer)) {
+  main#content:not(:has(.section-content-footer mt80)),
+  main#content2:not(:has(.section-content-footer mt80)) {
     margin-bottom: 0;
   }
 }
@@ -367,6 +367,7 @@ main#content:not(:has(.section-content-footer)) {
   main#content,
   main#content2 {
     margin-bottom: 0;
+    padding-bottom: 0px;
   }
 }
 
