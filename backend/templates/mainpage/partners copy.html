@@ -48,11 +48,30 @@
   </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof Swiper !== 'undefined') {
+    new Swiper('.partners-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      scrollbar: {
+        el: '.partners-swiper .swiper-scrollbar',
+        draggable: true,
+      }
+    });
+  }
+});
+</script>
+
 <style>
+.partners-section {
+  padding: 80px 0;
+}
+
 .partners-swiper {
   overflow: visible;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
 }
 
 .partners-swiper .swiper-slide {
@@ -63,6 +82,58 @@
 .partners-card {
   width: 325px;
   min-height: 290px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.partners-logo {
+  height: 60px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.partners-logo img {
+  max-height: 50px;
+  max-width: 150px;
+  width: auto;
+  object-fit: contain;
+}
+
+.partners-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.partners-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+.partners-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.partners-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.partners-btn {
+  margin-top: auto;
 }
 
 .partners-swiper .swiper-scrollbar {
@@ -81,11 +152,17 @@
   height: 100%;
   border-radius: 4px;
 }
-
 /* Мобильная версия */
 @media (max-width: 575px) {
+  .partners-section,
+  .partners-section .container,
+  .partners-section .row,
+  .partners-section .col-lg-12 {
+    overflow: visible !important;
+  }
+
   .partners-section {
-    overflow-x: clip;
+    padding: 40px 0;
   }
   
   .partners-swiper {
@@ -95,28 +172,56 @@
   
   .partners-swiper .swiper-wrapper {
     display: flex;
-    flex-wrap: nowrap;
     gap: 20px;
+    flex-wrap: nowrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
     overscroll-behavior-x: contain;
-    padding-bottom: 15px;
+    overscroll-behavior-y: none;
+  }
+  
+  .partners-section {
+    overflow-x: clip;
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  .partners-swiper .swiper-wrapper::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 10px;
   }
   
   .partners-swiper .swiper-slide {
     width: 320px !important;
-    flex-shrink: 0;
     scroll-snap-align: start;
+    flex-shrink: 0;
   }
   
   .partners-card {
     width: 320px;
     min-height: 320px;
+    padding: 25px;
   }
   
   .partners-swiper .swiper-scrollbar {
     display: none;
+  }
+  .partners-swiper {
+    touch-action: pan-y;
+  }
+  
+  .partners-swiper .swiper-wrapper {
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
   }
 }
 </style>
